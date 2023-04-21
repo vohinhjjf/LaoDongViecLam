@@ -1,0 +1,35 @@
+class RouteConstants {
+  static const String splashRoute = "/splashRoute";
+  static const String loginRoute = "/loginRoute";
+  static const String bottomNavigatorRoute = "/bottomNavigatorRoute";
+  static const String homeRoute = "/homeRoute";
+  static const String changePassRoute = "/changePassRoute";
+  static const String syncRoute = "/syncRoute";
+  static const String progressRoute = "/progressRoute";
+  static const String interviewArea = "/interviewArea";
+  static const String interviewStatusRoute = "/interviewStatusRoute";
+  static const String notInterviewedRoute = "/notInterviewedRoute";
+  static const String interviewingRoute = "/interviewingRoute";
+  static const String completeInterviewRoute = "/completeInterviewRoute";
+  static const String operatingStatusRoute = "/operatingStatusRoute";
+  static const String baseInformationRoute = "/baseInformationRoute";
+  static const String headBaseInformationRoute = "/headBaseInformationRoute";
+  static const String questionNo3Route = "/questionNo3Route";
+  static const String questionNo4Route = "/questionNo4Route";
+  static const String membersInformationRoute = "/membersInformationRoute";
+  static const String questionA16Route = "/questionA16Route";
+  static const String questionA17Route = "/questionA17Route";
+  static const String questionA18Route = "/questionA18Route";
+  static const String questionA21Route = "/questionA21Route";
+  static const String questionA22Route = "/questionA22Route";
+  static const String questionA3Route = "/questionA3Route";
+  static const String questionA41_1Route = "/questionA41_1Route";
+  static const String questionA41_2Route = "/questionA41_2Route";
+  static const String questionA42Route = "/questionA42Route";
+  static const String questionA43Route = "/questionA43Route";
+  static const String questionA43AddActivityRoute = "/questionA43AddActivityRoute";
+  static const String nguoiKhaiPhieu = "/nguoiKhaiPhieuRoute";
+  static const String gPS = "/gPSRoute";
+  static const String voterRoute = "/voterRoute";
+  static const String finishRoute = "/finishRoute";
+}
