@@ -5,10 +5,10 @@ import '../components/ui_colors.dart';
 import '../components/ui_styles.dart';
 import '../components/ui_text.dart';
 
-class UIDialog extends StatelessWidget {
+class UIWarningDialog extends StatelessWidget {
   final String waring;
 
-  const UIDialog(
+  const UIWarningDialog(
       {Key? key,
         required this.waring})
       : super(key: key);
@@ -56,6 +56,75 @@ class UIDialog extends StatelessWidget {
   }
 }
 
+class UINotificationDialog extends StatelessWidget {
+  final String notification;
+  final void Function() onpress;
+
+  const UINotificationDialog(
+      {Key? key,
+        required this.notification,
+        required this.onpress})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      titlePadding: const EdgeInsets.all(20),
+      contentPadding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      title: UIText(
+        text: notification,
+        textColor: Colors.black,
+        textFontSize:fontMedium,
+        isBold: true,
+      ),
+      content: Container(
+        height: 60,
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            MaterialButton(
+                height: 60,
+                minWidth: (MediaQuery.of(context).size.width-80)/2,
+                shape: const RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black,width: 0.1)
+                ),
+                child: const UIText(
+                  text: 'Nhập lại',
+                  textFontSize: fontMedium,
+                  textAlign: TextAlign.center,
+                  textColor: mPrimaryColor,
+                  isBold: true,
+                ),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop();
+                }
+            ),
+            MaterialButton(
+                height: 60,
+                minWidth: (MediaQuery.of(context).size.width-80)/2,
+                shape: const RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black,width: 0.1)
+                ),
+                onPressed: onpress,
+                child: const UIText(
+                  text: 'Tiếp tục',
+                  textFontSize: fontMedium,
+                  textAlign: TextAlign.center,
+                  textColor: mPrimaryColor,
+                  isBold: true,
+                )
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class UIStopDialog extends StatelessWidget {
   const UIStopDialog({super.key});
 
@@ -74,11 +143,11 @@ class UIStopDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            child: const Text(
-              "Tạm dừng phỏng vấn?",
+            child: const UIText(
+              text: "Tạm dừng phỏng vấn?",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.w500),
+              textColor: Colors.black,
+              isBold: true,
             ),
           ),
           const SizedBox(
@@ -88,19 +157,24 @@ class UIStopDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 MaterialButton(
-                    child: const Text('Hủy bỏ',
-                        style: TextStyle(
-                            color: Colors.red, fontSize: 15)),
+                    child: const UIText(
+                      text: 'Hủy bỏ',
+                      textColor: Colors.red,
+                      textFontSize: 15,
+                      isBold: true,
+                    ),
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
                     }),
                 MaterialButton(
-                    child: const Text('Đồng ý',
-                        style: TextStyle(
-                            color: mPrimaryColor, fontSize: 15)),
+                    child: const  UIText(
+                      text: 'Đồng ý',
+                      textColor: mPrimaryColor,
+                      textFontSize: 15,
+                      isBold: true,),
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
-                      //NavigationServices.instance.navigateToInterviewStatus(context);
+                      NavigationServices.instance.navigateToInterviewStatus(context);
                     }),
               ])
         ],

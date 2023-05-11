@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-const mPrimaryColor = Color(0xFF010E45);
+const mPrimaryColor = Color(0xFF184272);
 const mSecondPrimaryColor = Color(0xFFE3F2FD);
 const mSecondaryColor = Color(0xFF1A237E);
 const mDividerColor = Color(0xFF14274E);

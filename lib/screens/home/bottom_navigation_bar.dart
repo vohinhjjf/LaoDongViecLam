@@ -135,8 +135,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 90.w,
-        height: 80.h,
+        width: 100.w,
+        //height: 90.h,
+        margin: EdgeInsets.symmetric(vertical: 5),
         decoration:  BoxDecoration(
           //border: Border.all(color: check ? mThirdColor : Colors.white, width: 2),
           color: Colors.white,
@@ -158,7 +159,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               height: 55,
               colorBlendMode: BlendMode.color,
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 5,),
             UIText(
               text: title,
               textColor: mPrimaryColor,

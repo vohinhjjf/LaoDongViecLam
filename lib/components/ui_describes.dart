@@ -21,7 +21,7 @@ class UIDescribes {
   static const sync = 'Đồng bộ';
   static const progress = 'Tiến độ';
   static const home = 'Trang chủ';
-  static const changePass = 'Đổi mật khẩu';
+  static const changePass = 'Đổi mk';
   static const logout = 'Đăng xuất';
   static const dashboard = 'Trang chủ';
   static const implement = 'Thực hiện';
@@ -62,14 +62,12 @@ class UIDescribes {
   static const investigationPeriod = 'Kỳ điều tra: ';
 
   //operating
-  static const statusActive = 'Tình trạng của cơ sở';
-  static const active = 'Đang hoạt động';
-  static const stopWorking = 'Tạm ngừng hoạt động';
-  static const notWorking = 'Không hoạt động';
-  static const another = 'Chuyển ngành khác';
-  static const notArea = 'Không còn tại địa bàn';
+  static const statusActive = 'Trạng thái hộ';
+  static const active = 'Phỏng vấn';
+  static const refuse = 'Hộ từ chối phỏng vấn';
+  static const notArea = 'Hộ không còn tại địa bàn';
   static const notContact= 'Không liên hệ được';
-  static const notSubject = 'Không thuộc đối tượng điều tra';
+  static const moveTo = 'Hộ chuyển đi - đến';
 
   //status
   static const error = 'Có lỗi xảy ra';
@@ -85,16 +83,11 @@ class UIDescribes {
   static const next = 'Tiếp tục';
   static const pre = 'Quay lại';
 
-  //Base
-  static const informationCommon = 'Thông tin chung của cơ sở';
-  static const informationIdentification = 'Thông tin định danh';
+  //HouseHold
+  static const informationCommon = 'Thông tin chung của hộ';
   static const interviewDetails = 'Chi tiết phỏng vấn';
-  static const premisesCode = 'Mã địa bàn';
-  static const premisesName = 'Tên địa bàn';
-  static const baseName = 'A1.1. Tên cơ sở';
-  static const address = 'A1.2. Địa chỉ (số nhà, đường phố, tổ/thôn/ấp)';
-  static const phoneNumber = 'A1.3. Số điện thoại';
-  static const email = 'A1.4. Email';
+  static const householderName = 'Họ và tên chủ hộ';
+  static const householderAddress = 'Địa chỉ của hộ(số nhà, đường phố, tổ/thôn/ấp)';
   static const householdSurvey = 'Điều tra hộ';
   static const notHadDb = 'Chưa có dữ liệu';
   static const needUpdateDb =
@@ -102,13 +95,10 @@ class UIDescribes {
   static const getData = 'Tải dữ liệu phỏng vấn';
   static const postData = 'Gửi dữ liệu phỏng vấn';
 
-  //Head Base
-  static const informationHead = 'Thông tin người đứng đầu cơ sở';
-  static const headbaseName = 'Tên người đứng đầu cơ sở';
-  static const dignitaries = 'Chức sắc trong tôn giáo hiện nay';
-  static const birthYear = 'Năm sinh';
-  static const nation = 'Dân tộc';
-  static const qualification = 'Trình độ chuyên môn';
+  //Q1-Q7
+  static const informationHead = 'Chi tiết phỏng vấn';
+  static const personName = 'Đó là những ai:';
+
 
   //village
   static const provinceCode = 'Mã tỉnh';

@@ -59,6 +59,8 @@ dev_dependencies:
   new_version_plus: ^0.0.9
   package_info_plus: ^3.1.0
   simple_circular_progress_bar: ^1.0.2
+  getwidget: ^2.1.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

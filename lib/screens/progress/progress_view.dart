@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/uis.dart';
 import 'progress_viewmodel.dart';
 
@@ -46,7 +47,7 @@ class Body extends State{
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SimpleCircularProgressBar(
-                  size: 200,
+                  size: 200.r,
                   valueNotifier: valueNotifier,
                   progressStrokeWidth: 24,
                   backStrokeWidth: 24,

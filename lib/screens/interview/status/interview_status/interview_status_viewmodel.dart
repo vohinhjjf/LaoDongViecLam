@@ -32,7 +32,7 @@ class InterviewStatusViewModel extends BaseViewModel {
   }*/
 
   Future<void> notInterviewed() async {
-    _sPrefAppModel.setInterviewStatus(1);
+    //_sPrefAppModel.setInterviewStatus(1);
     NavigationServices.instance.navigateToNotInterviewed(context);
   }
 

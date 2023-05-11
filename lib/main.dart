@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lao_dong_viec_lam/screens/changePass/change_pass_viewmodel.dart';
 
 import 'components/navigation/navigation_service.dart';
 import 'data/shared_preferences/spref_app_model.dart';
@@ -7,9 +6,20 @@ import 'models/route_observe_model.dart';
 import 'network/app_injection.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'screens/changePass/change_pass_viewmodel.dart';
 import 'screens/home/home_viewmodel.dart';
 import 'screens/interview/area/area_viewmodel.dart';
+import 'screens/interview/questions/Q1/Q1_viewmodel.dart';
+import 'screens/interview/questions/Q2/Q2_viewmodel.dart';
+import 'screens/interview/questions/Q3/Q3_viewmodel.dart';
+import 'screens/interview/questions/Q4/Q4_viewmodel.dart';
+import 'screens/interview/questions/Q5/Q5_viewmodel.dart';
+import 'screens/interview/questions/Q6/Q6_viewmodel.dart';
+import 'screens/interview/questions/Q7/Q7_viewmodel.dart';
+import 'screens/interview/questions/household_information/household_information_viewmodel.dart';
+import 'screens/interview/questions/operating_status/operating_status_viewmodel.dart';
 import 'screens/interview/status/interview_status/interview_status_viewmodel.dart';
+import 'screens/interview/status/not_interview/not_interview_viewmodel.dart';
 import 'screens/login/login_viewmodel.dart';
 import 'screens/progress/progress_viewmodel.dart';
 import 'services/api/auth_services.dart';
@@ -44,6 +54,36 @@ void main() async {
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => InterviewStatusViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => NotInterviewedViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => OperatingStatusViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => HouseholdInformationViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q1ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q2ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q3ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q4ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q5ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q6ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => Q7ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
       ],
       child: const MyApp(),
