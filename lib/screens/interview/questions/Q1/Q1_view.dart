@@ -31,7 +31,8 @@ class _Q1ViewState extends State<Q1View> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: mPrimaryColor),
+        //iconTheme: const IconThemeData(color: mPrimaryColor),
+
         title: const UIText(
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
@@ -67,6 +68,7 @@ class _Q1ViewState extends State<Q1View> {
                       //Navigator.of(context).pop();
                       setState(() {
                         list_name.add(value);
+                        _text_name.text = "";
                       });
                       //_showAddDialog(linh_vuc, san_pham,_text_name.text, false);
                     },
@@ -76,7 +78,7 @@ class _Q1ViewState extends State<Q1View> {
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                           borderSide: BorderSide(color: mPrimaryColor)),
                       hintText: "Nhập họ và tên",
-                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintStyle: TextStyle(color: Colors.grey),
                     ),
                   ),
                   const SizedBox(height: 10,),

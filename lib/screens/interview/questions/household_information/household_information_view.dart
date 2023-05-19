@@ -47,7 +47,7 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
             icon: const Icon(
               Icons.arrow_back_ios,
               color: mPrimaryColor,
-              size: fontMedium,
+              size: fontLarge,
             ),
             onPressed: () => householdInformationViewModel.HouseholdBack()),
         backgroundColor: Colors.white,
@@ -56,7 +56,7 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontLarge,
+          textFontSize: fontGreater,
           isBold: true,
         ),
       ),
@@ -77,11 +77,11 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
                       children: [
                         //name
                         Padding(
-                          padding: EdgeInsets.only(left: 20.w, top: 20.h, right: 20.w),
+                          padding: EdgeInsets.only(left: 20.w, top: 10.h, right: 20.w),
                           child: const UIText(
                             text:UIDescribes.householderName,
                             textColor: Colors.black,
-                            textFontSize:fontMedium,
+                            textFontSize:fontLarge,
                             isBold: true,
                           ),
                         ),
@@ -108,7 +108,7 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
                           child: const UIText(
                             text:UIDescribes.householderAddress,
                             textColor: Colors.black,
-                            textFontSize:fontMedium,
+                            textFontSize:fontLarge,
                             isBold: true,
                           ),
                         ),
@@ -199,7 +199,7 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
                       textAlign: TextAlign.center,
                       textColor: Colors.white,
                       textFontSize: fontLarge,
-                      isBold: false,
+                      isBold: true,
                     ),
                   ),
                 ),
