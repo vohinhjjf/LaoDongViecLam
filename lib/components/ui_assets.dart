@@ -7,6 +7,7 @@ class UIAssets {
   static const String icChangePass = 'assets/icons/ic_change_pass.jpg';
   static const String icNotChangePass = 'assets/icons/ic_not_change_pass.jpg';
   static const String icLogout = 'assets/icons/ic_logout.jpg';
+  static const String icNotLogout = 'assets/icons/ic_not_logout.jpg';
   static const String icUpdate = 'assets/icons/ic_update.jpg';
   static const String icReload = 'assets/icons/ic_reload.jpg';
   static const String icReplace = 'assets/icons/ic_replace.jpg';

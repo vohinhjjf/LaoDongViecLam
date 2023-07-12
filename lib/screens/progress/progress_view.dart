@@ -40,12 +40,38 @@ class Body extends State{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //backgroundColor: const Color(0xfffdfcfb),
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: mPrimaryColor,
+                size: fontLarge,
+              ),
+              onPressed: () => progressViewModel.progressBack()
+          ),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: const UIText(
+            text: 'Tiến độ điều tra',
+            textColor: mPrimaryColor,
+            textAlign: TextAlign.center,
+            textFontSize: fontLarge,
+            isBold: true,
+          ),
+
+          shape: const UnderlineInputBorder(
+              borderSide: BorderSide(color: mPrimaryColor)
+          ),
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
                 SimpleCircularProgressBar(
                   size: 200.r,
                   valueNotifier: valueNotifier,

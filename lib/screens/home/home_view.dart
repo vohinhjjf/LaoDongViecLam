@@ -43,8 +43,9 @@ class _HomeViewState extends State<HomeView> {
                       print(UIDescribes.interview);
                       homeViewModel.interview();
                     }),
-                _cardWidget(UIDescribes.replace, UIAssets.icReplace,onTap: () {
-
+                _cardWidget(UIDescribes.sync, UIAssets.icSync,onTap: () {
+                  print(UIDescribes.sync);
+                  homeViewModel.sync();
                 }),
               ],
             ),
@@ -54,18 +55,12 @@ class _HomeViewState extends State<HomeView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _cardWidget(UIDescribes.sync, UIAssets.icSync,onTap: () {
-                  print(UIDescribes.sync);
-                  homeViewModel.sync();
+                _cardWidget(UIDescribes.progress, UIAssets.icTask,onTap: () {
+                  print(UIDescribes.progress);
+                  homeViewModel.progress();
                 }),
-                _cardWidget(UIDescribes.programUpdate, UIAssets.icUpdate,onTap: () {
-                  print(UIDescribes.programUpdate);
-                  if (Platform.isAndroid) {
-                    // Android
-                    homeViewModel.checkUpdateApp();
-                  } else {
-                    // IOS
-                  }
+                _cardWidget(UIDescribes.replace, UIAssets.icReplace,onTap: () {
+
                 }),
               ],
             ),
@@ -78,9 +73,14 @@ class _HomeViewState extends State<HomeView> {
                 _cardWidget(UIDescribes.retrieve, UIAssets.icReload,onTap: () {
 
                 }),
-                _cardWidget(UIDescribes.logout, UIAssets.icLogout,onTap: () {
-                  print(UIDescribes.progress);
-                  homeViewModel.progress();
+                _cardWidget(UIDescribes.programUpdate, UIAssets.icUpdate,onTap: () {
+                  print(UIDescribes.programUpdate);
+                  if (Platform.isAndroid) {
+                    // Android
+                    homeViewModel.checkUpdateApp();
+                  } else {
+                    // IOS
+                  }
                 }),
               ],
             ),
@@ -123,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 10,),
             UIText(
               text: title,
-              textColor: mPrimaryColor,
+              textColor: Colors.black,
               isBold: true,
               //isBold: true,
             ),

@@ -26,7 +26,7 @@ class ProgressViewModel extends BaseViewModel {
   }
 
   void progressBack() {
-    NavigationServices.instance.navigateToHome(context);
+    NavigationServices.instance.navigateToBottomNavigation(context);
   }
 
   String lengthInterviewStatus(List data, int ttdt){

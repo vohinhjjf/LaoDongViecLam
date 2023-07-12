@@ -5,7 +5,7 @@ class UIDescribes {
 
   //login
   static const Title = 'Đăng nhập';
-  static const loginTitle = 'Điền tên đăng nhập và mật khẩu';
+  static const loginTitle = 'Chọn tháng điều tra';
   static const user = 'Tài khoản';
   static const pass = 'Mật khẩu';
   static const hintUserName = 'Nhập tài khoản ĐTV';
@@ -14,14 +14,14 @@ class UIDescribes {
   static const enterPass = 'Vui lòng nhập mật khẩu';
 
   //title
-  static const interview = 'Phỏng vấn hộ';
+  static const interview = 'Phỏng vấn';
   static const replace = 'Thay thế hộ';
-  static const retrieve = 'Lấy lại ds';
+  static const retrieve = 'Lấy lại DS';
   static const programUpdate = 'Cập nhật';
   static const sync = 'Đồng bộ';
   static const progress = 'Tiến độ';
   static const home = 'Trang chủ';
-  static const changePass = 'Đổi mk';
+  static const changePass = 'Đổi mật khẩu';
   static const logout = 'Đăng xuất';
   static const dashboard = 'Trang chủ';
   static const implement = 'Thực hiện';
@@ -47,7 +47,7 @@ class UIDescribes {
   //interview
   static const locations = 'Danh sách địa bàn';
   static const locationName = 'Tên địa bàn: ';
-  static const interviewStatus = 'Tình trạng phỏng vấn';
+  static const interviewStatus = 'Phỏng vấn';
   static const interviewList = 'Danh sách phỏng vấn';
   static const unInterviewedList = 'Danh sách chưa phỏng vấn';
   static const interviewingList = 'Ds đang phỏng vấn';

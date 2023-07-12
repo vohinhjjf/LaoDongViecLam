@@ -12,7 +12,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  bool _home = true, _progress = false, _changePass = false;
+  bool _home = true, _changePass = false;
 
   @override
   void initState() {
@@ -28,44 +28,68 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
       const HomeView(),
-      ProgressView(),
       const ChangePassView(),
     ];
     PageController pageController = PageController();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mPrimaryColor,
-        toolbarHeight: 100.h,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25.0),
-              bottomRight: Radius.circular(25.0),
-            )
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[
+                mPrimaryColor,Colors.blue.shade400,mPrimaryColor
+              ],
+            ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25.0),
+                bottomRight: Radius.circular(25.0),
+              )
+          ),
         ),
+        toolbarHeight: 100.h,
         //centerTitle: true,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              padding: EdgeInsets.only(top: 10.h),
+              alignment: Alignment.center,
+              child: const UIText(
+                text: UIDescribes.slogan,
+                textAlign: TextAlign.center,
+                textColor: Colors.white,
+                textFontSize: fontGreater,
+                isBold: true,
+                //textStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
             SizedBox(
-              height: 10.h,
+              height: 5.h,
             ),
-            UIText(
-              text: "Tháng điều tra: 4",
-              textFontSize: 20.sp,
-              //textAlign: TextAlign.center,
-              textColor: Colors.white,
-              isBold: true,
+            Container(
+              alignment: Alignment.center,
+              child: UIText(
+                text: "Tháng điều tra: 7",
+                textFontSize: fontLarge,
+                textAlign: TextAlign.center,
+                textColor: Colors.white,
+              ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
-            UIText(
-              text: 'ĐTV: ',
-              textFontSize: 18.sp,
-              textColor: Colors.white,
-              //isBold: true,
-            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5.h),
+              alignment: Alignment.center,
+              child: UIText(
+                text: 'Điều tra viên: ',
+                textFontSize: fontLarge,
+                textColor: Colors.white,
+                //isBold: true,
+              ),
+            )
           ],
         ),
       ),
@@ -88,16 +112,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
       bottomNavigationBar: Container(
         height: 100.h,
-        decoration:  const BoxDecoration(
-            gradient: LinearGradient(colors: [
-              mPrimaryColor,
-              mPrimaryColor,
-            ]),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(25.0),
-              topLeft: Radius.circular(25.0),
-            )
-        ),
+        color: Colors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -105,25 +120,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
               pageController.jumpToPage(0);
               setState(() => {
                 _home = true,
-                _progress = false,
-                _changePass = false,
-              });
-            }),
-            _buttonWidget(UIDescribes.progress, _progress?UIAssets.icTask:UIAssets.icNotTask,onTap: () {
-              pageController.jumpToPage(1);
-              setState(() => {
-                _home = false,
-                _progress = true,
                 _changePass = false,
               });
             }),
             _buttonWidget(UIDescribes.changePass,_changePass ? UIAssets.icChangePass:UIAssets.icNotChangePass,onTap: () {
-              pageController.jumpToPage(2);
+              pageController.jumpToPage(1);
               setState(() => {
                 _home = false,
-                _progress = false,
                 _changePass = true,
               });
+            }),
+            _buttonWidget(UIDescribes.logout, UIAssets.icNotLogout,onTap: () {
+
             }),
           ],
         ),
@@ -162,7 +170,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             const SizedBox(height: 5,),
             UIText(
               text: title,
-              textColor: mPrimaryColor,
+              textColor: Colors.black,
               isBold: true,
               textFontSize: fontSmall,
               //isBold: true,

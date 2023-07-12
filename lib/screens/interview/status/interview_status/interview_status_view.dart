@@ -39,7 +39,7 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
           text: UIDescribes.interviewStatus,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontLarge,
+          textFontSize: fontGreater,
           isBold: true,
         ),
       ),
@@ -67,48 +67,13 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     alignment: Alignment.centerLeft,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            UIText(
-                              textAlign: TextAlign.start,
-                              text: UIDescribes.notInterviewed,
-                              //textColor: Colors.green,
-                              textFontSize: 15.sp,
-                              isBold: true,
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              children: [
-                                UIText(
-                                  text: UIDescribes.number,
-                                  textFontSize: 14.sp,
-                                  textColor: mPrimaryColor,
-                                ),
-                                const SizedBox(width: 5,),
-                                /*StreamBuilder(
-                                    stream: interviewStatusViewModel.listNotInterviewed().asStream(),
-                                    builder: (context, AsyncSnapshot<List<BangKeCsModel>> snapshot){
-                                      if(snapshot.hasData){
-                                        return UIText(
-                                          text: snapshot.data!.length.toString(),
-                                          textFontSize: 14.sp,
-                                          textColor: mPrimaryColor,
-                                        );
-                                      }
-                                      return Container();
-                                    }
-                                )*/
-                              ],
-                            )
-
-                          ],
-                        ),
-                        const Icon(Icons.navigate_next,color: Colors.grey,)
-                      ],
+                    height: 70,
+                    child: UIText(
+                      textAlign: TextAlign.start,
+                      text: UIDescribes.notInterviewed,
+                      textColor: mPrimaryColor,
+                      textFontSize: 17.sp,
+                      isBold: true,
                     ),
                   ),
                 ),
@@ -121,7 +86,7 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
                     .width, //MediaQuery: lấy kích thước màn hình thiết bị
                 child: ElevatedButton(
                   onPressed: () {
-                    interviewStatusViewModel.interviewing();
+                    interviewStatusViewModel.completeInterview();
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -133,46 +98,12 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     alignment: Alignment.centerLeft,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            UIText(
-                              text: UIDescribes.interviewing,
-                              //textColor: Colors.orange,
-                              textFontSize: 16.sp,
-                              isBold: true,
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              children: [
-                                UIText(
-                                  text: UIDescribes.number,
-                                  textFontSize: 14.sp,
-                                  textColor: mPrimaryColor,
-                                ),
-                                const SizedBox(width: 5,),
-                                /*StreamBuilder(
-                                    stream: interviewStatusViewModel.listInterviewing().asStream(),
-                                    builder: (context, AsyncSnapshot<List<BangKeCsModel>> snapshot){
-                                      if(snapshot.hasData){
-                                        return UIText(
-                                          text: snapshot.data!.length.toString(),
-                                          textFontSize: 14.sp,
-                                          textColor: mPrimaryColor,
-                                        );
-                                      }
-                                      return Container();
-                                    }
-                                )*/
-                              ],
-                            )
-                          ],
-                        ),
-                        const Icon(Icons.navigate_next,color: Colors.grey,)
-                      ],
+                    height: 70,
+                    child: UIText(
+                      text: UIDescribes.completeInterviewed,
+                      textColor: mPrimaryColor,
+                      textFontSize: 17.sp,
+                      isBold: true,
                     ),
                   ),
                 ),
@@ -195,118 +126,32 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
                         fontStyle: FontStyle.normal),
                   ),
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                    //color: Colors.red,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            UIText(
-                              text: UIDescribes.completeInterviewed,
-                              //textColor: Colors.green,
-                              textFontSize: 16.sp,
-                              isBold: true,
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              children: [
-                                UIText(
-                                  text: UIDescribes.number,
-                                  textFontSize: 14.sp,
-                                  textColor: mPrimaryColor,
-                                ),
-                                const SizedBox(width: 5,),
-                                /*StreamBuilder(
-                                    stream: interviewStatusViewModel.listCompleteInterview().asStream(),
-                                    builder: (context, AsyncSnapshot<List<BangKeCsModel>> snapshot){
-                                      if(snapshot.hasData){
-                                        return UIText(
-                                          text: snapshot.data!.length.toString(),
-                                          textFontSize: 14.sp,
-                                          textColor: mPrimaryColor,
-                                        );
-                                      }
-                                      return Container();
-                                    }
-                                )*/
-                              ],
-                            )
-                          ],
-                        ),
-                        const Icon(Icons.navigate_next,color: Colors.grey,)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin:
-                EdgeInsets.only(left: 14.w, top: 5.h, right: 14.w, bottom: 5.h),
-                width: MediaQuery.of(context)
-                    .size
-                    .width, //MediaQuery: lấy kích thước màn hình thiết bị
-                child: ElevatedButton(
-                  onPressed: () {
-                    interviewStatusViewModel.completeInterview();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
-                        fontStyle: FontStyle.normal),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                    //color: Colors.red,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            UIText(
-                              text: UIDescribes.preventive,
-                              //textColor: Colors.green,
-                              textFontSize: 16.sp,
-                              isBold: true,
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              children: [
-                                UIText(
-                                  text: UIDescribes.number,
-                                  textFontSize: 14.sp,
-                                  textColor: mPrimaryColor,
-                                ),
-                                const SizedBox(width: 5,),
-                                /*StreamBuilder(
-                                    stream: interviewStatusViewModel.listCompleteInterview().asStream(),
-                                    builder: (context, AsyncSnapshot<List<BangKeCsModel>> snapshot){
-                                      if(snapshot.hasData){
-                                        return UIText(
-                                          text: snapshot.data!.length.toString(),
-                                          textFontSize: 14.sp,
-                                          textColor: mPrimaryColor,
-                                        );
-                                      }
-                                      return Container();
-                                    }
-                                )*/
-                              ],
-                            )
-                          ],
-                        ),
-                        const Icon(Icons.navigate_next,color: Colors.grey,)
-                      ],
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    alignment: Alignment.centerLeft,
+                    height: 70,
+                    child: UIText(
+                      text: UIDescribes.preventive,
+                      textColor: mPrimaryColor,
+                      textFontSize: 17.sp,
+                      isBold: true,
                     ),
                   ),
                 ),
               ),
             ]
         ),
+      ),
+      bottomSheet: Container(
+        padding: EdgeInsets.all(6),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            gradient: const LinearGradient(colors: [
+              Colors.limeAccent,
+              Colors.limeAccent,
+            ])
+        ),
+        child: const Text('DTV99003',
+          style: TextStyle(fontSize: fontMedium, fontWeight: FontWeight.bold, color: mPrimaryColor),),
       ),
     );
   }

@@ -53,6 +53,7 @@ class _Q3ViewState extends State<Q3View> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  //a
                   const UIText(
                     text: UIQuestions.q3,
                     textColor: Colors.black,
@@ -62,6 +63,216 @@ class _Q3ViewState extends State<Q3View> {
                   ),
                   const UIText(
                     text: UIQuestions.q3a,
+                    textColor: Colors.black,
+                    textFontSize: fontGreater,
+                    textAlign: TextAlign.start,
+                    isBold: false,
+                  ),
+                  const SizedBox(height: 10,),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 1;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Có",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 1,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 2;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Không",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 2,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  //b
+                  const UIText(
+                    text: UIQuestions.q3b,
+                    textColor: Colors.black,
+                    textFontSize: fontGreater,
+                    textAlign: TextAlign.start,
+                    isBold: false,
+                  ),
+                  const SizedBox(height: 10,),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 1;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Có",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 1,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 2;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Không",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 2,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  //c
+                  const UIText(
+                    text: UIQuestions.q3c,
+                    textColor: Colors.black,
+                    textFontSize: fontGreater,
+                    textAlign: TextAlign.start,
+                    isBold: false,
+                  ),
+                  const SizedBox(height: 10,),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 1;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Có",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 1,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        groupValue = 2;
+                      });
+                    },
+                    child: ListTile(
+                      title: const UIText(
+                        text: "Không",
+                        textColor: Colors.black,
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.start,
+                      ),
+                      leading: GFRadio(
+                        type: GFRadioType.custom,
+                        size: GFSize.LARGE,
+                        activeBorderColor: Colors.black,
+                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        value: 2,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = value;
+                          });
+                        },
+                        inactiveIcon: null,
+                        radioColor: Colors.indigo,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  //d
+                  const UIText(
+                    text: UIQuestions.q3d,
                     textColor: Colors.black,
                     textFontSize: fontGreater,
                     textAlign: TextAlign.start,

@@ -23,16 +23,14 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
   @override
   void initState() {
     super.initState();
-    householdInformationViewModel = context.read();
-    householdInformationViewModel.onInit(context);
-    /*WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       householdInformationViewModel = context.read();
       householdInformationViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
-        _name.text = householdInformationViewModel.data.tenCS.toString(),
-        _address.text = householdInformationViewModel.data.diaChi.toString(),
+        _name.text = householdInformationViewModel.data.tenChuHo.toString(),
+        _address.text = householdInformationViewModel.data.diachi.toString(),
       });
-    });*/
+    });
   }
 
   @override
@@ -164,12 +162,12 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
                                           notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
                                           onpress:   (){
                                             Navigator.of(context, rootNavigator: true).pop();
-                                            householdInformationViewModel.HouseholdNext();
+                                            householdInformationViewModel.HouseholdNext(_name.text, _address.text);
                                           }
                                       ));
                                 }
                                 else {
-                                  householdInformationViewModel.HouseholdNext();
+                                  householdInformationViewModel.HouseholdNext(_name.text, _address.text);
                                 }
                               }
                           ));
@@ -181,12 +179,12 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
                                   notification: 'Địa chỉ sơ sở quá ngắn dưới 5 ký tự!',
                                   onpress:   (){
                                     Navigator.of(context, rootNavigator: true).pop();
-                                    householdInformationViewModel.HouseholdNext();
+                                    householdInformationViewModel.HouseholdNext(_name.text, _address.text);
                                   }
                               ));
                         }
                         else {
-                          householdInformationViewModel.HouseholdNext();
+                          householdInformationViewModel.HouseholdNext(_name.text, _address.text);
                         }
                       }
                     },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';
 import '../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../models/thongTinHo_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
 
 class OperatingStatusViewModel extends BaseViewModel {
@@ -24,14 +25,15 @@ class OperatingStatusViewModel extends BaseViewModel {
   }*/
 
   void operatingStatus(int status) {
-    /*String id = await _sPrefAppModel.getIdCs;
-    _executeDatabase.setTinhTrangCs(status, id);
+    //String id = await _sPrefAppModel.getIdCs;
+    //_executeDatabase.setTinhTrangCs(status, id);
     if(status == 1) {
-      NavigationServices.instance.navigateToBaseInformation(context);
+      _executeDatabase.setHo(thongTinHoModel(idho: "99991001003",
+          hoSo: "003"));
     }else {
-      _executeDatabase.setTinhTrangDT(9, id);
+      //_executeDatabase.setTinhTrangDT(9, id);
       NavigationServices.instance.navigateToInterviewStatus(context);
-    }*/
+    }
     NavigationServices.instance.navigateToHouseHold(context);
   }
 

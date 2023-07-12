@@ -52,6 +52,7 @@ class LoginViewModel extends BaseViewModel {
   }*/
 
   void navigateToBottomNavigation(){
+    _executeDatabase.createDatabase();
     NavigationServices.instance.navigateToBottomNavigation(context);
   }
 

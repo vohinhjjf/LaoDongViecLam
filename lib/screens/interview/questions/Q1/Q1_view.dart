@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q1_viewmodel.dart';
 
 
@@ -15,14 +16,23 @@ class Q1View extends StatefulWidget {
 
 class _Q1ViewState extends State<Q1View> {
   late Q1ViewModel q1viewModel;
-  List<String> list_name = [];
+  List<thongTinThanhVienNKTTModel> list_name = [];
   final _text_name = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    q1viewModel = context.read();
-    q1viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      q1viewModel = context.read();
+      q1viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 100),
+              () => {
+            setState(() {
+              list_name = q1viewModel.list;
+            })
+          });
+    });
   }
 
   @override
@@ -31,8 +41,6 @@ class _Q1ViewState extends State<Q1View> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        //iconTheme: const IconThemeData(color: mPrimaryColor),
-
         title: const UIText(
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
@@ -65,9 +73,13 @@ class _Q1ViewState extends State<Q1View> {
                   TextField(
                     controller: _text_name,
                     onSubmitted: (value){
-                      //Navigator.of(context).pop();
+                      q1viewModel.addNTKK(value, list_name.length);
                       setState(() {
-                        list_name.add(value);
+                        list_name.add(thongTinThanhVienNKTTModel(
+                            idho: 'DTV99003',
+                            idtv: list_name.length,
+                            q1: value
+                        ));
                         _text_name.text = "";
                       });
                       //_showAddDialog(linh_vuc, san_pham,_text_name.text, false);
@@ -103,7 +115,7 @@ class _Q1ViewState extends State<Q1View> {
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width - 212.w,
                                   child: Text(
-                                    "${index+1}. ${list_name[index]}",
+                                    "${index+1}. ${list_name[index].q1}",
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
@@ -166,9 +178,17 @@ class _Q1ViewState extends State<Q1View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          _showNotificationDialog("Hộ còn ai nữa không?",(){},() {
-                            q1viewModel.Q1Next();
-                          },);
+                          if(list_name.isNotEmpty){
+                            _showNotificationDialog("Hộ còn ai nữa không?",(){},() {
+                              print("Next");
+                              q1viewModel.Q1Next();
+                            },);
+                          }else {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: "Têm chủ hộ không được bỏ trống",)
+                            );
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,
@@ -236,10 +256,7 @@ class _Q1ViewState extends State<Q1View> {
                       textColor: mPrimaryColor,
                       isBold: true,
                     ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                      onpress2;
-                    }
+                    onPressed: onpress2
                 )
               ],
             ),

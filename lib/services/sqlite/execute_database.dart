@@ -1,5 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
+import '../../models/thongTinHo_model.dart';
+import '../../models/thongTinThanhVienNKTT_model.dart';
 import 'db_provider.dart';
 import 'table_constants.dart';
 
@@ -20,6 +22,43 @@ class ExecuteDatabase {
   Future<void> deleteDatabase() async {
     await _dbProvider.deleteDatabase();
   }
+
+  //Operating status
+  setHo(thongTinHoModel data) async {
+     _database = await _dbProvider.database;
+     await _database?.insert(TableConstants.thongtinho, data.toJson());
+   }
+   updateTTHo(String name, String diachi, String id) async {
+        _database = await _dbProvider.database;
+        await _database?.rawUpdate(
+                   'UPDATE ${TableConstants.thongtinho} SET tenChuHo = ?, diachi = ? WHERE idho = ?',
+                   [name, diachi, id]);
+   }
+  Future<thongTinHoModel> getHo(String id) async {
+    _database = await _dbProvider.database;
+    List<Map<String, Object?>>? res;
+    res = await _database?.rawQuery(
+        "SELECT * FROM ${TableConstants.thongtinho} WHERE idho = '$id'");
+    List<thongTinHoModel> listNKTT = res!.isNotEmpty
+        ? res.map((c) => thongTinHoModel.fromJson(c)).toList()
+        : [];
+    return listNKTT.first;
+  }
+  //NKTT
+ setNKTT(thongTinThanhVienNKTTModel data) async {
+   _database = await _dbProvider.database;
+   await _database?.insert(TableConstants.thongTinThanhVienNKTT, data.toJson());
+ }
+ Future<List<thongTinThanhVienNKTTModel>> getNKTT() async {
+   _database = await _dbProvider.database;
+   List<Map<String, Object?>>? res;
+   res = await _database?.rawQuery(
+       "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT}");
+   List<thongTinThanhVienNKTTModel> listNKTT = res!.isNotEmpty
+       ? res.map((c) => thongTinThanhVienNKTTModel.fromJson(c)).toList()
+       : [];
+   return listNKTT;
+ }
   //DVHC
  //  setDvhc(List<DvhcModel> data) async {
  //    _database = await _dbProvider.database;

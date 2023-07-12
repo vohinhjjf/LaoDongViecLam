@@ -22,7 +22,6 @@ class _AreaViewState extends State<AreaView>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
@@ -35,43 +34,49 @@ class _AreaViewState extends State<AreaView>{
         backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
-          'Danh sách địa bàn',
+          'Danh sách địa bàn - Tháng 7',
           style: TextStyle(
             fontSize: fontGreater,
             color: mPrimaryColor,
             fontWeight: FontWeight.bold,
           ),
         ),
-        shape: const UnderlineInputBorder(
-            borderSide: BorderSide(color: mPrimaryColor)
-        ),
       ),
       body: SingleChildScrollView(
-        child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            onPressed: () {
-              areaViewModel.AreaNext();
-            },
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                UIText(
-                    text: "99991001: địa bàn 001 - Chưa hoàn thành",
-                    textFontSize: fontLarge,
-                    isBold: true,
-                    textColor: mPrimaryColor
-                ),
-                UIText(
-                    text: 'Số hộ: 12',
-                    textFontSize: fontMedium,
-                    isBold: true,
-                    textColor: Colors.green
-                ),
-                Divider(height: 20,color: Colors.grey),
-              ],
-            )
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 20, vertical: 20),
+          child: MaterialButton(
+              minWidth: MediaQuery.of(context).size.width,
+              onPressed: () {
+                areaViewModel.AreaNext();
+              },
+              color: Colors.white,
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(10.0)
+                  )
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  UIText(
+                      text: "99991001: địa bàn 001 - Chưa hoàn thành",
+                      textFontSize: fontLarge,
+                      isBold: true,
+                      textColor: Colors.black
+                  ),
+                  UIText(
+                      text: 'Số hộ: 12',
+                      textFontSize: fontMedium,
+                      isBold: true,
+                      textColor: Colors.yellow.shade800
+                  ),
+                ],
+              )
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -83,7 +88,7 @@ class _AreaViewState extends State<AreaView>{
               Colors.limeAccent,
             ])
         ),
-        child: const Text('Mã ĐTV: DTV99003',
+        child: const Text('DTV99003',
           style: TextStyle(fontSize: fontMedium, fontWeight: FontWeight.bold, color: mPrimaryColor),),
       ),
     );
