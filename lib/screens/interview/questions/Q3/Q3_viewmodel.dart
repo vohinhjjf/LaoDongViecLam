@@ -4,22 +4,52 @@ import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';
 import '../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
+import '../../../../models/thongTinThanhVienNKTT_model.dart';
 
 class Q3ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
   Q3ViewModel(this._executeDatabase, this._sPrefAppModel);
-
+  List<thongTinThanhVienNKTTModel> list = [];
+  int q3_a = 0, q3_b =0, q3_c = 0, q3_d = 0;
 
   @override
   void onInit(BuildContext context) {
     super.onInit(context);
+    getListNKTT();
+  }
+
+  getListNKTT() async {
+    await _executeDatabase.getNKTT(1).then((value) {
+      list = value;
+      q3_a = logic(1) ? 1 : 2;
+      q3_b = logic(2) ? 1 : 2;
+      q3_c = logic(3) ? 1 : 2;
+      q3_d = logic(4) ? 1 : 2;
+    });
+  }
+
+  bool logic(int q3){
+    int? value;
+    for(var item in list){
+      switch (q3){
+        case 1: value = item.q3A_New;break;
+        case 2: value = item.q3B_New;break;
+        case 3: value = item.q3C_New;break;
+        case 4: value = item.q3D_New;break;
+      }
+      if(value != null){
+        return true;
+      }
+    }
+    return false;
   }
 
   void Q3Back() async {
     NavigationServices.instance.navigateToQ2(context);
   }
-  void Q3Next() async {
+  void Q3Next(List<thongTinThanhVienNKTTModel> list) async {
+    await _executeDatabase.updateNTKK(list);
     NavigationServices.instance.navigateToQ4(context);
   }
 }

@@ -29,10 +29,10 @@ class ExecuteDatabase {
      await _database?.insert(TableConstants.thongtinho, data.toJson());
    }
    updateTTHo(String name, String diachi, String id) async {
-        _database = await _dbProvider.database;
-        await _database?.rawUpdate(
-                   'UPDATE ${TableConstants.thongtinho} SET tenChuHo = ?, diachi = ? WHERE idho = ?',
-                   [name, diachi, id]);
+    _database = await _dbProvider.database;
+    await _database?.rawUpdate(
+               'UPDATE ${TableConstants.thongtinho} SET tenChuHo = ?, diachi = ? WHERE idho = ?',
+               [name, diachi, id]);
    }
   Future<thongTinHoModel> getHo(String id) async {
     _database = await _dbProvider.database;
@@ -49,15 +49,35 @@ class ExecuteDatabase {
    _database = await _dbProvider.database;
    await _database?.insert(TableConstants.thongTinThanhVienNKTT, data.toJson());
  }
- Future<List<thongTinThanhVienNKTTModel>> getNKTT() async {
+ Future<List<thongTinThanhVienNKTTModel>> getNKTT(int question) async {
    _database = await _dbProvider.database;
    List<Map<String, Object?>>? res;
-   res = await _database?.rawQuery(
-       "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT}");
+   if(question == 0) {
+     res = await _database?.rawQuery(
+         "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT}");
+   } else{
+     res = await _database?.rawQuery(
+         "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT} WHERE q2_New = '$question'");
+   }
    List<thongTinThanhVienNKTTModel> listNKTT = res!.isNotEmpty
        ? res.map((c) => thongTinThanhVienNKTTModel.fromJson(c)).toList()
        : [];
    return listNKTT;
+ }
+ deleteNKTT(int id) async {
+   await _database?.delete(TableConstants.thongTinThanhVienNKTT,
+             where: 'idtv = ?', whereArgs: [id]);
+ }
+
+ updateNTKK(List<thongTinThanhVienNKTTModel> list) async {
+   _database = await _dbProvider.database;
+   for(var item in list) {
+     await _database?.rawUpdate(
+         'UPDATE ${TableConstants
+             .thongTinThanhVienNKTT} SET q3A_New = ?, q3B_New = ?, q3C_New = ?, '
+             'q3D_New = ? WHERE idtv = ?',
+         [item.q3A_New, item.q3B_New, item.q3C_New, item.q3D_New, item.idtv]);
+   }
  }
   //DVHC
  //  setDvhc(List<DvhcModel> data) async {

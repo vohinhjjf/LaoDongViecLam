@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q3_viewmodel.dart';
 
 
@@ -16,13 +17,27 @@ class Q3View extends StatefulWidget {
 
 class _Q3ViewState extends State<Q3View> {
   late Q3ViewModel q3viewModel;
-  int groupValue = 0;
+  int q3_a = 0, q3_b =0, q3_c = 0, q3_d = 0;
+  List<thongTinThanhVienNKTTModel> list = [];
 
   @override
   void initState() {
     super.initState();
-    q3viewModel = context.read();
-    q3viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      q3viewModel = context.read();
+      q3viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 300),
+              () => {
+            setState(() {
+              list = q3viewModel.list;
+              q3_a = q3viewModel.q3_a;
+              q3_b = q3viewModel.q3_b;
+              q3_c = q3viewModel.q3_c;
+              q3_d = q3viewModel.q3_d;
+            })
+          });
+    });
   }
 
   @override
@@ -72,7 +87,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 1;
+                        q3_a = 1;
                       });
                     },
                     child: ListTile(
@@ -88,10 +103,10 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 1,
-                        groupValue: groupValue,
+                        groupValue: q3_a,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_a = value;
                           });
                         },
                         inactiveIcon: null,
@@ -102,7 +117,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 2;
+                        q3_a = 2;
                       });
                     },
                     child: ListTile(
@@ -118,15 +133,56 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 2,
-                        groupValue: groupValue,
+                        groupValue: q3_a,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_a = value;
+                            list.map((e) => e.q3A_New = null).toList();
                           });
                         },
                         inactiveIcon: null,
                         radioColor: Colors.indigo,
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Container(
+                    height: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(height: 5,),
+                  Visibility(
+                    visible: q3_a == 1,
+                    child: ListBody(
+                      children: list
+                          .map((item) {
+                          if(item.q3B_New == null && item.q3C_New == null
+                              && item.q3D_New == null) {
+                            return GFCheckboxListTile(
+                              value: item.q3A_New == null ? false : true,
+                              title: UIText(
+                                text: item.q1_New!,
+                                textColor: Colors.black,
+                                textFontSize: fontMedium,
+                                textAlign: TextAlign.start,
+                              ),
+                              margin: const EdgeInsets.only(left: 16),
+                              position: GFPosition.start,
+                              onChanged: (isChecked) {
+                                setState(() {
+                                  if (isChecked) {
+                                    item.q3A_New = 1;
+                                  } else {
+                                    item.q3A_New = null;
+                                  }
+                                });
+                              },
+                            );
+                          }
+                          return Container();
+                        }
+                      )
+                          .toList(),
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -142,7 +198,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 1;
+                        q3_b = 1;
                       });
                     },
                     child: ListTile(
@@ -158,10 +214,10 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 1,
-                        groupValue: groupValue,
+                        groupValue: q3_b,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_b = value;
                           });
                         },
                         inactiveIcon: null,
@@ -172,7 +228,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 2;
+                        q3_b = 2;
                       });
                     },
                     child: ListTile(
@@ -188,15 +244,56 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 2,
-                        groupValue: groupValue,
+                        groupValue: q3_b,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_b = value;
+                            list.map((e) => e.q3B_New = null).toList();
                           });
                         },
                         inactiveIcon: null,
                         radioColor: Colors.indigo,
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Container(
+                    height: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(height: 5,),
+                  Visibility(
+                    visible: q3_b == 1,
+                    child: ListBody(
+                      children: list
+                          .map((item) {
+                        if(item.q3A_New == null && item.q3C_New == null
+                            && item.q3D_New == null) {
+                          return GFCheckboxListTile(
+                            value: item.q3B_New == null ? false : true,
+                            title: UIText(
+                              text: item.q1_New!,
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              textAlign: TextAlign.start,
+                            ),
+                            margin: const EdgeInsets.only(left: 16),
+                            position: GFPosition.start,
+                            onChanged: (isChecked) {
+                              setState(() {
+                                if (isChecked) {
+                                  item.q3B_New = 1;
+                                } else {
+                                  item.q3B_New = null;
+                                }
+                              });
+                            },
+                          );
+                        }
+                        return Container();
+                      }
+                      )
+                          .toList(),
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -212,7 +309,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 1;
+                        q3_c = 1;
                       });
                     },
                     child: ListTile(
@@ -228,10 +325,10 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 1,
-                        groupValue: groupValue,
+                        groupValue: q3_c,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_c = value;
                           });
                         },
                         inactiveIcon: null,
@@ -242,7 +339,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 2;
+                        q3_c = 2;
                       });
                     },
                     child: ListTile(
@@ -258,15 +355,56 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 2,
-                        groupValue: groupValue,
+                        groupValue: q3_c,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_c = value;
+                            list.map((e) => e.q3C_New = null).toList();
                           });
                         },
                         inactiveIcon: null,
                         radioColor: Colors.indigo,
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Container(
+                    height: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(height: 5,),
+                  Visibility(
+                    visible: q3_c == 1,
+                    child: ListBody(
+                      children: list
+                          .map((item) {
+                        if(item.q3A_New == null && item.q3B_New == null
+                            && item.q3D_New == null) {
+                          return GFCheckboxListTile(
+                            value: item.q3C_New == null ? false : true,
+                            title: UIText(
+                              text: item.q1_New!,
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              textAlign: TextAlign.start,
+                            ),
+                            margin: const EdgeInsets.only(left: 16),
+                            position: GFPosition.start,
+                            onChanged: (isChecked) {
+                              setState(() {
+                                if (isChecked) {
+                                  item.q3C_New = 1;
+                                } else {
+                                  item.q3C_New = null;
+                                }
+                              });
+                            },
+                          );
+                        }
+                        return Container();
+                      }
+                      )
+                          .toList(),
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -282,7 +420,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 1;
+                        q3_d = 1;
                       });
                     },
                     child: ListTile(
@@ -298,10 +436,10 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 1,
-                        groupValue: groupValue,
+                        groupValue: q3_d,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_d = value;
                           });
                         },
                         inactiveIcon: null,
@@ -312,7 +450,7 @@ class _Q3ViewState extends State<Q3View> {
                   InkWell(
                     onTap: (){
                       setState(() {
-                        groupValue = 2;
+                        q3_d = 2;
                       });
                     },
                     child: ListTile(
@@ -328,15 +466,56 @@ class _Q3ViewState extends State<Q3View> {
                         activeBorderColor: Colors.black,
                         activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
                         value: 2,
-                        groupValue: groupValue,
+                        groupValue: q3_d,
                         onChanged: (value) {
                           setState(() {
-                            groupValue = value;
+                            q3_d = value;
+                            list.map((e) => e.q3D_New = null).toList();
                           });
                         },
                         inactiveIcon: null,
                         radioColor: Colors.indigo,
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Container(
+                    height: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(height: 5,),
+                  Visibility(
+                    visible: q3_d == 1,
+                    child: ListBody(
+                      children: list
+                          .map((item) {
+                        if(item.q3A_New == null && item.q3B_New == null
+                            && item.q3C_New == null) {
+                          return GFCheckboxListTile(
+                            value: item.q3D_New == null ? false : true,
+                            title: UIText(
+                              text: item.q1_New!,
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              textAlign: TextAlign.start,
+                            ),
+                            margin: const EdgeInsets.only(left: 16),
+                            position: GFPosition.start,
+                            onChanged: (isChecked) {
+                              setState(() {
+                                if (isChecked) {
+                                  item.q3D_New = 1;
+                                } else {
+                                  item.q3D_New = null;
+                                }
+                              });
+                            },
+                          );
+                        }
+                        return Container();
+                      }
+                      )
+                          .toList(),
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -372,7 +551,7 @@ class _Q3ViewState extends State<Q3View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          q3viewModel.Q3Next();
+                          q3viewModel.Q3Next(list);
                         },
                         icon: const Icon(
                           Icons.navigate_next,

@@ -11,7 +11,7 @@ class Q1ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   Q1ViewModel(this._executeDatabase, this._sPrefAppModel);
   List<thongTinThanhVienNKTTModel> list = [];
-
+  String name = '';
 
   @override
   void onInit(BuildContext context) {
@@ -21,14 +21,20 @@ class Q1ViewModel extends BaseViewModel {
 
   addNTKK(String name, int id) async {
     await _executeDatabase.setNKTT(thongTinThanhVienNKTTModel(
-        idho: 'DTV99003',
+        idho: '99991001003',
         idtv: id,
-        q1: name
+        q1_New: name,
+        q2_New: 1
     ));
   }
 
   getListNKTT() async {
-    await _executeDatabase.getNKTT().then((value) => list = value);
+    await _executeDatabase.getNKTT(0).then((value) => list = value);
+    await _executeDatabase.getHo("99991001003").then((value) => name = value.tenChuHo!);
+  }
+
+  deleteNTKK(int id) async {
+    await _executeDatabase.deleteNKTT(id);
   }
 
   void Q1Back() async {

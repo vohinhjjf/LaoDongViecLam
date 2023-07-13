@@ -3,6 +3,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../components/uis.dart';
+import '../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q2_viewmodel.dart';
 
 
@@ -16,14 +17,28 @@ class Q2View extends StatefulWidget {
 class _Q2ViewState extends State<Q2View> {
   late Q2ViewModel q2viewModel;
   int groupValue = 0;
-  List<String> list_name = [];
+  List<thongTinThanhVienNKTTModel> list = [];
+  List<thongTinThanhVienNKTTModel> list_q2 = [];
   final _text_name = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    q2viewModel = context.read();
-    q2viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      q2viewModel = context.read();
+      q2viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 200),
+              () => {
+            setState(() {
+              list = q2viewModel.list;
+              list_q2 = q2viewModel.list_q2;
+              if(q2viewModel.list_q2.isNotEmpty){
+                groupValue = 1;
+              }
+            })
+          });
+    });
   }
 
   @override
@@ -138,12 +153,17 @@ class _Q2ViewState extends State<Q2View> {
                       visible: groupValue == 1,
                       child: TextField(
                         controller: _text_name,
+                        autofocus: true,
                         onSubmitted: (value){
-                          //Navigator.of(context).pop();
+                          q2viewModel.addNTKK(value, list[list.length-1].idtv! + 1);
                           setState(() {
-                            list_name.add(value);
+                            list_q2.add(thongTinThanhVienNKTTModel(
+                                idho: '99991001003',
+                                idtv: list.last.idtv! + 1,
+                                q1_New: value
+                            ));
+                            _text_name.text = "";
                           });
-                          //_showAddDialog(linh_vuc, san_pham,_text_name.text, false);
                         },
                         style: const TextStyle(color: Colors.black),
                         decoration: const InputDecoration(
@@ -156,57 +176,66 @@ class _Q2ViewState extends State<Q2View> {
                       ),
                   ),
                   const SizedBox(height: 10,),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: list_name.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
-                        elevation: 10,
-                        shadowColor: Colors.black,
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () {
+                  Visibility(
+                      visible: groupValue == 1,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: list_q2.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
+                            elevation: 10,
+                            shadowColor: Colors.black,
+                            color: Colors.white,
+                            child: InkWell(
+                              onTap: () {
 
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width - 212.w,
-                                  child: Text(
-                                    "${index+1}. ${list_name[index]}",
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width - 212.w,
+                                      child: Text(
+                                        "${index+1}. ${list_q2[index].q1_New}",
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.normal
+                                        ),
+                                        maxLines: 10,
+                                      ),
                                     ),
-                                    maxLines: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                    padding: EdgeInsets.zero,
-                                    alignment: Alignment.centerRight,
-                                    icon: const Icon(
-                                      Icons.dangerous,
-                                      color: Colors.redAccent,
-                                      size: fontGreater,
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        alignment: Alignment.centerRight,
+                                        icon: const Icon(
+                                          Icons.dangerous,
+                                          color: Colors.redAccent,
+                                          size: fontGreater,
+                                        ),
+                                        onPressed: () => _showNotificationDialog(
+                                            "Có chắc muốn xóa ${list_q2[index].q1}?",
+                                                (){
+                                              q2viewModel.deleteNTKK(list_q2[index].idtv!);
+                                              setState(() {
+                                                list_q2.removeAt(index);
+                                              });
+                                              Navigator.of(context).pop();
+                                            }, (){
+                                          Navigator.of(context).pop();
+                                        }
+                                        )
                                     ),
-                                    onPressed: () => _showNotificationDialog(
-                                        "Có chắc muốn xóa người này?",
-                                            (){
-
-                                        }, (){}
-                                    )
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      );
-                    },
+                          );
+                        },
+                      ),
                   ),
                 ]),
           ),
@@ -223,6 +252,7 @@ class _Q2ViewState extends State<Q2View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
+                          //print(list.length);
                           q2viewModel.Q2Back();
                         },
                         icon: const Icon(
@@ -240,7 +270,29 @@ class _Q2ViewState extends State<Q2View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
+                          if(groupValue == 0){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(waring: 'Q2 nhập vào chưa đúng!',)
+                            );
+                          }else if(groupValue == 2) {
                             q2viewModel.Q2Next();
+                          } else {
+                            if(list_q2.isEmpty){
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => UIWarningDialog(waring: 'Q2 - Họ tên thành viên nhập vào chưa đúng!',)
+                              );
+                            }
+                            else{
+                              _showNotificationDialog("Hộ còn ai nữa không?",(){
+                                Navigator.of(context).pop();
+                              },() {
+                                print("Next");
+                                q2viewModel.Q2Next();
+                              },);
+                            }
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,
@@ -289,10 +341,7 @@ class _Q2ViewState extends State<Q2View> {
                         textColor: mPrimaryColor,
                         textFontSize: fontMedium
                     ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                      onpress1;
-                    }
+                    onPressed:  onpress1
                 ),
                 MaterialButton(
                     height: 60,
@@ -307,10 +356,7 @@ class _Q2ViewState extends State<Q2View> {
                       textColor: mPrimaryColor,
                       isBold: true,
                     ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                      onpress2;
-                    }
+                    onPressed: onpress2
                 )
               ],
             ),

@@ -27,8 +27,10 @@ class _HouseholdInformationViewState extends State<HouseholdInformationView> {
       householdInformationViewModel = context.read();
       householdInformationViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
-        _name.text = householdInformationViewModel.data.tenChuHo.toString(),
-        _address.text = householdInformationViewModel.data.diachi.toString(),
+        _name.text = householdInformationViewModel.data.tenChuHo == null ?""
+            :householdInformationViewModel.data.tenChuHo.toString(),
+        _address.text = householdInformationViewModel.data.diachi == null ?""
+            :householdInformationViewModel.data.diachi.toString(),
       });
     });
   }

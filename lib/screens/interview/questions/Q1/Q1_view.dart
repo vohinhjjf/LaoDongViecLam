@@ -30,6 +30,9 @@ class _Q1ViewState extends State<Q1View> {
               () => {
             setState(() {
               list_name = q1viewModel.list;
+              if(q1viewModel.list.isEmpty) {
+                _text_name.text = q1viewModel.name;
+              }
             })
           });
     });
@@ -76,9 +79,10 @@ class _Q1ViewState extends State<Q1View> {
                       q1viewModel.addNTKK(value, list_name.length);
                       setState(() {
                         list_name.add(thongTinThanhVienNKTTModel(
-                            idho: 'DTV99003',
+                            idho: '99991001003',
                             idtv: list_name.length,
-                            q1: value
+                            q1_New: value,
+                            q2_New: 1
                         ));
                         _text_name.text = "";
                       });
@@ -98,7 +102,8 @@ class _Q1ViewState extends State<Q1View> {
                     shrinkWrap: true,
                     itemCount: list_name.length,
                     itemBuilder: (context, index) {
-                      return Card(
+                      if(list_name[index].q2_New == 1) {
+                        return Card(
                         margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
                         elevation: 10,
                         shadowColor: Colors.black,
@@ -115,7 +120,7 @@ class _Q1ViewState extends State<Q1View> {
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width - 212.w,
                                   child: Text(
-                                    "${index+1}. ${list_name[index].q1}",
+                                    "${index+1}. ${list_name[index].q1_New}",
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
@@ -133,10 +138,16 @@ class _Q1ViewState extends State<Q1View> {
                                       size: fontGreater,
                                     ),
                                     onPressed: () => _showNotificationDialog(
-                                        "Có chắc muốn xóa người này?",
+                                        "Có chắc muốn xóa ${list_name[index].q1}?",
                                         (){
-
-                                        }, (){}
+                                          q1viewModel.deleteNTKK(list_name[index].idtv!);
+                                          setState(() {
+                                            list_name.removeAt(index);
+                                          });
+                                          Navigator.of(context).pop();
+                                        }, (){
+                                          Navigator.of(context).pop();
+                                    }
                                     )
                                 ),
                               ],
@@ -144,6 +155,8 @@ class _Q1ViewState extends State<Q1View> {
                           ),
                         ),
                       );
+                      }
+                      return Container();
                     },
                   ),
                 ]),
@@ -179,15 +192,27 @@ class _Q1ViewState extends State<Q1View> {
                       child: IconButton(
                         onPressed: () {
                           if(list_name.isNotEmpty){
-                            _showNotificationDialog("Hộ còn ai nữa không?",(){},() {
+                            _showNotificationDialog("Hộ còn ai nữa không?",(){
+                              Navigator.of(context).pop();
+                            },() {
                               print("Next");
                               q1viewModel.Q1Next();
                             },);
                           }else {
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: "Têm chủ hộ không được bỏ trống",)
-                            );
+                            q1viewModel.addNTKK(_text_name.text, list_name.length);
+                            setState(() {
+                              list_name.add(thongTinThanhVienNKTTModel(
+                                  idho: '99991001003',
+                                  idtv: list_name.length,
+                                  q1: _text_name.text
+                              ));
+                              _showNotificationDialog("Hộ còn ai nữa không?",(){
+                                Navigator.of(context).pop();
+                              },() {
+                                print("Next");
+                                q1viewModel.Q1Next();
+                              },);
+                            });
                           }
                         },
                         icon: const Icon(
@@ -238,10 +263,7 @@ class _Q1ViewState extends State<Q1View> {
                         textColor: mPrimaryColor,
                         textFontSize: fontMedium
                     ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                      onpress1;
-                    }
+                    onPressed: onpress1
                 ),
                 MaterialButton(
                     height: 60,
