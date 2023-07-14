@@ -18,17 +18,14 @@ class Q2ViewModel extends BaseViewModel {
     super.onInit(context);
     getListNKTT();
   }
-  addNTKK(String name, int id) async {
-    await _executeDatabase.setNKTT(thongTinThanhVienNKTTModel(
-        idho: '99991001003',
-        idtv: id,
-        q1: name,
-        q2_New: 2
-    ));
+  addListNTKK(List<thongTinThanhVienNKTTModel> listNTKK) async {
+    for(var item in listNTKK) {
+      await _executeDatabase.setNKTT(item);
+    }
   }
   getListNKTT() async {
-    await _executeDatabase.getNKTT(0).then((value) => list = value);
-    await _executeDatabase.getNKTT(2).then((value) => list_q2 = value);
+    await _executeDatabase.getNKTT(0, "").then((value) => list = value);
+    await _executeDatabase.getNKTT(2, "q2_New").then((value) => list_q2 = value);
   }
 
   deleteNTKK(int id) async {

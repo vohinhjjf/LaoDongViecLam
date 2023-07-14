@@ -20,16 +20,16 @@ class Q3ViewModel extends BaseViewModel {
   }
 
   getListNKTT() async {
-    await _executeDatabase.getNKTT(1).then((value) {
+    await _executeDatabase.getNKTT(1, "q1").then((value) {
       list = value;
-      q3_a = logic(1) ? 1 : 2;
-      q3_b = logic(2) ? 1 : 2;
-      q3_c = logic(3) ? 1 : 2;
-      q3_d = logic(4) ? 1 : 2;
+      q3_a = logic(1);
+      q3_b = logic(2);
+      q3_c = logic(3);
+      q3_d = logic(4);
     });
   }
 
-  bool logic(int q3){
+  int logic(int q3){
     int? value;
     for(var item in list){
       switch (q3){
@@ -39,10 +39,10 @@ class Q3ViewModel extends BaseViewModel {
         case 4: value = item.q3D_New;break;
       }
       if(value != null){
-        return true;
+        return 1;
       }
     }
-    return false;
+    return 2;
   }
 
   void Q3Back() async {

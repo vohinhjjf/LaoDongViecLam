@@ -49,16 +49,17 @@ class ExecuteDatabase {
    _database = await _dbProvider.database;
    await _database?.insert(TableConstants.thongTinThanhVienNKTT, data.toJson());
  }
- Future<List<thongTinThanhVienNKTTModel>> getNKTT(int question) async {
+ Future<List<thongTinThanhVienNKTTModel>> getNKTT(int index, String question) async {
    _database = await _dbProvider.database;
    List<Map<String, Object?>>? res;
-   if(question == 0) {
+   if(index == 0) {
      res = await _database?.rawQuery(
          "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT}");
    } else{
      res = await _database?.rawQuery(
-         "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT} WHERE q2_New = '$question'");
+         "SELECT * FROM ${TableConstants.thongTinThanhVienNKTT} WHERE $question = '${1}'");
    }
+
    List<thongTinThanhVienNKTTModel> listNKTT = res!.isNotEmpty
        ? res.map((c) => thongTinThanhVienNKTTModel.fromJson(c)).toList()
        : [];
@@ -79,7 +80,7 @@ class ExecuteDatabase {
          [item.q3A_New, item.q3B_New, item.q3C_New, item.q3D_New, item.idtv]);
    }
  }
-  //DVHC
+ //DVHC
  //  setDvhc(List<DvhcModel> data) async {
  //    _database = await _dbProvider.database;
  //    for (int i = 0; i < data.length; i++) {

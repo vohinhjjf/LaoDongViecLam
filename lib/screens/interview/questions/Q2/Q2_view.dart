@@ -35,6 +35,8 @@ class _Q2ViewState extends State<Q2View> {
               list_q2 = q2viewModel.list_q2;
               if(q2viewModel.list_q2.isNotEmpty){
                 groupValue = 1;
+              } else {
+                groupValue = 2;
               }
             })
           });
@@ -155,12 +157,12 @@ class _Q2ViewState extends State<Q2View> {
                         controller: _text_name,
                         autofocus: true,
                         onSubmitted: (value){
-                          q2viewModel.addNTKK(value, list[list.length-1].idtv! + 1);
                           setState(() {
                             list_q2.add(thongTinThanhVienNKTTModel(
                                 idho: '99991001003',
                                 idtv: list.last.idtv! + 1,
-                                q1_New: value
+                                q1_New: value,
+                                q2_New: 1
                             ));
                             _text_name.text = "";
                           });
@@ -217,7 +219,7 @@ class _Q2ViewState extends State<Q2View> {
                                           size: fontGreater,
                                         ),
                                         onPressed: () => _showNotificationDialog(
-                                            "Có chắc muốn xóa ${list_q2[index].q1}?",
+                                            "Có chắc muốn xóa ${list_q2[index].q1_New}?",
                                                 (){
                                               q2viewModel.deleteNTKK(list_q2[index].idtv!);
                                               setState(() {
@@ -276,12 +278,17 @@ class _Q2ViewState extends State<Q2View> {
                                 builder: (_) => UIWarningDialog(waring: 'Q2 nhập vào chưa đúng!',)
                             );
                           }else if(groupValue == 2) {
+                            if(list_q2.isNotEmpty){
+                              for(var item in list_q2){
+                                q2viewModel.deleteNTKK(item.idtv!);
+                              }
+                            }
                             q2viewModel.Q2Next();
                           } else {
                             if(list_q2.isEmpty){
                               showDialog(
                                   context: context,
-                                  builder: (_) => UIWarningDialog(waring: 'Q2 - Họ tên thành viên nhập vào chưa đúng!',)
+                                  builder: (_) => const UIWarningDialog(waring: 'Q2 - Họ tên thành viên nhập vào chưa đúng!',)
                               );
                             }
                             else{
@@ -289,6 +296,7 @@ class _Q2ViewState extends State<Q2View> {
                                 Navigator.of(context).pop();
                               },() {
                                 print("Next");
+                                q2viewModel.addListNTKK(list_q2);
                                 q2viewModel.Q2Next();
                               },);
                             }
@@ -309,6 +317,7 @@ class _Q2ViewState extends State<Q2View> {
       //drawer: const DrawerNavigation(),
     );
   }
+
   _showNotificationDialog(String title, Function() onpress1, Function() onpress2){
     showDialog(
         context: context,

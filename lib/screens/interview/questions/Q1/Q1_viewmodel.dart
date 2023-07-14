@@ -23,13 +23,13 @@ class Q1ViewModel extends BaseViewModel {
     await _executeDatabase.setNKTT(thongTinThanhVienNKTTModel(
         idho: '99991001003',
         idtv: id,
+        q1: '1',
         q1_New: name,
-        q2_New: 1
     ));
   }
 
   getListNKTT() async {
-    await _executeDatabase.getNKTT(0).then((value) => list = value);
+    await _executeDatabase.getNKTT(1, "q1").then((value) => list = value);
     await _executeDatabase.getHo("99991001003").then((value) => name = value.tenChuHo!);
   }
 

@@ -81,8 +81,8 @@ class _Q1ViewState extends State<Q1View> {
                         list_name.add(thongTinThanhVienNKTTModel(
                             idho: '99991001003',
                             idtv: list_name.length,
+                            q1: '1',
                             q1_New: value,
-                            q2_New: 1
                         ));
                         _text_name.text = "";
                       });
@@ -102,8 +102,7 @@ class _Q1ViewState extends State<Q1View> {
                     shrinkWrap: true,
                     itemCount: list_name.length,
                     itemBuilder: (context, index) {
-                      if(list_name[index].q2_New == 1) {
-                        return Card(
+                      return Card(
                         margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
                         elevation: 10,
                         shadowColor: Colors.black,
@@ -130,7 +129,7 @@ class _Q1ViewState extends State<Q1View> {
                                   ),
                                 ),
                                 IconButton(
-                                  padding: EdgeInsets.zero,
+                                    padding: EdgeInsets.zero,
                                     alignment: Alignment.centerRight,
                                     icon: const Icon(
                                       Icons.dangerous,
@@ -138,15 +137,15 @@ class _Q1ViewState extends State<Q1View> {
                                       size: fontGreater,
                                     ),
                                     onPressed: () => _showNotificationDialog(
-                                        "Có chắc muốn xóa ${list_name[index].q1}?",
-                                        (){
+                                        "Có chắc muốn xóa ${list_name[index].q1_New}?",
+                                            (){
                                           q1viewModel.deleteNTKK(list_name[index].idtv!);
                                           setState(() {
                                             list_name.removeAt(index);
                                           });
                                           Navigator.of(context).pop();
                                         }, (){
-                                          Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
                                     }
                                     )
                                 ),
@@ -155,8 +154,6 @@ class _Q1ViewState extends State<Q1View> {
                           ),
                         ),
                       );
-                      }
-                      return Container();
                     },
                   ),
                 ]),
