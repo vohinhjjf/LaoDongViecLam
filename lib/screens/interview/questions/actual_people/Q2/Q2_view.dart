@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../components/uis.dart';
-import '../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q2_viewmodel.dart';
 
 
@@ -277,14 +277,16 @@ class _Q2ViewState extends State<Q2View> {
                                 context: context,
                                 builder: (_) => UIWarningDialog(waring: 'Q2 nhập vào chưa đúng!',)
                             );
-                          }else if(groupValue == 2) {
+                          }
+                          else if(groupValue == 2) {
                             if(list_q2.isNotEmpty){
                               for(var item in list_q2){
                                 q2viewModel.deleteNTKK(item.idtv!);
                               }
                             }
                             q2viewModel.Q2Next();
-                          } else {
+                          }
+                          else {
                             if(list_q2.isEmpty){
                               showDialog(
                                   context: context,

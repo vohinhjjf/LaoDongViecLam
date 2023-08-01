@@ -3,26 +3,39 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
-import '../../../../components/uis.dart';
-import 'Q5_viewmodel.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../models/thongTinThanhVien_model.dart';
+import 'Q7_viewmodel.dart';
 
 
-class Q5View extends StatefulWidget {
-  const Q5View({Key? key}) : super(key: key);
+class Q7View extends StatefulWidget {
+  const Q7View({Key? key}) : super(key: key);
 
   @override
-  State<Q5View> createState() => _Q5ViewState();
+  State<Q7View> createState() => _Q7ViewState();
 }
 
-class _Q5ViewState extends State<Q5View> {
-  late Q5ViewModel q5viewModel;
-  int groupValue = 0;
+class _Q7ViewState extends State<Q7View> {
+  late Q7ViewModel q7viewModel;
+  int groupValue = 0, stt = 0;
+  String name = "";
+  List<thongTinThanhVienNKTTModel> list = [];
 
   @override
   void initState() {
     super.initState();
-    q5viewModel = context.read();
-    q5viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      q7viewModel = context.read();
+      q7viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 200),
+              () => {
+            setState(() {
+              list = q7viewModel.list;
+            })
+          });
+    });
   }
 
   @override
@@ -54,74 +67,54 @@ class _Q5ViewState extends State<Q5View> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const UIText(
-                    text: UIQuestions.q5,
+                    text: UIQuestions.q7,
                     textColor: Colors.black,
                     textFontSize: fontGreater,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState(() {
-                        groupValue = 1;
-                      });
-                    },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Có",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 1,
-                        groupValue: groupValue,
-                        onChanged: (value) {
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: (){
                           setState(() {
-                            groupValue = value;
+                            groupValue = index+1;
+                            stt = list[index].idtv!;
+                            name = list[index].q1_New!;
                           });
                         },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      setState(() {
-                        groupValue = 2;
-                      });
+                        child: ListTile(
+                          title: UIText(
+                            text: list[index].q1_New.toString(),
+                            textColor: Colors.black,
+                            textFontSize: fontLarge,
+                            textAlign: TextAlign.start,
+                            isBold: false,
+                          ),
+                          leading: GFRadio(
+                            type: GFRadioType.custom,
+                            size: GFSize.LARGE,
+                            activeBorderColor: Colors.black,
+                            activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                            value: index+1,
+                            groupValue: groupValue,
+                            onChanged: (value) {
+                              setState(() {
+                                groupValue = value;
+                                stt = list[index].idtv!;
+                                name = list[index].q1_New!;
+                              });
+                            },
+                            inactiveIcon: null,
+                            radioColor: Colors.indigo,
+                          ),
+                        ),
+                      );
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Không",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 2,
-                        groupValue: groupValue,
-                        onChanged: (value) {
-                          setState(() {
-                            groupValue = value;
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
-                  const SizedBox(height: 10,),
                 ]),
           ),
           SizedBox(
@@ -137,7 +130,7 @@ class _Q5ViewState extends State<Q5View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          q5viewModel.Q5Back();
+                          q7viewModel.Q7Back();
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -154,7 +147,19 @@ class _Q5ViewState extends State<Q5View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          q5viewModel.Q5Next();
+                          if(groupValue == 0){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(waring: 'Chủ hộ nhập vào chưa đúng!')
+                            );
+                          }else {
+                            q7viewModel.Q7Next(stt,
+                                thongTinThanhVienModel(
+                                  idtv: stt,
+                                  stt: stt.toString(),
+                                  c00: name
+                                ));
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,

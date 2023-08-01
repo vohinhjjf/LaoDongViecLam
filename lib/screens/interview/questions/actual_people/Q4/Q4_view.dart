@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
-import '../../../../components/uis.dart';
-import '../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q4_viewmodel.dart';
 
 
@@ -44,6 +44,12 @@ class _Q4ViewState extends State<Q4View> {
               list_q4_d = q4viewModel.list_q4_d;
               list_q4_e = q4viewModel.list_q4_e;
               list_q4_f = q4viewModel.list_q4_f;
+              q4_a = q4viewModel.list_q4_a.isEmpty ? 2 : 1;
+              q4_b = q4viewModel.list_q4_b.isEmpty ? 2 : 1;
+              q4_c = q4viewModel.list_q4_c.isEmpty ? 2 : 1;
+              q4_d = q4viewModel.list_q4_d.isEmpty ? 2 : 1;
+              q4_e = q4viewModel.list_q4_e.isEmpty ? 2 : 1;
+              q4_f = q4viewModel.list_q4_f.isEmpty ? 2 : 1;
             })
           });
     });
@@ -103,13 +109,13 @@ class _Q4ViewState extends State<Q4View> {
                     });
                   }, _text_q4_c, 3, list_q4_c),
                   // D
-                  questionWidget(UIQuestions.q4f, q4_d, (value) {
+                  questionWidget(UIQuestions.q4d, q4_d, (value) {
                     setState(() {
                       q4_d = value;
                     });
                   }, _text_q4_d, 4, list_q4_d),
                   // E
-                  questionWidget(UIQuestions.q4f, q4_e, (value) {
+                  questionWidget(UIQuestions.q4e, q4_e, (value) {
                     setState(() {
                       q4_e = value;
                     });

@@ -2,6 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../models/thongTinHo_model.dart';
 import '../../models/thongTinThanhVienNKTT_model.dart';
+import '../../models/thongTinThanhVien_model.dart';
 import 'db_provider.dart';
 import 'table_constants.dart';
 
@@ -80,6 +81,19 @@ class ExecuteDatabase {
          [item.q3A_New, item.q3B_New, item.q3C_New, item.q3D_New, item.idtv]);
    }
  }
+
+  updateChuHo(int idtv) async {
+    _database = await _dbProvider.database;
+    await _database?.rawUpdate(
+        'UPDATE ${TableConstants
+            .thongTinThanhVienNKTT} SET q6_New = ${1} WHERE idtv = ?',
+        [idtv]);
+  }
+  //Part 1
+  setTTTV(thongTinThanhVienModel data) async {
+    _database = await _dbProvider.database;
+    await _database?.insert(TableConstants.thongTinThanhVien, data.toJson());
+  }
  //DVHC
  //  setDvhc(List<DvhcModel> data) async {
  //    _database = await _dbProvider.database;

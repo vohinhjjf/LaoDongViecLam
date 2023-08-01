@@ -31,7 +31,7 @@ class UIQuestions{
   static const q5 = 'Q5.  Có ai vẫn thường xuyên ăn, ở tại hộ nhưng đã chết '
       'sau thời điểm 0 giờ ngày 01/.../2023 và chưa được kế tên ở trên không?';
   static const q6 = 'Q6. Những người là nhân khẩu thực tế thường trú tại hộ:'
-      '\nĐỌC TÊN NHỮNG NGƯỜI ĐƯỢC HIỆN THỊ TRONG DANH SÁCH NHỮNG NGƯỜI KHÔNG BỊ '
+      '\n(ĐỌC TÊN NHỮNG NGƯỜI ĐƯỢC HIỆN THỊ TRONG DANH SÁCH NHỮNG NGƯỜI KHÔNG BỊ '
       'GẠCH TÊN Ở CÂU Q1, NHỮNG NGƯỜI CÓ TÊN TRONG CÂU Q4 VÀ CÂU Q5)';
   static const q7 = 'Q7. Xin ông/bà cho biết ai là chủ hộ?';
 }

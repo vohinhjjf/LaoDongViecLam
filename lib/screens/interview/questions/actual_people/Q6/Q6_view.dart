@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../components/uis.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q6_viewmodel.dart';
 
 
@@ -15,12 +16,22 @@ class Q6View extends StatefulWidget {
 
 class _Q6ViewState extends State<Q6View> {
   late Q6ViewModel q6viewModel;
+  List<thongTinThanhVienNKTTModel> list = [];
 
   @override
   void initState() {
     super.initState();
-    q6viewModel = context.read();
-    q6viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      q6viewModel = context.read();
+      q6viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 200),
+              () => {
+            setState(() {
+              list = q6viewModel.list;
+            })
+          });
+    });
   }
 
   @override
@@ -58,7 +69,25 @@ class _Q6ViewState extends State<Q6View> {
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 5,),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0),
+                        child: Text(
+                          "${index+1}. ${list[index].q1_New}",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.normal
+                          ),
+                          maxLines: 10,
+                        ),
+                      );
+                    },
+                  ),
                 ]),
           ),
           SizedBox(

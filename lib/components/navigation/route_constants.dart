@@ -20,11 +20,11 @@ class RouteConstants {
   static const String q5Route = "/q5Route";
   static const String q6Route = "/q6Route";
   static const String q7Route = "/q7Route";
-  static const String questionA21Route = "/questionA21Route";
-  static const String questionA22Route = "/questionA22Route";
-  static const String questionA3Route = "/questionA3Route";
-  static const String questionA41_1Route = "/questionA41_1Route";
-  static const String questionA41_2Route = "/questionA41_2Route";
+  static const String P01_04Route = "/P01_04Route";
+  static const String P05Route = "/P05Route";
+  static const String P06_07Route = "/P06_07Route";
+  static const String P08_09Route = "/P08_09Route";
+  static const String P10_12Route = "/P10_12Route";
   static const String questionA42Route = "/questionA42Route";
   static const String questionA43Route = "/questionA43Route";
   static const String questionA43AddActivityRoute = "/questionA43AddActivityRoute";

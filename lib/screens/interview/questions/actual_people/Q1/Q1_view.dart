@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../components/uis.dart';
-import '../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q1_viewmodel.dart';
 
 

@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import '../../screens/interview/questions/Q1/Q1_view.dart';
-import '../../screens/interview/questions/Q3/Q3_view.dart';
-import '../../screens/interview/questions/Q4/Q4_view.dart';
-import '../../screens/interview/questions/Q5/Q5_view.dart';
-import '../../screens/interview/questions/Q6/Q6_view.dart';
-import '../../screens/interview/questions/Q7/Q7_view.dart';
+
+import '../../screens/interview/questions/Part_1/P05/P05_view.dart';
+import '../../screens/interview/questions/Part_1/P08_09/P08_09_view.dart';
+import '../../screens/interview/questions/Part_1/P10_12/P10_12_view.dart';
+import '../../screens/interview/questions/Part_1/P01_04/P01_04_view.dart';
+import '../../screens/interview/questions/Part_1/P06_07/P06_07_view.dart';
+import '../../screens/interview/questions/actual_people/Q1/Q1_view.dart';
+import '../../screens/interview/questions/actual_people/Q2/Q2_view.dart';
+import '../../screens/interview/questions/actual_people/Q3/Q3_view.dart';
+import '../../screens/interview/questions/actual_people/Q4/Q4_view.dart';
+import '../../screens/interview/questions/actual_people/Q5/Q5_view.dart';
+import '../../screens/interview/questions/actual_people/Q6/Q6_view.dart';
+import '../../screens/interview/questions/actual_people/Q7/Q7_view.dart';
 import '../../screens/interview/questions/household_information/household_information_view.dart';
 
 import '../../screens/home/bottom_navigation_bar.dart';
 import '../../screens/home/home_view.dart';
 import '../../screens/interview/area/area_view.dart';
-import '../../screens/interview/questions/Q2/Q2_view.dart';
 import '../../screens/interview/questions/operating_status/operating_status_view.dart';
 import '../../screens/interview/status/interview_status/interview_status_view.dart';
 import '../../screens/interview/status/not_interview/not_interview_view.dart';
@@ -68,17 +74,17 @@ class NavigationServices {
         return CustomPageRoute(const Q6View());
       case RouteConstants.q7Route:
         return CustomPageRoute(const Q7View());
-      /*case RouteConstants.questionA41_1Route:
-        return CustomPageRoute(const QuestionA41_1View());
-      case RouteConstants.questionA41_2Route:
-        return CustomPageRoute(const QuestionA41_2View());
-      case RouteConstants.questionA42Route:
-        return CustomPageRoute(const QuestionA42View());
-      case RouteConstants.questionA43Route:
-        return CustomPageRoute(const QuestionA43View());
-      case RouteConstants.questionA43AddActivityRoute:
-        return CustomPageRoute(const QuestionA43AddActivityView());
-      case RouteConstants.nguoiKhaiPhieu:
+      case RouteConstants.P01_04Route:
+        return CustomPageRoute(const P01_04View());
+      case RouteConstants.P05Route:
+        return CustomPageRoute(const P05View());
+      case RouteConstants.P06_07Route:
+        return CustomPageRoute(const P06_07View());
+      case RouteConstants.P08_09Route:
+        return CustomPageRoute(const P08_09View());
+      case RouteConstants.P10_12Route:
+        return CustomPageRoute(const P10_12View());
+    /*case RouteConstants.nguoiKhaiPhieu:
         return CustomPageRoute(const NguoiKhaiPhieuView());
       case RouteConstants.gPS:
         return CustomPageRoute(const GPSView());*/
@@ -173,20 +179,20 @@ class NavigationServices {
   void navigateToQ7(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.q7Route);
   }
-  void navigateToQuestionA41_1(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.questionA41_1Route);
+  void navigateToP01_04(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P01_04Route);
   }
-  void navigateToQuestionA41_2(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.questionA41_2Route);
+  void navigateToP05(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P05Route);
   }
-  void navigateToQuestionA42(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.questionA42Route);
+  void navigateToP06_07(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P06_07Route);
   }
-  void navigateToQuestionA43(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.questionA43Route);
+  void navigateToP08_09(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P08_09Route);
   }
-  void navigateToQuestionA43AddActivity(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.questionA43AddActivityRoute);
+  void navigateToP10_12(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P10_12Route);
   }
   void navigateToNguoiKhaiPhieu(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.nguoiKhaiPhieu);

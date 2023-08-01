@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../base/base_viewmodel.dart';
-import '../../../../components/navigation/navigation_service.dart';
-import '../../../../data/shared_preferences/spref_app_model.dart';
-import '../../../../models/thongTinThanhVienNKTT_model.dart';
-import '../../../../services/sqlite/execute_database.dart';
+import '../../../../../base/base_viewmodel.dart';
+import '../../../../../components/navigation/navigation_service.dart';
+import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../services/sqlite/execute_database.dart';
 
 class Q4ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
@@ -47,6 +47,7 @@ class Q4ViewModel extends BaseViewModel {
     }
     await _executeDatabase.setNKTT(nktt);
   }
+
 
   deleteNTKK(int id) async {
     await _executeDatabase.deleteNKTT(id);

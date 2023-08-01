@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
-import '../../../../components/uis.dart';
-import '../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q3_viewmodel.dart';
 
 
