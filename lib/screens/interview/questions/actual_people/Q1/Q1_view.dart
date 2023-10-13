@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q1_viewmodel.dart';
@@ -18,6 +20,7 @@ class _Q1ViewState extends State<Q1View> {
   late Q1ViewModel q1viewModel;
   List<thongTinThanhVienNKTTModel> list_name = [];
   final _text_name = TextEditingController();
+  String month = "";
 
   @override
   void initState() {
@@ -30,6 +33,7 @@ class _Q1ViewState extends State<Q1View> {
               () => {
             setState(() {
               list_name = q1viewModel.list;
+              month = q1viewModel.month;
               if(q1viewModel.list.isEmpty) {
                 _text_name.text = q1viewModel.name;
               }
@@ -44,15 +48,17 @@ class _Q1ViewState extends State<Q1View> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         title: const UIText(
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontLarge,
+          textFontSize: fontGreater,
           isBold: true,
         ),
         actions: const [
-          UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
@@ -65,8 +71,8 @@ class _Q1ViewState extends State<Q1View> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const UIText(
-                    text: UIQuestions.q1,
+                  UIText(
+                    text: UIQuestions.q1(month),
                     textColor: Colors.black,
                     textFontSize: fontGreater,
                     textAlign: TextAlign.start,
@@ -76,18 +82,55 @@ class _Q1ViewState extends State<Q1View> {
                   TextField(
                     controller: _text_name,
                     onSubmitted: (value){
-                      q1viewModel.addNTKK(value, list_name.length);
-                      setState(() {
-                        list_name.add(thongTinThanhVienNKTTModel(
-                            idho: '99991001003',
-                            idtv: list_name.length,
-                            q1: '1',
-                            q1_New: value,
-                        ));
-                        _text_name.text = "";
-                      });
-                      //_showAddDialog(linh_vuc, san_pham,_text_name.text, false);
+                      if(value != "") {
+                        if(value.length < 5){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                  notification: 'Q1 Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    q1viewModel.addNTKK(value,
+                                        list_name.isEmpty ? 1 : list_name[list_name
+                                            .length -
+                                            1].idtv! + 1);
+                                    setState(() {
+                                      list_name.add(thongTinThanhVienNKTTModel(
+                                        idtv: list_name.isEmpty ? 1 : list_name[list_name
+                                            .length - 1].idtv! + 1,
+                                        q1: '1',
+                                        q1_New: value,
+                                      ));
+                                      _text_name.text = "";
+                                    });
+                                  }
+                              )
+                          );
+                        }
+                        else {
+                          q1viewModel.addNTKK(value,
+                              list_name.isEmpty ? 1 : list_name[list_name
+                                  .length -
+                                  1].idtv! + 1);
+                          setState(() {
+                            list_name.add(thongTinThanhVienNKTTModel(
+                              idtv: list_name.isEmpty ? 1 : list_name[list_name
+                                  .length - 1].idtv! + 1,
+                              q1: '1',
+                              q1_New: value,
+                            ));
+                            _text_name.text = "";
+                          });
+                        }
+                      }
                     },
+                    textCapitalization: TextCapitalization.words,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(
+                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                      FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                    ],
+                    keyboardType: TextInputType.text,
                     style: const TextStyle(color: Colors.black),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -137,7 +180,7 @@ class _Q1ViewState extends State<Q1View> {
                                       size: fontGreater,
                                     ),
                                     onPressed: () => _showNotificationDialog(
-                                        "Có chắc muốn xóa ${list_name[index].q1_New}?",
+                                        "Có chắc muốn xóa ${list_name[index].q1_New} có id = ${list_name[index].idtv}?",
                                             (){
                                           q1viewModel.deleteNTKK(list_name[index].idtv!);
                                           setState(() {
@@ -192,17 +235,18 @@ class _Q1ViewState extends State<Q1View> {
                             _showNotificationDialog("Hộ còn ai nữa không?",(){
                               Navigator.of(context).pop();
                             },() {
-                              print("Next");
+                              print(list_name[list_name.length - 1].idtv! + 1);
                               q1viewModel.Q1Next();
+
                             },);
                           }else {
-                            q1viewModel.addNTKK(_text_name.text, list_name.length);
+                            q1viewModel.addNTKK(_text_name.text, list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1);
                             setState(() {
                               list_name.add(thongTinThanhVienNKTTModel(
-                                  idho: '99991001003',
-                                  idtv: list_name.length,
-                                  q1: _text_name.text
+                                  idtv: list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1,
+                                  q1_New: _text_name.text
                               ));
+                              _text_name.text = "";
                               _showNotificationDialog("Hộ còn ai nữa không?",(){
                                 Navigator.of(context).pop();
                               },() {
@@ -224,7 +268,7 @@ class _Q1ViewState extends State<Q1View> {
           )
         ],
       ),
-      //drawer: const DrawerNavigation(),
+      drawer: const DrawerNavigation(),
     );
   }
 

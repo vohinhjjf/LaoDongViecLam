@@ -3,6 +3,8 @@ import '../components/uis.dart';
 import '../components/ui_text.dart';
 import 'package:provider/provider.dart';
 
+import 'navigation/navigation_service.dart';
+
 
 class UIGPSButton extends StatefulWidget {
   const UIGPSButton({Key? key}) : super(key: key);
@@ -81,19 +83,18 @@ class Body extends State<UIGPSButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7,vertical: 7),
-      child: MaterialButton(
-        onPressed: (){
-          //checkGps(context);
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      child: GestureDetector(
+        onTap: () {
+          debugPrint('The image button has been tapped');
         },
-        color: Colors.white,
-        shape:  RoundedRectangleBorder(
-            side:BorderSide(color: mSecondaryColor,width: 2.0),
-            borderRadius: BorderRadius.all(Radius.circular(4))),
-        child: const UIText(
-          text: 'GPS',
-          textColor: mSecondaryColor,
-          isBold: true,
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Image.asset(
+            UIAssets.icGPS,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -209,6 +210,89 @@ class Body extends State<UIGPSButton> {
                         });
                         //checkGps(context);
                         Navigator.of(context, rootNavigator: true).pop();
+                      }),
+                ]),
+          ),
+        ));
+  }
+}
+
+class UIEXITButton extends StatefulWidget {
+  const UIEXITButton({Key? key}) : super(key: key);
+
+  @override
+  BodyUIEXITButton createState() => BodyUIEXITButton();
+}
+
+class BodyUIEXITButton extends State<UIEXITButton> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      child: GestureDetector(
+        onTap: () {
+          _showNotificationDialog(context);
+        },
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Image.asset(
+            UIAssets.icExit,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _showNotificationDialog(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          titlePadding: const EdgeInsets.all(20),
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          title: Column(
+            children: const [
+              UIText(
+                text:'Tạm dừng phỏng vấn!',
+                textAlign: TextAlign.center,
+                textStyle: TextStyle(fontSize: fontLarge, color: mDividerColor,fontWeight: FontWeight.w600),),
+            ],
+          ),
+          content: Container(
+            height: 60,
+            alignment: Alignment.center,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  MaterialButton(
+                      child: const UIText(
+                        text: 'Hủy bỏ',
+                        textColor: Colors.red,
+                        textFontSize: 16,
+                        isBold: true,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+                      }),
+                  MaterialButton(
+                      child: const  UIText(
+                        text: 'Đồng ý',
+                        textColor: mPrimaryColor,
+                        textFontSize: 16,
+                        isBold: true,),
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+                        NavigationServices.instance.navigateToInterviewStatus(context);
                       }),
                 ]),
           ),

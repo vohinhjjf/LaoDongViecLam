@@ -1,4 +1,3 @@
-import 'package:excel/excel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
@@ -24,7 +23,7 @@ class LoginViewModel extends BaseViewModel {
     super.onInit(context);
   }
 
-  /*Future<String> login(String userName, String password) async {
+  Future<String> login(String userName, String password, String month) async {
     final response = await _authServices.login(userName, password);
     if (response != null) {
       bool isAutoSync = userName != _sPrefAppModel.getUserName;
@@ -34,25 +33,18 @@ class LoginViewModel extends BaseViewModel {
         await _sPrefAppModel.setAccessToken(userModel.accessToken!);
          _sPrefAppModel.setUserName(userName);
          _sPrefAppModel.setPassWord(password);
+        _sPrefAppModel.setMonth(month);
         _sPrefAppModel.setAutoSync(isAutoSync);
         if(isAutoSync) {
-          await _executeDatabase.createDatabase().then((value) =>
-          {
-            _executeDatabase.getListDvhc().then((value) => {
-              if(value.isEmpty){
-                writeCounter()
-              }
-            })
-          });
+          await _executeDatabase.createDatabase();
         }
         return 'successfully';
       }
     }
     return 'failed';
-  }*/
+  }
 
   void navigateToBottomNavigation(){
-    _executeDatabase.createDatabase();
     NavigationServices.instance.navigateToBottomNavigation(context);
   }
 

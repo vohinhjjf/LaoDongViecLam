@@ -11,7 +11,7 @@ class SyncViewModel extends BaseViewModel {
   final SyncServices _syncServices;
   final SPrefAppModel _sPrefAppModel;
   final ExecuteDatabase _executeDatabase;
-  SyncViewModel(this._executeDatabase, this._sPrefAppModel, this._syncServices);
+  SyncViewModel(this._syncServices, this._sPrefAppModel, this._executeDatabase);
   //List<BangKeCsModel> data = [];
   String userName ="";
 

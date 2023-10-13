@@ -56,7 +56,7 @@ class BangKeCsModel {
       'tenChuHo': tenChuHo,
       'diaChi': diaChi,
       'tsKhau': tsKhau,
-      'tenChuHo': tsNu,
+      'tsNu': tsNu,
       'nhom': nhom,
       'hoDuPhong': hoDuPhong,
       'trangthai': trangthai,

@@ -1,6 +1,6 @@
 class thongTinHoModel {
   String? idho;
-  String? namDT;
+  int? namDT;
   String? maTinh;
   String? maHuyen;
   String? maXa;
@@ -10,9 +10,9 @@ class thongTinHoModel {
   int? ttnt;
   String? tenChuHo;
   String? diachi;
-  int? maDTV;
-  int? ngayKetThuc;
-  int? ngayPhongVan;
+  String? maDTV;
+  String? ngayKetThuc;
+  String? ngayPhongVan;
   double? kinhDo;
   double? viDo;
   int? trangThai;

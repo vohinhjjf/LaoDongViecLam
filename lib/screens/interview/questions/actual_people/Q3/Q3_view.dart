@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q3_viewmodel.dart';
@@ -27,14 +29,14 @@ class _Q3ViewState extends State<Q3View> {
       q3viewModel = context.read();
       q3viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 300),
+          const Duration(milliseconds: 100),
               () => {
             setState(() {
               list = q3viewModel.list;
-              q3_a = q3viewModel.q3_a;
-              q3_b = q3viewModel.q3_b;
-              q3_c = q3viewModel.q3_c;
-              q3_d = q3viewModel.q3_d;
+              q3_a = q3viewModel.data.q3A_New ?? 0;
+              q3_b = q3viewModel.data.q3B_New ?? 0;
+              q3_c = q3viewModel.data.q3C_New ?? 0;
+              q3_d = q3viewModel.data.q3D_New ?? 0;
             })
           });
     });
@@ -51,11 +53,12 @@ class _Q3ViewState extends State<Q3View> {
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontLarge,
+          textFontSize: fontGreater,
           isBold: true,
         ),
         actions: const [
-          UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
@@ -84,66 +87,65 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Có",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_a == 1 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_a = q3_a == 1 ? 0 : 1;
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_a = 1;
+                        q3_a = q3_a == 1 ? 0 : 1;
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Có",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 1,
-                        groupValue: q3_a,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_a = value;
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Không",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_a == 2 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_a = q3_a == 2 ? 0 : 2;
+                          list.map((e) => e.q3A_New = null).toList();
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_a = 2;
+                        q3_a = q3_a == 2 ? 0 : 2;
+                        list.map((e) => e.q3A_New = null).toList();
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Không",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 2,
-                        groupValue: q3_a,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_a = value;
-                            list.map((e) => e.q3A_New = null).toList();
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 5,),
                   Container(
@@ -153,36 +155,58 @@ class _Q3ViewState extends State<Q3View> {
                   const SizedBox(height: 5,),
                   Visibility(
                     visible: q3_a == 1,
-                    child: ListBody(
-                      children: list
-                          .map((item) {
-                          if(item.q3B_New == null && item.q3C_New == null
-                              && item.q3D_New == null) {
-                            return GFCheckboxListTile(
-                              value: item.q3A_New == null ? false : true,
-                              title: UIText(
-                                text: item.q1_New!,
-                                textColor: Colors.black,
-                                textFontSize: fontMedium,
-                                textAlign: TextAlign.start,
-                              ),
-                              margin: const EdgeInsets.only(left: 16),
-                              position: GFPosition.start,
-                              onChanged: (isChecked) {
-                                setState(() {
-                                  if (isChecked) {
-                                    item.q3A_New = 1;
-                                  } else {
-                                    item.q3A_New = null;
-                                  }
-                                });
-                              },
-                            );
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const UIText(
+                          text: "Đó là những ai:",
+                          textColor: Colors.black,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.start,
+                          isBold: false,
+                        ),
+                        const SizedBox(height: 5,),
+                        ListBody(
+                          children: list
+                              .map((item) {
+                            if(item.q3B_New == null && item.q3C_New == null
+                                && item.q3D_New == null) {
+                              return ListTile(
+                                contentPadding: EdgeInsets.only(left: 15),
+                                title: UIText(
+                                  text: item.q1_New!,
+                                  textColor: Colors.black,
+                                  textFontSize: fontLarge,
+                                  textAlign: TextAlign.start,
+                                ),
+                                leading: GFRadio(
+                                  type: GFRadioType.custom,
+                                  size: GFSize.LARGE,
+                                  activeBorderColor: Colors.black,
+                                  activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                  value: 1,
+                                  groupValue: item.q3A_New,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      item.q3A_New = item.q3A_New == 1 ? null : 1;
+                                    });
+                                  },
+                                  inactiveIcon: null,
+                                  radioColor: Colors.indigo,
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    item.q3A_New = item.q3A_New == 1 ? null : 1;
+                                  });
+                                },
+                              );
+                            }
+                            return Container();
                           }
-                          return Container();
-                        }
-                      )
-                          .toList(),
+                          )
+                              .toList(),
+                        )
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -195,66 +219,65 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Có",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_b == 1 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_b = q3_b == 1 ? 0 : 1;
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_b = 1;
+                        q3_b = q3_b == 1 ? 0 : 1;
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Có",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 1,
-                        groupValue: q3_b,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_b = value;
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Không",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_b == 2 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_b = q3_b == 2 ? 0 : 2;
+                          list.map((e) => e.q3B_New = null).toList();
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_b = 2;
+                        q3_b = q3_b == 2 ? 0 : 2;
+                        list.map((e) => e.q3B_New = null).toList();
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Không",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 2,
-                        groupValue: q3_b,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_b = value;
-                            list.map((e) => e.q3B_New = null).toList();
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 5,),
                   Container(
@@ -264,36 +287,58 @@ class _Q3ViewState extends State<Q3View> {
                   const SizedBox(height: 5,),
                   Visibility(
                     visible: q3_b == 1,
-                    child: ListBody(
-                      children: list
-                          .map((item) {
-                        if(item.q3A_New == null && item.q3C_New == null
-                            && item.q3D_New == null) {
-                          return GFCheckboxListTile(
-                            value: item.q3B_New == null ? false : true,
-                            title: UIText(
-                              text: item.q1_New!,
-                              textColor: Colors.black,
-                              textFontSize: fontMedium,
-                              textAlign: TextAlign.start,
-                            ),
-                            margin: const EdgeInsets.only(left: 16),
-                            position: GFPosition.start,
-                            onChanged: (isChecked) {
-                              setState(() {
-                                if (isChecked) {
-                                  item.q3B_New = 1;
-                                } else {
-                                  item.q3B_New = null;
-                                }
-                              });
-                            },
-                          );
-                        }
-                        return Container();
-                      }
-                      )
-                          .toList(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const UIText(
+                          text: "Đó là những ai:",
+                          textColor: Colors.black,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.start,
+                          isBold: false,
+                        ),
+                        const SizedBox(height: 5,),
+                        ListBody(
+                          children: list
+                              .map((item) {
+                            if(item.q3A_New == null && item.q3C_New == null
+                                && item.q3D_New == null) {
+                              return ListTile(
+                                contentPadding: EdgeInsets.only(left: 15),
+                                title: UIText(
+                                  text: item.q1_New!,
+                                  textColor: Colors.black,
+                                  textFontSize: fontLarge,
+                                  textAlign: TextAlign.start,
+                                ),
+                                leading: GFRadio(
+                                  type: GFRadioType.custom,
+                                  size: GFSize.LARGE,
+                                  activeBorderColor: Colors.black,
+                                  activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                  value: 1,
+                                  groupValue: item.q3B_New,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      item.q3B_New = item.q3B_New == 1 ? null : 1;
+                                    });
+                                  },
+                                  inactiveIcon: null,
+                                  radioColor: Colors.indigo,
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    item.q3B_New = item.q3B_New == 1 ? null : 1;
+                                  });
+                                },
+                              );
+                            }
+                            return Container();
+                          }
+                          )
+                              .toList(),
+                        )
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -306,66 +351,65 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Có",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_c == 1 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_c = q3_c == 1 ? 0 : 1;
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_c = 1;
+                        q3_c = q3_c == 1 ? 0 : 1;
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Có",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 1,
-                        groupValue: q3_c,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_c = value;
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Không",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_c == 2 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_c = q3_c == 2 ? 0 : 2;
+                          list.map((e) => e.q3C_New = null).toList();
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_c = 2;
+                        q3_c = q3_c == 2 ? 0 : 2;
+                        list.map((e) => e.q3C_New = null).toList();
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Không",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 2,
-                        groupValue: q3_c,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_c = value;
-                            list.map((e) => e.q3C_New = null).toList();
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 5,),
                   Container(
@@ -375,36 +419,58 @@ class _Q3ViewState extends State<Q3View> {
                   const SizedBox(height: 5,),
                   Visibility(
                     visible: q3_c == 1,
-                    child: ListBody(
-                      children: list
-                          .map((item) {
-                        if(item.q3A_New == null && item.q3B_New == null
-                            && item.q3D_New == null) {
-                          return GFCheckboxListTile(
-                            value: item.q3C_New == null ? false : true,
-                            title: UIText(
-                              text: item.q1_New!,
-                              textColor: Colors.black,
-                              textFontSize: fontMedium,
-                              textAlign: TextAlign.start,
-                            ),
-                            margin: const EdgeInsets.only(left: 16),
-                            position: GFPosition.start,
-                            onChanged: (isChecked) {
-                              setState(() {
-                                if (isChecked) {
-                                  item.q3C_New = 1;
-                                } else {
-                                  item.q3C_New = null;
-                                }
-                              });
-                            },
-                          );
-                        }
-                        return Container();
-                      }
-                      )
-                          .toList(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const UIText(
+                          text: "Đó là những ai:",
+                          textColor: Colors.black,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.start,
+                          isBold: false,
+                        ),
+                        const SizedBox(height: 5,),
+                        ListBody(
+                          children: list
+                              .map((item) {
+                            if(item.q3A_New == null && item.q3B_New == null
+                                && item.q3D_New == null) {
+                              return ListTile(
+                                contentPadding: EdgeInsets.only(left: 15),
+                                title: UIText(
+                                  text: item.q1_New!,
+                                  textColor: Colors.black,
+                                  textFontSize: fontLarge,
+                                  textAlign: TextAlign.start,
+                                ),
+                                leading: GFRadio(
+                                  type: GFRadioType.custom,
+                                  size: GFSize.LARGE,
+                                  activeBorderColor: Colors.black,
+                                  activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                  value: 1,
+                                  groupValue: item.q3C_New,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      item.q3C_New = item.q3C_New == 1 ? null : 1;
+                                    });
+                                  },
+                                  inactiveIcon: null,
+                                  radioColor: Colors.indigo,
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    item.q3C_New = item.q3C_New == 1 ? null : 1;
+                                  });
+                                },
+                              );
+                            }
+                            return Container();
+                          }
+                          )
+                              .toList(),
+                        )
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -417,66 +483,65 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Có",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_d == 1 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_d = q3_d == 1 ? 0 : 1;
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_d = 1;
+                        q3_d = q3_d == 1 ? 0 : 1;
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Có",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 1,
-                        groupValue: q3_d,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_d = value;
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
-                  InkWell(
+                  ListTile(
+                    title: const UIText(
+                      text: "Không",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                    leading: RoundCheckBox(
+                      isChecked: q3_d == 2 ? true : false,
+                      onTap: (selected) {
+                        setState(() {
+                          q3_d = q3_d == 2 ? 0 : 2;
+                          list.map((e) => e.q3D_New = null).toList();
+                        });
+                      },
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                      checkedColor: Colors.white,
+                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      uncheckedColor: Colors.white,
+                      uncheckedWidget: Container(),
+                    ),
                     onTap: (){
                       setState(() {
-                        q3_d = 2;
+                        q3_d = q3_d == 2 ? 0 : 2;
+                        list.map((e) => e.q3D_New = null).toList();
                       });
                     },
-                    child: ListTile(
-                      title: const UIText(
-                        text: "Không",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                      ),
-                      leading: GFRadio(
-                        type: GFRadioType.custom,
-                        size: GFSize.LARGE,
-                        activeBorderColor: Colors.black,
-                        activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        value: 2,
-                        groupValue: q3_d,
-                        onChanged: (value) {
-                          setState(() {
-                            q3_d = value;
-                            list.map((e) => e.q3D_New = null).toList();
-                          });
-                        },
-                        inactiveIcon: null,
-                        radioColor: Colors.indigo,
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 5,),
                   Container(
@@ -486,36 +551,58 @@ class _Q3ViewState extends State<Q3View> {
                   const SizedBox(height: 5,),
                   Visibility(
                     visible: q3_d == 1,
-                    child: ListBody(
-                      children: list
-                          .map((item) {
-                        if(item.q3A_New == null && item.q3B_New == null
-                            && item.q3C_New == null) {
-                          return GFCheckboxListTile(
-                            value: item.q3D_New == null ? false : true,
-                            title: UIText(
-                              text: item.q1_New!,
-                              textColor: Colors.black,
-                              textFontSize: fontMedium,
-                              textAlign: TextAlign.start,
-                            ),
-                            margin: const EdgeInsets.only(left: 16),
-                            position: GFPosition.start,
-                            onChanged: (isChecked) {
-                              setState(() {
-                                if (isChecked) {
-                                  item.q3D_New = 1;
-                                } else {
-                                  item.q3D_New = null;
-                                }
-                              });
-                            },
-                          );
-                        }
-                        return Container();
-                      }
-                      )
-                          .toList(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const UIText(
+                          text: "Đó là những ai:",
+                          textColor: Colors.black,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.start,
+                          isBold: false,
+                        ),
+                        const SizedBox(height: 5,),
+                        ListBody(
+                          children: list
+                              .map((item) {
+                            if(item.q3A_New == null && item.q3C_New == null
+                                && item.q3B_New == null) {
+                              return ListTile(
+                                contentPadding: EdgeInsets.only(left: 15),
+                                title: UIText(
+                                  text: item.q1_New!,
+                                  textColor: Colors.black,
+                                  textFontSize: fontLarge,
+                                  textAlign: TextAlign.start,
+                                ),
+                                leading: GFRadio(
+                                  type: GFRadioType.custom,
+                                  size: GFSize.LARGE,
+                                  activeBorderColor: Colors.black,
+                                  activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                  value: 1,
+                                  groupValue: item.q3D_New,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      item.q3D_New = item.q3D_New == 1 ? null : 1;
+                                    });
+                                  },
+                                  inactiveIcon: null,
+                                  radioColor: Colors.indigo,
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    item.q3D_New = item.q3D_New == 1 ? null : 1;
+                                  });
+                                },
+                              );
+                            }
+                            return Container();
+                          }
+                          )
+                              .toList(),
+                        )
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -551,7 +638,33 @@ class _Q3ViewState extends State<Q3View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          q3viewModel.Q3Next(list);
+                          if(q3_a == 0 ||q3_b == 0 ||q3_c == 0 ||q3_d == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Q3A nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if(q3_b == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Q3B nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if(q3_c == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Q3C nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if(q3_d == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Q3D nhập vào chưa đúng!',)
+                            );
+                          }
+                          else {
+                            q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,
@@ -565,7 +678,7 @@ class _Q3ViewState extends State<Q3View> {
           )
         ],
       ),
-      //drawer: const DrawerNavigation(),
+      drawer: const DrawerNavigation(),
     );
   }
 }

@@ -3,4 +3,5 @@ class ApiConstants {
   static String login = 'login';
   static String fetchArea = 'api/area/';
   static String fetchHouseHold = 'api/household/';
+  static String fetchBangkeThangDT = 'api/bangkeho_thangdt/';
 }

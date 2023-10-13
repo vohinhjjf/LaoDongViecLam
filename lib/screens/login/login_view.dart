@@ -17,13 +17,16 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
-  List list = ['Chọn tháng điều tra', '1', '2', '3', '4'];
+  List<String> list = ['điều tra', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  String month = 'điều tra';
 
   @override
   void initState() {
     super.initState();
     loginViewModel = context.read();
     loginViewModel.onInit(context);
+    userNameController.text = "DTV99001";
+    passwordController.text = "123a@";
   }
 
   @override
@@ -133,16 +136,16 @@ class _LoginViewState extends State<LoginView> {
                         color: Colors.grey, style: BorderStyle.solid, width: 0.80),
                   ),
                   child: DropdownButton(
-                    value: list[0],
+                    value: month,
                     borderRadius: BorderRadius.circular(8.r),
                     items: list.map((e) => DropdownMenuItem(
                       value: e,
-                      child: UIText(textColor: Colors.black,text: '$e',),
+                      child: UIText(textColor: Colors.black,text: 'Tháng $e', textFontSize: fontLarge,),
                     )
                     ).toList(),
                     onChanged: (value){
                       setState(() {
-
+                        month = value!;
                       });
                     },
                     isExpanded: true,
@@ -226,16 +229,18 @@ class _LoginViewState extends State<LoginView> {
                       //CircularProgressIndicator();
                       if(_formKey.currentState!.validate());
                       {
-                        /*loginViewModel.login(userNameController.text, passwordController.text).then((value) => {
+                        print(userNameController.text);
+                        print(passwordController.text);
+                        print(month);
+                        loginViewModel.login(userNameController.text, passwordController.text, month).then((value) => {
                                   if(value == 'successfully'){
-                                    loginViewModel.navigatertoHome()
+                                    loginViewModel.navigateToBottomNavigation()
                                   } else {
                                     _showErrorDialog('Đăng nhập thất bại!')
                                   }
                                 }).onError((error, stackTrace) => {
                                   _showErrorDialog('Đăng nhập thất bại!')
-                                });*/
-                        loginViewModel.navigateToBottomNavigation();
+                                });
                       }
                     },
                     height: 50,

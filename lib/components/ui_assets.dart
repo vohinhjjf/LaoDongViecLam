@@ -13,4 +13,6 @@ class UIAssets {
   static const String icReplace = 'assets/icons/ic_replace.jpg';
   static const String icDashboard = 'assets/icons/ic_home.jpg';
   static const String icNotDashboard = 'assets/icons/ic_not_home.jpg';
+  static const String icExit = 'assets/icons/ic_exit.jpg';
+  static const String icGPS = 'assets/icons/ic_gps.png';
 }

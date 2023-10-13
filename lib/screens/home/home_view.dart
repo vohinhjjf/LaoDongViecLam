@@ -17,13 +17,13 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late HomeViewModel homeViewModel;
 
-
   @override
   void initState() {
     super.initState();
     homeViewModel = context.read();
     homeViewModel.onInit(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

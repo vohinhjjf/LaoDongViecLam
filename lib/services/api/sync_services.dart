@@ -13,10 +13,10 @@ class SyncServices {
 
   SyncServices(this._dio);
 
-  /*Future<int> syncData(String accessToken) async {
+  Future<int> syncData(String accessToken, String month) async {
     int statusCode = 500;
     await http.get (Uri.parse(
-        '${ApiConstants.baseUrl}${ApiConstants.fetchHouseHold}'),
+        '${ApiConstants.baseUrl}${ApiConstants.fetchHouseHold}/$month/2023'),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
           HttpHeaders.authorizationHeader: "Bearer $accessToken"
@@ -30,9 +30,9 @@ class SyncServices {
       return error is int && error >= 400;
     });
     return statusCode;
-  }*/
+  }
 
-  Future<dynamic> fetchArea(String accessToken, int month) async {
+  Future<dynamic> fetchArea(String accessToken, String month) async {
     _dio.options.baseUrl = ApiConstants.baseUrl;
     final header = {
       'content-type': 'application/json',
@@ -48,7 +48,7 @@ class SyncServices {
     }
   }
 
-  Future<dynamic> fetchHouseHold(String accessToken, int month) async {
+  Future<dynamic> fetchHouseHold(String accessToken, String month) async {
     _dio.options.baseUrl = ApiConstants.baseUrl;
     final header = {
       'content-type': 'application/json',
@@ -56,6 +56,22 @@ class SyncServices {
     };
     _dio.options.headers = header;
     Response response = await _dio.get("${ApiConstants.fetchHouseHold}/$month/2023");
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      log('error: ${response.data}');
+      return ResponseModel.withError(response.data);
+    }
+  }
+
+  Future<dynamic> fetchBangkeThangDT(String accessToken, String month) async {
+    _dio.options.baseUrl = ApiConstants.baseUrl;
+    final header = {
+      'content-type': 'application/json',
+      'authorization': 'Bearer $accessToken'
+    };
+    _dio.options.headers = header;
+    Response response = await _dio.get("${ApiConstants.fetchBangkeThangDT}/$month/2023");
     if (response.statusCode == 200) {
       return response.data;
     } else {

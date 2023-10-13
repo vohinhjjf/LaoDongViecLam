@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import 'Q4_viewmodel.dart';
@@ -26,6 +29,7 @@ class _Q4ViewState extends State<Q4View> {
   final _text_q4_d = TextEditingController();
   final _text_q4_e = TextEditingController();
   final _text_q4_f = TextEditingController();
+  String month = "";
 
   @override
   void initState() {
@@ -44,12 +48,13 @@ class _Q4ViewState extends State<Q4View> {
               list_q4_d = q4viewModel.list_q4_d;
               list_q4_e = q4viewModel.list_q4_e;
               list_q4_f = q4viewModel.list_q4_f;
-              q4_a = q4viewModel.list_q4_a.isEmpty ? 2 : 1;
-              q4_b = q4viewModel.list_q4_b.isEmpty ? 2 : 1;
-              q4_c = q4viewModel.list_q4_c.isEmpty ? 2 : 1;
-              q4_d = q4viewModel.list_q4_d.isEmpty ? 2 : 1;
-              q4_e = q4viewModel.list_q4_e.isEmpty ? 2 : 1;
-              q4_f = q4viewModel.list_q4_f.isEmpty ? 2 : 1;
+              q4_a = q4viewModel.data.q4A_New ?? 0;
+              q4_b = q4viewModel.data.q4B_New ?? 0;
+              q4_c = q4viewModel.data.q4C_New ?? 0;
+              q4_d = q4viewModel.data.q4D_New ?? 0;
+              q4_e = q4viewModel.data.q4E_New ?? 0;
+              q4_f = q4viewModel.data.q4F_New ?? 0;
+              month = q4viewModel.data.thangDT.toString();
             })
           });
     });
@@ -61,7 +66,7 @@ class _Q4ViewState extends State<Q4View> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        //iconTheme: const IconThemeData(color: mPrimaryColor),
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         title: const UIText(
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
@@ -70,7 +75,8 @@ class _Q4ViewState extends State<Q4View> {
           isBold: true,
         ),
         actions: const [
-          UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
@@ -83,8 +89,8 @@ class _Q4ViewState extends State<Q4View> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const UIText(
-                    text: UIQuestions.q4,
+                  UIText(
+                    text: UIQuestions.q4(month),
                     textColor: Colors.black,
                     textFontSize: fontGreater,
                     textAlign: TextAlign.start,
@@ -93,37 +99,61 @@ class _Q4ViewState extends State<Q4View> {
                   // A
                   questionWidget(UIQuestions.q4a, q4_a, (value) {
                     setState(() {
-                      q4_a = value;
+                      q4_a = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_a = value! ? 2 : 0;
                     });
                   }, _text_q4_a, 1, list_q4_a),
                   // B
                   questionWidget(UIQuestions.q4b, q4_b, (value) {
                     setState(() {
-                      q4_b = value;
+                      q4_b = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_b = value! ? 2 : 0;
                     });
                   }, _text_q4_b, 2, list_q4_b),
                   // C
                   questionWidget(UIQuestions.q4c, q4_c, (value) {
                     setState(() {
-                      q4_c = value;
+                      q4_c = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_c = value! ? 2 : 0;
                     });
                   }, _text_q4_c, 3, list_q4_c),
                   // D
                   questionWidget(UIQuestions.q4d, q4_d, (value) {
                     setState(() {
-                      q4_d = value;
+                      q4_d = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_d = value! ? 2 : 0;
                     });
                   }, _text_q4_d, 4, list_q4_d),
                   // E
                   questionWidget(UIQuestions.q4e, q4_e, (value) {
                     setState(() {
-                      q4_e = value;
+                      q4_e = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_e = value! ? 2 : 0;
                     });
                   }, _text_q4_e, 5, list_q4_e),
                   // F
                   questionWidget(UIQuestions.q4f, q4_f, (value) {
                     setState(() {
-                      q4_f = value;
+                      q4_f = value! ? 1 : 0;
+                    });
+                  }, (value) {
+                    setState(() {
+                      q4_f = value! ? 2 : 0;
                     });
                   }, _text_q4_f, 6, list_q4_f),
                 ]),
@@ -232,7 +262,7 @@ class _Q4ViewState extends State<Q4View> {
                                 q4viewModel.deleteNTKK(item.idtv!);
                               };
                             }
-                            q4viewModel.Q4Next();
+                            q4viewModel.Q4Next(q4_a, q4_b, q4_c, q4_d, q4_e, q4_f);
                           }
                         },
                         icon: const Icon(
@@ -247,11 +277,11 @@ class _Q4ViewState extends State<Q4View> {
           )
         ],
       ),
-      //drawer: const DrawerNavigation(),
+      drawer: const DrawerNavigation(),
     );
   }
 
-  Widget questionWidget(String title, int groupValue, Function(int)? onChanged,
+  Widget questionWidget(String title, int groupValue, Function(bool?)? onTap1, Function(bool?)? onTap2,
       TextEditingController _text_name, int temp, List<thongTinThanhVienNKTTModel> list_item){
     return Column(
       children: [
@@ -263,56 +293,44 @@ class _Q4ViewState extends State<Q4View> {
           isBold: false,
         ),
         const SizedBox(height: 10,),
-        InkWell(
-          onTap: (){
-            setState(() {
-              groupValue = 1;
-            });
-          },
-          child: ListTile(
-            title: const UIText(
-              text: "Có",
-              textColor: Colors.black,
-              textFontSize: fontLarge,
-              textAlign: TextAlign.start,
+        ListTile(
+          title: const UIText(
+            text: "Có",
+            textColor: Colors.black,
+            textFontSize: fontLarge,
+            textAlign: TextAlign.start,
+          ),
+          leading: RoundCheckBox(
+            isChecked: groupValue == 1 ? true : false,
+            onTap: onTap1,
+            border: Border.all(
+              width: 1,
+              color: Colors.black,
             ),
-            leading: GFRadio(
-              type: GFRadioType.custom,
-              size: GFSize.LARGE,
-              activeBorderColor: Colors.black,
-              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-              value: 1,
-              groupValue: groupValue,
-              onChanged: onChanged,
-              inactiveIcon: null,
-              radioColor: Colors.indigo,
-            ),
+            checkedColor: Colors.white,
+            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+            uncheckedColor: Colors.white,
+            uncheckedWidget: Container(),
           ),
         ),
-        InkWell(
-          onTap: (){
-            setState(() {
-              groupValue = 2;
-            });
-          },
-          child: ListTile(
-            title: const UIText(
-              text: "Không",
-              textColor: Colors.black,
-              textFontSize: fontLarge,
-              textAlign: TextAlign.start,
+        ListTile(
+          title: const UIText(
+            text: "Không",
+            textColor: Colors.black,
+            textFontSize: fontLarge,
+            textAlign: TextAlign.start,
+          ),
+          leading: RoundCheckBox(
+            isChecked: groupValue == 2 ? true : false,
+            onTap: onTap2,
+            border: Border.all(
+              width: 1,
+              color: Colors.black,
             ),
-            leading: GFRadio(
-              type: GFRadioType.custom,
-              size: GFSize.LARGE,
-              activeBorderColor: Colors.black,
-              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-              value: 2,
-              groupValue: groupValue,
-              onChanged: onChanged,
-              inactiveIcon: null,
-              radioColor: Colors.indigo,
-            ),
+            checkedColor: Colors.white,
+            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+            uncheckedColor: Colors.white,
+            uncheckedWidget: Container(),
           ),
         ),
         const SizedBox(height: 5,),
@@ -338,16 +356,45 @@ class _Q4ViewState extends State<Q4View> {
             controller: _text_name,
             autofocus: true,
             onSubmitted: (value){
-              q4viewModel.addNTKK(value, list[list.length-1].idtv! + 1, temp);
-              setState(() {
-                list_item.add(thongTinThanhVienNKTTModel(
-                    idho: '99991001003',
-                    idtv: list.last.idtv! + 1,
-                    q1_New: value
-                ));
-                _text_name.text = "";
-              });
+              if(value != "") {
+                if(value.length < 5){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                          notification: 'Q4${title.substring(0,1)} Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                          onpress: (){
+                            Navigator.of(context).pop();
+                            q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
+                            setState(() {
+                              list_item.add(thongTinThanhVienNKTTModel(
+                                  idtv: list.last.idtv! + 1,
+                                  q1_New: value
+                              ));
+                              _text_name.text = "";
+                            });
+                          }
+                      )
+                  );
+                }
+                else {
+                  q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
+                  setState(() {
+                    list_item.add(thongTinThanhVienNKTTModel(
+                        idtv: list.last.idtv! + 1,
+                        q1_New: value
+                    ));
+                    _text_name.text = "";
+                  });
+                }
+              }
             },
+            textCapitalization: TextCapitalization.words,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(
+                  '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+              FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+            ],
+            keyboardType: TextInputType.text,
             style: const TextStyle(color: Colors.black),
             decoration: const InputDecoration(
               border: OutlineInputBorder(

@@ -4,6 +4,7 @@ import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
 class Q6ViewModel extends BaseViewModel {
@@ -19,7 +20,8 @@ class Q6ViewModel extends BaseViewModel {
   }
 
   getListNKTT() async {
-    await _executeDatabase.getNKTT(0, "").then((value) {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.getNKTT(0, "", idho).then((value) {
       list = value;
       logic(value);
     });
@@ -39,7 +41,8 @@ class Q6ViewModel extends BaseViewModel {
   void Q6Back() async {
     NavigationServices.instance.navigateToQ5(context);
   }
-  void Q6Next() async {
+  void Q6Next(List<thongTinThanhVienModel> data) async {
+    _executeDatabase.setTTTV(data);
     NavigationServices.instance.navigateToQ7(context);
   }
 }

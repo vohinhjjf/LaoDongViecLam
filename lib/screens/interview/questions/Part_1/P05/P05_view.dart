@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../components/uis.dart';
 import 'P05_viewmodel.dart';
 
@@ -16,14 +18,37 @@ class P05View extends StatefulWidget {
 
 class _P05ViewState extends State<P05View> {
   late P05ViewModel p05viewModel;
+  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
   int groupValue = 0;
-  String _name = "";
+
+   String moiquanhe(){
+    String _mqh = "";
+    switch (thanhvien.c01){
+      case 3: _mqh ="CON ĐẺ";break;
+      case 4: _mqh ="CHÁU NỘI/NGOẠI";break;
+      case 5: _mqh ="BỐ/MẸ";break;
+      case 6: _mqh ="QUAN HỆ GIA ĐÌNH KHÁC";break;
+      case 7: _mqh ="NGƯỜI GIÚP VIỆC";break;
+      case 8: _mqh = thanhvien.c01K!;break;
+    }
+    return _mqh;
+  }
 
   @override
   void initState() {
     super.initState();
-    p05viewModel = context.read();
-    p05viewModel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      p05viewModel = context.read();
+      p05viewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 100),
+              () => {
+            setState(() {
+              thanhvien = p05viewModel.thanhvien;
+              groupValue = p05viewModel.thanhvien.c05 ?? 0;
+            })
+          });
+    });
   }
 
   @override
@@ -31,7 +56,8 @@ class _P05ViewState extends State<P05View> {
     return Scaffold(
       appBar: AppBar(
         actions: const [
-          //UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
@@ -51,72 +77,72 @@ class _P05ViewState extends State<P05View> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //p00
-                UIText(
-                  text: "P05. $_name có con dưới 3 tuổi sống cùng hộ không?",
+                //p05
+                UIRichText(
+                  text1: "P05. ",
+                  text2: thanhvien.c00 ?? "",
+                  text3: " có con dưới 3 tuổi sống cùng hộ không?",
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                InkWell(
-                  onTap: (){
+                ListTile(
+                  title: const UIText(
+                    text: "Có",
+                    textColor: Colors.black,
+                    textFontSize: fontLarge,
+                    textAlign: TextAlign.start,
+                  ),
+                  leading: RoundCheckBox(
+                    isChecked: groupValue == 1 ? true : false,
+                    onTap: (selected) {
+                      setState(() {
+                        groupValue = groupValue == 1 ? 0 : 1;
+                      });
+                    },
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                    checkedColor: Colors.white,
+                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                    uncheckedColor: Colors.white,
+                    uncheckedWidget: Container(),
+                  ),
+                  onTap: () {
                     setState(() {
-                      groupValue = 1;
+                      groupValue = groupValue == 1 ? 0 : 1;
                     });
                   },
-                  child: ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: GFRadio(
-                      type: GFRadioType.custom,
-                      size: GFSize.LARGE,
-                      activeBorderColor: Colors.black,
-                      activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      value: 1,
-                      groupValue: groupValue,
-                      onChanged: (value){
-                        setState(() {
-                          groupValue = value;
-                        });
-                      },
-                      inactiveIcon: null,
-                      radioColor: Colors.indigo,
-                    ),
-                  ),
                 ),
-                InkWell(
-                  onTap: (){
+                ListTile(
+                  title: const UIText(
+                    text: "Không",
+                    textColor: Colors.black,
+                    textFontSize: fontLarge,
+                    textAlign: TextAlign.start,
+                  ),
+                  leading: RoundCheckBox(
+                    isChecked: groupValue == 2 ? true : false,
+                    onTap: (selected) {
+                      setState(() {
+                        groupValue = groupValue == 2 ? 0 : 2;
+                      });
+                    },
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                    checkedColor: Colors.white,
+                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                    uncheckedColor: Colors.white,
+                    uncheckedWidget: Container(),
+                  ),
+                  onTap: () {
                     setState(() {
-                      groupValue = 2;
+                      groupValue = groupValue == 2 ? 0 : 2;
                     });
                   },
-                  child: ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: GFRadio(
-                      type: GFRadioType.custom,
-                      size: GFSize.LARGE,
-                      activeBorderColor: Colors.black,
-                      activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      value: 2,
-                      groupValue: groupValue,
-                      onChanged: (value){
-                        setState(() {
-                          groupValue = value;
-                        });
-                      },
-                      inactiveIcon: null,
-                      radioColor: Colors.indigo,
-                    ),
-                  ),
                 ),
               ],
             ),
@@ -151,7 +177,71 @@ class _P05ViewState extends State<P05View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p05viewModel.P05Next();
+                          if(groupValue == 0){
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'P05 - Có con dưới 3 tuổi nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04A! < 18 || thanhvien.c04A! > 65)){
+                            showDialog(
+                                context: context,
+                                builder: (_) =>  UINotificationDialog(
+                                  notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có phải không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if(thanhvien.c01! >= 3 && groupValue == 1){
+                                      Navigator.of(context).pop();
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) =>  UINotificationDialog(
+                                            notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                                                'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              p05viewModel.P05Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c04A: groupValue
+                                              ));
+                                            },
+                                          )
+                                      );
+                                    }else {
+                                      p05viewModel.P05Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c04A: groupValue
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if(thanhvien.c01! >= 3 && groupValue == 1){
+                            showDialog(
+                                context: context,
+                                builder: (_) =>  UINotificationDialog(
+                                  notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                                      'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    p05viewModel.P05Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c04A: groupValue
+                                    ));
+                                  },
+                                )
+                            );
+                          }
+                          else {
+                            p05viewModel.P05Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c04A: groupValue
+                            ));
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,

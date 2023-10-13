@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P06_07_viewmodel.dart';
 
 class P06_07View extends StatefulWidget {
@@ -16,14 +18,26 @@ class P06_07View extends StatefulWidget {
 
 class _P06_07ViewState extends State<P06_07View> {
   late P06_07ViewModel p06_07viewmodel;
-  int groupValue = 0, nation = 0;
-  String _name = "";
+  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  int groupValue = 0;
+  String nation = "Chọn mã quốc gia";
 
   @override
   void initState() {
     super.initState();
-    p06_07viewmodel = context.read();
-    p06_07viewmodel.onInit(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      p06_07viewmodel = context.read();
+      p06_07viewmodel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 200),
+              () => {
+            setState(() {
+              thanhvien = p06_07viewmodel.thanhvien;
+              groupValue = p06_07viewmodel.thanhvien.c05 ?? 0;
+              nation = p06_07viewmodel.thanhvien.c06 ?? "Chọn mã quốc gia";
+            })
+          });
+    });
   }
 
   @override
@@ -31,7 +45,8 @@ class _P06_07ViewState extends State<P06_07View> {
     return Scaffold(
       appBar: AppBar(
         actions: const [
-          //UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
@@ -52,71 +67,71 @@ class _P06_07ViewState extends State<P06_07View> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //p00
-                UIText(
-                  text: "P06. Hiện nay,$_name đang cư trú ở Việt Nam hay ở nước ngoài?",
+                UIRichText(
+                  text1: "P06. Hiện nay, ",
+                  text2: thanhvien.c00 ?? "",
+                  text3: " đang cư trú ở Việt Nam hay ở nước ngoài?",
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                InkWell(
-                  onTap: (){
+                ListTile(
+                  title: const UIText(
+                    text: "Ở VIỆT NAM",
+                    textColor: Colors.black,
+                    textFontSize: fontLarge,
+                    textAlign: TextAlign.start,
+                  ),
+                  leading: RoundCheckBox(
+                    isChecked: groupValue == 1 ? true : false,
+                    onTap: (selected) {
+                      setState(() {
+                        groupValue = groupValue == 1 ? 0 : 1;
+                      });
+                    },
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                    checkedColor: Colors.white,
+                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                    uncheckedColor: Colors.white,
+                    uncheckedWidget: Container(),
+                  ),
+                  onTap: () {
                     setState(() {
-                      groupValue = 1;
+                      groupValue = groupValue == 1 ? 0 : 1;
                     });
                   },
-                  child: ListTile(
-                    title: const UIText(
-                      text: "Ở VIỆT NAM",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: GFRadio(
-                      type: GFRadioType.custom,
-                      size: GFSize.LARGE,
-                      activeBorderColor: Colors.black,
-                      activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      value: 1,
-                      groupValue: groupValue,
-                      onChanged: (value){
-                        setState(() {
-                          groupValue = value;
-                        });
-                      },
-                      inactiveIcon: null,
-                      radioColor: Colors.indigo,
-                    ),
-                  ),
                 ),
-                InkWell(
-                  onTap: (){
+                ListTile(
+                  title: const UIText(
+                    text: "Ở NƯỚC NGOÀI",
+                    textColor: Colors.black,
+                    textFontSize: fontLarge,
+                    textAlign: TextAlign.start,
+                  ),
+                  leading: RoundCheckBox(
+                    isChecked: groupValue == 2 ? true : false,
+                    onTap: (selected) {
+                      setState(() {
+                        groupValue = groupValue == 2 ? 0 : 2;
+                      });
+                    },
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                    checkedColor: Colors.white,
+                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                    uncheckedColor: Colors.white,
+                    uncheckedWidget: Container(),
+                  ),
+                  onTap: () {
                     setState(() {
-                      groupValue = 2;
+                      groupValue = groupValue == 2 ? 0 : 2;
                     });
                   },
-                  child: ListTile(
-                    title: const UIText(
-                      text: "Ở NƯỚC NGOÀI",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: GFRadio(
-                      type: GFRadioType.custom,
-                      size: GFSize.LARGE,
-                      activeBorderColor: Colors.black,
-                      activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      value: 2,
-                      groupValue: groupValue,
-                      onChanged: (value){
-                        setState(() {
-                          groupValue = value;
-                        });
-                      },
-                      inactiveIcon: null,
-                      radioColor: Colors.indigo,
-                    ),
-                  ),
                 ),
                 const SizedBox(height: 10,),
                 Visibility(
@@ -124,7 +139,7 @@ class _P06_07ViewState extends State<P06_07View> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      UIText(
+                      const UIText(
                         text: "P07. Tên và mã nước",
                         textColor: Colors.black,
                         textFontSize:fontLarge,
@@ -133,27 +148,114 @@ class _P06_07ViewState extends State<P06_07View> {
                       DropdownButtonFormField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             filled: true,
                             fillColor: Colors.white,
                           ),
+                          elevation: 0,
                           dropdownColor: Colors.white,
                           value: nation,
-                          onChanged: (int? value) {
+                          onChanged: (value) {
                             setState(() {
                               nation = value!;
+                              print(value.split(' - ')[0]);
+                              print(value.split(' - ')[1]);
                             });
                           },
                           items: const [ //add items in the dropdown
                             DropdownMenuItem(
-                              value: 0,
+                              value: "Chọn mã quốc gia",
                               child: Text("- - Chọn mã quốc gia - -"),
+                            ),
+                            DropdownMenuItem(
+                              value: "KHM - Vương quốc Campuchia",
+                              child: Text("KHM - Vương quốc\nCampuchia"),
+                            ),
+                            DropdownMenuItem(
+                              value: "IDN - Cộng hòa Indonesia",
+                              child: Text("IDN - Cộng hòa Indonesia"),
+                            ),
+                            DropdownMenuItem(
+                              value: "LAO - Cộng hòa Dân chủ Nhân dân Lào",
+                              child: Text("LAO - Cộng hòa Dân chủ\nNhân dân Lào"),
+                            ),
+                            DropdownMenuItem(
+                              value: "MYS - Malaysia",
+                              child: Text("MYS - Malaysia"),
+                            ),
+                            DropdownMenuItem(
+                              value: "MMR - Liên bang Mianma",
+                              child: Text("MMR - Liên bang Mianma"),
+                            ),
+                            DropdownMenuItem(
+                              value: "PHL - Cộng hòa Philippin",
+                              child: Text("PHL - Cộng hòa Philippin"),
+                            ),
+                            DropdownMenuItem(
+                              value: "SGP - Cộng hòa Singapo",
+                              child: Text("SGP - Cộng hòa Singapo"),
+                            ),
+                            DropdownMenuItem(
+                              value: "THA - Thái Lan",
+                              child: Text("THA - Thái Lan"),
+                            ),
+                            DropdownMenuItem(
+                              value: "DZA - Các nước Trung Đông",
+                              child: Text("DZA - Các nước Trung Đông"),
+                            ),
+                            DropdownMenuItem(
+                              value: "CHN - Cộng hòa Nhân dân Trung Hoa",
+                              child: Text("CHN - Cộng hòa Nhân dân\nTrung Hoa"),
+                            ),
+                            DropdownMenuItem(
+                              value: "HKG - Hồng Kông",
+                              child: Text("HKG - Hồng Kông"),
+                            ),
+                            DropdownMenuItem(
+                              value: "IND - Cộng hòa Ấn Độ",
+                              child: Text("IND - Cộng hòa Ấn Độ"),
+                            ),
+                            DropdownMenuItem(
+                              value: "JPN - Nhật Bản",
+                              child: Text("JPN - Nhật Bản"),
+                            ),
+                            DropdownMenuItem(
+                              value: "KOR - Hàn Quốc",
+                              child: Text("KOR - Hàn Quốc"),
+                            ),
+                            DropdownMenuItem(
+                              value: "TWN - Đài Loan",
+                              child: Text("TWN - Đài Loan"),
+                            ),
+                            DropdownMenuItem(
+                              value: "BGR - Các nước Đông Âu",
+                              child: Text("BGR - Các nước Đông Âu"),
+                            ),
+                            DropdownMenuItem(
+                              value: "SWE - Các nước Bắc Âu",
+                              child: Text("SWE - Các nước Bắc Âu"),
+                            ),
+                            DropdownMenuItem(
+                              value: "USA - Hợp chủng quốc Hoa Kỳ",
+                              child: Text("USA - Hợp chủng quốc Hoa\nKỳ"),
+                            ),
+                            DropdownMenuItem(
+                              value: "CAN - Canada",
+                              child: Text("CAN - Canada"),
+                            ),
+                            DropdownMenuItem(
+                              value: "AUS - Australia",
+                              child: Text("AUS - Australia"),
+                            ),
+                            DropdownMenuItem(
+                              value: "AFG - Các nước khác",
+                              child: Text("AFG - Các nước khác"),
                             ),
                           ],
                       ),
@@ -177,7 +279,7 @@ class _P06_07ViewState extends State<P06_07View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p06_07viewmodel.P06_07Back();
+                          p06_07viewmodel.P06_07Back(thanhvien.c04A);
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -194,7 +296,24 @@ class _P06_07ViewState extends State<P06_07View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p06_07viewmodel.P06_07Next();
+                          if(groupValue == 0){
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Thông tin bắt buộc không thể bỏ trống!',)
+                            );
+                          } else if(groupValue == 2 && nation == "Chọn mã quốc gia"){
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
+                            );
+                          }else {
+                            p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c05: groupValue,
+                                c06: groupValue == 2 ? nation : null,
+                            ));
+                          }
                         },
                         icon: const Icon(
                           Icons.navigate_next,

@@ -16,23 +16,47 @@ class SPrefAppModel {
   Future<void> onInit() async {
     _sharedPref = await SharedPreferences.getInstance();
   }
-
+  //Access Token
   String get accessToken {
     return _sharedPref.getString(SPrefConstants.accessTokenKey) ?? '';
   }
-
   Future<void> setAccessToken(String accessToken) async {
     await _sharedPref.setString(SPrefConstants.accessTokenKey, accessToken);
   }
 
+  //Month
+  Future<void> setMonth(String month) async {
+    await _sharedPref.setString(SPrefConstants.month, month);
+  }
+  String get month {
+    return _sharedPref.getString(SPrefConstants.month) ?? '';
+  }
+
+  //IDDB
+  Future<void> setIDDB(String iddb) async {
+    await _sharedPref.setString(SPrefConstants.iddb, iddb);
+  }
+  String get IDDB {
+    return _sharedPref.getString(SPrefConstants.iddb) ?? '';
+  }
+
+  //IDTV
+  Future<void> setIDTV(int idtv) async {
+    await _sharedPref.setInt(SPrefConstants.idtv, idtv);
+  }
+  int get IDTV {
+    return _sharedPref.getInt(SPrefConstants.idtv) ?? 0;
+  }
+
+  //Auto sync
   bool isAutoSync() {
     return _sharedPref.getBool(SPrefConstants.isAutoSyncKey) ?? false;
   }
-
   Future<void> setAutoSync(bool isAutoSync) async {
     await _sharedPref.setBool(SPrefConstants.isAutoSyncKey, isAutoSync);
   }
 
+  //user
   UserModel get userModel {
     String user = _sharedPref.getString(SPrefConstants.userModelKey) ?? '';
     if (user.isEmpty) {
@@ -55,12 +79,12 @@ class SPrefAppModel {
     await _sharedPref.setInt(SPrefConstants.interviewStatusKey, interviewStatus) ;
   }
 
-  Future<void> setIdCs(String stt) async {
-    await _sharedPref.setString("id_cs", stt);
+  Future<void> setIdHo(String stt) async {
+    await _sharedPref.setString(SPrefConstants.id_ho, stt);
   }
 
-  String get getIdCs {
-    return _sharedPref.getString("id_cs") ?? '';
+  String get getIdHo {
+    return _sharedPref.getString(SPrefConstants.id_ho) ?? '';
   }
 
   Future<void> setUserName(String mansd) async {

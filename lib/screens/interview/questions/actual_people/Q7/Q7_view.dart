@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
-import '../../../../../models/thongTinThanhVien_model.dart';
 import 'Q7_viewmodel.dart';
 
 
@@ -33,6 +34,12 @@ class _Q7ViewState extends State<Q7View> {
               () => {
             setState(() {
               list = q7viewModel.list;
+              groupValue = q7viewModel.list.indexWhere((e) => e.q6_New == 1) + 1;
+              for(var item in q7viewModel.list){
+                if(item.q6_New == 1) {
+                  stt = item.idtv ?? 0;
+                }
+              }
             })
           });
     });
@@ -53,7 +60,8 @@ class _Q7ViewState extends State<Q7View> {
           isBold: true,
         ),
         actions: const [
-          UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
@@ -78,40 +86,39 @@ class _Q7ViewState extends State<Q7View> {
                     shrinkWrap: true,
                     itemCount: list.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
+                      return ListTile(
+                        title: UIText(
+                          text: list[index].q1_New.toString(),
+                          textColor: Colors.black,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.start,
+                          isBold: false,
+                        ),
+                        leading: RoundCheckBox(
+                          isChecked: groupValue == index + 1 ? true : false,
+                          onTap: (selected) {
+                            setState(() {
+                              groupValue = groupValue == index + 1 ? 0 : index + 1;
+                              stt = list[index].idtv!;
+                              name = list[index].q1_New!;
+                            });
+                          },
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.black,
+                          ),
+                          checkedColor: Colors.white,
+                          checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                          uncheckedColor: Colors.white,
+                          uncheckedWidget: Container(),
+                        ),
                         onTap: (){
                           setState(() {
-                            groupValue = index+1;
+                            groupValue = groupValue == index + 1 ? 0 : index + 1;
                             stt = list[index].idtv!;
                             name = list[index].q1_New!;
                           });
                         },
-                        child: ListTile(
-                          title: UIText(
-                            text: list[index].q1_New.toString(),
-                            textColor: Colors.black,
-                            textFontSize: fontLarge,
-                            textAlign: TextAlign.start,
-                            isBold: false,
-                          ),
-                          leading: GFRadio(
-                            type: GFRadioType.custom,
-                            size: GFSize.LARGE,
-                            activeBorderColor: Colors.black,
-                            activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            value: index+1,
-                            groupValue: groupValue,
-                            onChanged: (value) {
-                              setState(() {
-                                groupValue = value;
-                                stt = list[index].idtv!;
-                                name = list[index].q1_New!;
-                              });
-                            },
-                            inactiveIcon: null,
-                            radioColor: Colors.indigo,
-                          ),
-                        ),
                       );
                     },
                   ),
@@ -153,12 +160,8 @@ class _Q7ViewState extends State<Q7View> {
                                 builder: (_) => UIWarningDialog(waring: 'Chủ hộ nhập vào chưa đúng!')
                             );
                           }else {
-                            q7viewModel.Q7Next(stt,
-                                thongTinThanhVienModel(
-                                  idtv: stt,
-                                  stt: stt.toString(),
-                                  c00: name
-                                ));
+                            print(stt);
+                            q7viewModel.Q7Next(stt);
                           }
                         },
                         icon: const Icon(
@@ -173,7 +176,7 @@ class _Q7ViewState extends State<Q7View> {
           )
         ],
       ),
-      //drawer: const DrawerNavigation(),
+      drawer: const DrawerNavigation(),
     );
   }
 }

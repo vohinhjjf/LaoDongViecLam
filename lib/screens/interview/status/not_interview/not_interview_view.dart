@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../../components/uis.dart';
+import '../../../../models/bangkeThangDT_model.dart';
 import '../../../../models/bangke_model.dart';
 import 'not_interview_viewmodel.dart';
 
@@ -15,44 +16,23 @@ class NotInterviewedView extends StatefulWidget {
 class _NotInterviewedViewState extends State<NotInterviewedView> {
   late NotInterviewedViewModel notInterviewedViewModel;
   List<BangKeCsModel> listBangKeCs = [];
+  List<BangKeThangDTModel> listBangKeThangDTModel = [];
   final _text_find = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    listBangKeCs.add(BangKeCsModel(
-        idho: "99991001003",
-        idhO_TDT: "21544006003",
-        iddb: "99991001",
-        maTinh: "99",
-        maHuyen: "999",
-        maXa: "99991",
-        maDiaBan: "001",
-        hoSo: "003",
-        tenChuHo: "Tran Van B",
-        diaChi: "Xóm Dinh Bà Trời Thôn Tây",
-        tsKhau: 0,
-        tsNu: 0,
-        nhom: 14,
-        hoDuPhong: 0,
-        trangthai: 1,
-        nguoiCapNhat: null,
-        ngayCapNhat: null,
-        ghiChu: null,
-        nguoiTao: null,
-        ngayTao: null
-    ));
-    notInterviewedViewModel = context.read();
-    notInterviewedViewModel.onInit(context);
-   /* WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       notInterviewedViewModel = context.read();
       notInterviewedViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = notInterviewedViewModel.data;
+          listBangKeThangDTModel = notInterviewedViewModel.bangKeThangDTModel;
+          print(notInterviewedViewModel.bangKeThangDTModel.length);
         })
       });
-    });*/
+    });
   }
 
   @override
@@ -132,29 +112,36 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
   }
 
   Widget _item(BangKeCsModel bangKeCsModel) {
+    String trangThai = "CHƯA PHỎNG VẤN";
+    for(var bangke in listBangKeThangDTModel){
+      if(bangke.idhO_BKE == bangKeCsModel.idho){
+        trangThai = "ĐANG PHỎNG VẤN";
+      }
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UIText(
           textAlign: TextAlign.start,
           text:'${bangKeCsModel.hoSo}. ${bangKeCsModel.tenChuHo}',
-          textColor: Colors.black,
-          textFontSize: 16.sp,
+          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
+          textFontSize: fontLarge,
           isBold: true,
         ),
         const SizedBox(height: 5,),
         UIText(
           textAlign: TextAlign.start,
           text:'${bangKeCsModel.diaChi}',
-          textColor: Colors.black,
+          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
           textFontSize: 14.sp,
           isBold: false,
         ),
         UIText(
-          text:"Phiếu 03/VVL-TG: Chưa phỏng vấn",
-          textFontSize: 14.sp,
-          textColor: Colors.red.shade400,
-          isBold: true,)
+          text:"Phiếu 03/VVL-TG: $trangThai",
+          textFontSize: fontMedium,
+          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
+          isBold: trangThai != "CHƯA PHỎNG VẤN",
+        )
       ],
     );
   }

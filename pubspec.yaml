@@ -53,13 +53,14 @@ dev_dependencies:
   get_it: ^7.2.0
   dio: ^5.1.1
   flutter_screenutil: ^5.7.0
-  excel: ^2.0.4
   http: ^0.13.5
   path_provider: ^2.0.14
   new_version_plus: ^0.0.9
   package_info_plus: ^3.1.0
   simple_circular_progress_bar: ^1.0.2
   getwidget: ^2.1.1
+  roundcheckbox: ^2.0.5
+  geolocator: ^10.1.0
 
 
 # For information on the generic Dart part of this file, see the

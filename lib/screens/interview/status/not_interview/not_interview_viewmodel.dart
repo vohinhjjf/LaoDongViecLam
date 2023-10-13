@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';
 import '../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../models/bangkeThangDT_model.dart';
 import '../../../../models/bangke_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
 
@@ -11,18 +12,21 @@ class NotInterviewedViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   NotInterviewedViewModel(this._sPrefAppModel, this._executeDatabase);
   List<BangKeCsModel> data = [];
+  List<BangKeThangDTModel> bangKeThangDTModel = [];
 
   @override
   void onInit(BuildContext context) async {
     super.onInit(context);
-    //fetchData();
+    fetchData();
   }
 
-  /*void fetchData() async {
-    await _executeDatabase.getDanhSachBangKeCs(1, '').then((value) => data= value);
+  void fetchData() async {
+    String iddb = _sPrefAppModel.IDDB;
+    await _executeDatabase.getHouseHold(iddb).then((value) => data= value);
+    await _executeDatabase.getBangKe_ThangDT(_sPrefAppModel.month).then((value) => bangKeThangDTModel= value);
   }
 
-  Future<List<BangKeCsModel>> searchData(String name) =>
+  /*Future<List<BangKeCsModel>> searchData(String name) =>
       _executeDatabase.getDanhSachBangKeCs(1, name);*/
 
   void notInterviewed(BangKeCsModel bangKeCsModel) async {
@@ -44,6 +48,15 @@ class NotInterviewedViewModel extends BaseViewModel {
       await _sPrefAppModel.setIdCs(bangKeCsModel.id!);
       await _executeDatabase.setTimeBD(DateTime.now().toString(), bangKeCsModel.id!);
     });*/
+    _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
+    await _executeDatabase.setTrangThai(
+        BangKeThangDTModel(
+          idhO_BKE: bangKeCsModel.idho,
+          thangDT: int.parse(_sPrefAppModel.month),
+          namDT: DateTime.now().year,
+          trangThai: 2
+        )
+    );
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

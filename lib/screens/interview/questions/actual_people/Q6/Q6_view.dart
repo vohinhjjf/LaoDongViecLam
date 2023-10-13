@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
+import '../../../../../models/thongTinThanhVien_model.dart';
 import 'Q6_viewmodel.dart';
 
 
@@ -49,7 +51,8 @@ class _Q6ViewState extends State<Q6View> {
           isBold: true,
         ),
         actions: const [
-          UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
@@ -120,7 +123,16 @@ class _Q6ViewState extends State<Q6View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          q6viewModel.Q6Next();
+                          List<thongTinThanhVienModel> data = [];
+                          for(var item in list){
+                            data.add(thongTinThanhVienModel(
+                              idho: item.idho,
+                              idtv: item.idtv,
+                              c00: item.q1_New
+                            ));
+                          }
+                          print(data.length);
+                          q6viewModel.Q6Next(data);
                         },
                         icon: const Icon(
                           Icons.navigate_next,
@@ -134,7 +146,7 @@ class _Q6ViewState extends State<Q6View> {
           )
         ],
       ),
-      //drawer: const DrawerNavigation(),
+      drawer: const DrawerNavigation(),
     );
   }
 }

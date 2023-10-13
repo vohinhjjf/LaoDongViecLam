@@ -20,7 +20,8 @@ class Q7ViewModel extends BaseViewModel {
   }
 
   getListNKTT() async {
-    await _executeDatabase.getNKTT(0, "").then((value) {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.getNKTT(0, "", idho).then((value) {
       list = value;
       logic(value);
     });
@@ -40,9 +41,13 @@ class Q7ViewModel extends BaseViewModel {
   void Q7Back() async {
     NavigationServices.instance.navigateToQ6(context);
   }
-  void Q7Next(int idtv, thongTinThanhVienModel data) async {
-    _executeDatabase.updateChuHo(idtv);
-    _executeDatabase.setTTTV(data);
+
+  void Q7Next(int idtv) async {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.updateChuHo(idho, idtv);
+    await _executeDatabase.updateSTT(idho, idtv);
+    await _sPrefAppModel.setIDTV(idtv);
     NavigationServices.instance.navigateToP01_04(context);
+    print(idtv);
   }
 }

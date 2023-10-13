@@ -12,14 +12,14 @@ class SplashViewModel extends BaseViewModel {
   void onInit(BuildContext context) {
     super.onInit(context);
     Future.delayed(const Duration(seconds: 3), () {
-      /*final accessToken = _sPrefAppModel.accessToken;
+      final accessToken = _sPrefAppModel.accessToken;
       if (accessToken.isNotEmpty) {
         _sPrefAppModel.setAutoSync(false);
-        NavigationServices.instance.navigateToHome(context);
+        NavigationServices.instance.navigateToBottomNavigation(context);
       } else {
         NavigationServices.instance.navigateToLogin(context);
-      }*/
-      NavigationServices.instance.navigateToLogin(context);
+      }
+      //NavigationServices.instance.navigateToLogin(context);
     });
   }
 }
