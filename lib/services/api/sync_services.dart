@@ -5,7 +5,9 @@ import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
+import '../../models/phieudieutra_model.dart';
 import '../../models/response_model.dart';
+import '../sqlite/execute_database.dart';
 import 'api_constants.dart';
 
 class SyncServices {
@@ -119,12 +121,12 @@ class SyncServices {
     }
   }
 
-  /*Future<String> Sync(String token, List<PhieuDieuTraModel> listphieuDieuTra, ExecuteDatabase _executeDatabase) async {
+  Future<String> Sync(String token, List<PhieuDieuTraModel> listphieuDieuTra, ExecuteDatabase _executeDatabase) async {
     var tempt =0;
     for(int i = 0 ; i < listphieuDieuTra.length; i++) {
-      if(listphieuDieuTra[i].tinhTrang_HDBK == 1){
+      if(listphieuDieuTra[i].thongTinHo!.trangThai == 1){
         http.Response response = await http.post(
-          Uri.parse('${ApiConstants.baseUrl}api/phieudieutra'),
+          Uri.parse('${ApiConstants.baseUrl}api/phieudieutra2024'),
           body: listphieuDieuTra[i].toJson(),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -135,38 +137,37 @@ class SyncServices {
         if (response.statusCode == 200) {
           print("Success!1");
           tempt++;
-          _executeDatabase.updateTTBK(1, listphieuDieuTra[i].id!);
+          await _executeDatabase.updateTrangThai(listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9);
         } else {
           print('Fail!1');
           print(response.statusCode);
         }
       }
       else {
-        var envelope = {
+        /*var envelope = {
           "id": listphieuDieuTra[i].id,
           "tenCS":listphieuDieuTra[i].tenCS_BK,
           "diaChi": listphieuDieuTra[i].diaChi_BK,
           "tinhTrangDT": listphieuDieuTra[i].tinhTrang_DTBK,
           "tinhTrangHD": listphieuDieuTra[i].tinhTrang_HDBK,
-        };
+        };*/
         http.Response response = await http.put (Uri.parse(
             '${ApiConstants.baseUrl}api/bangkecs'),
             headers: {
               HttpHeaders.contentTypeHeader: "application/json",
               HttpHeaders.authorizationHeader: "Bearer $token"
             },
-            body: jsonEncode(envelope)
+            body: listphieuDieuTra[i].toJson_1()
         );
         if (response.statusCode == 200) {
           print("Success!2");
           tempt++;
-          _executeDatabase.updateTTBK(1, listphieuDieuTra[i].id!);
+          await _executeDatabase.updateTrangThai(listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9);
         } else {
           print('Fail!2');
-          print(jsonEncode(envelope));
         }
       }
     }
     return '$tempt/${listphieuDieuTra.length}';
-  }*/
+  }
 }

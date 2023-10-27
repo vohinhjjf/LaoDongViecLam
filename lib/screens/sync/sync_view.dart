@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/uis.dart';
+import '../../models/bangkeThangDT_model.dart';
 import 'sync_viewmodel.dart';
 
 class SyncView extends StatefulWidget{
@@ -57,9 +58,9 @@ class Body extends State<SyncView>{
             SizedBox(
               height: 30.h,
             ),
-            /*StreamBuilder(
+            StreamBuilder(
                 stream: syncViewModel.fetchData().asStream(),
-                builder: (context, AsyncSnapshot<List<BangKeCsModel>> snapshot){
+                builder: (context, AsyncSnapshot<List<BangKeThangDTModel>> snapshot){
                   if(snapshot.hasData){
                     temp = snapshot.data!.length;
                     return UIText(
@@ -71,13 +72,13 @@ class Body extends State<SyncView>{
                   }
                   return Container();
                 }
-            ),*/
-            UIText(
+            ),
+            /*UIText(
               text: '0 cơ sở cần đồng bộ',
               textFontSize: fontLarge,
               textColor: mCompleteColor,
               isBold: true,
-            ),
+            ),*/
             const SizedBox(height: 5,),
             const UIText(
               text: 'Gửi tệp dữ liệu: không',
@@ -92,11 +93,11 @@ class Body extends State<SyncView>{
               child: MaterialButton(
                 onPressed: (){
                   if(temp != 0 ) {
-                    /*syncViewModel.Dongbo().then((value) =>
+                    syncViewModel.Dongbo().then((value) =>
                     {
                       _showMaterialDialog(value)
                     }).onError((error, stackTrace) =>
-                      _showErrorDialog(error.toString()));*/
+                      _showErrorDialog(error.toString()));
                   }
                   else{
                     _showNotificationDialog();

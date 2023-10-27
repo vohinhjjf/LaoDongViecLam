@@ -72,9 +72,9 @@ class CompleteInterviewViewModel extends BaseViewModel {
     //await _executeDatabase.setTimeBD(DateTime.now().toString(), id);
   }
 
-  void CompleteInterview(BangKeCsModel bangKeCsModel) async {
-    _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
-
+  void CompleteInterview(BangKeThangDTModel bangKeThangDTModel) async {
+    await _sPrefAppModel.setIdHo(bangKeThangDTModel.idhO_BKE!);
+    await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 2);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

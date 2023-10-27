@@ -129,7 +129,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
       bottomNavigationBar: Container(
         height: 100.h,
-        color: Colors.transparent,
+        color: Colors.blue.shade400,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

@@ -30,7 +30,8 @@ class GPSViewModel extends BaseViewModel {
   }
 
   void gPSNext() async {
-    //NavigationServices.instance.navigateToInterviewStatus(context);
+    await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 3);
+    NavigationServices.instance.navigateToInterviewStatus(context);
   }
 
   void setGPS(double kinhDo, double viDo) async {

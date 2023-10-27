@@ -97,10 +97,10 @@ class _LoginViewState extends State<LoginView> {
                   )
               ),
             ),
-            height: 440,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+            height: MediaQuery.of(context).size.height < 650 ? 300.h : 400.h,
+            child: ListView(
+              /*crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,*/
               children: [
                 SizedBox(
                   height: 15.h,
@@ -113,17 +113,6 @@ class _LoginViewState extends State<LoginView> {
                     textColor: mPrimaryColor,
                     textFontSize: fontGreater,
                     isBold: true,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 15.h, left: 20.w,right: 20.w),
-                  child: const UIText(
-                    textAlign: TextAlign.center,
-                    text:UIDescribes.loginTitle,
-                    textColor: mPrimaryColor,
-                    textFontSize:fontMedium,
-                    isBold: true,
-                    //textStyle: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
@@ -257,6 +246,7 @@ class _LoginViewState extends State<LoginView> {
                           _showErrorDialog('Vui lòng chọn tháng!');
                         }
                       }
+                      print(MediaQuery.of(context).size.height);
                     },
                     height: 50,
                     minWidth: MediaQuery.of(context).size.width,
@@ -269,6 +259,20 @@ class _LoginViewState extends State<LoginView> {
                       isBold: true,
                     ),
                   ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 15.h, left: 20.w,right: 20.w),
+                  child: const UIText(
+                    textAlign: TextAlign.center,
+                    text: "Version 1.0.0",
+                    textColor: mPrimaryColor,
+                    textFontSize:fontMedium,
+                    isBold: true,
+                    //textStyle: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
                 ),
               ],
             ),

@@ -81,7 +81,7 @@ class _P40_42ViewState extends State<P40_42View> {
                   const UIText(
                     text: "P39. Mô tả công việc chính",
                     textColor: Colors.black,
-                    textFontSize:fontGreater,
+                    textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
@@ -117,13 +117,13 @@ class _P40_42ViewState extends State<P40_42View> {
                       UIText(
                         text: "Chọn mã",
                         textColor: Colors.black,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                       UIText(
                         text: "(Đánh mã câu 40B)",
                         textColor: Colors.orange,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                     ],
@@ -142,7 +142,7 @@ class _P40_42ViewState extends State<P40_42View> {
                   const UIText(
                     text: "P41. Tên cơ sở làm việc chính",
                     textColor: Colors.black,
-                    textFontSize:fontGreater,
+                    textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
@@ -178,13 +178,13 @@ class _P40_42ViewState extends State<P40_42View> {
                       UIText(
                         text: "Chọn mã",
                         textColor: Colors.black,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                       UIText(
                         text: "(Đánh mã câu 40B)",
                         textColor: Colors.orange,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                     ],

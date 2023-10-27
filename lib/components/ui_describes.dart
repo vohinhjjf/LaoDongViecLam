@@ -1,6 +1,6 @@
 class UIDescribes {
   static const slogan =
-      'ĐIỀU TRA LAO ĐỘNG VIỆC LÀM\nNĂM 2023';
+      'ĐIỀU TRA LAO ĐỘNG VIỆC LÀM\nNĂM 2024';
   static const login = 'ĐĂNG NHẬP';
 
   //login

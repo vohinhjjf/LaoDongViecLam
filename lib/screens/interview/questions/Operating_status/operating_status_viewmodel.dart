@@ -51,12 +51,14 @@ class OperatingStatusViewModel extends BaseViewModel {
                )
            );
          });
+       }else {
+         await _executeDatabase.updateTrangThaiHo(id, status);
        }
      });
     if(status == 1) {
       NavigationServices.instance.navigateToDetailInformation(context);
     }else {
-      await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo);
+      await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 3);
       NavigationServices.instance.navigateToInterviewStatus(context);
     }
   }

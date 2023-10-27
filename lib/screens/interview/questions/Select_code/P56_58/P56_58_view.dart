@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +82,7 @@ class _P56_58ViewState extends State<P56_58View> {
                   const UIText(
                     text: "P55. Mô tả công việc thứ hai",
                     textColor: Colors.black,
-                    textFontSize:fontGreater,
+                    textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
@@ -117,13 +118,13 @@ class _P56_58ViewState extends State<P56_58View> {
                       UIText(
                         text: "Chọn mã",
                         textColor: Colors.black,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                       UIText(
                         text: "(Đánh mã câu 56B)",
                         textColor: Colors.orange,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                     ],
@@ -142,7 +143,7 @@ class _P56_58ViewState extends State<P56_58View> {
                   const UIText(
                     text: "P57. Tên cơ sở làm công việc này",
                     textColor: Colors.black,
-                    textFontSize:fontGreater,
+                    textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
@@ -178,13 +179,13 @@ class _P56_58ViewState extends State<P56_58View> {
                       UIText(
                         text: "Chọn mã",
                         textColor: Colors.black,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                       UIText(
                         text: "(Đánh mã câu 58B)",
                         textColor: Colors.orange,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                     ],
@@ -252,4 +253,5 @@ class _P56_58ViewState extends State<P56_58View> {
       drawer: const DrawerNavigation(),
     );
   }
+
 }

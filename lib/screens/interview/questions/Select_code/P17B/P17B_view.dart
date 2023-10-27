@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +24,9 @@ class _P17BViewState extends State<P17BView> {
   var thanhvien = thongTinThanhVienModel();
   final _nganh = TextEditingController();
   final _manganh = TextEditingController();
+  final _text_find = TextEditingController();
+  List list_daotao = [];
+  String value = '';
 
   String trinhdo(){
     if (thanhvien.c14F == 1){
@@ -52,6 +56,7 @@ class _P17BViewState extends State<P17BView> {
               () => {
             setState(() {
               thanhvien = p17BviewModel.thanhvien;
+              list_daotao = p17BviewModel.list_daotao;
               _nganh.text = p17BviewModel.thanhvien.c15A ?? "";
               _manganh.text = p17BviewModel.thanhvien.c15B ?? "";
             })
@@ -112,13 +117,13 @@ class _P17BViewState extends State<P17BView> {
                       UIText(
                         text: "Chọn mã",
                         textColor: Colors.black,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                       UIText(
                         text: "(Đánh mã câu 40B)",
                         textColor: Colors.orange,
-                        textFontSize:fontGreater,
+                        textFontSize:fontLarge,
                         isBold: true,
                       ),
                     ],
@@ -127,6 +132,9 @@ class _P17BViewState extends State<P17BView> {
                   TextFormField(
                     controller: _manganh,
                     readOnly: true,
+                    onTap: (){
+                      _showAddDialog(_nganh.text);
+                    },
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -183,6 +191,160 @@ class _P17BViewState extends State<P17BView> {
         ],
       ),
       drawer: const DrawerNavigation(),
+    );
+  }
+
+  _showAddDialog(String linh_vuc){
+    showDialog(
+        context: context,
+        builder: (context) {
+          _text_find.text = linh_vuc;
+          return StatefulBuilder(
+              builder: (context, setState) => AlertDialog(
+                insetPadding: EdgeInsets.zero,
+                titlePadding: EdgeInsets.zero,
+                contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(10.0)),
+                ),
+                title: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        icon: const Icon(CupertinoIcons.clear_fill,color: Colors.redAccent,),
+                        onPressed: (){
+                          Navigator.of(context, rootNavigator: true).pop();
+                        },
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: const UIText(
+                        text: "Danh mục Đào tạo",
+                        textFontSize: fontLarge,
+                        textColor: Colors.blue,
+                        isBold: true,
+                      ),
+                    ),
+                  ],
+                ),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller: _text_find,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
+                        width: (MediaQuery.of(context).size.width/1.1),
+                        height: (p17BviewModel.queryList(list_daotao, _text_find.text).length <= 4) ? p17BviewModel.queryList(list_daotao, _text_find.text).length*60 : 300,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: p17BviewModel.queryList(list_daotao, _text_find.text).length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.of(context, rootNavigator: true).pop();
+                                  setState(() {
+                                    value = p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ma"];
+                                    _manganh.text = '$value - ${p17BviewModel.queryList(list_daotao, _text_find.text)[index]['Ten']}';
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width/1.55,
+                                      child: UIText(
+                                        textColor: Colors.black,
+                                        text: '${p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ma"]} - ${p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ten"]}',
+                                      ),
+                                    ),
+                                    IconButton(
+                                        alignment: Alignment.centerRight,
+                                        icon: const Icon(
+                                          Icons.info,
+                                          color: Colors.lightBlue,
+                                          //size: fontGreater,
+                                        ),
+                                        onPressed: () {
+                                          _showDetailProduct(p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ten"], p17BviewModel.queryList(list_daotao, _text_find.text)[index]["MoTa"]);
+                                        }
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+          );
+        }
+    );
+  }
+
+  _showDetailProduct(String title, String detail){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          titlePadding: EdgeInsets.symmetric(horizontal: 15.w),
+          contentPadding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          title: UIText(
+            text: title,
+            textColor: Colors.black,
+            textFontSize: fontMedium,
+            textAlign: TextAlign.center,
+            isBold: true,
+          ),
+          content: Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Colors.black)
+                )
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 5.h),
+              child: UIText(
+                text: detail,
+                textColor: mPrimaryColor,
+                textFontSize: fontMedium,
+                textAlign: TextAlign.center,
+                isBold: true,
+              ),
+            ),
+          ),
+          iconColor: Colors.red,
+          iconPadding: EdgeInsets.zero,
+          icon: IconButton(
+              alignment: Alignment.centerRight,
+              icon: const Icon(
+                CupertinoIcons.clear_fill,
+                color: Colors.redAccent,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop();
+              }
+          ),
+        )
     );
   }
 }

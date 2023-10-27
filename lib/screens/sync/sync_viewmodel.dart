@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import '../../base/base_viewmodel.dart';
 import '../../components/navigation/navigation_service.dart';
 import '../../data/shared_preferences/spref_app_model.dart';
+import '../../models/bangkeThangDT_model.dart';
+import '../../models/phieudieutra_model.dart';
 import '../../services/api/sync_services.dart';
 import '../../services/sqlite/execute_database.dart';
 
@@ -22,33 +24,32 @@ class SyncViewModel extends BaseViewModel {
     userName = userModel.userName ?? "";
   }
 
-  /*Future<List<BangKeCsModel>> fetchData() async {
-    return await _executeDatabase.getDongBo();
-  }*/
-
-  void syncBack() {
-    NavigationServices.instance.navigateToHome(context);
+  Future<List<BangKeThangDTModel>> fetchData() async {
+    return await _executeDatabase.getDongBo(_sPrefAppModel.month);
   }
 
-  /*Future<String> Dongbo() async {
+  void syncBack() {
+    NavigationServices.instance.navigateToBottomNavigation(context);
+  }
+
+  Future<String> Dongbo() async {
+    String month = await _sPrefAppModel.month;
     List<PhieuDieuTraModel> listphieuDieuTra = [];
-    List<BangKeCsModel> list_BangKe = await _executeDatabase.getDongBo();
+    List<BangKeThangDTModel> list_BangKeThangDT = await _executeDatabase.getDongBo(month);
     String token = _sPrefAppModel.accessToken;
-    for(int i=0; i<list_BangKe.length; i++){
+    for(int i=0; i < list_BangKeThangDT.length; i++){
+      String idho = "${list_BangKeThangDT[i].idhO_BKE}$month";
       listphieuDieuTra.add(PhieuDieuTraModel(
-          id: list_BangKe[i].id,
-          tenCS_BK: list_BangKe[i].tenCS,
-          diaChi_BK: list_BangKe[i].diaChi,
-          tinhTrang_DTBK: list_BangKe[i].tinhTrangDT,
-          tinhTrang_HDBK: list_BangKe[i].tinhTrangHD,
-          phieuTonGiao: await _executeDatabase.getPhieutongiao(
-              list_BangKe[i].id!),
-          lst_PhieuTonGiao_A43: await _executeDatabase.getListPhieutongiaoA43(
-              list_BangKe[i].id!)
+          bangKeThangDT: list_BangKeThangDT[i],
+          thongTinHo: await _executeDatabase.getHo(idho),
+          thongTinHoNKTT: await _executeDatabase.getHoNKTT(idho),
+          lst_thongTinThanhVienNKTT: await _executeDatabase.getNKTT(0, '', idho),
+          lst_thongTinThanhVien: await _executeDatabase.getListTTTV(idho),
+          lst_DoiSongHo: [await _executeDatabase.getDoiSongHo(idho)]
       ));
     }
     return await _syncServices.Sync(token, listphieuDieuTra, _executeDatabase);
-  }*/
+  }
 
 
 }

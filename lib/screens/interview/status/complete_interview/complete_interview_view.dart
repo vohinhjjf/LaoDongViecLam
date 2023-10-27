@@ -87,7 +87,8 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      completeInterviewViewModel.CompleteInterview(listBangKeCs[index]);
+                      completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel[index]);
+                      print(listBangKeThangDTModel[index].idhO_BKE);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),

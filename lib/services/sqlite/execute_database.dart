@@ -108,10 +108,10 @@ class ExecuteDatabase {
     return list;
   }
 
-  updateTrangThai(String id) async {
+  updateTrangThai(String id, int trangThai) async {
    await _database?.rawUpdate(
         'UPDATE ${TableConstants.bangkeho_thangdt} SET trangThai = ? WHERE idhO_BKE = ?',
-        [3, id]);
+        [trangThai, id]);
   }
   //Operating status
   setHo(thongTinHoModel data) async {
@@ -166,6 +166,12 @@ class ExecuteDatabase {
     List<Map<String, Object?>>? res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.thongtinho} WHERE idho = $idho");
     return res!.isEmpty;
+  }
+
+  updateTrangThaiHo(String id, int trangThai) async {
+    await _database?.rawUpdate(
+        'UPDATE ${TableConstants.thongtinho} SET trangThai = ? WHERE idho = ?',
+        [trangThai, id]);
   }
 
   //NKTT
@@ -386,7 +392,17 @@ class ExecuteDatabase {
 
   updateTimeKT(String idho, String ngayCapNhat, String thoigiankt) async {
     print(await _database?.rawUpdate(
-        'UPDATE ${TableConstants.thongtinho} SET ngayCapNhat = ?, ngayKetThuc = ?, trangThai = ? WHERE idho = ?',
-        [ngayCapNhat, thoigiankt, 9, idho]));
+        'UPDATE ${TableConstants.thongtinho} SET ngayCapNhat = ?, ngayKetThuc = ? WHERE idho = ?',
+        [ngayCapNhat, thoigiankt, idho]));
+  }
+
+  Future<List<BangKeThangDTModel>> getDongBo(String thang) async {
+    _database = await _dbProvider.database;
+    var res = await _database?.query(TableConstants.bangkeho_thangdt,
+        where: "trangThai = ? AND thangDT = ?", whereArgs: [3, thang]);
+    List<BangKeThangDTModel> listBangKeHoThangDT = res!.isNotEmpty
+        ? res.map((c) => BangKeThangDTModel.fromJson(c)).toList()
+        : [];
+    return listBangKeHoThangDT;
   }
 }
