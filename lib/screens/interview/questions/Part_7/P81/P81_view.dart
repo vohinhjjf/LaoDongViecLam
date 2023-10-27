@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
+import '../../../../../models/doiSongHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P81_viewmodel.dart';
 
@@ -19,6 +21,7 @@ class P81View extends StatefulWidget {
 class _P81ViewState extends State<P81View> {
   late P81ViewModel p81ViewModel;
   var thanhvien = thongTinThanhVienModel();
+  var doisongho = DoiSongHoModel();
   int p81 = 0;
 
   var _thaydoi = [
@@ -39,7 +42,8 @@ class _P81ViewState extends State<P81View> {
               () => {
             setState(() {
               thanhvien = p81ViewModel.thanhvien;
-              p81 = p81ViewModel.thanhvien.c62_M6 ?? 0;
+              doisongho = p81ViewModel.doisongho;
+              p81 = p81ViewModel.doisongho.c62_M6 ?? 0;
             })
           });
     });
@@ -55,6 +59,7 @@ class _P81ViewState extends State<P81View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -133,7 +138,7 @@ class _P81ViewState extends State<P81View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p81ViewModel.P81Back();
+                          p81ViewModel.P81Back(doisongho);
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -157,9 +162,8 @@ class _P81ViewState extends State<P81View> {
                             );
                           }
                           else {
-                            p81ViewModel.P81Next(thongTinThanhVienModel(
+                            p81ViewModel.P81Next(DoiSongHoModel(
                                 idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
                                 c62_M6: p81
                             ));
                           }
@@ -176,6 +180,13 @@ class _P81ViewState extends State<P81View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

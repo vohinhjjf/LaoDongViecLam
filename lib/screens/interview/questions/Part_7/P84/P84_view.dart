@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
+import '../../../../../models/doiSongHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P84_viewmodel.dart';
 
@@ -35,12 +37,12 @@ class _P84ViewState extends State<P84View> {
               () => {
             setState(() {
               thanhvien = p84ViewModel.thanhvien;
-              p84a = p84ViewModel.thanhvien.c62_M9A ?? 0;
-              p84b = p84ViewModel.thanhvien.c62_M9B ?? 0;
-              p84c = p84ViewModel.thanhvien.c62_M9C ?? 0;
-              p84d = p84ViewModel.thanhvien.c62_M9D ?? 0;
-              p84e = p84ViewModel.thanhvien.c62_M9E ?? 0;
-              _orther.text = p84ViewModel.thanhvien.c62_M9EK ?? "";
+              p84a = p84ViewModel.doisongho.c62_M9A ?? 0;
+              p84b = p84ViewModel.doisongho.c62_M9B ?? 0;
+              p84c = p84ViewModel.doisongho.c62_M9C ?? 0;
+              p84d = p84ViewModel.doisongho.c62_M9D ?? 0;
+              p84e = p84ViewModel.doisongho.c62_M9E ?? 0;
+              _orther.text = p84ViewModel.doisongho.c62_M9EK ?? "";
             })
           });
     });
@@ -56,6 +58,7 @@ class _P84ViewState extends State<P84View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -84,31 +87,25 @@ class _P84ViewState extends State<P84View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  const UIText(
-                    text: "1. CÓ\n2. KHÔNG",
-                    textColor: Colors.black,
-                    textFontSize:fontLarge,
-                  ),
-                  const SizedBox(height: 5,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
-                        width: 40,
+                        width: 45,
                         child: UIText(
-                          text: "1",
+                          text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontSmall,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(width: 10,),
                       SizedBox(
-                        width: 40,
+                        width: 45,
                         child: UIText(
-                          text: "2",
+                          text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontSmall,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -116,7 +113,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //a
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -131,38 +128,36 @@ class _P84ViewState extends State<P84View> {
                         ),
                         Row(
                           children: [
-                            RoundCheckBox(
-                              isChecked: p84a == 1 ? true : false,
-                              onTap: (selected) {
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 1,
+                              groupValue: p84a,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84a = p84a == 1 ? 0 : 1;
+                                  p84a = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 10,),
-                            RoundCheckBox(
-                              isChecked: p84a == 2 ? true : false,
-                              onTap: (selected) {
+                            const SizedBox(width: 12,),
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 2,
+                              groupValue: p84a,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84a = p84a == 2 ? 0 : 2;
+                                  p84a = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
                           ],
                         )
@@ -171,7 +166,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -186,38 +181,36 @@ class _P84ViewState extends State<P84View> {
                         ),
                         Row(
                           children: [
-                            RoundCheckBox(
-                              isChecked: p84b == 1 ? true : false,
-                              onTap: (selected) {
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 1,
+                              groupValue: p84b,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84b = p84b == 1 ? 0 : 1;
+                                  p84b = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 10,),
-                            RoundCheckBox(
-                              isChecked: p84b == 2 ? true : false,
-                              onTap: (selected) {
+                            const SizedBox(width: 12,),
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 2,
+                              groupValue: p84b,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84b = p84b == 2 ? 0 : 2;
+                                  p84b = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
                           ],
                         )
@@ -226,7 +219,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -241,38 +234,36 @@ class _P84ViewState extends State<P84View> {
                         ),
                         Row(
                           children: [
-                            RoundCheckBox(
-                              isChecked: p84c == 1 ? true : false,
-                              onTap: (selected) {
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 1,
+                              groupValue: p84c,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84c = p84c == 1 ? 0 : 1;
+                                  p84c = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 10,),
-                            RoundCheckBox(
-                              isChecked: p84c == 2 ? true : false,
-                              onTap: (selected) {
+                            const SizedBox(width: 12,),
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 2,
+                              groupValue: p84c,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84c = p84c == 2 ? 0 : 2;
+                                  p84c = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
                           ],
                         )
@@ -281,7 +272,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -296,38 +287,36 @@ class _P84ViewState extends State<P84View> {
                         ),
                         Row(
                           children: [
-                            RoundCheckBox(
-                              isChecked: p84d == 1 ? true : false,
-                              onTap: (selected) {
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 1,
+                              groupValue: p84d,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84d = p84d == 1 ? 0 : 1;
+                                  p84d = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 10,),
-                            RoundCheckBox(
-                              isChecked: p84d == 2 ? true : false,
-                              onTap: (selected) {
+                            const SizedBox(width: 12,),
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 2,
+                              groupValue: p84d,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84d = p84d == 2 ? 0 : 2;
+                                  p84d = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
                           ],
                         )
@@ -336,7 +325,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -348,38 +337,36 @@ class _P84ViewState extends State<P84View> {
                         ),
                         Row(
                           children: [
-                            RoundCheckBox(
-                              isChecked: p84e == 1 ? true : false,
-                              onTap: (selected) {
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 1,
+                              groupValue: p84e,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84e = p84e == 1 ? 0 : 1;
+                                  p84e = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 10,),
-                            RoundCheckBox(
-                              isChecked: p84e == 2 ? true : false,
-                              onTap: (selected) {
+                            const SizedBox(width: 12,),
+                            GFRadio(
+                              type: GFRadioType.custom,
+                              size: GFSize.LARGE,
+                              activeBorderColor: Colors.black,
+                              activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              value: 2,
+                              groupValue: p84e,
+                              onChanged: (value) {
                                 setState(() {
-                                  p84e = p84e == 2 ? 0 : 2;
+                                  p84e = value;
                                 });
                               },
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              checkedColor: Colors.white,
-                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              uncheckedColor: Colors.white,
-                              uncheckedWidget: Container(),
+                              inactiveIcon: null,
+                              radioColor: Colors.indigo,
                             ),
                           ],
                         )
@@ -462,9 +449,8 @@ class _P84ViewState extends State<P84View> {
                                             .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
                               );
                             } else {
-                              p84ViewModel.P84Next(thongTinThanhVienModel(
+                              p84ViewModel.P84Next(DoiSongHoModel(
                                 idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
                                 c62_M9A: p84a,
                                 c62_M9B: p84b,
                                 c62_M9C: p84c,
@@ -487,6 +473,13 @@ class _P84ViewState extends State<P84View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

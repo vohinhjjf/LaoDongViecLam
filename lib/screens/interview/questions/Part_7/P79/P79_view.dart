@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
+import '../../../../../models/doiSongHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P79_viewmodel.dart';
 
@@ -19,6 +21,7 @@ class P79View extends StatefulWidget {
 class _P79ViewState extends State<P79View> {
   late P79ViewModel p79ViewModel;
   var thanhvien = thongTinThanhVienModel();
+  var doisongho = DoiSongHoModel();
   int p79 = 0;
 
   var _thaydoi = [
@@ -39,7 +42,8 @@ class _P79ViewState extends State<P79View> {
               () => {
             setState(() {
               thanhvien = p79ViewModel.thanhvien;
-              p79 = p79ViewModel.thanhvien.c62_M4 ?? 0;
+              doisongho = p79ViewModel.doisongho;
+              p79 = p79ViewModel.doisongho.c62_M4 ?? 0;
             })
           });
     });
@@ -55,6 +59,7 @@ class _P79ViewState extends State<P79View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -133,7 +138,7 @@ class _P79ViewState extends State<P79View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p79ViewModel.P79Back();
+                          p79ViewModel.P79Back(doisongho);
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -156,16 +161,15 @@ class _P79ViewState extends State<P79View> {
                                 builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
                             );
                           }
-                          else if((thanhvien.c62_M2 == 1 && p79 == 3) || (thanhvien.c62_M2 == 3 && p79 == 1)){
+                          else if((doisongho.c62_M2 == 1 && p79 == 3) || (doisongho.c62_M2 == 3 && p79 == 1)){
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(
-                                  notification: 'Thu nhập so tháng trước ${(thanhvien.c62_M2 == 1 && p79 == 3) ? "tăng lên":"giảm đi"} mà thu nhập so năm trước lại ${(thanhvien.c62_M2 == 1 && p79 == 3) ? "giảm đi":"tăng lên"}. Có đúng không?',
+                                  notification: 'Thu nhập so tháng trước ${(doisongho.c62_M2 == 1 && p79 == 3) ? "tăng lên":"giảm đi"} mà thu nhập so năm trước lại ${(doisongho.c62_M2 == 1 && p79 == 3) ? "giảm đi":"tăng lên"}. Có đúng không?',
                                   onpress: (){
                                     Navigator.of(context).pop();
-                                    p79ViewModel.P79Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
+                                    p79ViewModel.P79Next(DoiSongHoModel(
+                                        idho: doisongho.idho,
                                         c62_M4: p79
                                     ));
                                   },
@@ -173,9 +177,8 @@ class _P79ViewState extends State<P79View> {
                             );
                           }
                           else {
-                            p79ViewModel.P79Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
+                            p79ViewModel.P79Next(DoiSongHoModel(
+                                idho: doisongho.idho,
                                 c62_M4: p79
                             ));
                           }
@@ -192,6 +195,13 @@ class _P79ViewState extends State<P79View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

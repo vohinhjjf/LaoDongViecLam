@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
+import '../../../../../models/doiSongHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P76_77_viewmodel.dart';
 
@@ -18,7 +20,8 @@ class P76_77View extends StatefulWidget {
 
 class _P76_77ViewState extends State<P76_77View> {
   late P76_77ViewModel p76_77ViewModel;
-  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var doisongho = DoiSongHoModel();
+  var thanhvien = thongTinThanhVienModel();
   int p76 = 0, p77 = 0;
 
   var _doisong = [
@@ -46,8 +49,9 @@ class _P76_77ViewState extends State<P76_77View> {
               () => {
             setState(() {
               thanhvien = p76_77ViewModel.thanhvien;
-              p76 = p76_77ViewModel.thanhvien.c62_M1 ?? 0;
-              p77 = p76_77ViewModel.thanhvien.c62_M2 ?? 0;
+              doisongho = p76_77ViewModel.doisongho;
+              p76 = p76_77ViewModel.doisongho.c62_M1 ?? 0;
+              p77 = p76_77ViewModel.doisongho.c62_M2 ?? 0;
             })
           });
     });
@@ -63,6 +67,7 @@ class _P76_77ViewState extends State<P76_77View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -127,7 +132,7 @@ class _P76_77ViewState extends State<P76_77View> {
                 const SizedBox(height: 10,),
                 //p77
                 UIRichText(
-                  text1: "P76. So với tháng trước, thu nhập hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                  text1: "P77. So với tháng trước, thu nhập hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " thay đổi như thế nào?",
                   textColor: Colors.black,
@@ -222,9 +227,10 @@ class _P76_77ViewState extends State<P76_77View> {
                                   notification: 'Đời sống gia đình ${(p76 == 1 && p77 == 3) ? "được cải thiện":"giảm sút"} mà thu nhập ${(p76 == 1 && p77 == 3) ? "giảm sút":"tăng lên"}. Có đúng không?',
                                   onpress: (){
                                     Navigator.of(context).pop();
-                                    p76_77ViewModel.P76_77Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
+                                    p76_77ViewModel.P76_77Next(DoiSongHoModel(
+                                      idho: doisongho.idho,
+                                      thangDT: thanhvien.thangDT,
+                                      namDT: thanhvien.namDT,
                                       c62_M1: p76,
                                       c62_M2: p77,
                                     ));
@@ -233,9 +239,10 @@ class _P76_77ViewState extends State<P76_77View> {
                             );
                           }
                           else {
-                            p76_77ViewModel.P76_77Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
+                            p76_77ViewModel.P76_77Next(DoiSongHoModel(
+                              idho: doisongho.idho,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
                               c62_M1: p76,
                               c62_M2: p77,
                             ));
@@ -253,6 +260,13 @@ class _P76_77ViewState extends State<P76_77View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

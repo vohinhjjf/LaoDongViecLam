@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_view.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_view.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P40_42/P40_42_view.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58/P56_58_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/household_information/general_information/general_information_view.dart';
+import 'package:lao_dong_viec_lam/screens/interview/status/backup/backup_view.dart';
+import 'package:lao_dong_viec_lam/screens/interview/status/complete_interview/complete_interview_view.dart';
 
 import '../../screens/interview/questions/GPS/gps_view.dart';
 import '../../screens/interview/questions/Part_1/P05/P05_view.dart';
@@ -120,8 +125,10 @@ class NavigationServices {
         return CustomPageRoute(const NotInterviewedView());
       case RouteConstants.operatingStatusRoute:
         return CustomPageRoute(const OperatingStatusView());
-      /*case RouteConstants.interviewingRoute:
-        return CustomPageRoute(const InterviewingView());*/
+      case RouteConstants.completeInterviewRoute:
+        return CustomPageRoute(const CompleteInterviewView());
+      case RouteConstants.BackupRoute:
+        return CustomPageRoute(const BackupView());
       case RouteConstants.generalRoute:
         return CustomPageRoute(const GeneralInformationView());
       case RouteConstants.detailRoute:
@@ -258,10 +265,16 @@ class NavigationServices {
         return CustomPageRoute(const P98View());
       case RouteConstants.P99Route:
         return CustomPageRoute(const P99View());
-    case RouteConstants.InformationProviderRoute:
+      case RouteConstants.InformationProviderRoute:
         return CustomPageRoute(const InformationProviderView());
       case RouteConstants.gPSRoute:
         return CustomPageRoute(const GPSView());
+      case RouteConstants.P17BRoute:
+        return CustomPageRoute(const P17BView());
+      case RouteConstants.P40_42Route:
+        return CustomPageRoute(const P40_42View());
+      case RouteConstants.P56_58Route:
+        return CustomPageRoute(const P56_58View());
       case RouteConstants.syncRoute:
         return CustomPageRoute(const SyncView());
       case RouteConstants.progressRoute:
@@ -310,12 +323,12 @@ class NavigationServices {
     Navigator.of(context).pushNamed(RouteConstants.notInterviewedRoute);
   }
 
-  void navigateToInterviewing(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.interviewingRoute);
-  }
-
   void navigateToCompleteInterview(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.completeInterviewRoute);
+  }
+
+  void navigateToBackup(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.BackupRoute);
   }
 
   void navigateToOperatingStatus(BuildContext context) {
@@ -540,5 +553,14 @@ class NavigationServices {
   }
   void navigateToGPS(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.gPSRoute);
+  }
+  void navigateToP17B(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P17BRoute);
+  }
+  void navigateToP40_42(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P40_42Route);
+  }
+  void navigateToP56_58(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P56_58Route);
   }
 }

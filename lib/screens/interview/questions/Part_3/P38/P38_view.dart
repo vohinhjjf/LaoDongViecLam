@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P38_viewmodel.dart';
@@ -43,7 +44,7 @@ class _P38ViewState extends State<P38View> {
             setState(() {
               thanhvien = p38ViewModel.thanhvien;
               p38 = p38ViewModel.thanhvien.c33A ?? 0;
-              _orther.text = p38ViewModel.thanhvien.c33AK.toString();
+              _orther.text = p38ViewModel.thanhvien.c33AK ?? "";
             })
           });
     });
@@ -59,6 +60,7 @@ class _P38ViewState extends State<P38View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -211,6 +213,13 @@ class _P38ViewState extends State<P38View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

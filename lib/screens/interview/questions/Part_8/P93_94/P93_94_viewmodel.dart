@@ -4,6 +4,7 @@ import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
 class P93_94ViewModel extends BaseViewModel {
@@ -11,6 +12,7 @@ class P93_94ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P93_94ViewModel(this._executeDatabase, this._sPrefAppModel);
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var dichVuTaiChinhModel = DichVuTaiChinhModel();
   var list_p93 = [0,0,0,0];
   var list_p94 = [0,0,0,0,0,0,0,0];
 
@@ -27,10 +29,10 @@ class P93_94ViewModel extends BaseViewModel {
     int idtv = await _sPrefAppModel.IDTV;
     await _executeDatabase.getTTTV(idho, idtv).then((value) {
       thanhvien = value;
-      if(value.c93 != null && value.c94 != null) {
+      /*if(value.c93 != null && value.c94 != null) {
         logicProcessing(value.c93 ?? "", list_p93);
         logicProcessing(value.c94 ?? "", list_p94);
-      }
+      }*/
     });
     print(list_p93);
   }
@@ -50,8 +52,8 @@ class P93_94ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP91_92(context);
   }
 
-  void P93_94Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update93_94(data);
+  void P93_94Next(DichVuTaiChinhModel data) async {
+    //await _executeDatabase.update93_94(data);
     NavigationServices.instance.navigateToP95(context);
   }
 }

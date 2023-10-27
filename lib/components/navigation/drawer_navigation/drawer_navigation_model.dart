@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
 
 import '../../../base/base_viewmodel.dart';
 import '../../../data/shared_preferences/spref_app_model.dart';
+import '../../../models/doiSongHo_model.dart';
 import '../../../models/thongTinHoNKTT_model.dart';
 import '../../../models/thongTinHo_model.dart';
 import '../../../models/thongTinThanhVienNKTT_model.dart';
@@ -17,8 +19,10 @@ class DrawerNavigationModel extends BaseViewModel {
   DrawerNavigationModel(this._executeDatabase, this._sPrefAppModel);
   List items = [];
   List<thongTinThanhVienNKTTModel> list = [];
-  thongTinHoModel data = thongTinHoModel();
+  List<thongTinThanhVienModel> list_tttv = [];
+  var data = thongTinHoModel();
   var dataNKTT = thongTinHoNKTTModel();
+  var dataDSH = DoiSongHoModel();
 
   @override
   void onInit(BuildContext context) {
@@ -35,6 +39,8 @@ class DrawerNavigationModel extends BaseViewModel {
       logic(value)
     });
     await _executeDatabase.getHoNKTT(idho).then((value) => dataNKTT = value);
+    await _executeDatabase.getListTTTV(idho).then((value) => list_tttv = value);
+    await _executeDatabase.getDoiSongHo(idho).then((value) => dataDSH = value);
   }
 
   void logic(List<thongTinThanhVienNKTTModel> list_nktt){
@@ -47,6 +53,14 @@ class DrawerNavigationModel extends BaseViewModel {
     }
     list = list_nktt;
     list.removeWhere((e) => toRemove.contains(e));
+    var data = thongTinThanhVienNKTTModel();
+    for(int i = 0; i < list.length; i++){
+      if(list[i].q6_New == 1){
+        data = list[i];
+        list.removeAt(i);
+        list.insert(0, data);
+      }
+    }
   }
 
   void navigateToRoute(int select, int idtv) async {
@@ -65,10 +79,39 @@ class DrawerNavigationModel extends BaseViewModel {
         await _sPrefAppModel.setIDTV(idtv);
         NavigationServices.instance.navigateToP01_04(context);
       };break;
-      case 11: NavigationServices.instance.navigateToP76_77(context);break;
-      /*case 12: NavigationServices.instance.navigateToQuestionA43(context);break;
-      case 13: NavigationServices.instance.navigateToNguoiKhaiPhieu(context);break;
-      default: NavigationServices.instance.navigateToSync(context);break;*/
+      case 11: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP76_77(context);
+      };break;
+      case 12: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP78(context);
+      };break;
+      case 13: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP79(context);
+      };break;
+      case 14: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP80(context);
+      };break;
+      case 15: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP81(context);
+      };break;
+      case 16: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP82(context);
+      };break;
+      case 17: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP83(context);
+      };break;
+      case 18: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToP84(context);
+      };break;
+      /*default: NavigationServices.instance.navigateToSync(context);break;*/
     }
   }
 

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/doiSongHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
@@ -10,7 +11,8 @@ class P76_77ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
   P76_77ViewModel(this._executeDatabase, this._sPrefAppModel);
-  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var doisongho = DoiSongHoModel();
+  var thanhvien = thongTinThanhVienModel();
 
   @override
   void onInit(BuildContext context) {
@@ -20,9 +22,11 @@ class P76_77ViewModel extends BaseViewModel {
 
   getTTTV() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-    int idtv = _sPrefAppModel.IDTV;
-    await _executeDatabase.getTTTV(idho, idtv).then((value) {
-      thanhvien = value;
+    await _executeDatabase.getDoiSongHo(idho).then((value) {
+      doisongho = value;
+    });
+    await _executeDatabase.getListTTTV(idho).then((value) {
+      thanhvien = value.firstWhere((e) => e.c01 == 1);
     });
   }
 
@@ -30,9 +34,18 @@ class P76_77ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP70_75(context);
   }
 
-  void P76_77Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c62_M1 = ${data.c62_M1}, c62_M2 = ${data.c62_M2} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+  void P76_77Next(DoiSongHoModel data) async {
+    await _executeDatabase.checkDSH(data.idho!).then((value) async {
+      if(value) {
+        print(1);
+        await _executeDatabase.setDSH(data);
+      } else {
+        print(2);
+        await _executeDatabase.updateDSH(
+            "SET c62_M1 = ${data.c62_M1}, c62_M2 = ${data.c62_M2} "
+                "WHERE idho = ${data.idho}");
+      }
+    });
     if(data.c62_M2 == 3) {
       NavigationServices.instance.navigateToP78(context);
     } else {

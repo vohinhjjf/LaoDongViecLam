@@ -26,9 +26,14 @@ class P19ViewModel extends BaseViewModel {
     });
   }
 
-  void P19Back() async {
-    NavigationServices.instance.navigateToP18(context);
+  void P19Back(thongTinThanhVienModel data) async {
+    if(data.c15A != null){
+      NavigationServices.instance.navigateToP17(context);
+    } else {
+      NavigationServices.instance.navigateToP18(context);
+    }
   }
+
   void P19Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c17 = ${data.c17} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c17 == 1){

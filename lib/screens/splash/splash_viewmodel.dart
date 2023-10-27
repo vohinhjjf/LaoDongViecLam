@@ -11,15 +11,8 @@ class SplashViewModel extends BaseViewModel {
   @override
   void onInit(BuildContext context) {
     super.onInit(context);
-    Future.delayed(const Duration(seconds: 3), () {
-      final accessToken = _sPrefAppModel.accessToken;
-      if (accessToken.isNotEmpty) {
-        _sPrefAppModel.setAutoSync(false);
-        NavigationServices.instance.navigateToBottomNavigation(context);
-      } else {
-        NavigationServices.instance.navigateToLogin(context);
-      }
-      //NavigationServices.instance.navigateToLogin(context);
+    Future.delayed(const Duration(seconds: 2), () {
+      NavigationServices.instance.navigateToLogin(context);
     });
   }
 }

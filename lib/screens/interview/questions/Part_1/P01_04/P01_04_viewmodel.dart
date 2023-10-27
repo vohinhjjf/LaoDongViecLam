@@ -26,8 +26,21 @@ class P01_04ViewModel extends BaseViewModel {
     });
   }
 
-  void P01_04Back() async {
-    NavigationServices.instance.navigateToQ7(context);
+  void P01_04Back(int c01) async {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    int idtv = _sPrefAppModel.IDTV;
+    await _executeDatabase.getListTTTV(idho).then((value) async {
+      if (c01 == 1) {
+        NavigationServices.instance.navigateToQ7(context);
+      } else {
+        if (value.indexWhere((e) => e.idtv == idtv) == 0){ //Neu idtv hien tai la thanh vien dau tien
+          await _sPrefAppModel.setIDTV(value.lastWhere((e) => e.c01 == 1).idtv!);
+        } else if (value[value.indexWhere((e) => e.idtv == idtv) - 1].c01 != 1){
+          await _sPrefAppModel.setIDTV(value[value.indexWhere((e) => e.idtv == idtv) - 1].idtv!);
+        }
+        NavigationServices.instance.navigateToP70_75(context);
+      }
+    });
   }
 
   void P01_04Next(thongTinThanhVienModel data) async {
@@ -35,13 +48,16 @@ class P01_04ViewModel extends BaseViewModel {
         ", c01K = '${data.c01K}', c02 = ${data.c02}, c03A = '${data.c03A}'"
         ", c03B = ${data.c03B}, c04 = ${data.c04} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+
     if(data.c04! >= 25 && data.c04! <= 49) {
       NavigationServices.instance.navigateToP05(context);
     } else {
       if(data.c04! >= 15) {
+        await _executeDatabase.update("SET c04A = ${null} "
+            "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
         NavigationServices.instance.navigateToP06_07(context);
       } else {
-        NavigationServices.instance.navigateToP93_94(context);
+        NavigationServices.instance.navigateToP70_75(context);
       }
     }
   }

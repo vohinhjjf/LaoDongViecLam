@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P10_12_viewmodel.dart';
@@ -20,12 +21,9 @@ class _P10_12ViewState extends State<P10_12View> {
   late P10_12ViewModel p10_12ViewModel;
   var thanhvien = thongTinThanhVienModel();
   final _other = TextEditingController();
+  List _hanhchinh = [];
   int p10 = 0, p11 = 0, p12 =0;
   String hanhchinh = "Chọn Tỉnh/Thành phố", quocgia = "Chọn mã quốc gia";
-  final _hanhchinh = [
-    "Chọn Tỉnh/Thành phố",
-    "01 - Thành phố Hà Nội"
-  ];
   final  _quocgia = [
     "Chọn mã quốc gia",
     "KHM - Vương quốc Campuchia",
@@ -55,6 +53,7 @@ class _P10_12ViewState extends State<P10_12View> {
     "TÌM VIỆC/BẮT ĐẦU CÔNG VIỆC MỚI",
     "MẤT/HẾT VIỆC, KHÔNG TÌM ĐƯỢC VIỆC",
     "THEO GIA ĐÌNH CHUYỂN NHÀ",
+    "DO DỊCH BỆNH",
     "KẾT HÔN",
     "ĐI HỌC",
     "KHÁC (GHI RÕ)"
@@ -71,6 +70,7 @@ class _P10_12ViewState extends State<P10_12View> {
               () => {
             setState(() {
               thanhvien = p10_12ViewModel.thanhvien;
+              _hanhchinh = p10_12ViewModel.list_tinh;
               p10 = p10_12ViewModel.thanhvien.c09 ?? 0;
               p11 = p10_12ViewModel.thanhvien.c10 ?? 0;
               p12 = p10_12ViewModel.thanhvien.c10M ?? 0;
@@ -92,6 +92,7 @@ class _P10_12ViewState extends State<P10_12View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -166,8 +167,8 @@ class _P10_12ViewState extends State<P10_12View> {
                       value: hanhchinh,
                       items: _hanhchinh.map((e) =>
                           DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
+                            value: e["Ten"].toString(),
+                            child: Text("${e["Ma"]} - ${e["Ten"]}"),
                           ),
                       ).toList(),
                       onChanged: (value) {
@@ -247,7 +248,7 @@ class _P10_12ViewState extends State<P10_12View> {
                       ],
                     )
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 15,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
                     child: Column(
@@ -319,7 +320,7 @@ class _P10_12ViewState extends State<P10_12View> {
                             });
                           },
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 15,),
                         //p12
                         UIRichText(
                           text1: "P12. Lý do chính mà ",
@@ -367,7 +368,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         ),
                         const SizedBox(height: 10,),
                         Visibility(
-                          visible: p12 == 6 ? true : false,
+                          visible: p12 == 7 ? true : false,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -435,27 +436,27 @@ class _P10_12ViewState extends State<P10_12View> {
                           if(p10 == 0){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P10 - Nơi trước khi chuyển đến nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'P10 - Nơi trước khi chuyển đến nhập vào chưa đúng!',)
                             );
-                          } else if(p10 == 1 && hanhchinh == "Chọn Tỉnh/Thành phố"){
+                          } else if(p10 == 1 && hanhchinh == "00"){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
                             );
                           } else if(p10 == 2 && quocgia == "Chọn mã quốc gia"){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
                             );
                           } else if(p11 == 0 && p10 == 1){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P11 - Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'P11 - Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
                             );
                           } else if(p12 == 0 && p10 == 1){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P12 - Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'P12 - Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
                             );
                           } else if((p12 == 1 || p12 == 3) && thanhvien.c08 == 4){
                             showDialog(
@@ -504,6 +505,13 @@ class _P10_12ViewState extends State<P10_12View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

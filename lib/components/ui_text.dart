@@ -14,7 +14,7 @@ class UIText extends StatelessWidget {
       required this.text,
       this.textColor = Colors.black,
       this.textFontSize = 16,
-      this.maxLines = 10,
+      this.maxLines = 15,
       this.isBold = false,
       this.textStyle,
       this.textAlign = TextAlign.start})

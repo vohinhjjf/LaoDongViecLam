@@ -29,7 +29,10 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
         setState((){
           listBangKeCs = notInterviewedViewModel.data;
           listBangKeThangDTModel = notInterviewedViewModel.bangKeThangDTModel;
-          print(notInterviewedViewModel.bangKeThangDTModel.length);
+          for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 3).toList()){
+            listBangKeCs.removeWhere((e) => e.idho == item.idhO_BKE);
+          }
+          listBangKeCs.removeWhere((e) => e.hoDuPhong == 1);
         })
       });
     });
@@ -114,35 +117,16 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
   Widget _item(BangKeCsModel bangKeCsModel) {
     String trangThai = "CHƯA PHỎNG VẤN";
     for(var bangke in listBangKeThangDTModel){
-      if(bangke.idhO_BKE == bangKeCsModel.idho){
+      if(bangke.idhO_BKE == bangKeCsModel.idho && bangke.trangThai != 1){
         trangThai = "ĐANG PHỎNG VẤN";
       }
     }
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        UIText(
-          textAlign: TextAlign.start,
-          text:'${bangKeCsModel.hoSo}. ${bangKeCsModel.tenChuHo}',
-          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
-          textFontSize: fontLarge,
-          isBold: true,
-        ),
-        const SizedBox(height: 5,),
-        UIText(
-          textAlign: TextAlign.start,
-          text:'${bangKeCsModel.diaChi}',
-          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
-          textFontSize: 14.sp,
-          isBold: false,
-        ),
-        UIText(
-          text:"Phiếu 03/VVL-TG: $trangThai",
-          textFontSize: fontMedium,
-          textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
-          isBold: trangThai != "CHƯA PHỎNG VẤN",
-        )
-      ],
+    return UIRichText(
+      text1: "",
+      text2: "${bangKeCsModel.hoSo} : $trangThai - ${bangKeCsModel.tenChuHo}",
+      text3: " - ${bangKeCsModel.diaChi}",
+      textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
+      textFontSize: fontLarge,
     );
   }
 }

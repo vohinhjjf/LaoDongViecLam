@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
@@ -11,6 +12,7 @@ class P86_87ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P86_87ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
+  var dichVuTaiChinhModel = DichVuTaiChinhModel();
 
   @override
   void onInit(BuildContext context) {
@@ -30,7 +32,7 @@ class P86_87ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP85(context);
   }
 
-  void P86_87Next(thongTinThanhVienModel data) async {
+  void P86_87Next(DichVuTaiChinhModel data) async {
     _executeDatabase.update("SET c86 = ${data.c86}, c87 = ${data.c87} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     NavigationServices.instance.navigateToP88(context);

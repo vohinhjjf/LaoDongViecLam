@@ -4,6 +4,7 @@ import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
 class P96ViewModel extends BaseViewModel {
@@ -11,6 +12,7 @@ class P96ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P96ViewModel(this._executeDatabase, this._sPrefAppModel);
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var dichVuTaiChinhModel = DichVuTaiChinhModel();
   var list_p96 = [0,0,0,0,0,0,0,0];
 
   @override
@@ -25,9 +27,9 @@ class P96ViewModel extends BaseViewModel {
     int idtv = _sPrefAppModel.IDTV;
     await _executeDatabase.getTTTV(idho, idtv).then((value) {
       thanhvien = value;
-      if(value.c96 != null) {
+      /*if(value.c96 != null) {
         logicProcessing(value.c96 ?? "");
-      }
+      }*/
     });
   }
 
@@ -46,7 +48,7 @@ class P96ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP95(context);
   }
 
-  void P96Next(thongTinThanhVienModel data) async {
+  void P96Next(DichVuTaiChinhModel data) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
     await _executeDatabase.update("SET c96 = '${data.c96}', c96K = '${data.c96K}' "

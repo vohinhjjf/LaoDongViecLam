@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P20_22_viewmodel.dart';
@@ -51,6 +52,7 @@ class _P20_22ViewState extends State<P20_22View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -375,6 +377,15 @@ class _P20_22ViewState extends State<P20_22View> {
                                   )
                               );
                             }
+                            else {
+                              p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c18: p20,
+                                c19: p20 == 2 ? p21 : null,
+                                c20: p20 == 2 && p21 == 2 ? p22 : null,
+                              ));
+                            }
                           }
                           else {
                             p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
@@ -398,6 +409,13 @@ class _P20_22ViewState extends State<P20_22View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

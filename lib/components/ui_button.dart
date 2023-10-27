@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../components/uis.dart';
 import '../components/ui_text.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
 
+import '../screens/interview/questions/GPS/gps_viewmodel.dart';
 import 'navigation/navigation_service.dart';
 
 
@@ -14,28 +16,28 @@ class UIGPSButton extends StatefulWidget {
 }
 
 class Body extends State<UIGPSButton> {
-  //late GPSViewModel gpsViewModel = context.read();
+  late GPSViewModel gpsViewModel = context.read();
   bool check = false;
 
   @override
   void initState() {
     super.initState();
-    /*WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       gpsViewModel = context.read();
       gpsViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
-          if(gpsViewModel.phieuTonGiaoModel.kinhDo == null){
+          if(gpsViewModel.thongTinHo.kinhDo == null){
             check = false;
           } else {
             check = true;
           }
         })
       });
-    });*/
+    });
   }
 
-  /*checkGps(BuildContext context) async {
+  checkGps(BuildContext context) async {
     bool servicestatus = false;
     bool haspermission = false;
     late LocationPermission permission;
@@ -78,7 +80,7 @@ class Body extends State<UIGPSButton> {
       _showMaterialDialog(context,position.longitude, position.latitude);
     }
 
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,7 @@ class Body extends State<UIGPSButton> {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: GestureDetector(
         onTap: () {
-          debugPrint('The image button has been tapped');
+          checkGps(context);
         },
         child: SizedBox(
           width: 40,

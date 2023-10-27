@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../../../../../components/uis.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P86_87_viewmodel.dart';
 
@@ -31,8 +32,8 @@ class _P86_87ViewState extends State<P86_87View> {
               () => {
             setState(() {
               thanhvien = p86_87ViewModel.thanhvien;
-              p86 = p86_87ViewModel.thanhvien.c86 ?? 0;
-              p87 = p86_87ViewModel.thanhvien.c87 ?? 0;
+              p86 = p86_87ViewModel.dichVuTaiChinhModel.c86 ?? 0;
+              p87 = p86_87ViewModel.dichVuTaiChinhModel.c87 ?? 0;
             })
           });
     });
@@ -247,7 +248,7 @@ class _P86_87ViewState extends State<P86_87View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p86_87ViewModel.P86_87Next(thongTinThanhVienModel(
+                          p86_87ViewModel.P86_87Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c86: p86,

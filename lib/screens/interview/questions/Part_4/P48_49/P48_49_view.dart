@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P48_49_viewmodel.dart';
@@ -66,6 +67,7 @@ class _P48_49ViewState extends State<P48_49View> {
         titleSpacing: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         title: const UIText(
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
@@ -483,6 +485,13 @@ class _P48_49ViewState extends State<P48_49View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

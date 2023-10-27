@@ -6,4 +6,6 @@ class TableConstants {
   static String thongtinhoNKTT = 'thongTinHoNKTT';
   static String thongTinThanhVienNKTT = 'thongTinThanhVienNKTT';
   static String thongTinThanhVien = 'thongTinThanhVien';
+  static String DoiSongHo = 'DoiSongHo';
+  static String DichVuTaiChinh = 'DichVuTaiChinh';
 }

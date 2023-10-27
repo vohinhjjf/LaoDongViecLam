@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P69_viewmodel.dart';
@@ -32,7 +33,7 @@ class _P69ViewState extends State<P69View> {
               () => {
             setState(() {
               thanhvien = p69ViewModel.thanhvien;
-              _gio.text = p69ViewModel.thanhvien.c63.toString();
+              _gio.text = p69ViewModel.thanhvien.c63 == null ? "" : p69ViewModel.thanhvien.c63.toString();
             })
           });
     });
@@ -48,6 +49,7 @@ class _P69ViewState extends State<P69View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -110,7 +112,7 @@ class _P69ViewState extends State<P69View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p69ViewModel.P69Back();
+                          p69ViewModel.P69Back(thanhvien);
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -147,6 +149,13 @@ class _P69ViewState extends State<P69View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

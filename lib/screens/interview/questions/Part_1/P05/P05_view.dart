@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../components/uis.dart';
 import 'P05_viewmodel.dart';
@@ -45,7 +46,7 @@ class _P05ViewState extends State<P05View> {
               () => {
             setState(() {
               thanhvien = p05viewModel.thanhvien;
-              groupValue = p05viewModel.thanhvien.c05 ?? 0;
+              groupValue = p05viewModel.thanhvien.c04A ?? 0;
             })
           });
     });
@@ -61,6 +62,7 @@ class _P05ViewState extends State<P05View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -183,7 +185,7 @@ class _P05ViewState extends State<P05View> {
                                 builder: (_) => const UIWarningDialog(waring: 'P05 - Có con dưới 3 tuổi nhập vào chưa đúng!',)
                             );
                           }
-                          else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04A! < 18 || thanhvien.c04A! > 65)){
+                          else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){
                             showDialog(
                                 context: context,
                                 builder: (_) =>  UINotificationDialog(
@@ -255,6 +257,13 @@ class _P05ViewState extends State<P05View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

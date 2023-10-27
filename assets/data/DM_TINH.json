@@ -1,0 +1,264 @@
+{
+  "Tinh": [
+    {
+      "Ma": "00",
+      "Ten": "Chọn Tỉnh/Thành phố"
+    },
+    {
+      "Ma": "01",
+      "Ten": "Thành phố Hà Nội"
+    },
+    {
+      "Ma": "02",
+      "Ten": "Tỉnh Hà Giang"
+    },
+    {
+      "Ma": "04",
+      "Ten": "Tỉnh Cao Bằng"
+    },
+    {
+      "Ma": "06",
+      "Ten": "Tỉnh Bắc Kạn"
+    },
+    {
+      "Ma": "08",
+      "Ten": "Tỉnh Tuyên Quang"
+    },
+    {
+      "Ma": 10,
+      "Ten": "Tỉnh Lào Cai"
+    },
+    {
+      "Ma": 11,
+      "Ten": "Tỉnh Điện Biên"
+    },
+    {
+      "Ma": 12,
+      "Ten": "Tỉnh Lai Châu"
+    },
+    {
+      "Ma": 14,
+      "Ten": "Tỉnh Sơn La"
+    },
+    {
+      "Ma": 15,
+      "Ten": "Tỉnh Yên Bái"
+    },
+    {
+      "Ma": 17,
+      "Ten": "Tỉnh Hoà Bình"
+    },
+    {
+      "Ma": 19,
+      "Ten": "Tỉnh Thái Nguyên"
+    },
+    {
+      "Ma": 20,
+      "Ten": "Tỉnh Lạng Sơn"
+    },
+    {
+      "Ma": 22,
+      "Ten": "Tỉnh Quảng Ninh"
+    },
+    {
+      "Ma": 24,
+      "Ten": "Tỉnh Bắc Giang"
+    },
+    {
+      "Ma": 25,
+      "Ten": "Tỉnh Phú Thọ"
+    },
+    {
+      "Ma": 26,
+      "Ten": "Tỉnh Vĩnh Phúc"
+    },
+    {
+      "Ma": 27,
+      "Ten": "Tỉnh Bắc Ninh"
+    },
+    {
+      "Ma": 30,
+      "Ten": "Tỉnh Hải Dương"
+    },
+    {
+      "Ma": 31,
+      "Ten": "Thành phố Hải Phòng"
+    },
+    {
+      "Ma": 33,
+      "Ten": "Tỉnh Hưng Yên"
+    },
+    {
+      "Ma": 34,
+      "Ten": "Tỉnh Thái Bình"
+    },
+    {
+      "Ma": 35,
+      "Ten": "Tỉnh Hà Nam"
+    },
+    {
+      "Ma": 36,
+      "Ten": "Tỉnh Nam Định"
+    },
+    {
+      "Ma": 37,
+      "Ten": "Tỉnh Ninh Bình"
+    },
+    {
+      "Ma": 38,
+      "Ten": "Tỉnh Thanh Hóa"
+    },
+    {
+      "Ma": 40,
+      "Ten": "Tỉnh Nghệ An"
+    },
+    {
+      "Ma": 42,
+      "Ten": "Tỉnh Hà Tĩnh"
+    },
+    {
+      "Ma": 44,
+      "Ten": "Tỉnh Quảng Bình"
+    },
+    {
+      "Ma": 45,
+      "Ten": "Tỉnh Quảng Trị"
+    },
+    {
+      "Ma": 46,
+      "Ten": "Tỉnh Thừa Thiên Huế"
+    },
+    {
+      "Ma": 48,
+      "Ten": "Thành phố Đà Nẵng"
+    },
+    {
+      "Ma": 49,
+      "Ten": "Tỉnh Quảng Nam"
+    },
+    {
+      "Ma": 51,
+      "Ten": "Tỉnh Quảng Ngãi"
+    },
+    {
+      "Ma": 52,
+      "Ten": "Tỉnh Bình Định"
+    },
+    {
+      "Ma": 54,
+      "Ten": "Tỉnh Phú Yên"
+    },
+    {
+      "Ma": 56,
+      "Ten": "Tỉnh Khánh Hòa"
+    },
+    {
+      "Ma": 58,
+      "Ten": "Tỉnh Ninh Thuận"
+    },
+    {
+      "Ma": 60,
+      "Ten": "Tỉnh Bình Thuận"
+    },
+    {
+      "Ma": 62,
+      "Ten": "Tỉnh Kon Tum"
+    },
+    {
+      "Ma": 64,
+      "Ten": "Tỉnh Gia Lai"
+    },
+    {
+      "Ma": 66,
+      "Ten": "Tỉnh Đắk Lắk"
+    },
+    {
+      "Ma": 67,
+      "Ten": "Tỉnh Đắk Nông"
+    },
+    {
+      "Ma": 68,
+      "Ten": "Tỉnh Lâm Đồng"
+    },
+    {
+      "Ma": 70,
+      "Ten": "Tỉnh Bình Phước"
+    },
+    {
+      "Ma": 72,
+      "Ten": "Tỉnh Tây Ninh"
+    },
+    {
+      "Ma": 74,
+      "Ten": "Tỉnh Bình Dương"
+    },
+    {
+      "Ma": 75,
+      "Ten": "Tỉnh Đồng Nai"
+    },
+    {
+      "Ma": 77,
+      "Ten": "Tỉnh Bà Rịa - Vũng Tàu"
+    },
+    {
+      "Ma": 79,
+      "Ten": "Thành phố Hồ Chí Minh"
+    },
+    {
+      "Ma": 80,
+      "Ten": "Tỉnh Long An"
+    },
+    {
+      "Ma": 82,
+      "Ten": "Tỉnh Tiền Giang"
+    },
+    {
+      "Ma": 83,
+      "Ten": "Tỉnh Bến Tre"
+    },
+    {
+      "Ma": 84,
+      "Ten": "Tỉnh Trà Vinh"
+    },
+    {
+      "Ma": 86,
+      "Ten": "Tỉnh Vĩnh Long"
+    },
+    {
+      "Ma": 87,
+      "Ten": "Tỉnh Đồng Tháp"
+    },
+    {
+      "Ma": 89,
+      "Ten": "Tỉnh An Giang"
+    },
+    {
+      "Ma": 91,
+      "Ten": "Tỉnh Kiên Giang"
+    },
+    {
+      "Ma": 92,
+      "Ten": "Thành phố Cần Thơ"
+    },
+    {
+      "Ma": 93,
+      "Ten": "Tỉnh Hậu Giang"
+    },
+    {
+      "Ma": 94,
+      "Ten": "Tỉnh Sóc Trăng"
+    },
+    {
+      "Ma": 95,
+      "Ten": "Tỉnh Bạc Liêu"
+    },
+    {
+      "Ma": 96,
+      "Ten": "Tỉnh Cà Mau"
+    },
+    {
+      "Ma": 99,
+      "Ten": "Tỉnh test chương trình"
+    }
+  ]
+}

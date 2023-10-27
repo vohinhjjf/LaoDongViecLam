@@ -116,7 +116,7 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
                     .width, //MediaQuery: lấy kích thước màn hình thiết bị
                 child: ElevatedButton(
                   onPressed: () {
-                    interviewStatusViewModel.completeInterview();
+                    interviewStatusViewModel.backup();
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,

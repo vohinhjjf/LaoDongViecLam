@@ -26,8 +26,12 @@ class P31_32ViewModel extends BaseViewModel {
     });
   }
 
-  void P31_32Back() async {
-    NavigationServices.instance.navigateToP29_30(context);
+  void P31_32Back(thongTinThanhVienModel data) async {
+    if(data.c24 == 2){
+      NavigationServices.instance.navigateToP26(context);
+    } else {
+      NavigationServices.instance.navigateToP29_30(context);
+    }
   }
 
   void P31_32Next(thongTinThanhVienModel data) async {

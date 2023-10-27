@@ -26,6 +26,7 @@ class LoginViewModel extends BaseViewModel {
   Future<String> login(String userName, String password, String month) async {
     final response = await _authServices.login(userName, password);
     if (response != null) {
+      print("có data");
       bool isAutoSync = userName != _sPrefAppModel.getUserName;
       userModel = UserModel.fromJson(response);
       await _sPrefAppModel.setUserModel(userModel);

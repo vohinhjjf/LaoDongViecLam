@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/models/dichVuTaiChinh_model.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -32,13 +33,13 @@ class _P89ViewState extends State<P89View> {
               () => {
             setState(() {
               thanhvien = p89ViewModel.thanhvien;
-              p89a = p89ViewModel.thanhvien.c89_A ?? 0;
-              p89b = p89ViewModel.thanhvien.c89_B ?? 0;
-              p89c = p89ViewModel.thanhvien.c89_C ?? 0;
-              p89d = p89ViewModel.thanhvien.c89_D ?? 0;
-              p89e = p89ViewModel.thanhvien.c89_E ?? 0;
-              p89f = p89ViewModel.thanhvien.c89_F ?? 0;
-              p89g = p89ViewModel.thanhvien.c89_G ?? 0;
+              p89a = p89ViewModel.dichVuTaiChinhModel.c89_A ?? 0;
+              p89b = p89ViewModel.dichVuTaiChinhModel.c89_B ?? 0;
+              p89c = p89ViewModel.dichVuTaiChinhModel.c89_C ?? 0;
+              p89d = p89ViewModel.dichVuTaiChinhModel.c89_D ?? 0;
+              p89e = p89ViewModel.dichVuTaiChinhModel.c89_E ?? 0;
+              p89f = p89ViewModel.dichVuTaiChinhModel.c89_F ?? 0;
+              p89g = p89ViewModel.dichVuTaiChinhModel.c89_G ?? 0;
             })
           });
     });
@@ -78,32 +79,26 @@ class _P89ViewState extends State<P89View> {
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),
-                const SizedBox(height: 5,),
-                const UIText(
-                  text: "1. CÓ\n2. KHÔNG",
-                  textColor: Colors.black,
-                  textFontSize:fontLarge,
-                ),
                 const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     SizedBox(
-                      width: 40,
+                      width: 45,
                       child: UIText(
-                        text: "1",
+                        text: "Có",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontSmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
                     SizedBox(width: 10,),
                     SizedBox(
-                      width: 40,
+                      width: 45,
                       child: UIText(
-                        text: "2",
+                        text: "Không",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontSmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -111,7 +106,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //a
                 Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -143,7 +138,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -166,7 +161,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //b
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -198,7 +193,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -221,7 +216,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //c
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -253,7 +248,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -276,7 +271,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //d
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -306,7 +301,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -329,7 +324,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //e
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -359,7 +354,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -382,7 +377,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //f
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -412,7 +407,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -435,7 +430,7 @@ class _P89ViewState extends State<P89View> {
                 ),
                 //g
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -465,7 +460,7 @@ class _P89ViewState extends State<P89View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -519,7 +514,7 @@ class _P89ViewState extends State<P89View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p89ViewModel.P89Next(thongTinThanhVienModel(
+                          p89ViewModel.P89Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c89_A: p89a,

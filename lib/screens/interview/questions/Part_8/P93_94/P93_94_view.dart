@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/models/dichVuTaiChinh_model.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -55,8 +56,8 @@ class _P93_94ViewState extends State<P93_94View> {
               thanhvien = p93_94ViewModel.thanhvien;
               list_p93 = p93_94ViewModel.list_p93;
               list_p94 = p93_94ViewModel.list_p94;
-              _other_93.text = p93_94ViewModel.thanhvien.c93K ?? "";
-              _other_94.text = p93_94ViewModel.thanhvien.c94K ?? "";
+              _other_93.text = p93_94ViewModel.dichVuTaiChinhModel.c93K ?? "";
+              _other_94.text = p93_94ViewModel.dichVuTaiChinhModel.c94K ?? "";
             })
           });
     });
@@ -301,7 +302,7 @@ class _P93_94ViewState extends State<P93_94View> {
                               p94 = '$p94,${list_p94[i]}';
                             }
                           }
-                          p93_94ViewModel.P93_94Next(thongTinThanhVienModel(
+                          p93_94ViewModel.P93_94Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c93: p93.replaceFirst(RegExp(r','), ''),

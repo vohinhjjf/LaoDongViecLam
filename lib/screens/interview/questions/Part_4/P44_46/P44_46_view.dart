@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P44_46_viewmodel.dart';
@@ -36,7 +37,7 @@ class _P44_46ViewState extends State<P44_46View> {
               thanhvien = p44_46ViewModel.thanhvien;
               p44 = p44_46ViewModel.thanhvien.c39 ?? 0;
               p46 = p44_46ViewModel.thanhvien.c40A ?? 0;
-              _gio.text = p44_46ViewModel.thanhvien.c40.toString();
+              _gio.text = p44_46ViewModel.thanhvien.c40 == null ? "":p44_46ViewModel.thanhvien.c40.toString();
             })
           });
     });
@@ -52,6 +53,7 @@ class _P44_46ViewState extends State<P44_46View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -72,7 +74,7 @@ class _P44_46ViewState extends State<P44_46View> {
                 children: [
                   //p44
                   Visibility(
-                      visible: thanhvien.c38! < 4 || thanhvien.c38! > 12,
+                      visible: (thanhvien.c38 ?? 0) < 4 || (thanhvien.c38 ?? 0) > 12,
                       child: Column(
                         children: [
                           UIRichText(
@@ -364,6 +366,13 @@ class _P44_46ViewState extends State<P44_46View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

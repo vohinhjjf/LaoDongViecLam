@@ -80,7 +80,7 @@ class SyncServices {
     }
   }
 
-  Future<dynamic> getEnquiry(String accessToken, String id)async{
+  Future<dynamic> getEnquiry(String accessToken, String month, String id)async{
     _dio.options.baseUrl = ApiConstants.baseUrl;
     final header = {
       'content-type': 'application/json',
@@ -89,7 +89,7 @@ class SyncServices {
     _dio.options.headers = header;
     Response? response;
     try {
-      response = await _dio.get('api/enquiry/$id');
+      response = await _dio.get('api/phieudieutra2022/$month/2023/$id');
       return response.data;
     } catch (e) {
       print(e.toString());

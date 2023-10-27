@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/models/dichVuTaiChinh_model.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -31,7 +32,7 @@ class _P88ViewState extends State<P88View> {
               () => {
             setState(() {
               thanhvien = p88ViewModel.thanhvien;
-              p88 = p88ViewModel.thanhvien.c88 ?? 0;
+              p88 = p88ViewModel.dichVuTaiChinhModel.c88 ?? 0;
             })
           });
     });
@@ -169,7 +170,7 @@ class _P88ViewState extends State<P88View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p88ViewModel.P88Next(thongTinThanhVienModel(
+                          p88ViewModel.P88Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c88: p88,

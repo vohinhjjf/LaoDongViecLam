@@ -37,8 +37,11 @@ class _InformationProviderViewState extends State<InformationProviderView> {
               () => {
             setState(() {
               list_map = informationProviderviewModel.list_map;
-              groupValue = informationProviderviewModel.list.indexWhere((e) => e.q6_New == 1) + 1;
+              groupValue = informationProviderviewModel.thongTinHo.maNCC == null 
+                  ? informationProviderviewModel.list.indexWhere((e) => e.q6_New == 1) + 1
+                  : int.parse(informationProviderviewModel.thongTinHo.maNCC!);
               stt = informationProviderviewModel.list.lastWhere((e) => e.q6_New == 1).idtv ?? 0;
+              _text_phone.text = informationProviderviewModel.thongTinHo.dienThoai ?? "";
             })
           });
     });
@@ -137,7 +140,6 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                       visible: groupValue == 87,
                       child: TextFormField(
                         controller: _text_name,
-                        autofocus: true,
                         validator: (value){
                           if(value!.isEmpty){
                             return 'Vui lòng nhập tên';
@@ -238,17 +240,13 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                                   context: context,
                                   builder: (_) => const UIWarningDialog(waring: 'Số điện thoại phải bắt đầu là 0'));
                             }
-                            else if(_text_name.text.length < 5){
+                            else if(groupValue == list_map.last.values.single && _text_name.text.length < 5){
                               showDialog(
                                   context: context,
                                   builder: (_) => UINotificationDialog(
                                       notification: 'Họ tên người cung cấp thông tin nhỏ hơn 5 ký tự có đúng không?',
                                       onpress: (){
-                                        Navigator.of(context).pop();
-                                        setState(() {
-
-                                          _text_name.text = "";
-                                        });
+                                        informationProviderviewModel.InformationProviderNext(_text_phone.text, stt.toString());
                                       }
                                   )
                               );

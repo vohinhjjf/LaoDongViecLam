@@ -4,6 +4,7 @@ import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
 class P98ViewModel extends BaseViewModel {
@@ -11,6 +12,7 @@ class P98ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P98ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
+  var dichVuTaiChinhModel = DichVuTaiChinhModel();
 
   @override
   void onInit(BuildContext context) {
@@ -30,7 +32,7 @@ class P98ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP97(context);
   }
 
-  void P98Next(thongTinThanhVienModel data) async {
+  void P98Next(DichVuTaiChinhModel data) async {
     _executeDatabase.update("SET c98_A = ${data.c98_A}, c98_B = ${data.c98_B}, "
         "c98_C = ${data.c98_C}, c98_D = ${data.c98_D}, c98_E = ${data.c98_E}, "
         "c98_F = ${data.c98_F}, c98_G = ${data.c98_G}, c98_H = ${data.c98_H}, "

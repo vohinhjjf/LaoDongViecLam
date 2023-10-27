@@ -96,7 +96,6 @@ class Body extends State<GPSView> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: mPrimaryColor),
         title: const UIText(
           text: UIDescribes.endInterview,
           textColor: mPrimaryColor,

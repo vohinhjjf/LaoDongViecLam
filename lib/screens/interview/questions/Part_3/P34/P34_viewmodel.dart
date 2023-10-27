@@ -27,7 +27,7 @@ class P34ViewModel extends BaseViewModel {
   }
 
   void P34Back() async {
-    NavigationServices.instance.navigateToP33(context);
+    NavigationServices.instance.navigateToP31_32(context);
   }
 
   void P34Next(thongTinThanhVienModel data) async {

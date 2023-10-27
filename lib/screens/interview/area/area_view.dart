@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../components/uis.dart';
@@ -78,7 +79,6 @@ class _AreaViewState extends State<AreaView>{
                   shape: const RoundedRectangleBorder(
                       side: BorderSide(
                           width: 0,
-                        strokeAlign: StrokeAlign.center
                       ),
                       borderRadius: BorderRadius.all(
                           Radius.circular(10.0)
@@ -95,7 +95,7 @@ class _AreaViewState extends State<AreaView>{
                           textColor: Colors.black
                       ),
                       UIText(
-                          text: 'Số hộ: ${list_household.length}',
+                          text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
                           textFontSize: fontMedium,
                           isBold: true,
                           textColor: Colors.yellow.shade800

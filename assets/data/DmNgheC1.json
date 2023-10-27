@@ -1,0 +1,15 @@
+{
+  "DanhMuc":[
+    { "MaC1": " ", "TenC1": "Tất cả" },
+    {"MaC1": "0","TenC1": "Lực lượng vũ trang"},
+    {"MaC1": "1","TenC1": "Lãnh đạo, quản lý trong các ngành, các cấp và các đơn vị"},
+    {"MaC1": "2","TenC1": "Nhà chuyên môn bậc cao "},
+    {"MaC1": "3","TenC1": "Nhà chuyên môn bậc trung"},
+    {"MaC1": "4","TenC1": "Nhân viên trợ lý văn phòng "},
+    {"MaC1": "5","TenC1": "Nhân viên dịch vụ và bán hàng"},
+    {"MaC1": "6","TenC1": "Lao động có kỹ năng trong nông nghiệp, lâm nghệp và thủy sản"},
+    {"MaC1": "7","TenC1": "Lao động thủ công và các nghề có liên quan khác"},
+    {"MaC1": "8","TenC1": "Thợ lắp ráp và vận hành máy móc, thiết bị"},
+    {"MaC1": "9","TenC1": "Lao động giản đơn"}
+  ]
+}

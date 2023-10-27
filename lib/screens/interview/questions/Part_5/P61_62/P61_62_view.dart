@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P61_62_viewmodel.dart';
@@ -22,6 +23,7 @@ class _P61_62ViewState extends State<P61_62View> {
   var _tiencong = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p62 =0;
+  bool check = false;
 
   @override
   void initState() {
@@ -34,8 +36,13 @@ class _P61_62ViewState extends State<P61_62View> {
               () => {
             setState(() {
               thanhvien = p61_62ViewModel.thanhvien;
-              p62 = p61_62ViewModel.thanhvien.c55 ?? 0;
-              _tiencong.text = p61_62ViewModel.thanhvien.c56.toString();
+              p62 = p61_62ViewModel.thanhvien.c56 ?? 0;
+              if(thanhvien.c41 == 1){
+                check = true;
+                _tiencong.text = "0";
+              }else {
+                _tiencong.text = p61_62ViewModel.thanhvien.c55 == null ? "" : p61_62ViewModel.thanhvien.c55.toString();
+              }
             })
           });
     });
@@ -51,6 +58,7 @@ class _P61_62ViewState extends State<P61_62View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -255,6 +263,13 @@ class _P61_62ViewState extends State<P61_62View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/GPS/gps_viewmodel.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_viewmodel.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_viewmodel.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58/P56_58_viewmodel.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/household_information/general_information/general_information_viewmodel.dart';
+import 'package:lao_dong_viec_lam/screens/interview/status/backup/backup_viewmodel.dart';
+import 'package:lao_dong_viec_lam/screens/interview/status/complete_interview/complete_interview_viewmodel.dart';
 
 import 'components/navigation/drawer_navigation/drawer_navigation_model.dart';
 import 'components/navigation/navigation_service.dart';
@@ -80,6 +84,7 @@ import 'screens/interview/questions/Part_8/P96/P96_viewmodel.dart';
 import 'screens/interview/questions/Part_8/P97/P97_viewmodel.dart';
 import 'screens/interview/questions/Part_8/P98/P98_viewmodel.dart';
 import 'screens/interview/questions/Part_8/P99/P99_viewmodel.dart';
+import 'screens/interview/questions/Select_code/P40_42/P40_42_viewmodel.dart';
 import 'screens/interview/questions/actual_people/Q1/Q1_viewmodel.dart';
 import 'screens/interview/questions/actual_people/Q2/Q2_viewmodel.dart';
 import 'screens/interview/questions/actual_people/Q3/Q3_viewmodel.dart';
@@ -138,6 +143,13 @@ void main() async {
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => NotInterviewedViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => CompleteInterviewViewModel(getIt.get<SPrefAppModel>(),
+                getIt.get<ExecuteDatabase>(), getIt.get<SyncServices>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => BackupViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => OperatingStatusViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
@@ -354,6 +366,15 @@ void main() async {
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => GPSViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => P17BViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => P40_42ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => P56_58ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
       ],
       child: const MyApp(),

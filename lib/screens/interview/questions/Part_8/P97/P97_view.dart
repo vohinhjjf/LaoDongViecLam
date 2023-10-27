@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/models/dichVuTaiChinh_model.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
@@ -33,16 +34,16 @@ class _P97ViewState extends State<P97View> {
               () => {
             setState(() {
               thanhvien = p97ViewModel.thanhvien;
-              p97a = p97ViewModel.thanhvien.c97_A ?? 0;
-              p97b = p97ViewModel.thanhvien.c97_B ?? 0;
-              p97c = p97ViewModel.thanhvien.c97_C ?? 0;
-              p97d = p97ViewModel.thanhvien.c97_D ?? 0;
-              p97e = p97ViewModel.thanhvien.c97_E ?? 0;
-              p97f = p97ViewModel.thanhvien.c97_F ?? 0;
-              p97g = p97ViewModel.thanhvien.c97_G ?? 0;
-              p97h = p97ViewModel.thanhvien.c97_H ?? 0;
-              p97i = p97ViewModel.thanhvien.c97_I ?? 0;
-              p97j = p97ViewModel.thanhvien.c97_J ?? 0;
+              p97a = p97ViewModel.dichVuTaiChinhModel.c97_A ?? 0;
+              p97b = p97ViewModel.dichVuTaiChinhModel.c97_B ?? 0;
+              p97c = p97ViewModel.dichVuTaiChinhModel.c97_C ?? 0;
+              p97d = p97ViewModel.dichVuTaiChinhModel.c97_D ?? 0;
+              p97e = p97ViewModel.dichVuTaiChinhModel.c97_E ?? 0;
+              p97f = p97ViewModel.dichVuTaiChinhModel.c97_F ?? 0;
+              p97g = p97ViewModel.dichVuTaiChinhModel.c97_G ?? 0;
+              p97h = p97ViewModel.dichVuTaiChinhModel.c97_H ?? 0;
+              p97i = p97ViewModel.dichVuTaiChinhModel.c97_I ?? 0;
+              p97j = p97ViewModel.dichVuTaiChinhModel.c97_J ?? 0;
             })
           });
     });
@@ -1098,7 +1099,7 @@ class _P97ViewState extends State<P97View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p97ViewModel.P97Next(thongTinThanhVienModel(
+                          p97ViewModel.P97Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c97_A: p97a,

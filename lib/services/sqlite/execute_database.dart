@@ -3,6 +3,8 @@ import 'package:sqflite/sqflite.dart';
 import '../../models/area_model.dart';
 import '../../models/bangkeThangDT_model.dart';
 import '../../models/bangke_model.dart';
+import '../../models/dichVuTaiChinh_model.dart';
+import '../../models/doiSongHo_model.dart';
 import '../../models/thongTinHoNKTT_model.dart';
 import '../../models/thongTinHo_model.dart';
 import '../../models/thongTinThanhVienNKTT_model.dart';
@@ -55,7 +57,7 @@ class ExecuteDatabase {
     }
   }
 
-  getHouseHold(String iddb) async {
+  Future<List<BangKeCsModel>> getHouseHold(String iddb) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.household} WHERE iddb = $iddb");
@@ -78,7 +80,7 @@ class ExecuteDatabase {
   }
 
   //Area
-  getArea(String month) async {
+  Future<List<AreaModel>> getArea(String month) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.area} WHERE thangDT = $month");
@@ -92,16 +94,13 @@ class ExecuteDatabase {
   //BangKe_ThangDT
   setTrangThai(BangKeThangDTModel data) async {
     _database = await _dbProvider.database;
-    await _database?.rawUpdate(
-        'UPDATE ${TableConstants
-            .bangkeho_thangdt} SET trangThai = ? WHERE idhO_BKE = ?',
-        [data.trangThai, data.idhO_BKE]);
+    await _database?.insert(TableConstants.bangkeho_thangdt, data.toJson());
   }
 
   Future<List<BangKeThangDTModel>> getBangKe_ThangDT(String month) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res = await _database?.rawQuery(
-        "SELECT * FROM ${TableConstants.bangkeho_thangdt} WHERE thangDT = $month AND trangThai = ${2}");
+        "SELECT * FROM ${TableConstants.bangkeho_thangdt} WHERE thangDT = $month");
 
     List<BangKeThangDTModel> list = res!.isNotEmpty
         ? res.map((c) => BangKeThangDTModel.fromJson(c)).toList()
@@ -109,18 +108,24 @@ class ExecuteDatabase {
     return list;
   }
 
-
+  updateTrangThai(String id) async {
+   await _database?.rawUpdate(
+        'UPDATE ${TableConstants.bangkeho_thangdt} SET trangThai = ? WHERE idhO_BKE = ?',
+        [3, id]);
+  }
   //Operating status
   setHo(thongTinHoModel data) async {
      _database = await _dbProvider.database;
      await _database?.insert(TableConstants.thongtinho, data.toJson());
    }
+
    updateTTHo(String name, String diachi, String id) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
                'UPDATE ${TableConstants.thongtinho} SET tenChuHo = ?, diachi = ? WHERE idho = ?',
                [name, diachi, id]);
    }
+
   Future<thongTinHoModel> getHo(String idho) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res;
@@ -131,6 +136,18 @@ class ExecuteDatabase {
         : [];
     return listNKTT.first;
   }
+
+  Future<List<thongTinHoModel>> getListHo(String month) async {
+    _database = await _dbProvider.database;
+    List<Map<String, Object?>>? res;
+    res = await _database?.rawQuery(
+        "SELECT * FROM ${TableConstants.thongtinho} WHERE thangDT = '$month'");
+    List<thongTinHoModel> listHo = res!.isNotEmpty
+        ? res.map((c) => thongTinHoModel.fromJson(c)).toList()
+        : [];
+    return listHo;
+  }
+
   Future<int> getStatusHo(String id) async {
     int status = 0;
     _database = await _dbProvider.database;
@@ -205,9 +222,14 @@ class ExecuteDatabase {
        : [];
    return listNKTT;
  }
- deleteNKTT(int id, String idho) async {
-   await _database?.delete(TableConstants.thongTinThanhVienNKTT,
-             where: 'idtv = ? and idho = ?', whereArgs: [id, idho]);
+ deleteNKTT(int id, String idho, int stt) async {
+    if(stt == 0) {
+      await _database?.delete(TableConstants.thongTinThanhVienNKTT,
+          where: 'idho = ?', whereArgs: [idho]);
+    } else {
+      await _database?.delete(TableConstants.thongTinThanhVienNKTT,
+          where: 'idtv = ? and idho = ?', whereArgs: [id, idho]);
+    }
  }
 
  updateNTKK(List<thongTinThanhVienNKTTModel> list) async {
@@ -221,12 +243,12 @@ class ExecuteDatabase {
    }
  }
 
-  updateChuHo(String idho, int idtv) async {
+  updateChuHo(int? q6_New, String idho, int idtv) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
         'UPDATE ${TableConstants
-            .thongTinThanhVienNKTT} SET q6_New = ${1} WHERE idtv = ? AND idho = ?',
-        [idtv, idho]);
+            .thongTinThanhVienNKTT} SET q6_New = ? WHERE idtv = ? AND idho = ?',
+        [q6_New, idtv, idho]);
   }
 
   //Part 1
@@ -261,6 +283,11 @@ class ExecuteDatabase {
     return res == null;
   }*/
 
+  deleteTTTV(String idho) async {
+    await _database?.delete(TableConstants.thongTinThanhVienNKTT,
+        where: 'idho = ?', whereArgs: [idho]);
+  }
+
   setTTTV(List<thongTinThanhVienModel> list) async {
     _database = await _dbProvider.database;
     for(var item in list) {
@@ -274,12 +301,12 @@ class ExecuteDatabase {
     }
   }
 
-  updateSTT( String idho, int idtv) async {
+  updateSTT(int? c01, String idho, int idtv) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
         'UPDATE ${TableConstants
             .thongTinThanhVien} SET c01 = ? WHERE idho = ? AND idtv = ?',
-        [1, idho, idtv]);
+        [c01, idho, idtv]);
   }
   updateC00(String name, String idho, int idtv) async {
     _database = await _dbProvider.database;
@@ -296,12 +323,11 @@ class ExecuteDatabase {
             .thongTinThanhVien} $query');
   }
 
-  update93_94(thongTinThanhVienModel data) async {
+  updateDVTC(String query) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
         'UPDATE ${TableConstants
-            .thongTinThanhVien} SET c93 = ?, c93K = ?, c94 = ?, c94K = ? WHERE idho = ? AND idtv = ?',
-        [data.c93, data.c93K, data.c94, data.c94K, data.idho, data.idtv]);
+            .DichVuTaiChinh} $query');
   }
 
   updateInformationProvider(thongTinHoModel data) async {
@@ -310,6 +336,36 @@ class ExecuteDatabase {
     'UPDATE ${TableConstants
         .thongtinho} SET maNCC = ?, dienThoai = ? WHERE idho = ?',
     [data.maNCC, data.dienThoai, data.idho]);
+  }
+  //DoiSongHo
+  Future<bool> checkDSH(String idho) async {
+    _database = await _dbProvider.database;
+    List<Map<String, Object?>>? res = await _database?.rawQuery(
+        "SELECT * FROM ${TableConstants.DoiSongHo} WHERE idho = $idho");
+    return res!.isEmpty;
+  }
+
+  setDSH(DoiSongHoModel data) async {
+    _database = await _dbProvider.database;
+    await _database?.insert(TableConstants.DoiSongHo, data.toJson());
+  }
+
+  updateDSH(String query) async {
+    _database = await _dbProvider.database;
+    await _database?.rawUpdate(
+        'UPDATE ${TableConstants
+            .DoiSongHo} $query');
+  }
+
+  Future<DoiSongHoModel> getDoiSongHo(String idho) async {
+    _database = await _dbProvider.database;
+    List<Map<String, Object?>>? res;
+    res = await _database?.rawQuery(
+        "SELECT * FROM ${TableConstants.DoiSongHo} WHERE idho = '$idho'");
+    List<DoiSongHoModel> list_dsh = res!.isNotEmpty
+        ? res.map((c) => DoiSongHoModel.fromJson(c)).toList()
+        : [];
+    return list_dsh.first;
   }
 
   //GPS

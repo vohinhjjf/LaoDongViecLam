@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P01_04_viewmodel.dart';
@@ -26,6 +27,7 @@ class _P01_04ViewState extends State<P01_04View> {
   final _age = TextEditingController();
   int p01 = 0, p02 = 0, p03 = 0, ThangDT = 8;
   String month = 'Chọn tháng';
+  bool check = false;
 
   var _quanhe = [
     "VỢ/CHỒNG",
@@ -67,7 +69,8 @@ class _P01_04ViewState extends State<P01_04View> {
               p02 = p01_04viewModel.thanhvien.c02 ?? 0;
               month = p01_04viewModel.thanhvien.c03A ?? "Chọn tháng";
               _year.text = p01_04viewModel.thanhvien.c03B ?? "";
-              _age.text = p01_04viewModel.thanhvien.c04.toString();
+              _age.text = p01_04viewModel.thanhvien.c04 == null ? ""
+                  : p01_04viewModel.thanhvien.c04.toString();
               p03 = p01_04viewModel.thanhvien.c03B == "9998" ? 1 : 0;
             })
           });
@@ -392,6 +395,7 @@ class _P01_04ViewState extends State<P01_04View> {
                             return null;
                           },
                           keyboardType: TextInputType.datetime,
+                          readOnly: check,
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -413,6 +417,8 @@ class _P01_04ViewState extends State<P01_04View> {
                       onTap: (selected) {
                         setState(() {
                           p03 = p03 == 1 ? 0 : 1;
+                          check = selected!;
+                          _year.text = selected ? "9998" : "";
                         });
                       },
                       border: Border.all(
@@ -427,6 +433,8 @@ class _P01_04ViewState extends State<P01_04View> {
                     onTap: () {
                       setState(() {
                         p03 = p03 == 1 ? 0 : 1;
+                        check = !check;
+                        _year.text = check ? "9998" : "";
                       });
                     },
                   ),
@@ -476,7 +484,7 @@ class _P01_04ViewState extends State<P01_04View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p01_04viewModel.P01_04Back();
+                          p01_04viewModel.P01_04Back(thanhvien.c01!);
                         },
                         icon: const Icon(
                           Icons.navigate_before,
@@ -518,15 +526,15 @@ class _P01_04ViewState extends State<P01_04View> {
                                     waring: 'Tháng nhập vào chưa đúng',)
                               );
                             }
-                            else if (p03 == 1 && _orther.text == "") {
+                            else if (p01 == 8 && _orther.text == "") {
                               showDialog(
                                   context: context,
                                   builder: (_) =>
                                   const UIWarningDialog(
-                                    waring: 'Số tuổi nhập vào chưa đúng!',)
+                                    waring: 'Mối quan hệ khác nhập vào chưa đúng!',)
                               );
                             }
-                            else if (p03 == 1 && _orther.text == "") {
+                            else if (p03 == 1 && _age.text == "") {
                               showDialog(
                                   context: context,
                                   builder: (_) =>
@@ -589,6 +597,14 @@ class _P01_04ViewState extends State<P01_04View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

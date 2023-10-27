@@ -1,0 +1,26 @@
+{
+  "DanhMuc": [
+    { "MaC1": "0", "TenC1": "Tất cả" },
+    {"MaC1": "A","TenC1": "Nông nghiệp, Lâm nghiệp và Thuỷ sản "},
+    {"MaC1": "B","TenC1": "Khai khoáng"},
+    {"MaC1": "C","TenC1": "Công nghiệp chế biến, chế tạo"},
+    {"MaC1": "D","TenC1": "Sản xuất và phân phối điện, khí đốt, nước nóng, hơi nước và điều hoà không khí"},
+    {"MaC1": "E","TenC1": "Cung cấp nước; hoạt động quản lý và xử lý rác thải, nước thải"},
+    {"MaC1": "F","TenC1": "Xây dựng"},
+    {"MaC1": "G","TenC1": "Bán buôn và bán lẻ; sửa chữa ô tô, mô tô, xe máy và xe có động cơ khác "},
+    {"MaC1": "H","TenC1": "Vận tải kho bãi"},
+    {"MaC1": "I","TenC1": "Dịch vụ lưu trú và ăn uống"},
+    {"MaC1": "J","TenC1": "Thông tin và truyền thông  "},
+    {"MaC1": "K","TenC1": "Hoạt động tài chính, ngân hàng và bảo hiểm "},
+    {"MaC1": "L","TenC1": "Hoạt động kinh doanh bất động sản"},
+    {"MaC1": "M","TenC1": "Hoạt động chuyên môn, khoa học và công nghệ "},
+    {"MaC1": "N","TenC1": "Hoạt động hành chính và dịch vụ hỗ trợ "},
+    {"MaC1": "O","TenC1": "Hoạt động của đảng cộng sản, tổ chức chính trị - xã hội, quản lý nhà nước, an ninh quốc phòng;  bảo đảm xã hội bắt buộc"},
+    {"MaC1": "P","TenC1": "Giáo dục và đào tạo"},
+    {"MaC1": "Q","TenC1": "Y tế và hoạt động trợ giúp xã hội"},
+    {"MaC1": "R","TenC1": "Nghệ thuật, vui chơi và giải trí"},
+    {"MaC1": "S","TenC1": "Hoạt động dịch vụ khác"},
+    {"MaC1": "T","TenC1": "Hoạt động làm thuê các công việc trong các hộ gia đình, sản xuất sản phẩm vật chất và dịch vụ tự tiêu dùng của hộ gia đình"},
+    {"MaC1": "U","TenC1": "Hoạt động của các tổ chức và cơ quan  quốc tế"}
+  ]
+}

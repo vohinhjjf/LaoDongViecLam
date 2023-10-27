@@ -232,15 +232,30 @@ class _LoginViewState extends State<LoginView> {
                         print(userNameController.text);
                         print(passwordController.text);
                         print(month);
-                        loginViewModel.login(userNameController.text, passwordController.text, month).then((value) => {
-                                  if(value == 'successfully'){
-                                    loginViewModel.navigateToBottomNavigation()
-                                  } else {
-                                    _showErrorDialog('Đăng nhập thất bại!')
-                                  }
-                                }).onError((error, stackTrace) => {
+                        if(month != "điều tra") {
+                          if(int.parse(month) > DateTime.now().month){
+                            _showErrorDialog('Không chọn tháng sau tháng điều tra!');
+                          } else {
+                            loginViewModel.login(
+                                userNameController.text,
+                                passwordController.text,
+                                month).then((value) =>
+                            {
+                              if(value == 'successfully'){
+                                loginViewModel.navigateToBottomNavigation()
+                              } else
+                                {
                                   _showErrorDialog('Đăng nhập thất bại!')
-                                });
+                                }
+                            }).onError((error, stackTrace) =>
+                            {
+                              _showErrorDialog('Đăng nhập thất bại!')
+                            });
+                          }
+                        }
+                        else {
+                          _showErrorDialog('Vui lòng chọn tháng!');
+                        }
                       }
                     },
                     height: 50,

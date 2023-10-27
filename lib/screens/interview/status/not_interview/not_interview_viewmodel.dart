@@ -22,41 +22,30 @@ class NotInterviewedViewModel extends BaseViewModel {
 
   void fetchData() async {
     String iddb = _sPrefAppModel.IDDB;
+    String month = _sPrefAppModel.month;
     await _executeDatabase.getHouseHold(iddb).then((value) => data= value);
-    await _executeDatabase.getBangKe_ThangDT(_sPrefAppModel.month).then((value) => bangKeThangDTModel= value);
+    await _executeDatabase.getBangKe_ThangDT(month).then((value) {
+      bangKeThangDTModel= value;
+    });
   }
 
   /*Future<List<BangKeCsModel>> searchData(String name) =>
       _executeDatabase.getDanhSachBangKeCs(1, name);*/
 
   void notInterviewed(BangKeCsModel bangKeCsModel) async {
-    /*List<PhieuTonGiaoModel> listPhieuModel = [];
-    listPhieuModel.add(PhieuTonGiaoModel(
-        id: bangKeCsModel.id!,
-        maCS: bangKeCsModel.maCS!,
-        tenCS: bangKeCsModel.tenCS!,
-        tinh: bangKeCsModel.tinh!,
-        huyen: bangKeCsModel.huyen!,
-        xa: bangKeCsModel.xa!,
-        thon: bangKeCsModel.diaChi!,
-        dienThoai: bangKeCsModel.dienThoai!,
-        email: bangKeCsModel.email!,
-        tinhtrang_DT: 1
-    ));
-    await _executeDatabase.setListPhieu(listPhieuModel).then((value) async {
-      await _executeDatabase.setTinhTrangDT(2, bangKeCsModel.id!);
-      await _sPrefAppModel.setIdCs(bangKeCsModel.id!);
-      await _executeDatabase.setTimeBD(DateTime.now().toString(), bangKeCsModel.id!);
-    });*/
-    _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
-    await _executeDatabase.setTrangThai(
-        BangKeThangDTModel(
-          idhO_BKE: bangKeCsModel.idho,
-          thangDT: int.parse(_sPrefAppModel.month),
-          namDT: DateTime.now().year,
-          trangThai: 2
-        )
-    );
+    await _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
+    await _executeDatabase.getBangKe_ThangDT(_sPrefAppModel.month).then((value) async {
+      if(value.where((e) => e.idhO_BKE == bangKeCsModel.idho).isEmpty){
+        await _executeDatabase.setTrangThai(
+            BangKeThangDTModel(
+                idhO_BKE: bangKeCsModel.idho,
+                thangDT: int.parse(_sPrefAppModel.month),
+                namDT: DateTime.now().year,
+                trangThai: 2
+            )
+        );
+      }
+    });
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

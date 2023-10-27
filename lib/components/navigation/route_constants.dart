@@ -9,8 +9,8 @@ class RouteConstants {
   static const String interviewArea = "/interviewArea";
   static const String interviewStatusRoute = "/interviewStatusRoute";
   static const String notInterviewedRoute = "/notInterviewedRoute";
-  static const String interviewingRoute = "/interviewingRoute";
   static const String completeInterviewRoute = "/completeInterviewRoute";
+  static const String BackupRoute = "/BackupRoute";
   static const String operatingStatusRoute = "/operatingStatusRoute";
   static const String detailRoute = "/detailRoute";
   static const String generalRoute = "/generalRoute";
@@ -30,6 +30,7 @@ class RouteConstants {
   static const String P14_15Route = "/P14_15Route";
   static const String P16Route = "/P16Route";
   static const String P17Route = "/P17Route";
+  static const String P17BRoute = "/P17BRoute";
   static const String P18Route = "/P18Route";
   static const String P19Route = "/P19Route";
   static const String P20_22Route = "/P20_22Route";
@@ -46,6 +47,7 @@ class RouteConstants {
   static const String P36_37Route = "/P36_37Route";
   static const String P38Route = "/P38Route";
   static const String P39_42Route = "/P39_42Route";
+  static const String P40_42Route = "/P40_42Route";
   static const String P43Route = "/P43Route";
   static const String P44_46Route = "/P44_46Route";
   static const String P47Route = "/P47Route";
@@ -53,6 +55,7 @@ class RouteConstants {
   static const String P50_51Route = "/P50_51Route";
   static const String P52_54Route = "/P52_54Route";
   static const String P55_59Route = "/P55_59Route";
+  static const String P56_58Route = "/P56_58Route";
   static const String P60Route = "/P60Route";
   static const String P61_62Route = "/P61_62Route";
   static const String P63_64Route = "/P63_64Route";

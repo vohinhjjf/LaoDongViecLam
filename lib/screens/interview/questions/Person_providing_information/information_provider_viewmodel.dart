@@ -14,6 +14,7 @@ class InformationProviderViewModel extends BaseViewModel {
   InformationProviderViewModel(this._executeDatabase, this._sPrefAppModel);
   List<thongTinThanhVienNKTTModel> list = [];
   List<Map<String, int>> list_map = [];
+  var thongTinHo = thongTinHoModel();
 
   @override
   void onInit(BuildContext context) {
@@ -27,10 +28,12 @@ class InformationProviderViewModel extends BaseViewModel {
       list = value;
       logic(value);
     });
+    await _executeDatabase.getHo(idho).then((value) => thongTinHo = value);
   }
 
   void logic(List<thongTinThanhVienNKTTModel> list_nktt){
     var toRemove = [];
+    List<Map<String, int>> list_map_1 = [];
     for(var item in list_nktt){
       if(item.q3A_New == 1 || item.q3B_New == 1 || item.q3C_New == 1
           || item.q3D_New == 1){
@@ -39,17 +42,18 @@ class InformationProviderViewModel extends BaseViewModel {
     }
     list.removeWhere((e) => toRemove.contains(e));
     for(int i = 0; i < list.length; i++){
-      list_map.add({
+      list_map_1.add({
         list[i].q1_New! : i + 1,
       });
     }
-    list_map.add({
+    list_map_1.add({
       "Không phải thành viên của hộ" : 87
     });
+    list_map = list_map_1;
   }
 
   void InformationProviderBack() async {
-    NavigationServices.instance.navigateToP99(context);
+    NavigationServices.instance.navigateToP84(context);
   }
 
   void InformationProviderNext(String dienThoai, String maNCC) async {

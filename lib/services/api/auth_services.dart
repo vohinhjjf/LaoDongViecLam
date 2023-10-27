@@ -17,7 +17,7 @@ class AuthServices {
     var diges = md5.convert(utf8.encode(password)).toString().toLowerCase();
     Response? response;
     try {
-      response = await _dio.post(ApiConstants.login, data: {
+      response = await _dio.get(ApiConstants.login, data: {
         'grant_type': 'password',
         'username': userName,
         'password': diges

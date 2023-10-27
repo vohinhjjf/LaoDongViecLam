@@ -50,10 +50,8 @@ class UIDescribes {
   static const interviewStatus = 'Phỏng vấn';
   static const interviewList = 'Danh sách phỏng vấn';
   static const unInterviewedList = 'Danh sách chưa phỏng vấn';
-  static const interviewingList = 'Ds đang phỏng vấn';
   static const interviewedList = 'Ds hoàn thành phỏng vấn';
   static const notInterviewed = 'Danh sách hộ chưa phỏng vấn';
-  static const interviewing = 'Danh sách hộ đang phỏng vấn';
   static const completeInterviewed = 'Danh sách hộ đã phỏng vấn';
   static const preventive = 'Danh sách hộ dự phòng';
   static const doneInterviewed = 'Danh sách cơ sở không còn tại địa bàn';

@@ -26,8 +26,12 @@ class P36_37ViewModel extends BaseViewModel {
     });
   }
 
-  void P36_37Back() async {
-    NavigationServices.instance.navigateToP35(context);
+  void P36_37Back(thongTinThanhVienModel data) async {
+    if(data.c30_A != null){
+      NavigationServices.instance.navigateToP33(context);
+    } else {
+      NavigationServices.instance.navigateToP35(context);
+    }
   }
   void P36_37Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c32 = ${data.c32}, c33 = ${data.c33} "

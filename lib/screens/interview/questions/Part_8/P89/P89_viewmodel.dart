@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
@@ -11,6 +12,7 @@ class P89ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P89ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
+  var dichVuTaiChinhModel = DichVuTaiChinhModel();
 
   @override
   void onInit(BuildContext context) {
@@ -30,7 +32,7 @@ class P89ViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToP88(context);
   }
 
-  void P89Next(thongTinThanhVienModel data) async {
+  void P89Next(DichVuTaiChinhModel data) async {
     _executeDatabase.update("SET c89_A = ${data.c89_A}, c89_B = ${data.c89_B}, "
         "c89_C = ${data.c89_C}, c89_D = ${data.c89_D}, c89_E = ${data.c89_E}, "
         "c89_F = ${data.c89_F}, c89_G = ${data.c89_G} "

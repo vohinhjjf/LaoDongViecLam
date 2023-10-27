@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P70_75_viewmodel.dart';
@@ -19,6 +20,7 @@ class P70_75View extends StatefulWidget {
 class _P70_75ViewState extends State<P70_75View> {
   late P70_75ViewModel p70_75viewModel;
   final _formKey = GlobalKey<FormState>();
+  final focus = FocusNode();
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
   final _dondep = TextEditingController();
   final _sanxuat = TextEditingController();
@@ -39,11 +41,11 @@ class _P70_75ViewState extends State<P70_75View> {
             setState(() {
               thanhvien = p70_75viewModel.thanhvien;
               p70 = p70_75viewModel.thanhvien.c64 ?? 0;
-              _dondep.text = p70_75viewModel.thanhvien.c65.toString();
-              _sanxuat.text = p70_75viewModel.thanhvien.c66.toString();
-              _suachua.text = p70_75viewModel.thanhvien.c67.toString();
-              _giupdo.text = p70_75viewModel.thanhvien.c68.toString();
-              _chamsoc.text = p70_75viewModel.thanhvien.c69.toString();
+              _dondep.text = p70_75viewModel.thanhvien.c65 == null ? "" : p70_75viewModel.thanhvien.c69.toString();
+              _sanxuat.text = p70_75viewModel.thanhvien.c66 == null ? "" : p70_75viewModel.thanhvien.c69.toString();
+              _suachua.text = p70_75viewModel.thanhvien.c67 == null ? "" : p70_75viewModel.thanhvien.c69.toString();
+              _giupdo.text = p70_75viewModel.thanhvien.c68 == null ? "" : p70_75viewModel.thanhvien.c69.toString();
+              _chamsoc.text = p70_75viewModel.thanhvien.c69 == null ? "" : p70_75viewModel.thanhvien.c69.toString();
             })
           });
     });
@@ -59,6 +61,7 @@ class _P70_75ViewState extends State<P70_75View> {
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: mPrimaryColor),
         centerTitle: true,
         title: const UIText(
           text: UIDescribes.informationCommon,
@@ -79,7 +82,7 @@ class _P70_75ViewState extends State<P70_75View> {
                 children: [
                   //P70
                   Visibility(
-                      visible: thanhvien.c69 != 0,
+                      visible: thanhvien.c63 != 0,
                       child: Column(
                         children: [
                           UIRichText(
@@ -149,7 +152,7 @@ class _P70_75ViewState extends State<P70_75View> {
                               });
                             },
                           ),
-                          const SizedBox(height: 10,),
+                          const SizedBox(height: 15,),
                         ],
                       )
                   ),
@@ -172,13 +175,18 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    onFieldSubmitted: (v){
+                      FocusScope.of(context).requestFocus(focus);
+                    },
+                    autofocus: true,
+                    keyboardType: TextInputType.datetime,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 15,),
                   //p72
                   UIRichText(
                     text1: "P72. Trong 7 ngày qua, ",
@@ -199,13 +207,15 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    focusNode: focus,
+                    keyboardType: TextInputType.datetime,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 15,),
                   //p73
                   UIRichText(
                     text1: "P73. Trong 7 ngày qua, ",
@@ -224,13 +234,14 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 15,),
                   //p74
                   UIRichText(
                     text1: "P74. Trong 7 ngày qua, ",
@@ -249,13 +260,14 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 15,),
                   //p75
                   UIRichText(
                     text1: "P75. Trong 7 ngày qua, ",
@@ -273,7 +285,7 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -315,7 +327,7 @@ class _P70_75ViewState extends State<P70_75View> {
                       child: IconButton(
                         onPressed: () {
                           if(_formKey.currentState!.validate()) {
-                            if(thanhvien.c69 != 0 && p70 == 0){
+                            if(thanhvien.c63 != 0 && p70 == 0){
                               showDialog(
                                   context: context,
                                   builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
@@ -347,6 +359,13 @@ class _P70_75ViewState extends State<P70_75View> {
           )
         ],
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigationThanhVien()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

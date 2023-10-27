@@ -50,7 +50,7 @@ class BottomNavigationViewModel extends BaseViewModel {
             print("Đã đăng nhập");
             postData(context1);
           }
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
     );
   }

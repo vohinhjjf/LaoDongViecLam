@@ -6,6 +6,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../components/uis.dart';
+import '../../../../../models/dichVuTaiChinh_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P85_viewmodel.dart';
 
@@ -32,15 +33,15 @@ class _P85ViewState extends State<P85View> {
               () => {
             setState(() {
               thanhvien = p85ViewModel.thanhvien;
-              p85a = p85ViewModel.thanhvien.c85_A ?? 0;
-              p85b = p85ViewModel.thanhvien.c85_B ?? 0;
-              p85c = p85ViewModel.thanhvien.c85_C ?? 0;
-              p85d = p85ViewModel.thanhvien.c85_D ?? 0;
-              p85e = p85ViewModel.thanhvien.c85_E ?? 0;
-              p85f = p85ViewModel.thanhvien.c85_F ?? 0;
-              p85g = p85ViewModel.thanhvien.c85_G ?? 0;
-              p85h = p85ViewModel.thanhvien.c85_H ?? 0;
-              p85i = p85ViewModel.thanhvien.c85_I ?? 0;
+              p85a = p85ViewModel.dichVuTaiChinhModel.c85_A ?? 0;
+              p85b = p85ViewModel.dichVuTaiChinhModel.c85_B ?? 0;
+              p85c = p85ViewModel.dichVuTaiChinhModel.c85_C ?? 0;
+              p85d = p85ViewModel.dichVuTaiChinhModel.c85_D ?? 0;
+              p85e = p85ViewModel.dichVuTaiChinhModel.c85_E ?? 0;
+              p85f = p85ViewModel.dichVuTaiChinhModel.c85_F ?? 0;
+              p85g = p85ViewModel.dichVuTaiChinhModel.c85_G ?? 0;
+              p85h = p85ViewModel.dichVuTaiChinhModel.c85_H ?? 0;
+              p85i = p85ViewModel.dichVuTaiChinhModel.c85_I ?? 0;
             })
           });
     });
@@ -1269,7 +1270,7 @@ class _P85ViewState extends State<P85View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p85ViewModel.P85Next(thongTinThanhVienModel(
+                          p85ViewModel.P85Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c85_A: p85a,

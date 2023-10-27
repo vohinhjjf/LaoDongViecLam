@@ -26,8 +26,13 @@ class P69ViewModel extends BaseViewModel {
     });
   }
 
-  void P69Back() async {
-    NavigationServices.instance.navigateToP67_68(context);
+  void P69Back(thongTinThanhVienModel data) async {
+    if(thanhvien.c33A == 1||thanhvien.c33A == 2||thanhvien.c33A == 3||
+        thanhvien.c33A == 4||thanhvien.c33A == 5||thanhvien.c33A == 6){
+      NavigationServices.instance.navigateToP38(context);
+    } else {
+      NavigationServices.instance.navigateToP67_68(context);
+    }
   }
 
   void P69Next(thongTinThanhVienModel data) async {

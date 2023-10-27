@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/models/dichVuTaiChinh_model.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
@@ -32,15 +33,15 @@ class _P98ViewState extends State<P98View> {
               () => {
             setState(() {
               thanhvien = p98ViewModel.thanhvien;
-              p98a = p98ViewModel.thanhvien.c98_A ?? 0;
-              p98b = p98ViewModel.thanhvien.c98_B ?? 0;
-              p98c = p98ViewModel.thanhvien.c98_C ?? 0;
-              p98d = p98ViewModel.thanhvien.c98_D ?? 0;
-              p98e = p98ViewModel.thanhvien.c98_E ?? 0;
-              p98f = p98ViewModel.thanhvien.c98_F ?? 0;
-              p98g = p98ViewModel.thanhvien.c98_G ?? 0;
-              p98h = p98ViewModel.thanhvien.c98_H ?? 0;
-              p98i = p98ViewModel.thanhvien.c98_I ?? 0;
+              p98a = p98ViewModel.dichVuTaiChinhModel.c98_A ?? 0;
+              p98b = p98ViewModel.dichVuTaiChinhModel.c98_B ?? 0;
+              p98c = p98ViewModel.dichVuTaiChinhModel.c98_C ?? 0;
+              p98d = p98ViewModel.dichVuTaiChinhModel.c98_D ?? 0;
+              p98e = p98ViewModel.dichVuTaiChinhModel.c98_E ?? 0;
+              p98f = p98ViewModel.dichVuTaiChinhModel.c98_F ?? 0;
+              p98g = p98ViewModel.dichVuTaiChinhModel.c98_G ?? 0;
+              p98h = p98ViewModel.dichVuTaiChinhModel.c98_H ?? 0;
+              p98i = p98ViewModel.dichVuTaiChinhModel.c98_I ?? 0;
             })
           });
     });
@@ -1268,7 +1269,7 @@ class _P98ViewState extends State<P98View> {
                               side: BorderSide(color: Colors.black54, width: 2))),
                       child: IconButton(
                         onPressed: () {
-                          p98ViewModel.P98Next(thongTinThanhVienModel(
+                          p98ViewModel.P98Next(DichVuTaiChinhModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c98_A: p98a,
