@@ -234,11 +234,11 @@ class _LoginViewState extends State<LoginView> {
                                 loginViewModel.navigateToBottomNavigation()
                               } else
                                 {
-                                  _showErrorDialog('Đăng nhập thất bại!')
+                                  _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng\nVui lòng kiểm tra lại!')
                                 }
                             }).onError((error, stackTrace) =>
                             {
-                              _showErrorDialog('Đăng nhập thất bại!')
+                              _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng\nVui lòng kiểm tra lại!')
                             });
                           }
                         }
@@ -264,7 +264,7 @@ class _LoginViewState extends State<LoginView> {
                   padding: EdgeInsets.only(top: 15.h, left: 20.w,right: 20.w),
                   child: const UIText(
                     textAlign: TextAlign.center,
-                    text: "Version 1.0.0",
+                    text: "Version 0.0.1",
                     textColor: mPrimaryColor,
                     textFontSize:fontMedium,
                     isBold: true,
@@ -309,7 +309,7 @@ class _LoginViewState extends State<LoginView> {
                 height: 20.0,
               ),
               ElevatedButton(
-                  child: const Text('OK',
+                  child: const Text('Đồng ý',
                       style: TextStyle(
                           
                           color: Colors.white, fontSize: 15)),
