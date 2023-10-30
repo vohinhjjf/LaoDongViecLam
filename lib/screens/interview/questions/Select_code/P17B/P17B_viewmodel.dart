@@ -134,15 +134,15 @@ class P17BViewModel extends BaseViewModel {
       }
     }
     if(select == ""){
-      select_sanpham = select_sanpham;
+      list = select_sanpham;
     } else{
       select_sanpham = list;
     }
-    return select_sanpham;
+    return list;
   }
 
   void P17BBack() async {
-    NavigationServices.instance.navigateToDetailInformation(context);
+    NavigationServices.instance.navigateToP17(context);
   }
 
   void P17BNext(thongTinThanhVienModel data) async {

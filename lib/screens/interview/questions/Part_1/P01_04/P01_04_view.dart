@@ -41,10 +41,10 @@ class _P01_04ViewState extends State<P01_04View> {
 
   int tinh_tuoi(){
     var tuoi = 0;
-    if(int.parse(month.substring(5)) >= 1 && int.parse(month.substring(5)) < ThangDT){
+    if(int.parse(month) >= 1 && int.parse(month) < ThangDT){
       tuoi = (DateTime.now().year - int.parse(_year.text));
     }
-    else if(int.parse(month.substring(5)) >= ThangDT && int.parse(month.substring(5)) < 13){
+    else if(int.parse(month) >= ThangDT && int.parse(month) < 13){
       tuoi = (DateTime.now().year - int.parse(_year.text) - 1);
     }
     else{
@@ -314,51 +314,51 @@ class _P01_04ViewState extends State<P01_04View> {
                               child: Text("Chọn tháng"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 1",
+                              value: "01",
                               child: Text("Tháng 1"),
                             ),
                             DropdownMenuItem(
-                                value: "Tháng 2",
+                                value: "02",
                                 child: Text("Tháng 2")
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 3",
+                              value: "03",
                               child:  Text("Tháng 3"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 4",
+                              value: "04",
                               child:  Text("Tháng 4"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 5",
+                              value: "05",
                               child:  Text("Tháng 5"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 6",
+                              value: "06",
                               child:  Text("Tháng 6"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 7",
+                              value: "07",
                               child:  Text("Tháng 7"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 8",
+                              value: "08",
                               child:  Text("Tháng 8"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 9",
+                              value: "09",
                               child:  Text("Tháng 9"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 10",
+                              value: "10",
                               child:  Text("Tháng 10"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 11",
+                              value: "11",
                               child:  Text("Tháng 11"),
                             ),
                             DropdownMenuItem(
-                              value: "Tháng 12",
+                              value: "12",
                               child: Text("Tháng 12"),
                             ),
                           ],

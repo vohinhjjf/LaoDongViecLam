@@ -23,7 +23,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
   , selected3 = false, selected4 = false, selected5 = false
   , selected6 = false, selected7 = false, selected8 = false;
   String month ='', province ="", district ="", commune="", area='',name_area='',
-      ttnt='', hoso='', name='', dia_chi='';
+      ttnt='', hoso='', name='', dia_chi='', so_dien_thoai = '';
   List<thongTinThanhVienNKTTModel> list_NKTT = [];
   var dataNKTT = thongTinHoNKTTModel();
   var dataDSH = DoiSongHoModel();
@@ -54,6 +54,8 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               :drawerNavigationModel.data.tenChuHo.toString();
           dia_chi = drawerNavigationModel.data.diachi == null ?""
               :drawerNavigationModel.data.diachi.toString();
+          so_dien_thoai = drawerNavigationModel.data.dienThoai == null ?""
+              :drawerNavigationModel.data.dienThoai.toString();
           list_NKTT = drawerNavigationModel.list;
           dataNKTT = drawerNavigationModel.dataNKTT;
           dataDSH = drawerNavigationModel.dataDSH;
@@ -903,87 +905,9 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                     height: 1,
                     color: Colors.white,
                   ),
-                  //A5
-                  ExpansionTile(
-                      backgroundColor: mPrimaryColor,
-                      collapsedBackgroundColor: mPrimaryColor,
-                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                      onExpansionChanged: (z) {
-                        setState(() {
-                          selected5 = !selected5;
-                        });
-                      },
-                      title: const UIText(
-                        text: 'PHIẾU 1/DL-HO',
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-                      ),
-                      tilePadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                      trailing: Icon(
-                        selected5 ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                        color: Colors.white,
-                      ),
-
-                      children: []
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  //A6
-                  ExpansionTile(
-                      backgroundColor: mPrimaryColor,
-                      collapsedBackgroundColor: mPrimaryColor,
-                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                      onExpansionChanged: (z) {
-                        setState(() {
-                          selected6 = !selected6;
-                        });
-                      },
-                      title: const UIText(
-                        text: 'PHIẾU 2/DL-NĐ',
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-                      ),
-                      tilePadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                      trailing: Icon(
-                        selected6 ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                        color: Colors.white,
-                      ),
-
-                      children: []
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  //A7
-                  ExpansionTile(
-                      backgroundColor: mPrimaryColor,
-                      collapsedBackgroundColor: mPrimaryColor,
-                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                      onExpansionChanged: (z) {
-                        setState(() {
-                          selected7 = !selected7;
-                        });
-                      },
-                      title: const UIText(
-                        text: 'PHIẾU 3/DL-NN',
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-                      ),
-                      tilePadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                      trailing: Icon(
-                        selected7 ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                        color: Colors.white,
-                      ),
-
-                      children: []
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.white,
-                  ),
                   //A8
                   ExpansionTile(
-                      backgroundColor: mPrimaryColor,
+                      backgroundColor: Colors.white,
                       collapsedBackgroundColor: mPrimaryColor,
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       onExpansionChanged: (z) {
@@ -991,31 +915,36 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                           selected8 = !selected8;
                         });
                       },
-                      title: const UIText(
+                      title: UIText(
                         text: 'SỐ ĐIỆN THOẠI',
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: selected8 ? mPrimaryColor : Colors.white),
                       ),
                       tilePadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                       trailing: Icon(
                         selected8 ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                        color: Colors.white,
+                        color: selected8 ? mPrimaryColor : Colors.white,
                       ),
-
                       children: [
-                        ExpansionTile(
-                          onExpansionChanged: (z) {
-                            setState(() {
-
-                            });
+                        Container(
+                          height: 1,
+                          color: mPrimaryColor,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            drawerNavigationModel.navigateToRoute(19, list_NKTT.firstWhere((e) => e.q6_New == 1).idtv!);
                           },
-                          title: const UIText(
-                            text: "Số điện thoại",
-                            textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white),
+                          title: UIText(
+                            text: so_dien_thoai,
+                            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: mPrimaryColor),
+                            maxLines: 1,
+                            isBold: true,
                           ),
-                          subtitle: const UIText(
-                            text: "",
-                            textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
+                          contentPadding: const EdgeInsets.only(left: 20),
+                          subtitle: UIText(
+                            text: '',
+                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
                           ),
+                          tileColor: Colors.white,
                         ),
                       ]
                   ),
@@ -1233,6 +1162,25 @@ class _DrawerNavigationThanhVienState extends State<DrawerNavigationThanhVien> {
                     ],
                   );
                 }
+            ),
+            Container(
+              height: 1,
+              color: Colors.white,
+            ),
+            ListTile(
+              tileColor: mPrimaryColor,
+              trailing: const Icon(Icons.exit_to_app ,
+                color: Colors.white,
+              ),
+              title: const UIText(
+                text: 'THOÁT',
+                textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+              ),
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIStopDialog());
+              },
             ),
           ],
         ),

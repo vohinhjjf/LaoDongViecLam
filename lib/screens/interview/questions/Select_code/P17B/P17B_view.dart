@@ -133,7 +133,7 @@ class _P17BViewState extends State<P17BView> {
                     controller: _manganh,
                     readOnly: true,
                     onTap: (){
-                      _showAddDialog(_nganh.text);
+                      _showAddDialog(_nganh.text.toLowerCase());
                     },
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -198,6 +198,7 @@ class _P17BViewState extends State<P17BView> {
     showDialog(
         context: context,
         builder: (context) {
+          String select = linh_vuc;
           _text_find.text = linh_vuc;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -228,6 +229,9 @@ class _P17BViewState extends State<P17BView> {
                         isBold: true,
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
                 content: SingleChildScrollView(
@@ -236,7 +240,13 @@ class _P17BViewState extends State<P17BView> {
                     children: [
                       TextFormField(
                         controller: _text_find,
-                        readOnly: true,
+                        onChanged: (value){
+                          //Navigator.of(context).pop();
+                          setState(() {
+                            select = _text_find.text;
+                          });
+                          //_showAddDialog(linh_vuc, san_pham,_text_find.text, false);
+                        },
                         decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -245,11 +255,11 @@ class _P17BViewState extends State<P17BView> {
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p17BviewModel.queryList(list_daotao, _text_find.text).length <= 4) ? p17BviewModel.queryList(list_daotao, _text_find.text).length*60 : 300,
+                        height: (p17BviewModel.queryList(list_daotao, select).length <= 4) ? p17BviewModel.queryList(list_daotao, select).length*60 : 400,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p17BviewModel.queryList(list_daotao, _text_find.text).length,
+                          itemCount: p17BviewModel.queryList(list_daotao, select).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -257,8 +267,8 @@ class _P17BViewState extends State<P17BView> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    value = p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ma"];
-                                    _manganh.text = '$value - ${p17BviewModel.queryList(list_daotao, _text_find.text)[index]['Ten']}';
+                                    value = p17BviewModel.queryList(list_daotao, select)[index]["Ma"];
+                                    _manganh.text = '$value - ${p17BviewModel.queryList(list_daotao, select)[index]['Ten']}';
                                   });
                                 },
                                 child: Row(
@@ -268,7 +278,7 @@ class _P17BViewState extends State<P17BView> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ma"]} - ${p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ten"]}',
+                                        text: '${p17BviewModel.queryList(list_daotao, select)[index]["Ma"]} - ${p17BviewModel.queryList(list_daotao, select)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -279,7 +289,7 @@ class _P17BViewState extends State<P17BView> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p17BviewModel.queryList(list_daotao, _text_find.text)[index]["Ten"], p17BviewModel.queryList(list_daotao, _text_find.text)[index]["MoTa"]);
+                                          _showDetailProduct(p17BviewModel.queryList(list_daotao, select)[index]["Ten"], p17BviewModel.queryList(list_daotao, select)[index]["MoTa"]);
                                         }
                                     ),
                                   ],

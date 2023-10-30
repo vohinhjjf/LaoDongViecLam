@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lao_dong_viec_lam/models/doiSongHo_model.dart';
 
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
@@ -36,13 +37,23 @@ class P70_75ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c64 = ${data.c64}, c65 = ${data.c65}, c66 = ${data.c66},"
         " c67 = ${data.c67}, c68 = ${data.c68}, c69 = ${data.c69} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    await _executeDatabase.getListTTTV(idho).then((value) {
+    await _executeDatabase.getListTTTV(idho).then((value) async {
       if(value.length > 1){
         if(idtv == value.first.idtv){ // Nếu tv hiện tại là đầu tiên
           if(value[1].c01 == 1){ // tv thứ 2 là chủ hộ
             if(value[1].idtv == value.last.idtv){ // tv thứ 2 là tv cuối cùng
               _sPrefAppModel.setIDTV(value[1].idtv!);
-              NavigationServices.instance.navigateToP76_77(context);
+              await _executeDatabase.checkDSH(idho).then((value) async {
+                if(value) {
+                  print(1);
+                  await _executeDatabase.setDSH(DoiSongHoModel(
+                    idho: idho,
+                    thangDT: data.thangDT,
+                    namDT: data.namDT,
+                  ));
+                }
+                NavigationServices.instance.navigateToP76_77(context);
+              });
               print(1);
             } else { //tv thứ 2 ko phải cuối cùng
               _sPrefAppModel.setIDTV(value[2].idtv!);
@@ -61,7 +72,17 @@ class P70_75ViewModel extends BaseViewModel {
             print(4);
           } else {
             _sPrefAppModel.setIDTV(value.firstWhere((e) => e.c01 == 1).idtv!);
-            NavigationServices.instance.navigateToP76_77(context);
+            await _executeDatabase.checkDSH(idho).then((value) async {
+              if(value) {
+                print(1);
+                await _executeDatabase.setDSH(DoiSongHoModel(
+                  idho: idho,
+                  thangDT: data.thangDT,
+                  namDT: data.namDT,
+                ));
+              }
+              NavigationServices.instance.navigateToP76_77(context);
+            });
             print(5);
           }
         } else { // tv hiện tại nằm giữa
@@ -73,7 +94,17 @@ class P70_75ViewModel extends BaseViewModel {
             if(value[value.indexWhere((e) => e.idtv == idtv) + 1].c01 == 1){ // tv tiếp theo là chủ hộ
               if(value[value.indexWhere((e) => e.idtv == idtv) + 1].idtv == value.last.idtv){ // tv tiếp theo là tv cuối cùng
                 _sPrefAppModel.setIDTV(value[value.indexWhere((e) => e.idtv == idtv) + 1].idtv!);
-                NavigationServices.instance.navigateToP76_77(context);
+                await _executeDatabase.checkDSH(idho).then((value) async {
+                  if(value) {
+                    print(1);
+                    await _executeDatabase.setDSH(DoiSongHoModel(
+                      idho: idho,
+                      thangDT: data.thangDT,
+                      namDT: data.namDT,
+                    ));
+                  }
+                  NavigationServices.instance.navigateToP76_77(context);
+                });
                 print(7);
               } else { //tv tiếp theo ko phải cuối cùng
                 _sPrefAppModel.setIDTV(value[value.indexWhere((e) => e.idtv == idtv) + 2].idtv!);
@@ -88,7 +119,17 @@ class P70_75ViewModel extends BaseViewModel {
           }
         }
       } else {
-        NavigationServices.instance.navigateToP76_77(context);
+        await _executeDatabase.checkDSH(idho).then((value) async {
+          if(value) {
+            print(1);
+            await _executeDatabase.setDSH(DoiSongHoModel(
+              idho: idho,
+              thangDT: data.thangDT,
+              namDT: data.namDT,
+            ));
+          }
+          NavigationServices.instance.navigateToP76_77(context);
+        });
         print(10);
       }
     });

@@ -26,7 +26,7 @@ class GeneralInformationViewModel extends BaseViewModel {
     String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.getHo(id).then((value) async {
       data = value;
-      await _executeDatabase.getArea(month).then((value1){
+      await _executeDatabase.getArea(int.parse(month)).then((value1){
         data_area = value1.singleWhere((e) => e.maDiaBan == data.maDiaBan);
       });
     });

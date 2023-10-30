@@ -36,11 +36,13 @@ class DrawerNavigationModel extends BaseViewModel {
       data = value,
     });
     await _executeDatabase.getNKTT(0, "", idho).then((value) async => {
-      logic(value)
+      logic(value),
+      if(value.isNotEmpty){
+        await _executeDatabase.getHoNKTT(idho).then((value) => dataNKTT = value),
+        await _executeDatabase.getDoiSongHo(idho).then((value) => dataDSH = value)
+      }
     });
-    await _executeDatabase.getHoNKTT(idho).then((value) => dataNKTT = value);
     await _executeDatabase.getListTTTV(idho).then((value) => list_tttv = value);
-    await _executeDatabase.getDoiSongHo(idho).then((value) => dataDSH = value);
   }
 
   void logic(List<thongTinThanhVienNKTTModel> list_nktt){
@@ -110,6 +112,10 @@ class DrawerNavigationModel extends BaseViewModel {
       case 18: {
         await _sPrefAppModel.setIDTV(idtv);
         NavigationServices.instance.navigateToP84(context);
+      };break;
+      case 19: {
+        await _sPrefAppModel.setIDTV(idtv);
+        NavigationServices.instance.navigateToInformationProvider(context);
       };break;
       /*default: NavigationServices.instance.navigateToSync(context);break;*/
     }

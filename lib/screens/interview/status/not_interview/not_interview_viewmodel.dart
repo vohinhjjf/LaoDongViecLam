@@ -29,8 +29,6 @@ class NotInterviewedViewModel extends BaseViewModel {
     });
   }
 
-  /*Future<List<BangKeCsModel>> searchData(String name) =>
-      _executeDatabase.getDanhSachBangKeCs(1, name);*/
 
   void notInterviewed(BangKeCsModel bangKeCsModel) async {
     await _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
@@ -44,6 +42,8 @@ class NotInterviewedViewModel extends BaseViewModel {
                 trangThai: 2
             )
         );
+      } else {
+        await _executeDatabase.updateTrangThai(bangKeCsModel.idho!, 2);
       }
     });
     NavigationServices.instance.navigateToOperatingStatus(context);

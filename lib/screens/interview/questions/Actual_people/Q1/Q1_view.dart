@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,6 +125,7 @@ class _Q1ViewState extends State<Q1View> {
                         }
                       }
                     },
+                    autofocus: true,
                     textCapitalization: TextCapitalization.words,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
@@ -152,7 +154,7 @@ class _Q1ViewState extends State<Q1View> {
                         color: Colors.white,
                         child: InkWell(
                           onTap: () {
-
+                            _showName(list_name[index].q1_New!, list_name[index].idtv!, index);
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
@@ -329,5 +331,85 @@ class _Q1ViewState extends State<Q1View> {
             ),
           ),
         ));
+  }
+
+  _showName(String name, int idtv, int stt){
+    var _name = TextEditingController();
+    _name.text = name;
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          titlePadding: const EdgeInsets.all(20),
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          title: TextField(
+            controller: _name,
+            textCapitalization: TextCapitalization.words,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(
+                  '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+              FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+            ],
+            keyboardType: TextInputType.text,
+            style: const TextStyle(color: Colors.black),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderSide: BorderSide(color: mPrimaryColor)),
+            ),
+          ),
+          content: Container(
+            height: 60,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                MaterialButton(
+                    height: 60,
+                    minWidth: (MediaQuery.of(context).size.width-80)/2,
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black,width: 0.1)
+                    ),
+                    child: const UIText(
+                        text: 'Đồng ý',
+                        textColor: mPrimaryColor,
+                        textFontSize: fontMedium,
+                      isBold: true,
+                    ),
+                    onPressed: (){
+                      q1viewModel.updateName(thongTinThanhVienNKTTModel(
+                        idtv: idtv,
+                        q1_New: _name.text
+                      ));
+                      setState(() {
+                        list_name[stt].q1_New = _name.text;
+                      });
+                      Navigator.of(context).pop();
+                    }
+                ),
+                MaterialButton(
+                    height: 60,
+                    minWidth: (MediaQuery.of(context).size.width-80)/2,
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black,width: 0.1)
+                    ),
+                    child: const UIText(
+                      text: 'Hủy',
+                      textFontSize: fontMedium,
+                      textAlign: TextAlign.center,
+                      textColor: mPrimaryColor,
+                      isBold: true,
+                    ),
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                    }
+                )
+              ],
+            ),
+          ),
+        )
+    );
   }
 }

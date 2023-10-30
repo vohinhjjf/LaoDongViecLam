@@ -45,7 +45,7 @@ class SyncViewModel extends BaseViewModel {
           thongTinHoNKTT: await _executeDatabase.getHoNKTT(idho),
           lst_thongTinThanhVienNKTT: await _executeDatabase.getNKTT(0, '', idho),
           lst_thongTinThanhVien: await _executeDatabase.getListTTTV(idho),
-          lst_DoiSongHo: [await _executeDatabase.getDoiSongHo(idho)]
+          DoiSongHo: await _executeDatabase.getDoiSongHo(idho)
       ));
     }
     return await _syncServices.Sync(token, listphieuDieuTra, _executeDatabase);

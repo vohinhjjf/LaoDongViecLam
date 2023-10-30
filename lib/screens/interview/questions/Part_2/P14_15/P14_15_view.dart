@@ -166,6 +166,7 @@ class _P14_15ViewState extends State<P14_15View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _trinhdo.length,
                   itemBuilder: (context, index) {
                     return ListTile(

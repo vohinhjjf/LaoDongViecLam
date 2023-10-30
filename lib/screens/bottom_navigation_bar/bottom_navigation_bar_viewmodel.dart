@@ -61,19 +61,21 @@ class BottomNavigationViewModel extends BaseViewModel {
     final fetchResponse3 = await _syncServices.fetchBangkeThangDT(_sPrefAppModel.accessToken, _sPrefAppModel.month);
     print("Token: "+fetchResponse1.toString());
     if (fetchResponse1.toString().isNotEmpty && fetchResponse2.toString().isNotEmpty && fetchResponse3.toString().isNotEmpty) {
-      // delete current db
-      //await _executeDatabase.deleteDatabase();
-
-      // set bangkehomodel
       List listBangKeCsModel = fetchResponse1.map((c) => BangKeCsModel.fromJson(c)).toList();
-      await _executeDatabase.setBangKeHo(listBangKeCsModel);
-      //set Area
       List listAreaModel = fetchResponse2.map((c) => AreaModel.fromJson(c)).toList();
-      await _executeDatabase.setArea(listAreaModel);
-      //set Area
       List listBangKeThangDTModel = fetchResponse3.map((c) => BangKeThangDTModel.fromJson(c)).toList();
-      await _executeDatabase.setBangKeThangDTModel(listBangKeThangDTModel);
-
+      // delete current db
+      await _executeDatabase.getArea(int.parse(_sPrefAppModel.month)).then((value) async {
+        print("Check: $value");
+        if(value.isEmpty){
+          // set bangkehomodel
+          await _executeDatabase.setBangKeHo(listBangKeCsModel);
+          //set Area
+          await _executeDatabase.setArea(listAreaModel);
+          //set Bk_TDT
+          await _executeDatabase.setBangKeThangDTModel(listBangKeThangDTModel);
+        }
+      });
       _sPrefAppModel.setAutoSync(false);
     }
     Navigator.of(context).pop();
@@ -88,11 +90,13 @@ class BottomNavigationViewModel extends BaseViewModel {
     var errorMessage = '', message = '';
     bool isSuccess = false;
     log('BODY: ${jsonEncode(body)}');
-
     final _request = await _syncServices.syncData(_sPrefAppModel.accessToken, _sPrefAppModel.month);
     if (_request == 200) {
       log("=========== SUCCESS ===========");
       //updateBangke();
+      await _executeDatabase.checkDatabase().then((value) {
+        print("Check: $value");
+      });
     }
     else if (_request == 401) {
       showDialog(

@@ -223,7 +223,6 @@ class _P17ViewState extends State<P17View> {
                                 idho: thanhvien.idho,
                                 idtv: thanhvien.idtv,
                                 c15A: _nganh.text,
-                                c15B: null,
                                 c15C: int.parse(_nam.text),
                               ));
                             }

@@ -13,7 +13,7 @@ class PhieuDieuTraModel {
   late thongTinHoNKTTModel? thongTinHoNKTT;
   late List<thongTinThanhVienNKTTModel>? lst_thongTinThanhVienNKTT;
   late List<thongTinThanhVienModel>? lst_thongTinThanhVien;
-  late List<DoiSongHoModel>? lst_DoiSongHo;
+  late DoiSongHoModel? DoiSongHo;
 
   PhieuDieuTraModel(
       {this.bangKeThangDT,
@@ -21,7 +21,7 @@ class PhieuDieuTraModel {
         this.thongTinHoNKTT,
         this.lst_thongTinThanhVienNKTT,
         this.lst_thongTinThanhVien,
-        this.lst_DoiSongHo,
+        this.DoiSongHo,
       });
 
   PhieuDieuTraModel.fromJson(Map<String, dynamic> json) {
@@ -30,17 +30,17 @@ class PhieuDieuTraModel {
     thongTinHoNKTT = json['diaChi_BK'];
     lst_thongTinThanhVienNKTT = json['tinhTrang_DTBK'];
     lst_thongTinThanhVien = json['tinhTrang_HDBK'];
-    lst_DoiSongHo = json['phieuTonGiao'];
+    DoiSongHo = json['phieuTonGiao'];
   }
 
   String toJson() {
     return jsonEncode({
-      'bangKeHo_ThangDT': bangKeThangDT!.toJson(),
-      'thongTinHo': thongTinHo!.toJson(),
-      'thongTinHoNKTT': thongTinHoNKTT!.toJson(),
-      'thongTinThanhVienNKTT': lst_thongTinThanhVienNKTT!.map((e) => e.toJson()).toList(),
-      'thongTinThanhVien': lst_thongTinThanhVien!.map((e) => e.toJson()).toList(),
-      'thongTinDoiSongHo': lst_DoiSongHo!.map((e) => e.toJson()).toList(),
+      'BangKeHo_ThangDT': bangKeThangDT!.toJson(),
+      'ThongTinHo': thongTinHo!.toJson(),
+      'ThongTinHoNKTT': thongTinHoNKTT!.toJson(),
+      'ThongTinThanhVienNKTT': lst_thongTinThanhVienNKTT!.map((e) => e.toJson()).toList(),
+      'ThongTinThanhVien': lst_thongTinThanhVien!.map((e) => e.toJson()).toList(),
+      'ThongTinDoiSongHo': DoiSongHo!.toJson(),
     });
   }
 

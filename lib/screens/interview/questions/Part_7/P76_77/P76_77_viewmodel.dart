@@ -35,17 +35,10 @@ class P76_77ViewModel extends BaseViewModel {
   }
 
   void P76_77Next(DoiSongHoModel data) async {
-    await _executeDatabase.checkDSH(data.idho!).then((value) async {
-      if(value) {
-        print(1);
-        await _executeDatabase.setDSH(data);
-      } else {
-        print(2);
-        await _executeDatabase.updateDSH(
-            "SET c62_M1 = ${data.c62_M1}, c62_M2 = ${data.c62_M2} "
-                "WHERE idho = ${data.idho}");
-      }
-    });
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.updateDSH(
+        "SET c62_M1 = ${data.c62_M1}, c62_M2 = ${data.c62_M2} "
+            "WHERE idho = ${data.idho}");
     if(data.c62_M2 == 3) {
       NavigationServices.instance.navigateToP78(context);
     } else {

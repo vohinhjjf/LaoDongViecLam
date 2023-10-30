@@ -5,6 +5,7 @@ import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';
 import '../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../models/thongTinHo_model.dart';
+import '../../../../models/thongTinThanhVien_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
 
 class GPSViewModel extends BaseViewModel {
@@ -12,6 +13,7 @@ class GPSViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   GPSViewModel(this._executeDatabase, this._sPrefAppModel);
   var thongTinHo = thongTinHoModel();
+  List<thongTinThanhVienModel> list = [];
 
   @override
   void onInit(BuildContext context) {
@@ -22,6 +24,7 @@ class GPSViewModel extends BaseViewModel {
   void fetchData() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.getHo(idho).then((value) => thongTinHo = value);
+    await _executeDatabase.getListTTTV(idho).then((value) => list = value);
   }
 
 
@@ -44,8 +47,16 @@ class GPSViewModel extends BaseViewModel {
     return await _executeDatabase.getKD_VD(idho);
   }
 
-  void finish(String thoigiankt) async {
+  void finish(String thoigiankt, List<thongTinThanhVienModel> list) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-    await _executeDatabase.updateTimeKT(idho, thoigiankt, thoigiankt);
+    await _executeDatabase.updateTimeKT(
+                idho,
+                thoigiankt,
+                thoigiankt,
+                list.length,
+                list.where((e) => e.c02 == 2).length,
+                list.where((e) => e.c04! >= 15).length,
+                list.where((e) => e.c02 == 2 && e.c04! >= 15).length,
+    );
   }
 }

@@ -28,7 +28,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = completeInterviewViewModel.data;
-          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai != 2).toList();
+          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 3 || e.trangThai == 9).toList();
         })
       });
     });

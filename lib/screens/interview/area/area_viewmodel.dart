@@ -24,8 +24,8 @@ class AreaViewModel extends BaseViewModel {
   }
 
   getArea() async {
-    String month = _sPrefAppModel.month;
-    await _executeDatabase.getArea(month).then((value1) async {
+    String month = await _sPrefAppModel.month;
+    await _executeDatabase.getArea(int.parse(month)).then((value1) async {
       list_area = value1;
       await _executeDatabase.getHouseHold(list_area[0].iddb!).then((value2) {
         list_household = value2;

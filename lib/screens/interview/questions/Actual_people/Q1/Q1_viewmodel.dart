@@ -32,6 +32,15 @@ class Q1ViewModel extends BaseViewModel {
     ));
   }
 
+  updateName(thongTinThanhVienNKTTModel data) async {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.updateNameNTKK(thongTinThanhVienNKTTModel(
+      idho: idho,
+      idtv: data.idtv,
+      q1_New: data.q1_New
+    ));
+  }
+
   getListNKTT() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     month = _sPrefAppModel.month;
@@ -47,6 +56,7 @@ class Q1ViewModel extends BaseViewModel {
   void Q1Back() async {
     NavigationServices.instance.navigateToDetailInformation(context);
   }
+
   void Q1Next() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.setHoNKTT(thongTinHoNKTTModel(

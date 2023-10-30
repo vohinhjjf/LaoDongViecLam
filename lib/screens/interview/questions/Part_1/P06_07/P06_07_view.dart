@@ -309,12 +309,20 @@ class _P06_07ViewState extends State<P06_07View> {
                                 builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
                             );
                           }else {
-                            p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                            if(groupValue == 2){
+                              p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
                                 idho: thanhvien.idho,
                                 idtv: thanhvien.idtv,
                                 c05: groupValue,
-                                c06: groupValue == 2 ? nation : null,
-                            ));
+                                c06: nation,
+                              ));
+                            } else {
+                              p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c05: groupValue,
+                              ));
+                            }
                           }
                         },
                         icon: const Icon(

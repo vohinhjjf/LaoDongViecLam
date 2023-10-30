@@ -52,7 +52,7 @@ class _P23ViewState extends State<P23View> {
             setState(() {
               thanhvien = p23ViewModel.thanhvien;
               p23 = p23ViewModel.thanhvien.c21 ?? 0;
-              _orther.text = p23ViewModel.thanhvien.c21K.toString();
+              _orther.text = p23ViewModel.thanhvien.c21K ?? "";
             })
           });
     });
@@ -96,6 +96,7 @@ class _P23ViewState extends State<P23View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _lydo.length,
                   itemBuilder: (context, index) {
                     return ListTile(

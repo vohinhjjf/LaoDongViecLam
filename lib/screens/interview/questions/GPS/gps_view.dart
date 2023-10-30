@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/thongTinThanhVien_model.dart';
 import 'gps_viewmodel.dart';
 
 class GPSView extends StatefulWidget {
@@ -23,6 +24,7 @@ class Body extends State<GPSView> {
   String long = "", lat = "";
   late StreamSubscription<Position> positionStream;
   bool check = false;
+  List<thongTinThanhVienModel> list = [];
 
   @override
   void initState() {
@@ -32,6 +34,7 @@ class Body extends State<GPSView> {
       gpsViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
+          list = gpsViewModel.list;
           if(gpsViewModel.thongTinHo.kinhDo == null){
             check = false;
           } else {
@@ -116,7 +119,7 @@ class Body extends State<GPSView> {
             child: Column(
               children: [
                 MaterialButton(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   //color: Colors.redAccent,
                   minWidth: 240.w,
                   onPressed: () async {
@@ -152,17 +155,17 @@ class Body extends State<GPSView> {
                   height: 15,
                 ),
                 MaterialButton(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   minWidth: 240.w,
                   onPressed: () async {
                     await gpsViewModel.checkGPS().then((value) => {
                       if(value){
-                        gpsViewModel.finish(DateTime.now().toString()),
+                        gpsViewModel.finish(DateTime.now().toString(), list),
                         _showFinishDialog()
                       } else {
                         showDialog(
                           context: context,
-                          builder: (_) => UIWarningDialog(waring: 'Chưa định vị GPS!')
+                          builder: (_) => const UIWarningDialog(waring: 'Chưa định vị GPS!')
                         )
                       }
                     });

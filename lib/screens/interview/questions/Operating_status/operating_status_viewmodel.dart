@@ -47,7 +47,8 @@ class OperatingStatusViewModel extends BaseViewModel {
                    tenChuHo: value.tenChuHo,
                    diachi: value.diaChi,
                    maDTV: _sPrefAppModel.userModel.userName,
-                   trangThai: status
+                   trangThai: status,
+                  ngayPhongVan: DateTime.now().toString()
                )
            );
          });

@@ -90,19 +90,13 @@ class _P33ViewState extends State<P33View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  const UIText(
-                    text: "1. CÓ\n2. KHÔNG",
-                    textColor: Colors.black,
-                    textFontSize:fontLarge,
-                  ),
-                  const SizedBox(height: 5,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
                         width: 45,
                         child: UIText(
-                          text: "1",
+                          text: "Có",
                           textColor: Colors.black,
                           textFontSize: fontSmall,
                           textAlign: TextAlign.center,
@@ -112,7 +106,7 @@ class _P33ViewState extends State<P33View> {
                       SizedBox(
                         width: 45,
                         child: UIText(
-                          text: "2",
+                          text: "Không",
                           textColor: Colors.black,
                           textFontSize: fontSmall,
                           textAlign: TextAlign.center,
@@ -120,6 +114,7 @@ class _P33ViewState extends State<P33View> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 5,),
                   //a
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
@@ -131,7 +126,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Nộp đơn xin việc",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -184,7 +179,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Liên hệ/Tư vấn cơ sở dịch vụ việc làm",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -237,7 +232,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Qua bạn bè/người thân",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -290,7 +285,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Đặt quảng cáo tìm việc",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -343,7 +338,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Qua thông báo tuyển dụng (trên mạng/báo in)",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -396,7 +391,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Đã tham gia phỏng vấn",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -447,7 +442,7 @@ class _P33ViewState extends State<P33View> {
                         const UIText(
                           text: "Tìm việc tự do",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                         ),
                         Row(
@@ -499,7 +494,7 @@ class _P33ViewState extends State<P33View> {
                             child: UIText(
                               text: "Chuẩn bị để bắt đầu hoạt động sản xuất kinh doanh",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -550,7 +545,7 @@ class _P33ViewState extends State<P33View> {
                         const UIText(
                           text: "Khác(Ghi cụ thể)",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                         ),
                         Row(

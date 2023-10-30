@@ -33,6 +33,6 @@ class DetailInformationViewModel extends BaseViewModel {
   void HouseholdNext(String name,   String diachi) {
     String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     _executeDatabase.updateTTHo(name, diachi, id);
-    NavigationServices.instance.navigateToP17B(context);
+    NavigationServices.instance.navigateToQ1(context);
   }
 }

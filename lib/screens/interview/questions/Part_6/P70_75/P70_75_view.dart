@@ -337,6 +337,8 @@ class _P70_75ViewState extends State<P70_75View> {
                               p70_75viewModel.P70_75Next(thongTinThanhVienModel(
                                 idho: thanhvien.idho,
                                 idtv: thanhvien.idtv,
+                                thangDT: thanhvien.thangDT,
+                                namDT: thanhvien.namDT,
                                 c64: p70,
                                 c65: int.parse(_dondep.text),
                                 c66: int.parse(_sanxuat.text),

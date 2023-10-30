@@ -25,10 +25,16 @@ class ExecuteDatabase {
     await _dbProvider.initDatabase();
   }
 
+  // Check database
+  Future<bool> checkDatabase() async {
+    return await _dbProvider.checkDatabase();
+  }
+
   // Delete database
   Future<void> deleteDatabase() async {
     await _dbProvider.deleteDatabase();
   }
+
   //Bangke
   setBangKeHo(List data) async {
     _database = await _dbProvider.database;
@@ -80,14 +86,11 @@ class ExecuteDatabase {
   }
 
   //Area
-  Future<List<AreaModel>> getArea(String month) async {
+  Future<List<AreaModel>> getArea(int month) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.area} WHERE thangDT = $month");
-
-    List<AreaModel> list = res!.isNotEmpty
-        ? res.map((c) => AreaModel.fromJson(c)).toList()
-        : [];
+    List<AreaModel> list = (res ?? []).map((c) => AreaModel.fromJson(c)).toList();
     return list;
   }
 
@@ -238,14 +241,22 @@ class ExecuteDatabase {
     }
  }
 
+  updateNameNTKK(thongTinThanhVienNKTTModel data) async {
+    _database = await _dbProvider.database;
+    await _database?.rawUpdate(
+        'UPDATE ${TableConstants
+            .thongTinThanhVienNKTT} SET q1_New = ? WHERE idtv = ? AND idho = ?',
+        [data.q1_New, data.idtv, data.idho]);
+  }
+
  updateNTKK(List<thongTinThanhVienNKTTModel> list) async {
    _database = await _dbProvider.database;
    for(var item in list) {
      await _database?.rawUpdate(
          'UPDATE ${TableConstants
              .thongTinThanhVienNKTT} SET q3A_New = ?, q3B_New = ?, q3C_New = ?, '
-             'q3D_New = ? WHERE idtv = ?',
-         [item.q3A_New, item.q3B_New, item.q3C_New, item.q3D_New, item.idtv]);
+             'q3D_New = ? WHERE idtv = ? AND idho = ?',
+         [item.q3A_New, item.q3B_New, item.q3C_New, item.q3D_New, item.idtv, item.idho]);
    }
  }
 
@@ -390,10 +401,12 @@ class ExecuteDatabase {
     return check;
   }
 
-  updateTimeKT(String idho, String ngayCapNhat, String thoigiankt) async {
+  updateTimeKT(String idho, String ngayCapNhat, String thoigiankt, int tsnk,
+      int tsnu, int nK_15, int nu_15) async {
     print(await _database?.rawUpdate(
-        'UPDATE ${TableConstants.thongtinho} SET ngayCapNhat = ?, ngayKetThuc = ? WHERE idho = ?',
-        [ngayCapNhat, thoigiankt, idho]));
+        'UPDATE ${TableConstants.thongtinho} SET ngayCapNhat = ?, ngayKetThuc = ?,'
+            ' tsnk = ?, tsnu = ?, nK_15 = ?, nu_15 = ? WHERE idho = ?',
+        [ngayCapNhat, thoigiankt, tsnk, tsnu, nK_15, nu_15, idho]));
   }
 
   Future<List<BangKeThangDTModel>> getDongBo(String thang) async {

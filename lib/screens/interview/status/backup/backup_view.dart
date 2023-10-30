@@ -85,11 +85,7 @@ class _BackupViewState extends State<BackupView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      //print('Index $index');
-                      /*if (_sPrefAppModel.interviewStatus == 1) {
-                        backupViewModel.backup(index);
-                      }*/
-                      backupViewModel.Backup();
+
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),

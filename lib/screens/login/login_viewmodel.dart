@@ -27,7 +27,7 @@ class LoginViewModel extends BaseViewModel {
     final response = await _authServices.login(userName, password);
     if (response != null) {
       print("có data");
-      bool isAutoSync = userName != _sPrefAppModel.getUserName;
+      bool isAutoSync = userName != _sPrefAppModel.getUserName || month != _sPrefAppModel.month;
       userModel = UserModel.fromJson(response);
       await _sPrefAppModel.setUserModel(userModel);
       if (userModel.accessToken != null) {
