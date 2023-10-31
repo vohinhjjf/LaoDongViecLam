@@ -44,7 +44,7 @@ class Body extends State{
                             controller: _password_old,
                             validator: (value){
                               if(value!.isEmpty){
-                                return 'Vui lòng nhập mật khẩu';
+                                return 'Mật khẩu hiện tại chưa được nhập';
                               }
                               return null;
                             },
@@ -77,7 +77,7 @@ class Body extends State{
                             controller: _password_new,
                             validator: (value){
                               if(value!.isEmpty){
-                                return 'Vui lòng nhập mật khẩu mới';
+                                return 'Mật khẩu mới chưa được nhập';
                               }
                               return null;
                             },
@@ -109,7 +109,7 @@ class Body extends State{
                             controller: _password_new_replay,
                             validator: (value){
                               if(value!.isEmpty){
-                                return 'Vui lòng nhập mật khẩu mới';
+                                return 'Mật khẩu mới chưa được nhập';
                               }
                               return null;
                             },

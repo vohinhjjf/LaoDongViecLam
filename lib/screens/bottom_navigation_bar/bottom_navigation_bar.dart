@@ -62,29 +62,29 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ],
             ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25.0),
-                bottomRight: Radius.circular(25.0),
+                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
               )
           ),
         ),
-        toolbarHeight: 100.h,
+        toolbarHeight: 60.h,
         //centerTitle: true,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: 10.h),
-              alignment: Alignment.center,
-              child: const UIText(
-                text: UIDescribes.slogan,
-                textAlign: TextAlign.center,
-                textColor: Colors.white,
-                textFontSize: fontGreater,
-                isBold: true,
-                //textStyle: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(top: 10.h),
+            //   alignment: Alignment.center,
+            //   child: const UIText(
+            //     text: UIDescribes.slogan,
+            //     textAlign: TextAlign.center,
+            //     textColor: Colors.white,
+            //     textFontSize: fontGreater,
+            //     isBold: true,
+            //     //textStyle: TextStyle(fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             SizedBox(
               height: 5.h,
             ),
