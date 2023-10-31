@@ -33,7 +33,22 @@ class GPSViewModel extends BaseViewModel {
   }
 
   void gPSNext() async {
-    await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 3);
+    String idho = _sPrefAppModel.getIdHo;
+    String month = _sPrefAppModel.month;
+    int year = DateTime.now().year;
+    await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
+      if(value.any((e) => e.idhO_BKE == idho)){
+        await _executeDatabase.updateTrangThai(idho, 0, int.parse(month), year);
+      } else {
+        await _executeDatabase.setBangKeThangDTModel([{
+          'idhO_BKE': idho,
+          'namDT': year,
+          'thangDT': int.parse(month),
+          'trangThai': 9,
+          'sync' : 0
+        }]);
+      }
+    });
     NavigationServices.instance.navigateToInterviewStatus(context);
   }
 

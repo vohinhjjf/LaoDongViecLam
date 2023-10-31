@@ -486,7 +486,7 @@ class _P52_54ViewState extends State<P52_54View> {
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child: const DrawerNavigationThanhVien()
+          child:  DrawerNavigationThanhVien()
       ),
       drawerScrimColor: Colors.transparent,
     );

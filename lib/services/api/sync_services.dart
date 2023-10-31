@@ -82,7 +82,7 @@ class SyncServices {
     }
   }
 
-  Future<dynamic> getEnquiry(String accessToken, String month, String id)async{
+  Future<dynamic> getEnquiry(String accessToken, String thangDT, String namDT, String id)async{
     _dio.options.baseUrl = ApiConstants.baseUrl;
     final header = {
       'content-type': 'application/json',
@@ -91,7 +91,7 @@ class SyncServices {
     _dio.options.headers = header;
     Response? response;
     try {
-      response = await _dio.get('api/phieudieutra2022/$month/2023/$id');
+      response = await _dio.get('api/phieudieutra2022/$thangDT/$namDT/$id');
       return response.data;
     } catch (e) {
       print(e.toString());
@@ -124,48 +124,31 @@ class SyncServices {
   Future<String> Sync(String token, List<PhieuDieuTraModel> listphieuDieuTra, ExecuteDatabase _executeDatabase) async {
     var tempt =0;
     for(int i = 0 ; i < listphieuDieuTra.length; i++) {
-      if(listphieuDieuTra[i].thongTinHo!.trangThai == 1){
-        http.Response response = await http.post(
-          Uri.parse('${ApiConstants.baseUrl}api/phieudieutra2024'),
-          body: listphieuDieuTra[i].toJson(),
-          headers: {
-            HttpHeaders.contentTypeHeader: "application/json",
-            HttpHeaders.authorizationHeader: "Bearer $token"
-          },
+      http.Response response = await http.post(
+        Uri.parse('${ApiConstants.baseUrl}api/phieudieutra2024'),
+        body: listphieuDieuTra[i].toJson(),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $token"
+        },
+      );
+      log(listphieuDieuTra[i].toJson().toString());
+      if (response.statusCode == 200) {
+        print("Success!1");
+        tempt++;
+        await _executeDatabase.updateTrangThai(
+            listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9,
+            listphieuDieuTra[i].bangKeThangDT!.thangDT!,
+            listphieuDieuTra[i].bangKeThangDT!.namDT!
         );
-        log(listphieuDieuTra[i].toJson().toString());
-        if (response.statusCode == 200) {
-          print("Success!1");
-          tempt++;
-          await _executeDatabase.updateTrangThai(listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9);
-        } else {
-          print('Fail!1');
-          print(response.statusCode);
-        }
-      }
-      else {
-        /*var envelope = {
-          "id": listphieuDieuTra[i].id,
-          "tenCS":listphieuDieuTra[i].tenCS_BK,
-          "diaChi": listphieuDieuTra[i].diaChi_BK,
-          "tinhTrangDT": listphieuDieuTra[i].tinhTrang_DTBK,
-          "tinhTrangHD": listphieuDieuTra[i].tinhTrang_HDBK,
-        };*/
-        http.Response response = await http.put (Uri.parse(
-            '${ApiConstants.baseUrl}api/bangkecs'),
-            headers: {
-              HttpHeaders.contentTypeHeader: "application/json",
-              HttpHeaders.authorizationHeader: "Bearer $token"
-            },
-            body: listphieuDieuTra[i].toJson_1()
+        await _executeDatabase.updateSync(
+            listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 1,
+            listphieuDieuTra[i].bangKeThangDT!.thangDT!,
+            listphieuDieuTra[i].bangKeThangDT!.namDT!
         );
-        if (response.statusCode == 200) {
-          print("Success!2");
-          tempt++;
-          await _executeDatabase.updateTrangThai(listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9);
-        } else {
-          print('Fail!2');
-        }
+      } else {
+        print('Fail!1');
+        print(response.statusCode);
       }
     }
     return '$tempt/${listphieuDieuTra.length}';

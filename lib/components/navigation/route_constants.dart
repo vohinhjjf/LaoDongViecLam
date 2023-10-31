@@ -6,6 +6,9 @@ class RouteConstants {
   static const String changePassRoute = "/changePassRoute";
   static const String syncRoute = "/syncRoute";
   static const String progressRoute = "/progressRoute";
+  static const String areaReplaceRoute = "/areaReplaceRoute";
+  static const String householdReplaceRoute = "/householdReplaceRoute";
+  static const String backupReplaceRoute = "/backupReplaceRoute";
   static const String interviewArea = "/interviewArea";
   static const String interviewStatusRoute = "/interviewStatusRoute";
   static const String notInterviewedRoute = "/notInterviewedRoute";

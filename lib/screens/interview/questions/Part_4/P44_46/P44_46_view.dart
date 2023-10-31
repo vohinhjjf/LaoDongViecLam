@@ -370,7 +370,7 @@ class _P44_46ViewState extends State<P44_46View> {
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child: const DrawerNavigationThanhVien()
+          child:  DrawerNavigationThanhVien()
       ),
       drawerScrimColor: Colors.transparent,
     );

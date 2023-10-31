@@ -5,15 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../components/uis.dart';
 import '../../../models/area_model.dart';
 import '../../../models/bangke_model.dart';
-import 'area_viewmodel.dart';
+import 'area_replace_viewmodel.dart';
 
-class AreaView extends StatefulWidget{
+class AreaReplaceView extends StatefulWidget{
   @override
-  _AreaViewState createState() => _AreaViewState();
+  _AreaReplaceViewState createState() => _AreaReplaceViewState();
 }
 
-class _AreaViewState extends State<AreaView>{
-  late AreaViewModel areaViewModel;
+class _AreaReplaceViewState extends State<AreaReplaceView>{
+  late AreaReplaceViewModel areaReplaceViewModel;
   List<AreaModel> list_area = [];
   List<BangKeCsModel> list_household = [];
   String _dtv = "", _month = '';
@@ -22,16 +22,16 @@ class _AreaViewState extends State<AreaView>{
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      areaViewModel = context.read();
-      areaViewModel.onInit(context);
+      areaReplaceViewModel = context.read();
+      areaReplaceViewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 300),
               () => {
             setState(() {
-              list_area = areaViewModel.list_area;
-              list_household = areaViewModel.list_household;
-              _dtv = areaViewModel.userName ?? "";
-              _month = areaViewModel.month ?? "";
+              list_area = areaReplaceViewModel.list_area;
+              list_household = areaReplaceViewModel.list_household;
+              _dtv = areaReplaceViewModel.userName ?? "";
+              _month = areaReplaceViewModel.month ?? "";
             })
           });
     });
@@ -48,7 +48,7 @@ class _AreaViewState extends State<AreaView>{
               color: mPrimaryColor,
               size: fontLarge,
             ),
-            onPressed: () => areaViewModel.AreaBack()),
+            onPressed: () => areaReplaceViewModel.AreaReplaceBack()),
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
@@ -74,7 +74,7 @@ class _AreaViewState extends State<AreaView>{
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {
-                      areaViewModel.AreaNext(list_area[index].iddb!);
+                      areaReplaceViewModel.AreaReplaceNext();
                       print(list_area[index].iddb!);
                     },
                     color: Colors.white,
@@ -92,13 +92,13 @@ class _AreaViewState extends State<AreaView>{
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         UIText(
-                            text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Chưa hoàn thành",
+                            text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Cần được thay",
                             textFontSize: fontLarge,
                             isBold: true,
                             textColor: Colors.black
                         ),
                         UIText(
-                            text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
+                            text: 'Số hộ: ${list_household.length}',
                             textFontSize: fontMedium,
                             isBold: true,
                             textColor: Colors.yellow.shade800

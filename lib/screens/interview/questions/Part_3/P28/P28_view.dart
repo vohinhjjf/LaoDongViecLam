@@ -180,7 +180,7 @@ class _P28ViewState extends State<P28View> {
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child: const DrawerNavigationThanhVien()
+          child: DrawerNavigationThanhVien()
       ),
       drawerScrimColor: Colors.transparent,
     );

@@ -7,10 +7,10 @@ import '../../../../models/bangkeThangDT_model.dart';
 import '../../../../models/bangke_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
 
-class BackupViewModel extends BaseViewModel {
+class BackupReplaceViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   final ExecuteDatabase _executeDatabase;
-  BackupViewModel(this._sPrefAppModel, this._executeDatabase);
+  BackupReplaceViewModel(this._sPrefAppModel, this._executeDatabase);
   List<BangKeCsModel> data = [];
 
   @override
@@ -27,11 +27,14 @@ class BackupViewModel extends BaseViewModel {
     await _executeDatabase.getHouseHold(condition).then((value) => data= value);
   }
 
-  void Backup() async {
-    NavigationServices.instance.navigateToInterviewStatus(context);
+  void BackupReplace(BangKeCsModel bangKeCsModel) async {
+    await _executeDatabase.updateHoDuPhong(_sPrefAppModel.getNhom, 1, bangKeCsModel.idho!, bangKeCsModel.thangDT!, bangKeCsModel.namDT!);
+    await _executeDatabase.updateHoDuPhong(99, 0, _sPrefAppModel.getIdHo, bangKeCsModel.thangDT!, bangKeCsModel.namDT!);
+    await _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
+    NavigationServices.instance.navigateToOperatingStatus(context);
   }
 
-  void BackupBack() async {
-    NavigationServices.instance.navigateToInterviewStatus(context);
+  void BackupReplaceBack() async {
+    NavigationServices.instance.navigateToHouseHoldReplace(context);
   }
 }

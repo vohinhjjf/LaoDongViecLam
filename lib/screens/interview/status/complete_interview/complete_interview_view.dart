@@ -28,7 +28,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = completeInterviewViewModel.data;
-          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 3 || e.trangThai == 9).toList();
+          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList();
         })
       });
     });
@@ -88,7 +88,6 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                   child: InkWell(
                     onTap: () {
                       completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel[index]);
-                      print(listBangKeThangDTModel[index].idhO_BKE);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
@@ -108,12 +107,20 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
   }
 
   Widget _item(BangKeThangDTModel bangKeThangDTModel) {
-    BangKeCsModel bangKeCsModel = listBangKeCs.singleWhere((e) => e.idho == bangKeThangDTModel.idhO_BKE);
+    var textColor = Colors.black;
+    BangKeCsModel bangKeCsModel = listBangKeCs.singleWhere((e) => bangKeThangDTModel.idhO_BKE == e.idho);
+    if(bangKeThangDTModel.trangThai == 9){
+      if(bangKeThangDTModel.sync == 1){
+        textColor = mCompleteColor;
+      } else {
+        textColor = Colors.blue;
+      }
+    }
     return UIRichText(
-      text1: "",
-      text2: "${bangKeCsModel.hoSo} : HOÀN THÀNH PHỎNG VẤN - ${bangKeCsModel.tenChuHo}",
+      text1: "${bangKeCsModel.hoSo} : ",
+      text2: "HOÀN THÀNH PHỎNG VẤN - ${bangKeCsModel.tenChuHo}",
       text3: " - ${bangKeCsModel.diaChi}",
-      textColor: bangKeThangDTModel.trangThai == 3 ? Colors.black : mCompleteColor,
+      textColor: textColor,
       textFontSize: fontLarge,
     );
   }

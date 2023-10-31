@@ -24,9 +24,11 @@ class GeneralInformationViewModel extends BaseViewModel {
   Future<void> fetchData() async {
     String month = _sPrefAppModel.month;
     String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    int namDT = DateTime.now().year;
+
     await _executeDatabase.getHo(id).then((value) async {
       data = value;
-      await _executeDatabase.getArea(int.parse(month)).then((value1){
+      await _executeDatabase.getArea(int.parse(month), namDT).then((value1){
         data_area = value1.singleWhere((e) => e.maDiaBan == data.maDiaBan);
       });
     });

@@ -217,7 +217,7 @@ class _P38ViewState extends State<P38View> {
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child: const DrawerNavigationThanhVien()
+          child: DrawerNavigationThanhVien()
       ),
       drawerScrimColor: Colors.transparent,
     );

@@ -60,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
                   homeViewModel.progress();
                 }),
                 _cardWidget(UIDescribes.replace, UIAssets.icReplace,onTap: () {
-
+                  homeViewModel.areaReplace();
                 }),
               ],
             ),

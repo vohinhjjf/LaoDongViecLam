@@ -21,6 +21,7 @@ class _P69ViewState extends State<P69View> {
   final _formKey = GlobalKey<FormState>();
   var thanhvien = thongTinThanhVienModel();
   final _gio = TextEditingController();
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -89,7 +90,7 @@ class _P69ViewState extends State<P69View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -153,7 +154,11 @@ class _P69ViewState extends State<P69View> {
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+                check_draw = false;
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

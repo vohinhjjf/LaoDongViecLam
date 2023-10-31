@@ -54,7 +54,7 @@ class UIDescribes {
   static const notInterviewed = 'Danh sách hộ chưa phỏng vấn';
   static const completeInterviewed = 'Danh sách hộ đã phỏng vấn';
   static const preventive = 'Danh sách hộ dự phòng';
-  static const doneInterviewed = 'Danh sách cơ sở không còn tại địa bàn';
+  static const householdReplace = 'Danh sách cần được thay hộ';
   static const search = 'Tìm kiếm';
   static const number = 'Số lượng: ';
   static const investigationPeriod = 'Kỳ điều tra: ';

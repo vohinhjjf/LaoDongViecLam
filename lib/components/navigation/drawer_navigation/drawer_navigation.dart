@@ -978,7 +978,8 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
 }
 
 class DrawerNavigationThanhVien extends StatefulWidget {
-  const DrawerNavigationThanhVien({Key? key}) : super(key: key);
+  late Function()? onTap;
+  DrawerNavigationThanhVien({Key? key, this.onTap}) : super(key: key);
 
   @override
   State<DrawerNavigationThanhVien> createState() => _DrawerNavigationThanhVienState();
@@ -1176,11 +1177,7 @@ class _DrawerNavigationThanhVienState extends State<DrawerNavigationThanhVien> {
                 text: 'THOÁT',
                 textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
               ),
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (_) => const UIStopDialog());
-              },
+              onTap: widget.onTap,
             ),
           ],
         ),

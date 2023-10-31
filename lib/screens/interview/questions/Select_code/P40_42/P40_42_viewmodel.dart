@@ -35,8 +35,13 @@ class P40_42ViewModel extends BaseViewModel {
     list_nghe = await json.decode(response1)["DanhMuc"];
   }
 
-  List queryList(List select_sanpham, String select){
-    List list = [];
+  List queryList(String select, String linh_vuc, List list_nghe){
+    List select_sanpham = [], list = [];
+    for(int i =0; i < list_nghe.length; i++){
+      if(list_nghe[i]["Ma"] == linh_vuc){
+        select_sanpham.add(list_nghe[i]);
+      }
+    }
 
     for(int i =0; i < select_sanpham.asMap().values.toList().length; i++){
       if(select_sanpham.asMap().values.toList()[i]["Ten"].toString().isEmpty){
@@ -130,17 +135,16 @@ class P40_42ViewModel extends BaseViewModel {
       if(select_sanpham.asMap().values.toList()[i]["Ma"].toString().substring(0,4).toLowerCase() == select){
         list.add(select_sanpham[i]);
       }
-      if(select_sanpham.asMap().values.toList()[i]["Ma"].toString().length > 4 &&
-          select_sanpham.asMap().values.toList()[i]["Ma"].toString().substring(0,5).toLowerCase() == select){
+      if(select_sanpham.asMap().values.toList()[i]["Ma"].toString().substring(0,5).toLowerCase() == select){
         list.add(select_sanpham[i]);
       }
     }
-    if(select == ""){
-      list = select_sanpham;
+    if(select == "" || linh_vuc == "0"){
+      select_sanpham = select_sanpham;
     } else{
       select_sanpham = list;
     }
-    return list;
+    return select_sanpham;
   }
 
   void P40_42Back() async {

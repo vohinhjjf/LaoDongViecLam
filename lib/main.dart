@@ -99,6 +99,9 @@ import 'screens/interview/status/not_interview/not_interview_viewmodel.dart';
 import 'screens/login/login_viewmodel.dart';
 import 'screens/progress/progress_viewmodel.dart';
 
+import 'screens/replace/area_place/area_replace_viewmodel.dart';
+import 'screens/replace/backup_replace/backup_replace_viewmodel.dart';
+import 'screens/replace/household_replace/household_replace_viewmodel.dart';
 import 'screens/sync/sync_viewmodel.dart';
 import 'services/api/auth_services.dart';
 import 'services/api/sync_services.dart';
@@ -134,6 +137,15 @@ void main() async {
         ChangeNotifierProvider(
             create: (_) => SyncViewModel(getIt.get<SyncServices>(),
                 getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => AreaReplaceViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => HouseholdReplaceViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => BackupReplaceViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => AreaViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),

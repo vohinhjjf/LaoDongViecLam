@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/bangke_model.dart';
 import 'operating_status_viewmodel.dart';
 
 class OperatingStatusView extends StatefulWidget {
@@ -17,6 +18,7 @@ class OperatingStatusView extends StatefulWidget {
 class _OperatingStatusViewState extends State<OperatingStatusView> {
   late OperatingStatusViewModel operatingStatusViewModel;
   int groupValue = 0;
+  var bangkeho = BangKeCsModel();
   int? get index => null;
 
   @override
@@ -28,7 +30,15 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
       operatingStatusViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
-          groupValue = operatingStatusViewModel.status;
+          bangkeho = operatingStatusViewModel.bangkeho;
+          switch(bangkeho.trangthai_BK){
+            case 1: groupValue = 0; break;
+            case 2: groupValue = 2; break;
+            case 3: groupValue = 3; break;
+            case 4: groupValue = 4; break;
+            case 5: groupValue = 5; break;
+            case 6: groupValue = 6; break;
+          }
         })
       });
     });
@@ -70,10 +80,10 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
-                      isChecked: groupValue == 1 ? true : false,
+                      isChecked: groupValue == 5 ? true : false,
                       onTap: (selected) {
                         setState(() {
-                          groupValue = groupValue == 1 ? 0 : 1;
+                          groupValue = groupValue == 5 ? 0 : 5;
                         });
                       },
                       border: Border.all(
@@ -87,7 +97,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     ),
                     onTap: () {
                       setState(() {
-                        groupValue = groupValue == 1 ? 0 : 1;
+                        groupValue = groupValue == 5 ? 0 : 5;
                       });
                     },
                   ),
@@ -186,10 +196,10 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
-                      isChecked: groupValue == 9 ? true : false,
+                      isChecked: groupValue == 6 ? true : false,
                       onTap: (selected) {
                         setState(() {
-                          groupValue = groupValue == 9 ? 0 : 9;
+                          groupValue = groupValue == 6 ? 0 : 6;
                         });
                       },
                       border: Border.all(
@@ -203,7 +213,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     ),
                     onTap: () {
                       setState(() {
-                        groupValue = groupValue == 9 ? 0 : 9;
+                        groupValue = groupValue == 6 ? 0 : 6;
                       });
                     },
                   ),
@@ -230,7 +240,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                           );
                         }
                         else {
-                          operatingStatusViewModel.operatingStatus(
+                          operatingStatusViewModel.operatingStatus(bangkeho,
                               groupValue);
                         }
                       },

@@ -45,6 +45,10 @@ class HomeViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToProgress(context);
   }
 
+  void areaReplace() async {
+    NavigationServices.instance.navigateToAreaReplace(context);
+  }
+
   Future checkUpdateApp() async {
     //mainMenuController.setLoading(true);
     if (Platform.isIOS) {}

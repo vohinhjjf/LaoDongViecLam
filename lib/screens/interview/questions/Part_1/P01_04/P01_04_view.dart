@@ -27,7 +27,7 @@ class _P01_04ViewState extends State<P01_04View> {
   final _age = TextEditingController();
   int p01 = 0, p02 = 0, p03 = 0, ThangDT = 8;
   String month = 'Chọn tháng';
-  bool check = false;
+  bool check = false, check_draw = true;
 
   var _quanhe = [
     "VỢ/CHỒNG",
@@ -602,7 +602,13 @@ class _P01_04ViewState extends State<P01_04View> {
             // Set the transparency here
             canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

@@ -28,21 +28,34 @@ class CompleteInterviewViewModel extends BaseViewModel {
   }
 
   void fetchData() async {
-    String iddb = _sPrefAppModel.IDDB;
     String month = _sPrefAppModel.month;
-    await _executeDatabase.getHouseHold(iddb).then((value) => data= value);
+    QueryBangke();
     await _executeDatabase.getBangKe_ThangDT(month).then((value) {
       bangKeThangDTModel= value;
     });
   }
 
-  /*Future<List<BangKeCsModel>> searchData(String name) =>
-      _executeDatabase.getDanhSachBangKeCs(1, name);*/
+  QueryBangke() async {
+    int thangdt = int.parse(_sPrefAppModel.month);
+    String iddb = _sPrefAppModel.IDDB;
+    String condition = "";
+    int namdt = DateTime.now().year;
+    if ((thangdt == 1 || thangdt == 2 || thangdt == 3) && namdt == 2023) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 9 OR nhom =10 OR nhom = 13 OR nhom =14) AND thangDT = $thangdt AND namDT = $namdt";
+    } else if ((thangdt == 4 || thangdt == 5 || thangdt == 6) && namdt == 2023) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 10 OR nhom =11 OR nhom = 14 OR nhom =15) AND thangDT = $thangdt AND namDT = $namdt";
+    } else if ((thangdt == 7 || thangdt == 8 || thangdt == 9) && namdt == 2023) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 11 OR nhom =12 OR nhom = 15 OR nhom =16) AND thangDT = $thangdt AND namDT = $namdt";
+    } else if ((thangdt == 10 || thangdt == 11 || thangdt == 12) && namdt == 2023) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 12 OR nhom =13 OR nhom = 16 OR nhom =17) AND thangDT = $thangdt AND namDT = $namdt";
+    }
+    await _executeDatabase.getHouseHold(condition).then((value) => data= value);
+  }
 
-  Future<void> getEnquiry(String id) async {
+  Future<void> getEnquiry(String id, String namDT) async {
     late thongTinHoModel thongtinHoModel;
     late thongTinHoNKTTModel thongtinHoNKTTModel;
-    final fetchResponse = await _syncServices.getEnquiry(_sPrefAppModel.accessToken, _sPrefAppModel.month, id);
+    final fetchResponse = await _syncServices.getEnquiry(_sPrefAppModel.accessToken, _sPrefAppModel.month, namDT, id);
     if (fetchResponse != null) {
       print("Get data: " + fetchResponse.toString());
       Map<String, dynamic> map = json.decode(json.encode(fetchResponse ?? {})) as Map<String, dynamic>;
@@ -50,6 +63,7 @@ class CompleteInterviewViewModel extends BaseViewModel {
       thongtinHoNKTTModel = thongTinHoNKTTModel.fromJson(map['thongTinHoNKTT']);
       List list_nktt = map['lst_ThanhVienNKTT'].isNotEmpty ? map['lst_ThanhVienNKTT'] : [];
       List list_tv = map['lst_ThanhVien'].isNotEmpty ? map['lst_ThanhVien'] : [];
+      await _executeDatabase.setHo(thongtinHoModel);
       await _executeDatabase.setHoNKTT(thongtinHoNKTTModel);
       await _executeDatabase.getNKTT(0, '', id).then((value) async {
         if(value.length != list_nktt.length){
@@ -65,16 +79,16 @@ class CompleteInterviewViewModel extends BaseViewModel {
           await _executeDatabase.setTTTV(list_tv.map((e) => thongTinThanhVienModel.fromJson(e)).toList());
         }
       });
-    } else{
-
     }
-    await _executeDatabase.setHo(thongtinHoModel);
     //await _executeDatabase.setTimeBD(DateTime.now().toString(), id);
   }
 
   void CompleteInterview(BangKeThangDTModel bangKeThangDTModel) async {
     await _sPrefAppModel.setIdHo(bangKeThangDTModel.idhO_BKE!);
-    await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 2);
+    if(bangKeThangDTModel.trangThai == 9 && bangKeThangDTModel.sync == 1) {
+      await getEnquiry(bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.namDT!.toString());
+    }
+    await _executeDatabase.updateTrangThai(bangKeThangDTModel.idhO_BKE!, 8, bangKeThangDTModel.thangDT!, bangKeThangDTModel.namDT!);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

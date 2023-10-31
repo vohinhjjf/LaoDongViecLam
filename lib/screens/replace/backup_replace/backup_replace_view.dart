@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../../components/uis.dart';
-import '../../../../models/bangkeThangDT_model.dart';
 import '../../../../models/bangke_model.dart';
-import 'not_interview_viewmodel.dart';
+import 'backup_replace_viewmodel.dart';
 
-class NotInterviewedView extends StatefulWidget {
-  const NotInterviewedView({Key? key}) : super(key: key);
+class BackupReplaceView extends StatefulWidget {
+  const BackupReplaceView({Key? key}) : super(key: key);
 
   @override
-  State<NotInterviewedView> createState() => _NotInterviewedViewState();
+  State<BackupReplaceView> createState() => _BackupReplaceViewState();
 }
 
-class _NotInterviewedViewState extends State<NotInterviewedView> {
-  late NotInterviewedViewModel notInterviewedViewModel;
+class _BackupReplaceViewState extends State<BackupReplaceView> {
+  late BackupReplaceViewModel backupReplaceViewModel;
   List<BangKeCsModel> listBangKeCs = [];
   final _text_find = TextEditingController();
 
@@ -22,15 +21,11 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      notInterviewedViewModel = context.read();
-      notInterviewedViewModel.onInit(context);
+      backupReplaceViewModel = context.read();
+      backupReplaceViewModel.onInit(context);
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
-          listBangKeCs = notInterviewedViewModel.data;
-          /*for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 3).toList()){
-            listBangKeCs.removeWhere((e) => e.idho == item.idhO_BKE);
-          }
-          listBangKeCs.removeWhere((e) => e.hoDuPhong == 1);*/
+          listBangKeCs = backupReplaceViewModel.data;
         })
       });
     });
@@ -46,11 +41,11 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
               color: mPrimaryColor,
               size: fontMedium,
             ),
-            onPressed: () => notInterviewedViewModel.notInterviewedBack()),
+            onPressed: () => backupReplaceViewModel.BackupReplaceBack()),
         backgroundColor: Colors.white,
         centerTitle: true,
         title: const UIText(
-          text: UIDescribes.unInterviewedList,
+          text: UIDescribes.preventive,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
           textFontSize: fontLarge,
@@ -69,7 +64,7 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //notInterviewedViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    //backupReplaceViewModel.searchData(text).then((value) => listBangKeCs = value);
                   });
                 },
                 decoration: const InputDecoration(
@@ -89,11 +84,7 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      //print('Index $index');
-                      /*if (_sPrefAppModel.interviewStatus == 1) {
-                        notInterviewedViewModel.notInterviewed(index);
-                      }*/
-                      notInterviewedViewModel.notInterviewed(listBangKeCs[index]);
+                      backupReplaceViewModel.BackupReplace(listBangKeCs[index]);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
@@ -113,21 +104,11 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
   }
 
   Widget _item(BangKeCsModel bangKeCsModel) {
-    print(bangKeCsModel.trangthai_BK);
-    String trangThai = "CHƯA PHỎNG VẤN";
-    Color textColor = Colors.black;
-    if(bangKeCsModel.trangthai_BK == 5){
-      trangThai = "ĐANG PHỎNG VẤN";
-      textColor = Colors.amber.shade800;
-    } else if(bangKeCsModel.trangthai_BK == 6){
-      trangThai = "HỘ CHUYỂN ĐI - ĐẾN";
-      textColor = Colors.amber.shade800;
-    }
     return UIRichText(
       text1: "",
-      text2: "${bangKeCsModel.hoSo} : $trangThai - ${bangKeCsModel.tenChuHo}",
+      text2: "${bangKeCsModel.hoSo} : HỘ DỰ PHÒNG - ${bangKeCsModel.tenChuHo}",
       text3: " - ${bangKeCsModel.diaChi}",
-      textColor: textColor,
+      textColor: Colors.black,
       textFontSize: fontLarge,
     );
   }

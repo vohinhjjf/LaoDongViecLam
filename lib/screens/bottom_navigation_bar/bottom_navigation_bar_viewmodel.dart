@@ -56,20 +56,22 @@ class BottomNavigationViewModel extends BaseViewModel {
   }
 
   Future<void> fetchData(BuildContext context) async {
-    final fetchResponse1 = await _syncServices.fetchHouseHold(_sPrefAppModel.accessToken, _sPrefAppModel.month);
-    final fetchResponse2 = await _syncServices.fetchArea(_sPrefAppModel.accessToken, _sPrefAppModel.month);
-    final fetchResponse3 = await _syncServices.fetchBangkeThangDT(_sPrefAppModel.accessToken, _sPrefAppModel.month);
+    String month = await _sPrefAppModel.month;
+    int namDT = DateTime.now().year;
+    final fetchResponse1 = await _syncServices.fetchHouseHold(_sPrefAppModel.accessToken, month);
+    final fetchResponse2 = await _syncServices.fetchArea(_sPrefAppModel.accessToken, month);
+    final fetchResponse3 = await _syncServices.fetchBangkeThangDT(_sPrefAppModel.accessToken, month);
     print("Token: "+fetchResponse1.toString());
     if (fetchResponse1.toString().isNotEmpty && fetchResponse2.toString().isNotEmpty && fetchResponse3.toString().isNotEmpty) {
       List listBangKeCsModel = fetchResponse1.map((c) => BangKeCsModel.fromJson(c)).toList();
       List listAreaModel = fetchResponse2.map((c) => AreaModel.fromJson(c)).toList();
       List listBangKeThangDTModel = fetchResponse3.map((c) => BangKeThangDTModel.fromJson(c)).toList();
-      // delete current db
-      await _executeDatabase.getArea(int.parse(_sPrefAppModel.month)).then((value) async {
-        print("Check: $value");
+      //
+      await _executeDatabase.getArea(int.parse(month), namDT).then((value) async {
+        print("Check: ${value.length}");
         if(value.isEmpty){
           // set bangkehomodel
-          await _executeDatabase.setBangKeHo(listBangKeCsModel);
+          await _executeDatabase.setBangKeHo(listBangKeCsModel, int.parse(month), namDT);
           //set Area
           await _executeDatabase.setArea(listAreaModel);
           //set Bk_TDT
@@ -93,10 +95,6 @@ class BottomNavigationViewModel extends BaseViewModel {
     final _request = await _syncServices.syncData(_sPrefAppModel.accessToken, _sPrefAppModel.month);
     if (_request == 200) {
       log("=========== SUCCESS ===========");
-      //updateBangke();
-      await _executeDatabase.checkDatabase().then((value) {
-        print("Check: $value");
-      });
     }
     else if (_request == 401) {
       showDialog(
