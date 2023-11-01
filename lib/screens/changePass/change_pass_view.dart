@@ -224,7 +224,7 @@ class Body extends State{
                   child: const UIText(
                       text:'Đăng nhập',
                       textColor: Colors.white,
-                      textFontSize: 15
+                      textFontSize: fontLarge
                   ),
                   onPressed: () {
                       changePasswordViewModel.logout();
@@ -266,7 +266,7 @@ class Body extends State{
                   child: const UIText(
                       text:'Thử lại',
                       textColor: Colors.white,
-                      textFontSize: 15
+                      textFontSize: fontLarge
                   ),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();

@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 25.h,
                   ),
                   Image.asset(
                     UIAssets.icLogo,
@@ -98,13 +98,13 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             // height: MediaQuery.of(context).size.height < 650 ? 300.h : 400.h,
-            height: MediaQuery.of(context).size.height < 650 ? 350.h : 400.h,
+            height: MediaQuery.of(context).size.height < 650 ? 400.h : 400.h,
             child: ListView(
               /*crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,*/
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   alignment: Alignment.center,
                   child: const UIText(
                     text: UIDescribes.slogan,
@@ -222,7 +222,7 @@ class _LoginViewState extends State<LoginView> {
                   child: MaterialButton(
                     color: Colors.blue,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     ),
                     onPressed: () {
                       //CircularProgressIndicator();
@@ -311,7 +311,7 @@ class _LoginViewState extends State<LoginView> {
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w500, fontSize: fontMedium),
+                      color: Colors.black, fontWeight: FontWeight.w500, fontSize: fontLarge),
                 ),
               ),
               const SizedBox(
@@ -320,7 +320,7 @@ class _LoginViewState extends State<LoginView> {
               ElevatedButton(
                   child: const Text('Đồng ý',
                       style: TextStyle(
-                          color: Colors.white, fontSize: 15)),
+                          color: Colors.white, fontSize: fontLarge)),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();
                   }
@@ -329,5 +329,4 @@ class _LoginViewState extends State<LoginView> {
           ),
         ));
   }
-
 }

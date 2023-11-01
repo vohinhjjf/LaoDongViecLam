@@ -51,7 +51,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
           text: UIDescribes.statusActive,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -215,7 +215,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     alignment: Alignment.center,
                     height: 50.0,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(5.0),
                         gradient: const LinearGradient(colors: [
                           mPrimaryColor,
                           Color(0xFF64B5F6),
@@ -226,7 +226,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                         if(groupValue == 0){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Tình trạng hoạt động của hộ nhập vào chưa đúng!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Tình trạng hoạt động của hộ nhập vào chưa đúng!')
                           );
                         }
                         else {

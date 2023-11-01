@@ -70,6 +70,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                     //CompleteInterviewViewModel.searchData(text).then((value) => listBangKeCs = value);
                   });
                 },
+                style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),

@@ -59,7 +59,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+              padding: const EdgeInsets.fromLTRB(55, 20, 55, 10),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -72,7 +72,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     TextFormField(
                       controller: _name,
                       validator: (value){
@@ -94,7 +94,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     //address
                     const UIText(
                       text:UIDescribes.householderAddress,
@@ -102,7 +102,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     TextFormField(
                       controller: _address,
                       validator: (value){
@@ -111,6 +111,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         }
                         return null;
                       },
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
                         errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),

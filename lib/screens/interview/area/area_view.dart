@@ -54,7 +54,7 @@ class _AreaViewState extends State<AreaView>{
         title: Text(
           'Danh sách địa bàn - Tháng $_month',
           style: const TextStyle(
-            fontSize: fontGreater,
+            fontSize: fontLarge,
             color: mPrimaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -94,6 +94,9 @@ class _AreaViewState extends State<AreaView>{
                           isBold: true,
                           textColor: Colors.black
                       ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
                       UIText(
                           text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
                           textFontSize: fontMedium,
@@ -109,8 +112,9 @@ class _AreaViewState extends State<AreaView>{
       ),
       bottomSheet: Container(
         padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
             gradient: const LinearGradient(colors: [
               Colors.limeAccent,
               Colors.limeAccent,
