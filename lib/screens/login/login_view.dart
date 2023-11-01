@@ -56,18 +56,18 @@ class _LoginViewState extends State<LoginView> {
                     height: 150.h,
                     width: 150.w,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    alignment: Alignment.center,
-                    child: const UIText(
-                      text: UIDescribes.slogan,
-                      textAlign: TextAlign.center,
-                      textColor: Colors.white,
-                      textFontSize: fontGreater,
-                      isBold: true,
-                      //textStyle: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(vertical: 15),
+                  //   alignment: Alignment.center,
+                  //   child: const UIText(
+                  //     text: UIDescribes.slogan,
+                  //     textAlign: TextAlign.center,
+                  //     textColor: Colors.white,
+                  //     textFontSize: fontGreater,
+                  //     isBold: true,
+                  //     //textStyle: TextStyle(fontWeight: FontWeight.bold),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -97,24 +97,34 @@ class _LoginViewState extends State<LoginView> {
                   )
               ),
             ),
-            height: MediaQuery.of(context).size.height < 650 ? 300.h : 400.h,
+            // height: MediaQuery.of(context).size.height < 650 ? 300.h : 400.h,
+            height: MediaQuery.of(context).size.height < 650 ? 350.h : 400.h,
             child: ListView(
               /*crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,*/
               children: [
-                SizedBox(
-                  height: 15.h,
-                ),
                 Container(
-                  padding: EdgeInsets.only(top: 15.h),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   alignment: Alignment.center,
                   child: const UIText(
-                    text: UIDescribes.Title,
+                    text: UIDescribes.slogan,
+                    textAlign: TextAlign.center,
                     textColor: mPrimaryColor,
                     textFontSize: fontGreater,
                     isBold: true,
+                    //textStyle: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                // Container(
+                //   padding: EdgeInsets.only(top: 5.h),
+                //   alignment: Alignment.center,
+                //   child: const UIText(
+                //     text: UIDescribes.Title,
+                //     textColor: mPrimaryColor,
+                //     textFontSize: fontGreater,
+                //     isBold: true,
+                //   ),
+                // ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
                   margin: EdgeInsets.only(left: 20.w, top: 10.h, right: 20.w),
@@ -147,13 +157,13 @@ class _LoginViewState extends State<LoginView> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       hintText: UIDescribes.hintUserName,
-                      hintStyle: const TextStyle( color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey, fontSize: fontLarge),
                       prefixIcon: const Icon(
                         Icons.account_circle,
                       ),
                     ),
                     autovalidateMode: AutovalidateMode.always,
-                    style: const TextStyle( color: Colors.black),
+                    style: const TextStyle(color: Colors.black, fontSize: fontLarge),
                     validator: (value) {
                       if (value == null) {
                         return UIDescribes.enterUser;
@@ -171,7 +181,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       hintText: UIDescribes.hintPass,
-                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey, fontSize: fontLarge),
                       prefixIcon: const Icon(
                         Icons.lock,
                       ),
@@ -190,7 +200,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     autovalidateMode: AutovalidateMode.always,
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black, fontSize: fontLarge),
                     validator: (value) {
                       // if (loginViewModel.isPasswordValidate) {
                       //   return UIValues.enterPass;
@@ -234,11 +244,11 @@ class _LoginViewState extends State<LoginView> {
                                 loginViewModel.navigateToBottomNavigation()
                               } else
                                 {
-                                  _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng\nVui lòng kiểm tra lại!')
+                                  _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng.\nVui lòng kiểm tra lại!')
                                 }
                             }).onError((error, stackTrace) =>
                             {
-                              _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng\nVui lòng kiểm tra lại!')
+                              _showErrorDialog('Tài khoản Điều tra viên hoặc mật khẩu không đúng.\nVui lòng kiểm tra lại!')
                             });
                           }
                         }
@@ -301,7 +311,6 @@ class _LoginViewState extends State<LoginView> {
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      
                       color: Colors.black, fontWeight: FontWeight.w500, fontSize: fontMedium),
                 ),
               ),
@@ -311,7 +320,6 @@ class _LoginViewState extends State<LoginView> {
               ElevatedButton(
                   child: const Text('Đồng ý',
                       style: TextStyle(
-                          
                           color: Colors.white, fontSize: 15)),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();

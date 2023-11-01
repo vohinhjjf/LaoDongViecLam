@@ -95,6 +95,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 textFontSize: fontLarge,
                 textAlign: TextAlign.center,
                 textColor: Colors.white,
+                isBold: true,
               ),
             ),
             Container(
@@ -104,6 +105,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 text: 'Điều tra viên: $_dtv',
                 textFontSize: fontLarge,
                 textColor: Colors.white,
+                isBold: true,
                 //isBold: true,
               ),
             )

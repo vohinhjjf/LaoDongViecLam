@@ -48,21 +48,22 @@ class Body extends State{
                               }
                               return null;
                             },
+                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                             decoration: const InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
 
                               hintText: "Mật khẩu hiện tại",
@@ -81,21 +82,22 @@ class Body extends State{
                               }
                               return null;
                             },
+                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                             decoration: const InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               hintText: "Mật khẩu mới",
                             ),
@@ -113,21 +115,22 @@ class Body extends State{
                               }
                               return null;
                             },
+                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                             decoration: const InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(color: mSecondaryColor, width: 2.0),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
                               ),
                               hintText: "Nhập lại mật khẩu mới",
                             ),
@@ -159,7 +162,7 @@ class Body extends State{
                         });
                       }
                       else{
-                        print('Da click');
+                        print('clicked');
                       }
                     },
                     shape: RoundedRectangleBorder(
@@ -170,7 +173,7 @@ class Body extends State{
                       alignment: Alignment.center,
                       height: 50.0,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(5.0),
                           gradient: const LinearGradient(colors: [
                             mPrimaryColor,
                             Color(0xFF64B5F6),
@@ -211,6 +214,7 @@ class Body extends State{
                 text:"Bạn đã đổi mật khẩu thành công!",
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
+                textFontSize: fontMedium,
                 isBold: true,
               ),
               const SizedBox(
