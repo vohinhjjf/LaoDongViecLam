@@ -164,6 +164,7 @@ class _P52_54ViewState extends State<P52_54View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _thoigian.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -381,7 +382,7 @@ class _P52_54ViewState extends State<P52_54View> {
                             )
                         );
                       }
-                      else if(thanhvien.c44! >= 5 && p52 == 1){
+                      else if((thanhvien.c44 == 5 || thanhvien.c44 == 6 || thanhvien.c44 == 7) && p52 == 1){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(

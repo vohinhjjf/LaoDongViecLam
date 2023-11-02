@@ -49,7 +49,7 @@ class _P48_49ViewState extends State<P48_49View> {
                 check = true;
                 _tien.text = "0";
               }else {
-                _tien.text = p48_49ViewModel.thanhvien.c42.toString();
+                _tien.text = p48_49ViewModel.thanhvien.c42 == null ? "" : p48_49ViewModel.thanhvien.c42.toString();
               }
             })
           });
@@ -121,6 +121,7 @@ class _P48_49ViewState extends State<P48_49View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _vaitro.length,
                   itemBuilder: (context, index) {
                     return ListTile(

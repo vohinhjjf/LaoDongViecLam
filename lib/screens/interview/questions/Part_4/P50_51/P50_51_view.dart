@@ -90,6 +90,7 @@ class _P50_51ViewState extends State<P50_51View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _hopdong.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -130,11 +131,6 @@ class _P50_51ViewState extends State<P50_51View> {
                   text1: "P51. ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có tham gia đóng bảo hiểm xã hội tại nơi [TÊN] làm công việc trên không?",
-                  textColor: Colors.black,
-                  textFontSize:fontLarge,
-                ),
-                UIText(
-                  text: "P51. ${thanhvien.c00} có tham gia đóng bảo hiểm xã hội tại nơi [TÊN] làm công việc trên không?",
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),

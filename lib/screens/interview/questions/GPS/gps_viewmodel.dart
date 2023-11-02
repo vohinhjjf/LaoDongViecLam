@@ -58,16 +58,23 @@ class GPSViewModel extends BaseViewModel {
         _sPrefAppModel.setIDTV(value[i].idtv!);
         if(value[i].c15A != null){
           NavigationServices.instance.navigateToP17B(context);
+          print("17B");
+          break;
         }
         else if(value[i].c35A != null){
           NavigationServices.instance.navigateToP40_42(context);
+          print("40-42");
+          break;
         }
         else if(value[i].c50A != null){
           NavigationServices.instance.navigateToP56_58(context);
+          print("56-58");
+          break;
         }
       }
+      print(4);
+      //NavigationServices.instance.navigateToInterviewStatus(context);
     });
-    NavigationServices.instance.navigateToInterviewStatus(context);
   }
 
   void setGPS(double kinhDo, double viDo) async {

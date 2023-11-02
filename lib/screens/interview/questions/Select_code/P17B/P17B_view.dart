@@ -22,8 +22,8 @@ class P17BView extends StatefulWidget {
 class _P17BViewState extends State<P17BView> {
   late P17BViewModel p17BviewModel;
   var thanhvien = thongTinThanhVienModel();
-  final _nganh = TextEditingController();
-  final _manganh = TextEditingController();
+  final _daotao = TextEditingController();
+  final _madaotao = TextEditingController();
   final _text_find = TextEditingController();
   List list_daotao = [];
   String value = '';
@@ -57,8 +57,8 @@ class _P17BViewState extends State<P17BView> {
             setState(() {
               thanhvien = p17BviewModel.thanhvien;
               list_daotao = p17BviewModel.list_daotao;
-              _nganh.text = p17BviewModel.thanhvien.c15A ?? "";
-              _manganh.text = p17BviewModel.thanhvien.c15B ?? "";
+              _daotao.text = p17BviewModel.thanhvien.c15A ?? "";
+              _madaotao.text = p17BviewModel.thanhvien.c15B ?? "";
             })
           });
     });
@@ -103,7 +103,7 @@ class _P17BViewState extends State<P17BView> {
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
-                    controller: _nganh,
+                    controller: _daotao,
                     readOnly: true,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -121,7 +121,7 @@ class _P17BViewState extends State<P17BView> {
                         isBold: true,
                       ),
                       UIText(
-                        text: "(Đánh mã câu 40B)",
+                        text: "(Đánh mã câu 17B)",
                         textColor: Colors.orange,
                         textFontSize:fontLarge,
                         isBold: true,
@@ -130,10 +130,10 @@ class _P17BViewState extends State<P17BView> {
                   ),
                   const SizedBox(height: 10,),
                   TextFormField(
-                    controller: _manganh,
+                    controller: _madaotao,
                     readOnly: true,
                     onTap: (){
-                      _showAddDialog(_nganh.text.toLowerCase());
+                      _showAddDialog(_daotao.text.toLowerCase());
                     },
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -152,7 +152,7 @@ class _P17BViewState extends State<P17BView> {
                         p17BviewModel.P17BNext(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
-                            c15B: _manganh.text
+                            c15B: _madaotao.text
                         ));
                       }),
                     ],
@@ -238,8 +238,7 @@ class _P17BViewState extends State<P17BView> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    value = p17BviewModel.queryList(list_daotao, select)[index]["Ma"];
-                                    _manganh.text = '$value - ${p17BviewModel.queryList(list_daotao, select)[index]['Ten']}';
+                                    _madaotao.text = p17BviewModel.queryList(list_daotao, select)[index]["Ma"];
                                   });
                                 },
                                 child: Row(

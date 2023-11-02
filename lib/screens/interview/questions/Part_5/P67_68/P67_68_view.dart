@@ -64,7 +64,7 @@ class _P67_68ViewState extends State<P67_68View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

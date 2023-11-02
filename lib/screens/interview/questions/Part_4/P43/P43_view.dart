@@ -94,6 +94,7 @@ class _P43ViewState extends State<P43View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _loaihinh.length,
                   itemBuilder: (context, index) {
                     return ListTile(
