@@ -14,12 +14,14 @@ class InterviewStatusView extends StatefulWidget {
 
 class _InterviewStatusViewState extends State<InterviewStatusView> {
   late InterviewStatusViewModel interviewStatusViewModel;
+  String dtv = "";
 
   @override
   void initState() {
     super.initState();
     interviewStatusViewModel = context.read();
     interviewStatusViewModel.onInit(context);
+    dtv = interviewStatusViewModel.userName;
   }
 
   @override
@@ -150,7 +152,7 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
               Colors.limeAccent,
             ])
         ),
-        child: const Text('DTV99003',
+        child: Text(dtv,
           style: TextStyle(fontSize: fontMedium, fontWeight: FontWeight.bold, color: mPrimaryColor),),
       ),
     );

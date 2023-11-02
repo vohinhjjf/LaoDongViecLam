@@ -21,6 +21,7 @@ class _P24_25ViewState extends State<P24_25View> {
   late P24_25ViewModel p24_25ViewModel;
   int p23 = 0, p24 = 0, p25 =0;
   var thanhvien = thongTinThanhVienModel();
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -64,7 +65,7 @@ class _P24_25ViewState extends State<P24_25View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -215,77 +216,54 @@ class _P24_25ViewState extends State<P24_25View> {
                       ],
                     )
                 ),
-                const SizedBox(height: 10,),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p24_25ViewModel.P24_25Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p24 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'P24 - Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p25 == 0 && p24 == 2){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'P25 - Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
+                        );
+                      }else {
+                        p24_25ViewModel.P24_25Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c22: p24,
+                          c23: p24 == 2 ? p25 : null,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p24_25ViewModel.P24_25Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p24 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P24 - Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p25 == 0 && p24 == 2){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P25 - Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
-                            );
-                          }else {
-                            p24_25ViewModel.P24_25Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c22: p24,
-                              c23: p24 == 2 ? p25 : null,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

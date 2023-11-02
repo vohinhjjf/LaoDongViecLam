@@ -21,7 +21,7 @@ class _P20_22ViewState extends State<P20_22View> {
   late P20_22ViewModel p20_22ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p20 = 0, p21 =0, p22 =0;
-
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _P20_22ViewState extends State<P20_22View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -291,129 +291,107 @@ class _P20_22ViewState extends State<P20_22View> {
                       ],
                     )
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p20_22ViewModel.P20_22Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p20 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'P20 - Sản xuất kinh doanh, làm nông nghiệp nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p20 == 2 && p21 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'P21 - Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p20 == 2 && p21 == 2 && p22 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'P22 - Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p22 == 2){
+                        if(thanhvien.c02 == 1 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 60)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
+                                onpress: (){
+                                  p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c18: p20,
+                                    c19: p20 == 2 ? p21 : null,
+                                    c20: p20 == 2 && p21 == 2 ? p22 : null,
+                                  ));
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c02 == 2 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 55)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
+                                onpress: (){
+                                  p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c18: p20,
+                                    c19: p20 == 2 ? p21 : null,
+                                    c20: p20 == 2 && p21 == 2 ? p22 : null,
+                                  ));
+                                },
+                              )
+                          );
+                        }
+                        else {
+                          p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c18: p20,
+                            c19: p20 == 2 ? p21 : null,
+                            c20: p20 == 2 && p21 == 2 ? p22 : null,
+                          ));
+                        }
+                      }
+                      else {
+                        p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c18: p20,
+                          c19: p20 == 2 ? p21 : null,
+                          c20: p20 == 2 && p21 == 2 ? p22 : null,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p20_22ViewModel.P20_22Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p20 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P20 - Sản xuất kinh doanh, làm nông nghiệp nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p20 == 2 && p21 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P21 - Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p20 == 2 && p21 == 2 && p22 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'P22 - Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p22 == 2){
-                            if(thanhvien.c02 == 1 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 60)){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UINotificationDialog(
-                                    notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
-                                    onpress: (){
-                                      p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c18: p20,
-                                        c19: p20 == 2 ? p21 : null,
-                                        c20: p20 == 2 && p21 == 2 ? p22 : null,
-                                      ));
-                                    },
-                                  )
-                              );
-                            }
-                            else if(thanhvien.c02 == 2 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 55)){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UINotificationDialog(
-                                    notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
-                                    onpress: (){
-                                      p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c18: p20,
-                                        c19: p20 == 2 ? p21 : null,
-                                        c20: p20 == 2 && p21 == 2 ? p22 : null,
-                                      ));
-                                    },
-                                  )
-                              );
-                            }
-                            else {
-                              p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c18: p20,
-                                c19: p20 == 2 ? p21 : null,
-                                c20: p20 == 2 && p21 == 2 ? p22 : null,
-                              ));
-                            }
-                          }
-                          else {
-                            p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c18: p20,
-                              c19: p20 == 2 ? p21 : null,
-                              c20: p20 == 2 && p21 == 2 ? p22 : null,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

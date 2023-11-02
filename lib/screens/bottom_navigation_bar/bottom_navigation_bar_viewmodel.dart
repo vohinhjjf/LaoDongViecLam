@@ -92,7 +92,7 @@ class BottomNavigationViewModel extends BaseViewModel {
     var errorMessage = '', message = '';
     bool isSuccess = false;
     log('BODY: ${jsonEncode(body)}');
-    final _request = await _syncServices.syncData(_sPrefAppModel.accessToken, _sPrefAppModel.month);
+    /*final _request = await _syncServices.syncData(_sPrefAppModel.accessToken, _sPrefAppModel.month);
     if (_request == 200) {
       log("=========== SUCCESS ===========");
     }
@@ -177,7 +177,7 @@ class BottomNavigationViewModel extends BaseViewModel {
               ),
             ),
           ));
-    }
+    }*/
     Navigator.of(context).pop();
   }
 }

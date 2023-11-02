@@ -9,27 +9,16 @@ class InterviewStatusViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   final ExecuteDatabase _executeDatabase;
   InterviewStatusViewModel(this._sPrefAppModel, this._executeDatabase);
-  /*List<BangKeCsModel> list_notInterview = [];
-  List<BangKeCsModel> list_Interviewing = [];
-  List<BangKeCsModel> list_Complete = [];*/
+  String userName ="";
 
   @override
   void onInit(BuildContext context) async {
     super.onInit(context);
+    final userModel = _sPrefAppModel.userModel;
+    userName = userModel.userName ?? "";
   }
 
 
-  /*Future<List<BangKeCsModel>> listNotInterviewed() async {
-    return  await _executeDatabase.getDanhSachBangKeCs(1, '');
-  }
-
-  Future<List<BangKeCsModel>> listInterviewing() async {
-    return  await _executeDatabase.getDanhSachBangKeCs(2, '');
-  }
-
-  Future<List<BangKeCsModel>> listCompleteInterview() async {
-    return  await _executeDatabase.getDanhSachBangKeCs(9, '');
-  }*/
 
   Future<void> notInterviewed() async {
     NavigationServices.instance.navigateToNotInterviewed(context);

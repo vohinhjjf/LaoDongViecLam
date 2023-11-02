@@ -21,6 +21,7 @@ class _P63_64ViewState extends State<P63_64View> {
   var thanhvien = thongTinThanhVienModel();
   final _gio = TextEditingController();
   final _tiencong = TextEditingController();
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _P63_64ViewState extends State<P63_64View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -86,7 +87,8 @@ class _P63_64ViewState extends State<P63_64View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -113,166 +115,145 @@ class _P63_64ViewState extends State<P63_64View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p63_64ViewModel.P63_64Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (int.parse(_gio.text) > 84) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: 'Thành viên ${thanhvien
-                                        .c00} có P63 - Số giờ cho công việc khác = ${_gio
-                                        .text} quá lớn!',)
-                              );
-                            }
-                            else if (int.parse(_tiencong.text) > 900000) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: 'Thành viên ${thanhvien
-                                        .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
-                                        .text} quá lớn!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) >= 64) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien
-                                            .c00} có Số giờ cho công việc khác = ${_gio
-                                            .text} có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if (int.parse(_tiencong.text) >=
-                                              400000) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) =>
-                                                    UINotificationDialog(
-                                                      notification: 'Thành viên ${thanhvien
-                                                          .c00} có Thu nhập của công việc khác = ${_gio
-                                                          .text} có đúng không?',
-                                                      onpress: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        p63_64ViewModel
-                                                            .P63_64Next(
-                                                            thongTinThanhVienModel(
-                                                              idho: thanhvien
-                                                                  .idho,
-                                                              idtv: thanhvien
-                                                                  .idtv,
-                                                              c57: int.parse(
-                                                                  _gio.text),
-                                                              c58: int.parse(
-                                                                  _tiencong
-                                                                      .text),
-                                                            ));
-                                                      },
-                                                    )
-                                            );
-                                          }
-                                          else {
-                                            p63_64ViewModel.P63_64Next(
-                                                thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  c57: int.parse(_gio.text),
-                                                  c58: int.parse(
-                                                      _tiencong.text),
-                                                ));
-                                          }
-                                        },
-                                      )
-                              );
-                            }
-                            else if (int.parse(_tiencong.text) >= 400000) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien
-                                            .c00} có Thu nhập của công việc khác = ${_gio
-                                            .text} có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p63_64ViewModel.P63_64Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (int.parse(_gio.text) > 84) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên ${thanhvien
+                                      .c00} có P63 - Số giờ cho công việc khác = ${_gio
+                                      .text} quá lớn!',)
+                            );
+                          }
+                          else if (int.parse(_tiencong.text) > 900000) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên ${thanhvien
+                                      .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
+                                      .text} quá lớn!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) >= 64) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có Số giờ cho công việc khác = ${_gio
+                                          .text} có đúng không?',
+                                      onpress: () {
+                                        Navigator.of(context).pop();
+                                        if (int.parse(_tiencong.text) >=
+                                            400000) {
+                                          showDialog(
+                                              context: context,
+                                              builder: (_) =>
+                                                  UINotificationDialog(
+                                                    notification: 'Thành viên ${thanhvien
+                                                        .c00} có Thu nhập của công việc khác = ${_gio
+                                                        .text} có đúng không?',
+                                                    onpress: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      p63_64ViewModel
+                                                          .P63_64Next(
+                                                          thongTinThanhVienModel(
+                                                            idho: thanhvien
+                                                                .idho,
+                                                            idtv: thanhvien
+                                                                .idtv,
+                                                            c57: int.parse(
+                                                                _gio.text),
+                                                            c58: int.parse(
+                                                                _tiencong
+                                                                    .text),
+                                                          ));
+                                                    },
+                                                  )
+                                          );
+                                        }
+                                        else {
                                           p63_64ViewModel.P63_64Next(
                                               thongTinThanhVienModel(
                                                 idho: thanhvien.idho,
                                                 idtv: thanhvien.idtv,
                                                 c57: int.parse(_gio.text),
-                                                c58: int.parse(_tiencong.text),
+                                                c58: int.parse(
+                                                    _tiencong.text),
                                               ));
-                                        },
-                                      )
-                              );
-                            }
-                            else {
-                              p63_64ViewModel.P63_64Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c57: int.parse(_gio.text),
-                                c58: int.parse(_tiencong.text),
-                              ));
-                            }
+                                        }
+                                      },
+                                    )
+                            );
                           }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
+                          else if (int.parse(_tiencong.text) >= 400000) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có Thu nhập của công việc khác = ${_gio
+                                          .text} có đúng không?',
+                                      onpress: () {
+                                        Navigator.of(context).pop();
+                                        p63_64ViewModel.P63_64Next(
+                                            thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c57: int.parse(_gio.text),
+                                              c58: int.parse(_tiencong.text),
+                                            ));
+                                      },
+                                    )
+                            );
+                          }
+                          else {
+                            p63_64ViewModel.P63_64Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c57: int.parse(_gio.text),
+                              c58: int.parse(_tiencong.text),
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child:  DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

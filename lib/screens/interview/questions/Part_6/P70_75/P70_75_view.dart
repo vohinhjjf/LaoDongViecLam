@@ -28,6 +28,7 @@ class _P70_75ViewState extends State<P70_75View> {
   final _giupdo = TextEditingController();
   final _chamsoc = TextEditingController();
   int p70 =0;
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -74,7 +75,7 @@ class _P70_75ViewState extends State<P70_75View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -180,6 +181,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     },
                     autofocus: true,
                     keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -209,6 +211,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     },
                     focusNode: focus,
                     keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -235,6 +238,7 @@ class _P70_75ViewState extends State<P70_75View> {
                       return null;
                     },
                     keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -261,6 +265,7 @@ class _P70_75ViewState extends State<P70_75View> {
                       return null;
                     },
                     keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -286,86 +291,61 @@ class _P70_75ViewState extends State<P70_75View> {
                       return null;
                     },
                     keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p70_75viewModel.P70_75Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if(thanhvien.c63 != 0 && p70 == 0){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
+                            );
+                          }
+                          else {
+                            p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
+                              c64: p70,
+                              c65: int.parse(_dondep.text),
+                              c66: int.parse(_sanxuat.text),
+                              c67: int.parse(_suachua.text),
+                              c68: int.parse(_giupdo.text),
+                              c69: int.parse(_chamsoc.text),
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p70_75viewModel.P70_75Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if(thanhvien.c63 != 0 && p70 == 0){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
-                              );
-                            }
-                            else {
-                              p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                thangDT: thanhvien.thangDT,
-                                namDT: thanhvien.namDT,
-                                c64: p70,
-                                c65: int.parse(_dondep.text),
-                                c66: int.parse(_sanxuat.text),
-                                c67: int.parse(_suachua.text),
-                                c68: int.parse(_giupdo.text),
-                                c69: int.parse(_chamsoc.text),
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
-          child:  DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            check_draw = false;
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

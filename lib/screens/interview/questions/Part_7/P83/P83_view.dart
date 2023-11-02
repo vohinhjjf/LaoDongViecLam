@@ -74,7 +74,7 @@ class _P83ViewState extends State<P83View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -452,10 +452,52 @@ class _P83ViewState extends State<P83View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                          ],
+                          keyboardType: TextInputType.text,
+                          style: const TextStyle( color: Colors.black),
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           ),
+                        ),
+                        //Button
+                        const SizedBox(height: 25,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            UIBackButton(ontap: (){
+                              p83ViewModel.P83Back(doisongho);
+                            }),
+                            UINextButton(ontap: (){
+                              if(_formKey.currentState!.validate()) {
+                                if (p83a == 0 || p83b == 0 || p83c == 0 ||
+                                    p83d == 0 || p83e == 0 || p83f == 0) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) =>
+                                          UIWarningDialog(
+                                            waring: 'Thành viên ${thanhvien
+                                                .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
+                                  );
+                                } else {
+                                  p83ViewModel.P83Next(DoiSongHoModel(
+                                    idho: thanhvien.idho,
+                                    c62_M8A: p83a,
+                                    c62_M8B: p83b,
+                                    c62_M8C: p83c,
+                                    c62_M8D: p83d,
+                                    c62_M8E: p83e,
+                                    c62_M8F: p83f,
+                                    c62_M8FK: p83f == 1 ? _orther.text : "",
+                                  ));
+                                }
+                              }
+                            }),
+                          ],
                         )
                       ],
                     ),
@@ -464,70 +506,6 @@ class _P83ViewState extends State<P83View> {
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p83ViewModel.P83Back(doisongho);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p83a == 0 || p83b == 0 || p83c == 0 ||
-                                p83d == 0 || p83e == 0 || p83f == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
-                              );
-                            } else {
-                              p83ViewModel.P83Next(DoiSongHoModel(
-                                idho: thanhvien.idho,
-                                c62_M8A: p83a,
-                                c62_M8B: p83b,
-                                c62_M8C: p83c,
-                                c62_M8D: p83d,
-                                c62_M8E: p83e,
-                                c62_M8F: p83f,
-                                c62_M8FK: p83f == 1 ? _orther.text : "",
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(

@@ -133,7 +133,7 @@ class ExecuteDatabase {
   }
 
   //BangKe_ThangDT
-  Future<List<BangKeThangDTModel>> getBangKe_ThangDT(String month) async {
+  Future<List<BangKeThangDTModel>> getBangKe_ThangDT(int month) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.bangkeho_thangdt} WHERE thangDT = $month");
@@ -180,7 +180,7 @@ class ExecuteDatabase {
     return listNKTT.first;
   }
 
-  Future<List<thongTinHoModel>> getListHo(String month) async {
+  Future<List<thongTinHoModel>> getListHo(int month) async {
     _database = await _dbProvider.database;
     List<Map<String, Object?>>? res;
     res = await _database?.rawQuery(
@@ -424,7 +424,7 @@ class ExecuteDatabase {
   Future<bool> getKD_VD(String idho) async {
     var check = false;
     await getHo(idho).then((value) => {
-      if (value.kinhDo != null) {check = true} else {check = false}
+      if (value.kinhDo != null && value.viDo != null) {check = true} else {check = false}
     });
     return check;
   }

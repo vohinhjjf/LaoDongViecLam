@@ -77,7 +77,7 @@ class _P80ViewState extends State<P80View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -616,6 +616,13 @@ class _P80ViewState extends State<P80View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                          ],
+                          keyboardType: TextInputType.text,
+                          style: const TextStyle( color: Colors.black),
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -623,6 +630,45 @@ class _P80ViewState extends State<P80View> {
                         )
                       ],
                     ),
+                  ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p80ViewModel.P80Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p80a == 0 || p80b == 0 || p80c == 0 ||
+                              p80d == 0 || p80e == 0 || p80f == 0 ||
+                              p80g == 0 || p80h == 0 || p80i == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
+                            );
+                          } else {
+                            p80ViewModel.P80Next(DoiSongHoModel(
+                              idho: thanhvien.idho,
+                              c62_M5A: p80a,
+                              c62_M5B: p80b,
+                              c62_M5C: p80c,
+                              c62_M5D: p80d,
+                              c62_M5E: p80e,
+                              c62_M5F: p80f,
+                              c62_M5G: p80g,
+                              c62_M5H: p80h,
+                              c62_M5I: p80i,
+                              c62_M5IK: p80i == 1 ? _orther.text : "",
+                            ));
+                          }
+                        }
+                      }),
+                    ],
                   )
                 ],
               ),

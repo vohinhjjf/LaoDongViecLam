@@ -196,7 +196,7 @@ class Body extends State<GPSView> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 600,
             child: ClipOval(
                 child: Container(
@@ -242,11 +242,11 @@ class Body extends State<GPSView> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                child: const Text(
-                  "Quá trình phỏng vấn kết thúc!",
+                child: const UIText(
+                  text: "Hoàn thành phỏng vấn hộ",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w500),
+                  textColor: Colors.black,
+                    isBold: true,
                 ),
               ),
               const SizedBox(
@@ -256,7 +256,14 @@ class Body extends State<GPSView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     MaterialButton(
-                        child: const Text('Hoàn thành',
+                        child: const Text('Kiểm tra lại',
+                            style: TextStyle(
+                                color: mPrimaryColor, fontSize: fontMedium, fontWeight: FontWeight.bold)),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                    MaterialButton(
+                        child: const Text('Tiếp tục',
                             style: TextStyle(
                                 color: mPrimaryColor, fontSize: fontMedium, fontWeight: FontWeight.bold)),
                         onPressed: () {

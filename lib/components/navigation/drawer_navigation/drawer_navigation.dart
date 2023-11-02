@@ -716,7 +716,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToRoute(11, list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P76. Đời sống gia đình hiện nay",

@@ -30,7 +30,7 @@ class _Q1ViewState extends State<Q1View> {
       q1viewModel = context.read();
       q1viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 100),
+          const Duration(milliseconds: 200),
               () => {
             setState(() {
               list_name = q1viewModel.list;
@@ -68,7 +68,7 @@ class _Q1ViewState extends State<Q1View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -129,7 +129,7 @@ class _Q1ViewState extends State<Q1View> {
                     textCapitalization: TextCapitalization.words,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -198,73 +198,45 @@ class _Q1ViewState extends State<Q1View> {
                       );
                     },
                   ),
-                ]),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          q1viewModel.Q1Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(list_name.isNotEmpty){
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        q1viewModel.Q1Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(list_name.isNotEmpty){
+                          _showNotificationDialog("Hộ còn ai nữa không?",(){
+                            Navigator.of(context).pop();
+                          },() {
+                            print(list_name[list_name.length - 1].idtv! + 1);
+                            q1viewModel.Q1Next();
+
+                          },);
+                        }
+                        else {
+                          q1viewModel.addNTKK(_text_name.text, list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1);
+                          setState(() {
+                            list_name.add(thongTinThanhVienNKTTModel(
+                                idtv: list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1,
+                                q1_New: _text_name.text
+                            ));
+                            _text_name.text = "";
                             _showNotificationDialog("Hộ còn ai nữa không?",(){
                               Navigator.of(context).pop();
                             },() {
-                              print(list_name[list_name.length - 1].idtv! + 1);
+                              print("Next");
                               q1viewModel.Q1Next();
-
                             },);
-                          }else {
-                            q1viewModel.addNTKK(_text_name.text, list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1);
-                            setState(() {
-                              list_name.add(thongTinThanhVienNKTTModel(
-                                  idtv: list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1,
-                                  q1_New: _text_name.text
-                              ));
-                              _text_name.text = "";
-                              _showNotificationDialog("Hộ còn ai nữa không?",(){
-                                Navigator.of(context).pop();
-                              },() {
-                                print("Next");
-                                q1viewModel.Q1Next();
-                              },);
-                            });
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
+                          });
+                        }
+                      }),
+                    ],
+                  )
+                ]),
+          ),
         ],
       ),
       drawer: Theme(

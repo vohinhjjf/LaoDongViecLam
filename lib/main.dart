@@ -145,7 +145,8 @@ void main() async {
             create: (_) => HouseholdReplaceViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
             lazy: true),
         ChangeNotifierProvider(
-            create: (_) => BackupReplaceViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
+            create: (_) => BackupReplaceViewModel(getIt.get<SyncServices>(),
+                getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => AreaViewModel(getIt.get<SPrefAppModel>(), getIt.get<ExecuteDatabase>()),

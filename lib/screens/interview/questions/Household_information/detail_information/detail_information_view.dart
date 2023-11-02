@@ -59,7 +59,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+              padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -84,17 +84,17 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textCapitalization: TextCapitalization.words,
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp(
-                            '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                         FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                       ],
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 25,),
                     //address
                     const UIText(
                       text:UIDescribes.householderAddress,
@@ -111,97 +111,69 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       ),
                     ),
-
+                    //
+                    const SizedBox(height: 25,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        UIBackButton(ontap: (){
+                          detailInformationViewModel.HouseholdBack();
+                        }),
+                        UINextButton(ontap: (){
+                          if (_formKey.currentState!.validate()) {
+                            if(_name.text.length < 5){
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => UINotificationDialog(
+                                      notification: 'Họ và tên chủ hộ quá ngắn dưới 5 ký tự!',
+                                      onpress: (){
+                                        Navigator.of(context, rootNavigator: true).pop();
+                                        if(_address.text.length < 5){
+                                          showDialog(
+                                              context: context,
+                                              builder: (_) => UINotificationDialog(
+                                                  notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
+                                                  onpress:   (){
+                                                    Navigator.of(context, rootNavigator: true).pop();
+                                                    detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                                                  }
+                                              ));
+                                        }
+                                        else {
+                                          detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                                        }
+                                      }
+                                  ));
+                            }
+                            else if(_address.text.length < 5){
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => UINotificationDialog(
+                                      notification: 'Địa chỉ sơ sở quá ngắn dưới 5 ký tự!',
+                                      onpress:   (){
+                                        Navigator.of(context, rootNavigator: true).pop();
+                                        detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                                      }
+                                  ));
+                            }
+                            else {
+                              detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                            }
+                          }
+                        }),
+                      ],
+                    )
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 600,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipOval(
-                      child: Container(
-                        padding: const EdgeInsets.only(right: 4),
-                        decoration: const ShapeDecoration(
-                            shape: CircleBorder(
-                                side: BorderSide(color: Colors.black54, width: 2))),
-                        child: IconButton(
-                          onPressed: () {
-                            detailInformationViewModel.HouseholdBack();
-                          },
-                          icon: const Icon(
-                            Icons.navigate_before,
-                            color: Colors.black54,
-                            size: 35,
-                          ),
-                        ),
-                      )), //back
-                  ClipOval(
-                      child: Container(
-                        padding: const EdgeInsets.all(0),
-                        decoration: const ShapeDecoration(
-                            shape: CircleBorder(
-                                side: BorderSide(color: Colors.black54, width: 2))),
-                        child: IconButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              if(_name.text.length < 5){
-                                showDialog(
-                                    context: context,
-                                    builder: (_) => UINotificationDialog(
-                                        notification: 'Họ và tên chủ hộ quá ngắn dưới 5 ký tự!',
-                                        onpress: (){
-                                          Navigator.of(context, rootNavigator: true).pop();
-                                          if(_address.text.length < 5){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                    notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
-                                                    onpress:   (){
-                                                      Navigator.of(context, rootNavigator: true).pop();
-                                                      detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                                                    }
-                                                ));
-                                          }
-                                          else {
-                                            detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                                          }
-                                        }
-                                    ));
-                              }
-                              else if(_address.text.length < 5){
-                                showDialog(
-                                    context: context,
-                                    builder: (_) => UINotificationDialog(
-                                        notification: 'Địa chỉ sơ sở quá ngắn dưới 5 ký tự!',
-                                        onpress:   (){
-                                          Navigator.of(context, rootNavigator: true).pop();
-                                          detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                                        }
-                                    ));
-                              }
-                              else {
-                                detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                              }
-                            }
-                          },
-                          icon: const Icon(
-                            Icons.navigate_next,
-                            color: Colors.black54,
-                            size: 35,
-                          ),
-                        ),
-                      )), //next
-                ],
-              ),
-            )
           ],
         ),
       ),

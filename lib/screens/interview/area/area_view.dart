@@ -98,7 +98,7 @@ class _AreaViewState extends State<AreaView>{
                             textColor: Colors.black
                         ),
                         UIText(
-                            text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
+                            text: 'Số hộ: ${list_household.where((e) => e.iddb == list_area[index].iddb).length}',
                             textFontSize: fontMedium,
                             isBold: true,
                             textColor: Colors.yellow.shade800

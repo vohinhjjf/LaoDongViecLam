@@ -23,6 +23,7 @@ class _P44_46ViewState extends State<P44_46View> {
   final _gio = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p44 =0, p46 =0;
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -66,7 +67,7 @@ class _P44_46ViewState extends State<P44_46View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -164,7 +165,8 @@ class _P44_46ViewState extends State<P44_46View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -238,139 +240,117 @@ class _P44_46ViewState extends State<P44_46View> {
                       });
                     },
                   ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p44_46ViewModel.P44_46Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if ((thanhvien.c38! < 4 || thanhvien.c38! > 12) &&
+                              p44 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'P44 - Cơ sở ĐKKD nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (p46 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'P46 - Tạm nghỉ công việc trong 7 ngày nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (thanhvien.c38! >= 4 && p44 == 2) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên ${thanhvien
+                                      .c00} có cơ sở thuộc loại hình tổ chức đoàn thể khác mà không có ĐKKD!',)
+                            );
+                          }
+                          else if (thanhvien.c38 == 3 && p44 == 1) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên ${thanhvien
+                                      .c00} là cá nhân làm tự do (P43 = 3) mà cơ sở có đăng ký kinh doanh (P44 = 1). Kiểm tra lại!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) == 0 && p46 == 2) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: '${thanhvien
+                                      .c00} có 0 giờ làm việc trong 7 ngày qua mà P46 = 2!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) != 0 && p46 == 1) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: '${thanhvien.c00} có ${_gio
+                                      .text} giờ làm việc trong 7 ngày qua mà P46 = 1!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) >= 65) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có P45 - Số giờ thực tế làm việc/tuần = ${_gio
+                                          .text} quá cao, trên 8 giờ/ngày. Có đúng không?',
+                                      onpress: () {
+                                        p44_46ViewModel.P44_46Next(
+                                            thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c39: p44,
+                                              c40: int.parse(_gio.text),
+                                              c40A: p46,
+                                            ));
+                                      },
+                                    )
+                            );
+                          }
+                          else {
+                            p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c39: p44,
+                              c40: int.parse(_gio.text),
+                              c40A: p46,
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p44_46ViewModel.P44_46Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if ((thanhvien.c38! < 4 || thanhvien.c38! > 12) &&
-                                p44 == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'P44 - Cơ sở ĐKKD nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (p46 == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'P46 - Tạm nghỉ công việc trong 7 ngày nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (thanhvien.c38! >= 4 && p44 == 2) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: 'Thành viên ${thanhvien
-                                        .c00} có cơ sở thuộc loại hình tổ chức đoàn thể khác mà không có ĐKKD!',)
-                              );
-                            }
-                            else if (thanhvien.c38 == 3 && p44 == 1) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: 'Thành viên ${thanhvien
-                                        .c00} là cá nhân làm tự do (P43 = 3) mà cơ sở có đăng ký kinh doanh (P44 = 1). Kiểm tra lại!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) == 0 && p46 == 2) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: '${thanhvien
-                                        .c00} có 0 giờ làm việc trong 7 ngày qua mà P46 = 2!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) != 0 && p46 == 1) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: '${thanhvien.c00} có ${_gio
-                                        .text} giờ làm việc trong 7 ngày qua mà P46 = 1!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) >= 65) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien
-                                            .c00} có P45 - Số giờ thực tế làm việc/tuần = ${_gio
-                                            .text} quá cao, trên 8 giờ/ngày. Có đúng không?',
-                                        onpress: () {
-                                          p44_46ViewModel.P44_46Next(
-                                              thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c39: p44,
-                                                c40: int.parse(_gio.text),
-                                                c40A: p46,
-                                              ));
-                                        },
-                                      )
-                              );
-                            }
-                            else {
-                              p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c39: p44,
-                                c40: int.parse(_gio.text),
-                                c40A: p46,
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child:  DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

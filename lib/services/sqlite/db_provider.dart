@@ -15,7 +15,7 @@ class DbProvider {
 
   Future<Database?> get database async {
     if (_database != null) return _database;
-    _database = await initDatabase();
+    await initDatabase();
     return _database;
   }
 
@@ -391,7 +391,7 @@ class DbProvider {
     final SPrefAppModel sPrefAppModel = getIt.get<SPrefAppModel>();
     final userName = sPrefAppModel.getUserName;
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "$userName.db");
+    String path = join(documentsDirectory.path, userName,"$userName.db");
     await databaseFactory.deleteDatabase(path);
   }
 

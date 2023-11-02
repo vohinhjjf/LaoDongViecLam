@@ -21,7 +21,7 @@ class _P18ViewState extends State<P18View> {
   late P18ViewModel p18ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p18a = 0, p18b =0, p18c =0;
-
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _P18ViewState extends State<P18View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -274,71 +274,49 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p18ViewModel.P18Back(thanhvien.c13, thanhvien.c15A);
+                    }),
+                    UINextButton(ontap: (){
+                      if(p18a == 0 || p18b == 0 || p18c == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P18 - Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
+                        );
+                      }else {
+                        p18ViewModel.P18Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c16A: p18a,
+                          c16B: p18b,
+                          c16C: p18c,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p18ViewModel.P18Back(thanhvien.c13, thanhvien.c15A);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p18a == 0 || p18b == 0 || p18c == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P18 - Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
-                            );
-                          }else {
-                            p18ViewModel.P18Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c16A: p18a,
-                              c16B: p18b,
-                              c16C: p18c,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

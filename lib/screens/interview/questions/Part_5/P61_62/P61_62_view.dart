@@ -23,7 +23,7 @@ class _P61_62ViewState extends State<P61_62View> {
   var _tiencong = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p62 =0;
-  bool check = false;
+  bool check = false, check_draw = true;
 
   @override
   void initState() {
@@ -71,7 +71,7 @@ class _P61_62ViewState extends State<P61_62View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -99,7 +99,8 @@ class _P61_62ViewState extends State<P61_62View> {
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.datetime,
+                            style: const TextStyle( color: Colors.black),
                             decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -178,6 +179,56 @@ class _P61_62ViewState extends State<P61_62View> {
                       });
                     },
                   ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p61_62ViewModel.P61_62Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p62 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'P62 - Công việc khác nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (int.parse(_tiencong.text) < 100) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có thu nhập dưới 100 nghìn đồng/tháng. Có đúng không?',
+                                      onpress: () {
+                                        Navigator.of(context).pop();
+                                        p61_62ViewModel.P61_62Next(
+                                            thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c55: int.parse(_tiencong.text),
+                                              c56: p62,
+                                            ));
+                                      },
+                                    )
+                            );
+                          }
+                          else {
+                            p61_62ViewModel.P61_62Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c55: int.parse(_tiencong.text),
+                              c56: p62,
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -265,9 +316,16 @@ class _P61_62ViewState extends State<P61_62View> {
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child:  DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

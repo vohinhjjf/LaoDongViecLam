@@ -70,7 +70,7 @@ class _Q5ViewState extends State<Q5View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -211,7 +211,7 @@ class _Q5ViewState extends State<Q5View> {
                       textCapitalization: TextCapitalization.words,
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp(
-                            '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                         FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                       ],
                       keyboardType: TextInputType.text,
@@ -287,79 +287,50 @@ class _Q5ViewState extends State<Q5View> {
                       },
                     ),
                   ),
-                ]),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          q5viewModel.Q5Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(groupValue == 0){
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        q5viewModel.Q5Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(groupValue == 0){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UIWarningDialog(waring: 'Q5 nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(groupValue == 2) {
+                          if(list_q5.isNotEmpty){
+                            for(var item in list_q5){
+                              q5viewModel.deleteNTKK(item.idtv!);
+                            }
+                          }
+                          q5viewModel.Q5Next(groupValue);
+                        }
+                        else {
+                          if(list_q5.isEmpty){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Q5 nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'Q5 - Họ tên thành viên nhập vào chưa đúng!',)
                             );
                           }
-                          else if(groupValue == 2) {
-                            if(list_q5.isNotEmpty){
-                              for(var item in list_q5){
-                                q5viewModel.deleteNTKK(item.idtv!);
-                              }
-                            }
-                            q5viewModel.Q5Next(groupValue);
+                          else{
+                            _showNotificationDialog("Hộ còn ai nữa không?",(){
+                              Navigator.of(context).pop();
+                            },() {
+                              print("Next");
+                              q5viewModel.Q5Next(groupValue);
+                            },);
                           }
-                          else {
-                            if(list_q5.isEmpty){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => const UIWarningDialog(waring: 'Q5 - Họ tên thành viên nhập vào chưa đúng!',)
-                              );
-                            }
-                            else{
-                              _showNotificationDialog("Hộ còn ai nữa không?",(){
-                                Navigator.of(context).pop();
-                              },() {
-                                print("Next");
-                                q5viewModel.Q5Next(groupValue);
-                              },);
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
+                        }
+                      }),
+                    ],
+                  )
+                ]),
+          ),
         ],
       ),
       drawer: Theme(

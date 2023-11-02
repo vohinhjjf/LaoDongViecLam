@@ -80,7 +80,7 @@ class _P76_77ViewState extends State<P76_77View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -175,89 +175,60 @@ class _P76_77ViewState extends State<P76_77View> {
                     );
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p76_77ViewModel.P76_77Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p76 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p77 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Đời sống gia đình ${(p76 == 1 && p77 == 3) ? "được cải thiện":"giảm sút"} mà thu nhập ${(p76 == 1 && p77 == 3) ? "giảm sút":"tăng lên"}. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                p76_77ViewModel.P76_77Next(DoiSongHoModel(
+                                  idho: doisongho.idho,
+                                  thangDT: thanhvien.thangDT,
+                                  namDT: thanhvien.namDT,
+                                  c62_M1: p76,
+                                  c62_M2: p77,
+                                ));
+                              },
+                            )
+                        );
+                      }
+                      else {
+                        p76_77ViewModel.P76_77Next(DoiSongHoModel(
+                          idho: doisongho.idho,
+                          thangDT: thanhvien.thangDT,
+                          namDT: thanhvien.namDT,
+                          c62_M1: p76,
+                          c62_M2: p77,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p76_77ViewModel.P76_77Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p76 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p77 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Đời sống gia đình ${(p76 == 1 && p77 == 3) ? "được cải thiện":"giảm sút"} mà thu nhập ${(p76 == 1 && p77 == 3) ? "giảm sút":"tăng lên"}. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    p76_77ViewModel.P76_77Next(DoiSongHoModel(
-                                      idho: doisongho.idho,
-                                      thangDT: thanhvien.thangDT,
-                                      namDT: thanhvien.namDT,
-                                      c62_M1: p76,
-                                      c62_M2: p77,
-                                    ));
-                                  },
-                                )
-                            );
-                          }
-                          else {
-                            p76_77ViewModel.P76_77Next(DoiSongHoModel(
-                              idho: doisongho.idho,
-                              thangDT: thanhvien.thangDT,
-                              namDT: thanhvien.namDT,
-                              c62_M1: p76,
-                              c62_M2: p77,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(

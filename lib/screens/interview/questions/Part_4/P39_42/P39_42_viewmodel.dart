@@ -45,6 +45,6 @@ class P39_42ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c34 = '${data.c34}', c35A = '${data.c35A}', "
         "c36 = '${data.c36}', c37A = '${data.c37A}' "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    NavigationServices.instance.navigateToP40_42(context);
+    NavigationServices.instance.navigateToP43(context);
   }
 }

@@ -153,4 +153,39 @@ class SyncServices {
     }
     return '$tempt/${listphieuDieuTra.length}';
   }
+
+  Future<int> ThayTheHo(String token, List<Map<String, dynamic>> data, ExecuteDatabase _executeDatabase) async {
+    var tempt =0;
+    for(int i = 0 ; i < data.length; i++) {
+      var envelope = {
+        "idho": data[i]['idho'],
+        "tenChuHo":data[i]['tenChuHo'],
+        "diaChi":data[i]['diaChi'],
+        "tsKhau":data[i]['tsKhau'],
+        "tsNu":data[i]['tsNu'],
+        "trangthai":data[i]['trangthai'],
+        "hoDuPhong":data[i]['hoDuPhong'],
+        "nhom":data[i]['nhom'],
+      };
+      http.Response response = await http.put(
+        Uri.parse('${ApiConstants.baseUrl}api/thaytheho'),
+        body: jsonEncode(envelope),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $token"
+        },
+      );
+      log(data[i].toString());
+      if (response.statusCode == 200) {
+        print("Success!1");
+        tempt++;
+        await _executeDatabase.updateHoDuPhong(data[i]['nhom'], data[i]['hoDuPhong'], data[i]['idho'], data[i]['thangDT'], data[i]['namDT']);
+      }
+      else {
+        print('Fail!1');
+        print(response.statusCode);
+      }
+    }
+    return tempt;
+  }
 }

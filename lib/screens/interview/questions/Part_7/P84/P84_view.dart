@@ -71,13 +71,13 @@ class _P84ViewState extends State<P84View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //p08
+                  //p84
                   UIRichText(
                     text1: "P84. Tính từ đầu năm đến thời điểm hiện nay, hộ "
                         "${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
@@ -396,6 +396,13 @@ class _P84ViewState extends State<P84View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                          ],
+                          keyboardType: TextInputType.text,
+                          style: const TextStyle( color: Colors.black),
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -403,74 +410,45 @@ class _P84ViewState extends State<P84View> {
                         )
                       ],
                     ),
+                  ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p84ViewModel.P84Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p84a == 0 || p84b == 0 || p84c == 0 ||
+                              p84d == 0 || p84e == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
+                            );
+                          } else {
+                            p84ViewModel.P84Next(DoiSongHoModel(
+                              idho: thanhvien.idho,
+                              c62_M9A: p84a,
+                              c62_M9B: p84b,
+                              c62_M9C: p84c,
+                              c62_M9D: p84d,
+                              c62_M9E: p84e,
+                              c62_M9EK: p84e == 1 ? _orther.text : "",
+                            ));
+                          }
+                        }
+                      }),
+                    ],
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p84ViewModel.P84Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p84a == 0 || p84b == 0 || p84c == 0 ||
-                                p84d == 0 || p84e == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
-                              );
-                            } else {
-                              p84ViewModel.P84Next(DoiSongHoModel(
-                                idho: thanhvien.idho,
-                                c62_M9A: p84a,
-                                c62_M9B: p84b,
-                                c62_M9C: p84c,
-                                c62_M9D: p84d,
-                                c62_M9E: p84e,
-                                c62_M9EK: p84e == 1 ? _orther.text : "",
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(

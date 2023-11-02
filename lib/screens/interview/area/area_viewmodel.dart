@@ -29,23 +29,22 @@ class AreaViewModel extends BaseViewModel {
     print("$month , $namDT");
     await _executeDatabase.getArea(int.parse(month), namDT).then((value1) async {
       list_area = value1;
-      print(value1.length);
-      QueryBangke(value1.isNotEmpty ? value1.first.iddb! : "");
     });
+    QueryBangke();
   }
 
-  QueryBangke(String iddb) async {
+  QueryBangke() async {
     int thangdt = int.parse(_sPrefAppModel.month);
     String condition = "";
     int namdt = DateTime.now().year;
     if ((thangdt == 1 || thangdt == 2 || thangdt == 3) && namdt == 2023) {
-      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 9 OR nhom =10 OR nhom = 13 OR nhom =14) AND thangDT = $thangdt AND namDT = $namdt";
+      condition = "(trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 9 OR nhom = 10 OR nhom = 13 OR nhom = 14) AND thangDT = $thangdt AND namDT = $namdt";
     } else if ((thangdt == 4 || thangdt == 5 || thangdt == 6) && namdt == 2023) {
-      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 10 OR nhom =11 OR nhom = 14 OR nhom =15) AND thangDT = $thangdt AND namDT = $namdt";
+      condition = "(trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 10 OR nhom = 11 OR nhom = 14 OR nhom = 15) AND thangDT = $thangdt AND namDT = $namdt";
     } else if ((thangdt == 7 || thangdt == 8 || thangdt == 9) && namdt == 2023) {
-      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 11 OR nhom =12 OR nhom = 15 OR nhom =16) AND thangDT = $thangdt AND namDT = $namdt";
+      condition = "(trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 11 OR nhom = 12 OR nhom = 15 OR nhom = 16) AND thangDT = $thangdt AND namDT = $namdt";
     } else if ((thangdt == 10 || thangdt == 11 || thangdt == 12) && namdt == 2023) {
-      condition = "iddb = $iddb AND HoDuPhong = 0 AND (nhom = 12 OR nhom =13 OR nhom = 16 OR nhom =17) AND thangDT = $thangdt AND namDT = $namdt";
+      condition = "(trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 12 OR nhom = 13 OR nhom = 16 OR nhom = 17) AND thangDT = $thangdt AND namDT = $namdt";
     }
     await _executeDatabase.getHouseHold(condition).then((value) => list_household= value);
   }

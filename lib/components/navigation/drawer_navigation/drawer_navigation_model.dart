@@ -65,6 +65,10 @@ class DrawerNavigationModel extends BaseViewModel {
     }
   }
 
+  checkTTTV() async {
+    
+  }
+
   void navigateToRoute(int select, int idtv) async {
     switch (select){
       case 0: NavigationServices.instance.navigateToOperatingStatus(context);break;

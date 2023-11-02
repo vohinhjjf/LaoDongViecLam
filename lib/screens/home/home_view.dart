@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
                     UIAssets.icInterview,
                     onTap:  () {
                       print(UIDescribes.interview);
-                      homeViewModel.interview();
+                      _showLoading(context);
                     }),
                 _cardWidget(UIDescribes.sync, UIAssets.icSync,onTap: () {
                   print(UIDescribes.sync);
@@ -130,6 +130,30 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
+    );
+  }
+
+  _showLoading(BuildContext context){
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          homeViewModel.interview();
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  CircularProgressIndicator(),
+                  UIText(text: "Hệ thống đang xử lý...")
+                ],
+              ),
+            ),
+          );
+        }
     );
   }
 }

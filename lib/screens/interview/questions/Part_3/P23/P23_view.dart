@@ -22,6 +22,7 @@ class _P23ViewState extends State<P23View> {
   final _orther = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p23 =0;
+  bool check_draw = true;
 
   var _lydo = [
     "CHỜ BẮT ĐẦU CÔNG VIỆC HOẶC HOẠT ĐỘNG KINH DOANH MỚI",
@@ -81,7 +82,7 @@ class _P23ViewState extends State<P23View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -154,6 +155,13 @@ class _P23ViewState extends State<P23View> {
                           }
                           return null;
                         },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(
+                              '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                        ],
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle( color: Colors.black),
                         decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -161,78 +169,56 @@ class _P23ViewState extends State<P23View> {
                       )
                     ],
                   ),
+                ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p23ViewModel.P23Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p23 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P23 - Lý do tạm nghỉ việc bị bỏ trống!',)
+                        );
+                      }
+                      else if(thanhvien.c02 == 1 && p23 == 6){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',)
+                        );
+                      }
+                      else {
+                        p23ViewModel.P23Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c21: p23,
+                          c21K: _orther.text,
+                        ));
+                      }
+                    }),
+                  ],
                 )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p23ViewModel.P23Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p23 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P23 - Lý do tạm nghỉ việc bị bỏ trống!',)
-                            );
-                          }
-                          else if(thanhvien.c02 == 1 && p23 == 6){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',)
-                            );
-                          }
-                          else {
-                            p23ViewModel.P23Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c21: p23,
-                              c21K: _orther.text,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

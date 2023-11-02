@@ -21,6 +21,7 @@ class _P50_51ViewState extends State<P50_51View> {
   late P50_51ViewModel p50_51ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p50 = 0, p51 = 0;
+  bool check_draw = true;
 
   var _hopdong = [
     "Hợp đồng không xác định thời hạn",
@@ -74,7 +75,7 @@ class _P50_51ViewState extends State<P50_51View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -196,355 +197,333 @@ class _P50_51ViewState extends State<P50_51View> {
                     });
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p50_51ViewModel.P50_51Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p50 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P50 - Loại hợp đồng nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p51 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P51 - Có đóng BHXH nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if((thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
+                          || thanhvien.c38 == 10 || thanhvien.c38 == 12) && (p50 == 6 || p50 == 7)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} làm việc trong khu vực nhà nước mà không có hợp đồng lao động. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
+                                    || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
+                                    || thanhvien.c38 == 12) && p51 == 2 && (p50 == 1 || p50 == 2|| p50 == 3)){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/tổ chức đoàn thể khác và có HĐLĐ từ 3 tháng trở lên mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
+                                              (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+                                                    if(p50 < 3 && p51 == 2){
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (_) => UINotificationDialog(
+                                                            notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                                            onpress: (){
+                                                              Navigator.of(context).pop();
+                                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                                idho: thanhvien.idho,
+                                                                idtv: thanhvien.idtv,
+                                                                c32: p50,
+                                                                c33: p51,
+                                                              ));
+                                                            },
+                                                          )
+                                                      );
+                                                    }
+                                                    else {
+                                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c32: p50,
+                                                        c33: p51,
+                                                      ));
+                                                    }
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else if(p50 < 3 && p51 == 2){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+                                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c32: p50,
+                                                      c33: p51,
+                                                    ));
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c32: p50,
+                                              c33: p51,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
+                                    (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if(p50 < 3 && p51 == 2){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+                                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c32: p50,
+                                                      c33: p51,
+                                                    ));
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c32: p50,
+                                              c33: p51,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(p50 < 3 && p51 == 2){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c32: p50,
+                                            c33: p51,
+                                          ));
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c32: p50,
+                                    c33: p51,
+                                  ));
+                                }
+                              },
+                            )
+                        );
+                      }
+                      else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
+                          || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
+                          || thanhvien.c38 == 12) && p51 == 2 && (p50 == 1 || p50 == 2|| p50 == 3)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/tổ chức đoàn thể khác và có HĐLĐ từ 3 tháng trở lên mà không có BHXH. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
+                                    (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if(p50 < 3 && p51 == 2){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+                                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c32: p50,
+                                                      c33: p51,
+                                                    ));
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c32: p50,
+                                              c33: p51,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(p50 < 3 && p51 == 2){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c32: p50,
+                                            c33: p51,
+                                          ));
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c32: p50,
+                                    c33: p51,
+                                  ));
+                                }
+                              },
+                            )
+                        );
+                      }
+                      else if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
+                          (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                if(p50 < 3 && p51 == 2){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c32: p50,
+                                            c33: p51,
+                                          ));
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c32: p50,
+                                    c33: p51,
+                                  ));
+                                }
+                              },
+                            )
+                        );
+                      }
+                      else if(p50 < 3 && p51 == 2){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                  idho: thanhvien.idho,
+                                  idtv: thanhvien.idtv,
+                                  c32: p50,
+                                  c33: p51,
+                                ));
+                              },
+                            )
+                        );
+                      }
+                      else {
+                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c32: p50,
+                          c33: p51,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p50_51ViewModel.P50_51Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p50 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P50 - Loại hợp đồng nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p51 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P51 - Có đóng BHXH nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if((thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
-                              || thanhvien.c38 == 10 || thanhvien.c38 == 12) && (p50 == 6 || p50 == 7)){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành viên ${thanhvien.c00} làm việc trong khu vực nhà nước mà không có hợp đồng lao động. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
-                                        || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
-                                        || thanhvien.c38 == 12) && p51 == 2 && (p50 == 1 || p50 == 2|| p50 == 3)){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/tổ chức đoàn thể khác và có HĐLĐ từ 3 tháng trở lên mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
-                                                  (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        if(p50 < 3 && p51 == 2){
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (_) => UINotificationDialog(
-                                                                notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                                                onpress: (){
-                                                                  Navigator.of(context).pop();
-                                                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    c32: p50,
-                                                                    c33: p51,
-                                                                  ));
-                                                                },
-                                                              )
-                                                          );
-                                                        }
-                                                        else {
-                                                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                            idho: thanhvien.idho,
-                                                            idtv: thanhvien.idtv,
-                                                            c32: p50,
-                                                            c33: p51,
-                                                          ));
-                                                        }
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else if(p50 < 3 && p51 == 2){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c32: p50,
-                                                          c33: p51,
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  c32: p50,
-                                                  c33: p51,
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
-                                        (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if(p50 < 3 && p51 == 2){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c32: p50,
-                                                          c33: p51,
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  c32: p50,
-                                                  c33: p51,
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if(p50 < 3 && p51 == 2){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c32: p50,
-                                                c33: p51,
-                                              ));
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else {
-                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c32: p50,
-                                        c33: p51,
-                                      ));
-                                    }
-                                  },
-                                )
-                            );
-                          }
-                          else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
-                              || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
-                              || thanhvien.c38 == 12) && p51 == 2 && (p50 == 1 || p50 == 2|| p50 == 3)){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành viên ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/tổ chức đoàn thể khác và có HĐLĐ từ 3 tháng trở lên mà không có BHXH. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
-                                        (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if(p50 < 3 && p51 == 2){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c32: p50,
-                                                          c33: p51,
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  c32: p50,
-                                                  c33: p51,
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if(p50 < 3 && p51 == 2){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c32: p50,
-                                                c33: p51,
-                                              ));
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else {
-                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c32: p50,
-                                        c33: p51,
-                                      ));
-                                    }
-                                  },
-                                )
-                            );
-                          }
-                          else if((thanhvien.c38 == 10 || thanhvien.c38 == 11) &&
-                              (thanhvien.c43 == 5 || thanhvien.c43 == 6) && p51 == 2){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành viên ${thanhvien.c00} là lao động làm công ăn lương/chủ cơ sở trong khu vực cơ quan lập pháp/hành pháp/tư pháp và tổ chức CT-XH mà không có BHXH. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    if(p50 < 3 && p51 == 2){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c32: p50,
-                                                c33: p51,
-                                              ));
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else {
-                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c32: p50,
-                                        c33: p51,
-                                      ));
-                                    }
-                                  },
-                                )
-                            );
-                          }
-                          else if(p50 < 3 && p51 == 2){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành viên ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c32: p50,
-                                      c33: p51,
-                                    ));
-                                  },
-                                )
-                            );
-                          }
-                          else {
-                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c32: p50,
-                              c33: p51,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child:  DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

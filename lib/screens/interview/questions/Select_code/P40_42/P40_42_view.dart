@@ -28,10 +28,12 @@ class _P40_42ViewState extends State<P40_42View> {
   final _tencoso = TextEditingController();
   final _hoatdong = TextEditingController();
   final _mahoatdong = TextEditingController();
-  final _text_find = TextEditingController();
+  final _text_find_nghe = TextEditingController();
+  final _text_find_nganh = TextEditingController();
   List list_maNghe = [], list_nghe = [];
-  String maNghe_macdinh = "0";
-  String value = '';
+  List list_maNganh = [], list_nganh = [];
+  String maNghe_macdinh = " ";
+  String maNganh_macdinh = "0";
 
   @override
   void initState() {
@@ -46,10 +48,14 @@ class _P40_42ViewState extends State<P40_42View> {
               thanhvien = p40_42viewModel.thanhvien;
               _congviec.text = p40_42viewModel.thanhvien.c34 ?? "";
               _chucdanh.text = p40_42viewModel.thanhvien.c35A ?? "";
+              _machucdanh.text = p40_42viewModel.thanhvien.c35B ?? "";
               _tencoso.text = p40_42viewModel.thanhvien.c36 ?? "";
               _hoatdong.text = p40_42viewModel.thanhvien.c37A ?? "";
+              _mahoatdong.text = p40_42viewModel.thanhvien.c37B ?? "";
               list_maNghe = p40_42viewModel.list_maNghe;
               list_nghe = p40_42viewModel.list_nghe;
+              list_maNganh = p40_42viewModel.list_maNganh;
+              list_nganh = p40_42viewModel.list_nganh;
             })
           });
     });
@@ -80,7 +86,7 @@ class _P40_42ViewState extends State<P40_42View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -140,7 +146,7 @@ class _P40_42ViewState extends State<P40_42View> {
                     controller: _machucdanh,
                     readOnly: true,
                     onTap: (){
-                      _showAddDialog(maNghe_macdinh);
+                      _showAddNgheDialog(maNghe_macdinh);
                     },
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -192,7 +198,7 @@ class _P40_42ViewState extends State<P40_42View> {
                         isBold: true,
                       ),
                       UIText(
-                        text: "(Đánh mã câu 40B)",
+                        text: "(Đánh mã câu 42B)",
                         textColor: Colors.orange,
                         textFontSize:fontLarge,
                         isBold: true,
@@ -203,73 +209,47 @@ class _P40_42ViewState extends State<P40_42View> {
                   TextFormField(
                     controller: _mahoatdong,
                     readOnly: true,
+                    onTap: (){
+                      _showAddNganhDialog(maNganh_macdinh);
+                    },
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                ]),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p40_42viewModel.P40_42Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p40_42viewModel.P40_42Next(thongTinThanhVienModel(
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p40_42viewModel.P40_42Back();
+                      }),
+                      UINextButton(ontap: (){
+                        p40_42viewModel.P40_42Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
-                            c35B: value,
+                            c35B: _machucdanh.text,
                             c37B: _mahoatdong.text
-                          ));
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
+                        ));
+                      }),
+                    ],
+                  )
+                ]),
+          ),
         ],
       ),
       drawer: const DrawerNavigation(),
     );
   }
 
-  _showAddDialog(String linh_vuc){
+  _showAddNgheDialog(String select_nghe){
     showDialog(
         context: context,
         builder: (context) {
-          _text_find.text = _chucdanh.text;
+          _text_find_nghe.text = _chucdanh.text;
           String select = '';
-          String linhvuc = linh_vuc;
+          String nghe = select_nghe;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
                 insetPadding: EdgeInsets.zero,
@@ -323,7 +303,7 @@ class _P40_42ViewState extends State<P40_42View> {
                               color: Colors.grey, style: BorderStyle.solid, width: 0.80),
                         ),
                         child: DropdownButton(
-                          value: linhvuc,
+                          value: nghe,
                           items: list_maNghe.map((e) => DropdownMenuItem(
                             value: e["MaC1"].toString(),
                             child: UIText(textColor: Colors.black,text: '${e["MaC1"]}. ${e["TenC1"]}',),
@@ -331,9 +311,9 @@ class _P40_42ViewState extends State<P40_42View> {
                           ).toList(),
                           onChanged: (value){
                             setState(() {
-                              linhvuc = value!;
+                              nghe = value!;
                               maNghe_macdinh = value;
-                              _text_find.text = "";
+                              _text_find_nghe.text = "";
                             });
                           },
                           isExpanded: true,
@@ -349,13 +329,11 @@ class _P40_42ViewState extends State<P40_42View> {
                               color: Colors.grey, style: BorderStyle.solid, width: 0.20),
                         ),
                         child: TextField(
-                          controller: _text_find,
+                          controller: _text_find_nghe,
                           onChanged: (value){
-                            //Navigator.of(context).pop();
                             setState(() {
-                              select = _text_find.text;
+                              select = _text_find_nghe.text;
                             });
-                            //_showAddDialog(linh_vuc, san_pham,_text_find.text, false);
                           },
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: const InputDecoration(
@@ -370,11 +348,11 @@ class _P40_42ViewState extends State<P40_42View> {
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p40_42viewModel.queryList(select, linhvuc, list_nghe).length <= 4) ? p40_42viewModel.queryList(select, linhvuc, list_nghe).length*60 : 300,
+                        height: (p40_42viewModel.queryListNghe(select, nghe, list_nghe).length <= 4) ? p40_42viewModel.queryListNghe(select, nghe, list_nghe).length*60 : 300,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p40_42viewModel.queryList(select, linhvuc, list_nghe).length,
+                          itemCount: p40_42viewModel.queryListNghe(select, nghe, list_nghe).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -382,8 +360,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    value = p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]["Ma"];
-                                    _machucdanh.text = '$value - ${p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]['Ten']}';
+                                    _machucdanh.text = p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"];
                                   });
                                 },
                                 child: Row(
@@ -393,7 +370,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]["Ma"]} - ${p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]["Ten"]}',
+                                        text: '${p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"]} - ${p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -404,7 +381,164 @@ class _P40_42ViewState extends State<P40_42View> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]["TenSanPham"], p40_42viewModel.queryList(select, linhvuc, list_nghe)[index]["MoTa"]);
+                                          _showDetailProduct(p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"], p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["MoTa"]);
+                                        }
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+          );
+        }
+    );
+  }
+
+  _showAddNganhDialog(String select_nganh){
+    showDialog(
+        context: context,
+        builder: (context) {
+          _text_find_nganh.text = _hoatdong.text;
+          String select = '';
+          String nganh = select_nganh;
+          return StatefulBuilder(
+              builder: (context, setState) => AlertDialog(
+                insetPadding: EdgeInsets.zero,
+                titlePadding: EdgeInsets.zero,
+                contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(10.0)),
+                ),
+                title: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        icon: const Icon(CupertinoIcons.clear_fill,color: Colors.redAccent,),
+                        onPressed: (){
+                          Navigator.of(context, rootNavigator: true).pop();
+                        },
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: const UIText(
+                        text: "Danh mục Ngành",
+                        textFontSize: fontLarge,
+                        textColor: Colors.blue,
+                        isBold: true,
+                      ),
+                    ),
+                  ],
+                ),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.w, top: 10.h, right: 20.w),
+                        child: const UIText(
+                          text:"Chọn mã cấp 1",
+                          textColor: Colors.black,
+                          textFontSize: fontMedium,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 10.w, top: 10.h, right: 10.w),
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+                        //height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                              color: Colors.grey, style: BorderStyle.solid, width: 0.80),
+                        ),
+                        child: DropdownButton(
+                          value: nganh,
+                          items: list_maNganh.map((e) => DropdownMenuItem(
+                            value: e["MaC1"].toString(),
+                            child: UIText(textColor: Colors.black,text: '${e["MaC1"]}. ${e["TenC1"]}',),
+                          )
+                          ).toList(),
+                          onChanged: (value){
+                            setState(() {
+                              nganh = value!;
+                              maNganh_macdinh = value;
+                              _text_find_nganh.text = "";
+                            });
+                          },
+                          isExpanded: true,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 10.w, top: 10.h, right: 10.w),
+                        //width: MediaQuery.of(context).size.width/1.2,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                              color: Colors.grey, style: BorderStyle.solid, width: 0.20),
+                        ),
+                        child: TextField(
+                          controller: _text_find_nganh,
+                          onChanged: (value){
+                            setState(() {
+                              select = _text_find_nganh.text;
+                            });
+                          },
+                          style: const TextStyle(color: Colors.black, fontSize: fontMedium),
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                borderSide: BorderSide(color: mPrimaryColor)),
+                            hintText: "Nhập mã",
+                            hintStyle: const TextStyle(color: Colors.grey, fontSize: fontMedium),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
+                        width: (MediaQuery.of(context).size.width/1.1),
+                        height: (p40_42viewModel.queryListNganh(select, nganh, list_nganh).length <= 4) ? p40_42viewModel.queryListNganh(select, nganh, list_nganh).length*60 : 300,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: p40_42viewModel.queryListNganh(select, nganh, list_nganh).length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.of(context, rootNavigator: true).pop();
+                                  setState(() {
+                                    _mahoatdong.text = p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"];
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width/1.55,
+                                      child: UIText(
+                                        textColor: Colors.black,
+                                        text: '${p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"]} - ${p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"]}',
+                                      ),
+                                    ),
+                                    IconButton(
+                                        alignment: Alignment.centerRight,
+                                        icon: const Icon(
+                                          Icons.info,
+                                          color: Colors.lightBlue,
+                                          //size: fontGreater,
+                                        ),
+                                        onPressed: () {
+                                          _showDetailProduct(p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"], p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["MoTa"]);
                                         }
                                     ),
                                   ],

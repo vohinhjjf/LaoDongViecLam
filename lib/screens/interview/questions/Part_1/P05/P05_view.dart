@@ -21,6 +21,7 @@ class _P05ViewState extends State<P05View> {
   late P05ViewModel p05viewModel;
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
   int groupValue = 0;
+  bool check_draw = true;
 
    String moiquanhe(){
     String _mqh = "";
@@ -75,7 +76,7 @@ class _P05ViewState extends State<P05View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -146,122 +147,100 @@ class _P05ViewState extends State<P05View> {
                     });
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p05viewModel.P05Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(groupValue == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P05 - Có con dưới 3 tuổi nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){
+                        showDialog(
+                            context: context,
+                            builder: (_) =>  UINotificationDialog(
+                              notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có phải không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                if(thanhvien.c01! >= 3 && groupValue == 1){
+                                  Navigator.of(context).pop();
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) =>  UINotificationDialog(
+                                        notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                                            'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          p05viewModel.P05Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c04A: groupValue
+                                          ));
+                                        },
+                                      )
+                                  );
+                                }else {
+                                  p05viewModel.P05Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c04A: groupValue
+                                  ));
+                                }
+                              },
+                            )
+                        );
+                      }
+                      else if(thanhvien.c01! >= 3 && groupValue == 1){
+                        showDialog(
+                            context: context,
+                            builder: (_) =>  UINotificationDialog(
+                              notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                                  'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                p05viewModel.P05Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c04A: groupValue
+                                ));
+                              },
+                            )
+                        );
+                      }
+                      else {
+                        p05viewModel.P05Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c04A: groupValue
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p05viewModel.P05Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(groupValue == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P05 - Có con dưới 3 tuổi nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){
-                            showDialog(
-                                context: context,
-                                builder: (_) =>  UINotificationDialog(
-                                  notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có phải không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    if(thanhvien.c01! >= 3 && groupValue == 1){
-                                      Navigator.of(context).pop();
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) =>  UINotificationDialog(
-                                            notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
-                                                'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              p05viewModel.P05Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c04A: groupValue
-                                              ));
-                                            },
-                                          )
-                                      );
-                                    }else {
-                                      p05viewModel.P05Next(thongTinThanhVienModel(
-                                          idho: thanhvien.idho,
-                                          idtv: thanhvien.idtv,
-                                          c04A: groupValue
-                                      ));
-                                    }
-                                  },
-                                )
-                            );
-                          }
-                          else if(thanhvien.c01! >= 3 && groupValue == 1){
-                            showDialog(
-                                context: context,
-                                builder: (_) =>  UINotificationDialog(
-                                  notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
-                                      'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    p05viewModel.P05Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c04A: groupValue
-                                    ));
-                                  },
-                                )
-                            );
-                          }
-                          else {
-                            p05viewModel.P05Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c04A: groupValue
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

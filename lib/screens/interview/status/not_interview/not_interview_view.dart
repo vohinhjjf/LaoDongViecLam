@@ -27,10 +27,9 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = notInterviewedViewModel.data;
-          /*for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 3).toList()){
+          for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList()){
             listBangKeCs.removeWhere((e) => e.idho == item.idhO_BKE);
           }
-          listBangKeCs.removeWhere((e) => e.hoDuPhong == 1);*/
         })
       });
     });
