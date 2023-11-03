@@ -80,57 +80,64 @@ class _P50_51ViewState extends State<P50_51View> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //p50
-                UIRichText(
-                  text1: "P50. Với công việc này, ",
-                  text2: thanhvien.c00 ?? "",
-                  text3: " đã ký loại hợp đồng lao động nào?",
-                  textColor: Colors.black,
-                  textFontSize:fontLarge,
-                ),
-                const SizedBox(height: 10,),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: _hopdong.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _hopdong[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p50 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p50 = p50 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
+                Visibility(
+                  visible: thanhvien.c43 == 5 ,
+                    child: Column(
+                      children: [
+                        UIRichText(
+                          text1: "P50. Với công việc này, ",
+                          text2: thanhvien.c00 ?? "",
+                          text3: " đã ký loại hợp đồng lao động nào?",
+                          textColor: Colors.black,
+                          textFontSize:fontLarge,
                         ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          p50 = p50 == index+1 ? 0 : index+1;
-                        });
-                      },
-                    );
-                  },
+                        const SizedBox(height: 10,),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: _hopdong.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: UIText(
+                                text: _hopdong[index].toString(),
+                                textColor: Colors.black,
+                                textFontSize: fontLarge,
+                                textAlign: TextAlign.start,
+                                isBold: false,
+                              ),
+                              leading: RoundCheckBox(
+                                isChecked: p50 == index+1 ? true : false,
+                                onTap: (selected) {
+                                  setState(() {
+                                    p50 = p50 == index+1 ? 0 : index+1;
+                                  });
+                                },
+                                border: Border.all(
+                                  width: 1,
+                                  color: Colors.black,
+                                ),
+                                checkedColor: Colors.white,
+                                checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                uncheckedColor: Colors.white,
+                                uncheckedWidget: Container(),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  p50 = p50 == index+1 ? 0 : index+1;
+                                });
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 10,),
+                      ],
+                    )
                 ),
-                const SizedBox(height: 10,),
                 //p51
                 UIRichText(
                   text1: "P51. ",
                   text2: thanhvien.c00 ?? "",
-                  text3: " có tham gia đóng bảo hiểm xã hội tại nơi [TÊN] làm công việc trên không?",
+                  text3: " có tham gia đóng bảo hiểm xã hội tại nơi làm công việc trên không?",
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),

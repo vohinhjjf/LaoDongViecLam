@@ -69,9 +69,11 @@ class CompleteInterviewViewModel extends BaseViewModel {
           }
         }
       });
-      await _executeDatabase.getListTTTV(id).then((value) async {
+      await _executeDatabase.getListTTTV("$id$thangDT").then((value) async {
         if(value.length != list_tv.length){
-          await _executeDatabase.deleteTTTV(id);
+          for(var item in value){
+            await _executeDatabase.deleteTTTV(item.idho!, item.idtv!, item.namDT!);
+          }
           await _executeDatabase.setTTTV(list_tv.map((e) => thongTinThanhVienModel.fromJson(e)).toList());
         }
       });

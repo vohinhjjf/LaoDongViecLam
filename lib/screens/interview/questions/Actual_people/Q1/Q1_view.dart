@@ -125,7 +125,6 @@ class _Q1ViewState extends State<Q1View> {
                         }
                       }
                     },
-                    autofocus: true,
                     textCapitalization: TextCapitalization.words,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(

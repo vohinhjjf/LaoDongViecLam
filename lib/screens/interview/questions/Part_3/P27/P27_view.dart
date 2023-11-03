@@ -92,6 +92,7 @@ class _P27ViewState extends State<P27View> {
                 SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _nganh.length,
                   itemBuilder: (context, index) {
                     return ListTile(

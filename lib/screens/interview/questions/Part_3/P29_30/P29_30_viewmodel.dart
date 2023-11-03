@@ -34,6 +34,13 @@ class P29_30ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c27 = ${data.c27}, c28 = ${data.c28} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c27 == 2 || data.c28 == 1){
+      _executeDatabase.update("SET c29 = ${data.c29}, c30 = ${data.c30}, "
+          "c30_A = ${data.c30_A}, c30_B = ${data.c30_B}, c30_C = ${data.c30_C}, "
+          "c30_D = ${data.c30_D}, c30_E = ${data.c30_E}, c30_F = ${data.c30_F}, "
+          "c30_G = ${data.c30_G}, c30_H = ${data.c30_H}, c30_I = ${data.c30_I}, "
+          "c30_IK = ${data.c30_IK.toString()}, c30A = ${data.c30A}, c31= ${data.c31}, c31K = ${data.c31K.toString()}, "
+          "c32 = ${data.c32}, c33 = ${data.c33}, c33A = ${data.c33A}, c33AK = ${data.c33AK.toString()} "
+          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP39_42(context);
     }else {
       NavigationServices.instance.navigateToP31_32(context);

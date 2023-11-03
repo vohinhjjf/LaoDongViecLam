@@ -39,7 +39,7 @@ class P80ViewModel extends BaseViewModel {
     await _executeDatabase.updateDSH("SET c62_M5A = ${data.c62_M5A}, c62_M5B = ${data.c62_M5B}, "
         "c62_M5C = ${data.c62_M5C}, c62_M5D = ${data.c62_M5D}, c62_M5E = ${data.c62_M5E}, "
         "c62_M5F = ${data.c62_M5F}, c62_M5G = ${data.c62_M5G}, c62_M5H = ${data.c62_M5H}, "
-        "c62_M5I = ${data.c62_M5I}, c62_M5IK = '${data.c62_M5IK}' "
+        "c62_M5I = ${data.c62_M5I}, c62_M5IK = ${data.c62_M5IK.toString()} "
         "WHERE idho = ${data.idho}");
     NavigationServices.instance.navigateToP81(context);
   }

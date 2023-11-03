@@ -34,8 +34,12 @@ class P23ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c21 = ${data.c21}, c21K = ${data.c21K} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c21 == 1 || data.c21 == 3){
+      _executeDatabase.update("SET c22 = ${data.c22}, c23 = ${data.c23} "
+          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP26(context);
     }else if(data.c21 == 4){
+      _executeDatabase.update("SET c22 = ${data.c22}, c23 = ${data.c23}, "
+          "c24 = ${data.c24} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP27(context);
     }else {
       NavigationServices.instance.navigateToP24_25(context);

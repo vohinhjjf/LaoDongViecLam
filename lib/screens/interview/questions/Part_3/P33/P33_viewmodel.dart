@@ -34,8 +34,8 @@ class P33ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c30_A = ${data.c30_A}, c30_B = ${data.c30_B}, "
         "c30_C = ${data.c30_C}, c30_D = ${data.c30_D}, c30_E = ${data.c30_E}, "
         "c30_F = ${data.c30_F}, c30_G = ${data.c30_G}, c30_H = ${data.c30_H}, "
-        "c30_I = ${data.c30_I}, c30_IK = ${data.c30_IK} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+        "c30_I = ${data.c30_I}, c30_IK = ${data.c30_IK}, c30A = ${data.c30A},"
+        " c31= ${data.c31}, c31K = ${data.c31K.toString()} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     NavigationServices.instance.navigateToP36_37(context);
   }
 }

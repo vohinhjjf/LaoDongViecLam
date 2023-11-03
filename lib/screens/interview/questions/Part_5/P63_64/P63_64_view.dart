@@ -87,6 +87,10 @@ class _P63_64ViewState extends State<P63_64View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
@@ -115,6 +119,10 @@ class _P63_64ViewState extends State<P63_64View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 6,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(

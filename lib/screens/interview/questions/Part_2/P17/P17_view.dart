@@ -141,6 +141,10 @@ class _P17ViewState extends State<P17View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 4,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
@@ -200,7 +204,7 @@ class _P17ViewState extends State<P17View> {
                             p17ViewModel.P17Next(thongTinThanhVienModel(
                               idho: thanhvien.idho,
                               idtv: thanhvien.idtv,
-                              c15A: _nganh.text,
+                              //c15A: _nganh.text,
                               c15C: int.parse(_nam.text),
                             ));
                           }

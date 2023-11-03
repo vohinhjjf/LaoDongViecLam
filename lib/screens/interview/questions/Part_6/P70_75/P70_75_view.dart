@@ -179,6 +179,10 @@ class _P70_75ViewState extends State<P70_75View> {
                     onFieldSubmitted: (v){
                       FocusScope.of(context).requestFocus(focus);
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     autofocus: true,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
@@ -209,6 +213,10 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     focusNode: focus,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
@@ -237,6 +245,10 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
@@ -264,6 +276,10 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
@@ -290,6 +306,10 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(

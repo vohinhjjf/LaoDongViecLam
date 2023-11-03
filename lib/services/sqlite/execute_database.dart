@@ -328,9 +328,10 @@ class ExecuteDatabase {
     return res == null;
   }*/
 
-  deleteTTTV(String idho) async {
-    await _database?.delete(TableConstants.thongTinThanhVienNKTT,
-        where: 'idho = ?', whereArgs: [idho]);
+  deleteTTTV(String idho, int idtv, int namDT) async {
+    await _database?.delete(TableConstants.thongTinThanhVien,
+        where: 'idho = ? AND idtv = ? AND namDT = ?',
+        whereArgs: [idho,idtv, namDT]);
   }
 
   setTTTV(List<thongTinThanhVienModel> list) async {

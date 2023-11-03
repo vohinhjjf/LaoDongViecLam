@@ -36,7 +36,8 @@ class _P06_07ViewState extends State<P06_07View> {
             setState(() {
               thanhvien = p06_07viewmodel.thanhvien;
               groupValue = p06_07viewmodel.thanhvien.c05 ?? 0;
-              nation = p06_07viewmodel.thanhvien.c06 ?? "Chọn mã quốc gia";
+              nation = (p06_07viewmodel.thanhvien.c06 == null || p06_07viewmodel.thanhvien.c06 == '')
+                  ? "Chọn mã quốc gia" : p06_07viewmodel.thanhvien.c06!;
             })
           });
     });
@@ -177,87 +178,87 @@ class _P06_07ViewState extends State<P06_07View> {
                               child: Text("- - Chọn mã quốc gia - -"),
                             ),
                             DropdownMenuItem(
-                              value: "KHM - Vương quốc Campuchia",
+                              value: "KHM",
                               child: Text("KHM - Vương quốc\nCampuchia"),
                             ),
                             DropdownMenuItem(
-                              value: "IDN - Cộng hòa Indonesia",
+                              value: "IDN",
                               child: Text("IDN - Cộng hòa Indonesia"),
                             ),
                             DropdownMenuItem(
-                              value: "LAO - Cộng hòa Dân chủ Nhân dân Lào",
+                              value: "LAO",
                               child: Text("LAO - Cộng hòa Dân chủ\nNhân dân Lào"),
                             ),
                             DropdownMenuItem(
-                              value: "MYS - Malaysia",
+                              value: "MYS",
                               child: Text("MYS - Malaysia"),
                             ),
                             DropdownMenuItem(
-                              value: "MMR - Liên bang Mianma",
+                              value: "MMR",
                               child: Text("MMR - Liên bang Mianma"),
                             ),
                             DropdownMenuItem(
-                              value: "PHL - Cộng hòa Philippin",
+                              value: "PHL",
                               child: Text("PHL - Cộng hòa Philippin"),
                             ),
                             DropdownMenuItem(
-                              value: "SGP - Cộng hòa Singapo",
+                              value: "SGP",
                               child: Text("SGP - Cộng hòa Singapo"),
                             ),
                             DropdownMenuItem(
-                              value: "THA - Thái Lan",
+                              value: "THA",
                               child: Text("THA - Thái Lan"),
                             ),
                             DropdownMenuItem(
-                              value: "DZA - Các nước Trung Đông",
+                              value: "DZA",
                               child: Text("DZA - Các nước Trung Đông"),
                             ),
                             DropdownMenuItem(
-                              value: "CHN - Cộng hòa Nhân dân Trung Hoa",
+                              value: "CHN",
                               child: Text("CHN - Cộng hòa Nhân dân\nTrung Hoa"),
                             ),
                             DropdownMenuItem(
-                              value: "HKG - Hồng Kông",
+                              value: "HKG",
                               child: Text("HKG - Hồng Kông"),
                             ),
                             DropdownMenuItem(
-                              value: "IND - Cộng hòa Ấn Độ",
+                              value: "IND",
                               child: Text("IND - Cộng hòa Ấn Độ"),
                             ),
                             DropdownMenuItem(
-                              value: "JPN - Nhật Bản",
+                              value: "JPN",
                               child: Text("JPN - Nhật Bản"),
                             ),
                             DropdownMenuItem(
-                              value: "KOR - Hàn Quốc",
+                              value: "KOR",
                               child: Text("KOR - Hàn Quốc"),
                             ),
                             DropdownMenuItem(
-                              value: "TWN - Đài Loan",
+                              value: "TWN",
                               child: Text("TWN - Đài Loan"),
                             ),
                             DropdownMenuItem(
-                              value: "BGR - Các nước Đông Âu",
+                              value: "BGR",
                               child: Text("BGR - Các nước Đông Âu"),
                             ),
                             DropdownMenuItem(
-                              value: "SWE - Các nước Bắc Âu",
+                              value: "SWE",
                               child: Text("SWE - Các nước Bắc Âu"),
                             ),
                             DropdownMenuItem(
-                              value: "USA - Hợp chủng quốc Hoa Kỳ",
+                              value: "USA",
                               child: Text("USA - Hợp chủng quốc Hoa\nKỳ"),
                             ),
                             DropdownMenuItem(
-                              value: "CAN - Canada",
+                              value: "CAN",
                               child: Text("CAN - Canada"),
                             ),
                             DropdownMenuItem(
-                              value: "AUS - Australia",
+                              value: "AUS",
                               child: Text("AUS - Australia"),
                             ),
                             DropdownMenuItem(
-                              value: "AFG - Các nước khác",
+                              value: "AFG",
                               child: Text("AFG - Các nước khác"),
                             ),
                           ],
@@ -285,20 +286,22 @@ class _P06_07ViewState extends State<P06_07View> {
                             builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
                         );
                       }else {
-                        if(groupValue == 2){
-                          p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c05: groupValue,
-                            c06: nation,
-                          ));
-                        } else {
-                          p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c05: groupValue,
-                          ));
-                        }
+                        p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          thangDT: thanhvien.thangDT,
+                          namDT: thanhvien.namDT,
+                          c00: thanhvien.c00,
+                          c01: thanhvien.c01,
+                          c01K: thanhvien.c01K,
+                          c02: thanhvien.c02,
+                          c03A: thanhvien.c03A,
+                          c03B: thanhvien.c03B,
+                          c04: thanhvien.c04,
+                          c04A: thanhvien.c04A,
+                          c05: groupValue,
+                          c06: groupValue == 2 ? nation : '',
+                        ));
                       }
                     }),
                   ],

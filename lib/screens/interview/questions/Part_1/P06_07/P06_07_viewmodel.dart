@@ -38,7 +38,7 @@ class P06_07ViewModel extends BaseViewModel {
   void P06_07Next(thongTinThanhVienModel data) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
-    await _executeDatabase.update("SET c05 = ${data.c05}, c06 = ${data.c06} "
+    await _executeDatabase.update("SET c05 = ${data.c05}, c06 = '${data.c06}' "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c05 == 1){
       NavigationServices.instance.navigateToP08_09(context);
@@ -59,6 +59,25 @@ class P06_07ViewModel extends BaseViewModel {
                       namDT: data.namDT,
                     ));
                   }
+                  await _executeDatabase.deleteTTTV(idho, data.idtv!, DateTime.now().year);
+                  await _executeDatabase.setTTTV([
+                    thongTinThanhVienModel(
+                        idho: idho,
+                        idtv: data.idtv,
+                        thangDT: data.thangDT,
+                        namDT: data.namDT,
+                        c00: data.c00,
+                        c01: data.c01,
+                        c01K: data.c01K,
+                        c02: data.c02,
+                        c03A: data.c03A,
+                        c03B: data.c03B,
+                        c04: data.c04,
+                        c04A: data.c04A,
+                        c05: data.c05,
+                        c06: data.c06
+                    )
+                  ]);
                   NavigationServices.instance.navigateToP76_77(context);
                 });
                 print(1);
@@ -90,6 +109,25 @@ class P06_07ViewModel extends BaseViewModel {
                     namDT: data.namDT,
                   ));
                 }
+                await _executeDatabase.deleteTTTV(idho, data.idtv!, DateTime.now().year);
+                await _executeDatabase.setTTTV([
+                  thongTinThanhVienModel(
+                    idho: idho,
+                    idtv: data.idtv,
+                    thangDT: data.thangDT,
+                    namDT: data.namDT,
+                    c00: data.c00,
+                    c01: data.c01,
+                    c01K: data.c01K,
+                    c02: data.c02,
+                    c03A: data.c03A,
+                    c03B: data.c03B,
+                    c04: data.c04,
+                    c04A: data.c04A,
+                    c05: data.c05,
+                    c06: data.c06
+                  )
+                ]);
                 NavigationServices.instance.navigateToP76_77(context);
               });
               print(5);
@@ -117,6 +155,25 @@ class P06_07ViewModel extends BaseViewModel {
                         namDT: data.namDT,
                       ));
                     }
+                    await _executeDatabase.deleteTTTV(idho, data.idtv!, DateTime.now().year);
+                    await _executeDatabase.setTTTV([
+                      thongTinThanhVienModel(
+                          idho: idho,
+                          idtv: data.idtv,
+                          thangDT: data.thangDT,
+                          namDT: data.namDT,
+                          c00: data.c00,
+                          c01: data.c01,
+                          c01K: data.c01K,
+                          c02: data.c02,
+                          c03A: data.c03A,
+                          c03B: data.c03B,
+                          c04: data.c04,
+                          c04A: data.c04A,
+                          c05: data.c05,
+                          c06: data.c06
+                      )
+                    ]);
                     NavigationServices.instance.navigateToP76_77(context);
                   });
                   print(7);
@@ -144,6 +201,25 @@ class P06_07ViewModel extends BaseViewModel {
                 namDT: data.namDT,
               ));
             }
+            await _executeDatabase.deleteTTTV(idho, data.idtv!, DateTime.now().year);
+            await _executeDatabase.setTTTV([
+              thongTinThanhVienModel(
+                  idho: idho,
+                  idtv: data.idtv,
+                  thangDT: data.thangDT,
+                  namDT: data.namDT,
+                  c00: data.c00,
+                  c01: data.c01,
+                  c01K: data.c01K,
+                  c02: data.c02,
+                  c03A: data.c03A,
+                  c03B: data.c03B,
+                  c04: data.c04,
+                  c04A: data.c04A,
+                  c05: data.c05,
+                  c06: data.c06
+              )
+            ]);
             NavigationServices.instance.navigateToP76_77(context);
           });
           print(10);

@@ -33,7 +33,9 @@ class P61_62ViewModel extends BaseViewModel {
   void P61_62Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c55 = ${data.c55}, c56 = ${data.c56} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    if(data.c55 == 2){
+    if(data.c56 == 2){
+      _executeDatabase.update("SET c57 = ${data.c57.toString()}, c58 = ${data.c58.toString()} "
+          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP65_66(context);
     } else {
       NavigationServices.instance.navigateToP63_64(context);

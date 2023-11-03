@@ -79,6 +79,7 @@ class UINotificationDialog extends StatelessWidget {
         text: notification,
         textColor: Colors.black,
         textFontSize:fontMedium,
+        textAlign: TextAlign.center,
         isBold: true,
       ),
       content: Container(

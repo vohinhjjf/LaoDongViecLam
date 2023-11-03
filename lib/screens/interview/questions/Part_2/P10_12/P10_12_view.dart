@@ -24,7 +24,7 @@ class _P10_12ViewState extends State<P10_12View> {
   List _hanhchinh = [];
   int p10 = 0, p11 = 0, p12 =0;
   bool check_draw = true;
-  String hanhchinh = "Chọn Tỉnh/Thành phố", quocgia = "Chọn mã quốc gia";
+  String hanhchinh = "00", quocgia = "Chọ";
   final  _quocgia = [
     "Chọn mã quốc gia",
     "KHM - Vương quốc Campuchia",
@@ -67,7 +67,7 @@ class _P10_12ViewState extends State<P10_12View> {
       p10_12ViewModel = context.read();
       p10_12ViewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 200),
+          const Duration(milliseconds: 100),
               () => {
             setState(() {
               thanhvien = p10_12ViewModel.thanhvien;
@@ -76,8 +76,10 @@ class _P10_12ViewState extends State<P10_12View> {
               p11 = p10_12ViewModel.thanhvien.c10 ?? 0;
               p12 = p10_12ViewModel.thanhvien.c10M ?? 0;
               _other.text = p10_12ViewModel.thanhvien.c10_MK ?? "";
-              hanhchinh = p10_12ViewModel.thanhvien.c09A ?? "Chọn Tỉnh/Thành phố";
-              quocgia = p10_12ViewModel.thanhvien.c09B ?? "Chọn mã quốc gia";
+              hanhchinh = (p10_12ViewModel.thanhvien.c09A == null || p10_12ViewModel.thanhvien.c09A == '')
+                  ? "00" : p10_12ViewModel.thanhvien.c09A!;
+              quocgia = (p10_12ViewModel.thanhvien.c09B == null || p10_12ViewModel.thanhvien.c09B == '')
+                  ? "Chọ" : p10_12ViewModel.thanhvien.c09B!;
             })
           });
     });
@@ -168,7 +170,7 @@ class _P10_12ViewState extends State<P10_12View> {
                       value: hanhchinh,
                       items: _hanhchinh.map((e) =>
                           DropdownMenuItem(
-                            value: e["Ten"].toString(),
+                            value: e["Ma"].toString(),
                             child: Text("${e["Ma"]} - ${e["Ten"]}"),
                           ),
                       ).toList(),
@@ -235,7 +237,7 @@ class _P10_12ViewState extends State<P10_12View> {
                           value: quocgia,
                           items: _quocgia.map((e) =>
                                DropdownMenuItem(
-                                value: e,
+                                value: e.substring(0,3),
                                 child: Text(e),
                               ),
                           ).toList(),
@@ -333,6 +335,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         const SizedBox(height: 10,),
                         ListView.builder(
                           shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           itemCount: _lydo.length,
                           itemBuilder: (context, index) {
                             return ListTile(
@@ -384,6 +387,12 @@ class _P10_12ViewState extends State<P10_12View> {
                               TextFormField(
                                 autofocus: true,
                                 controller: _other,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(
+                                      '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                                  FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                                ],
+                                keyboardType: TextInputType.text,
                                 validator: (value){
                                   if(value!.isEmpty){
                                     return 'Vui lòng nhập lý do';
@@ -422,7 +431,7 @@ class _P10_12ViewState extends State<P10_12View> {
                             builder: (_) => const UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
                         );
                       }
-                      else if(p10 == 2 && quocgia == "Chọn mã quốc gia"){
+                      else if(p10 == 2 && quocgia == "Chọ"){
                         showDialog(
                             context: context,
                             builder: (_) => const UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
@@ -448,31 +457,50 @@ class _P10_12ViewState extends State<P10_12View> {
                                   ' mà lý do chuyển đến là tìm ${_lydo[p12-1]}. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
-                                p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                                if(p10 == 1) {
+                                  p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c09: p10,
+                                      c09A: hanhchinh,
+                                      c10: p11,
+                                      c10M: p12,
+                                      c10_MK: p12 == 7 ? _other.text : ''
+                                  ));
+                                } else {
+                                  p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
                                     c09: p10,
-                                    c09A: p10 == 1 ? hanhchinh : null,
-                                    c09B: p10 == 1 ? null : quocgia,
-                                    c10: p11,
-                                    c10M: p12,
-                                    c10_MK: _other.text
-                                ));
+                                    c09B: quocgia,
+                                  ));
+                                }
                               },
                             )
                         );
                       }
                       else {
-                        p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c09: p10,
-                            c09A: p10 == 1 ? hanhchinh : null,
-                            c09B: p10 == 1 ? null : quocgia,
-                            c10: p11,
-                            c10M: p12,
-                            c10_MK: _other.text
-                        ));
+                        if(p10 == 1) {
+                          p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c09: p10,
+                              c09A: hanhchinh,
+                              c09B: '',
+                              c10: p11,
+                              c10M: p12,
+                              c10_MK: p12 == 7 ? _other.text : ''
+                          ));
+                        } else {
+                          p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c09: p10,
+                              c09B: quocgia,
+                              c09A: '',
+                              c10_MK: ''
+                          ));
+                        }
                       }
                     }),
                   ],

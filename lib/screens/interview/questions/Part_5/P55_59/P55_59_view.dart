@@ -95,7 +95,7 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -125,7 +125,7 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -155,7 +155,7 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -185,7 +185,7 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -213,6 +213,10 @@ class _P55_59ViewState extends State<P55_59View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     style: const TextStyle( color: Colors.black),
                     keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(

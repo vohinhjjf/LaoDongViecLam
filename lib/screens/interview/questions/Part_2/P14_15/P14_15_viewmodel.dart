@@ -34,6 +34,10 @@ class P14_15ViewModel extends BaseViewModel {
     await _executeDatabase.update("SET c12 = ${data.c12}, c13 = ${data.c13} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c13 == 1){
+      await _executeDatabase.update("SET c14A = ${data.c14A}, c14B = ${data.c14B}"
+          ", c14C = ${data.c14C}, c14D = ${data.c14D}, c14E = ${data.c14E}, "
+          "c14F = ${data.c14F}, c15A = '', c15C = '' "
+          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP18(context);
     }else {
       NavigationServices.instance.navigateToP16(context);

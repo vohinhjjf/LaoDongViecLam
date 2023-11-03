@@ -262,24 +262,41 @@ class _P14_15ViewState extends State<P14_15View> {
                                             'đang đi học mà có trình độ phổ thông dạt '
                                             'được là chưa học xong tiểu học. Có đúng không?',
                                         onpress: (){
-                                          p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c12: p14,
-                                            c13: p15,
-                                          ));
+                                          if(check) {
+                                            p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c12: p14,
+                                              c13: p15,
+                                            ));
+                                          }
+                                          else {
+                                            p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c13: p15,
+                                            ));
+                                          }
                                         },
                                       )
                                   );
                                 }
                                 else {
-                                  p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c04: thanhvien.c04,
-                                    c12: p14,
-                                    c13: p15,
-                                  ));
+                                  if(check) {
+                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c12: p14,
+                                      c13: p15,
+                                    ));
+                                  }
+                                  else {
+                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c13: p15,
+                                    ));
+                                  }
                                 }
                               },
                             )
@@ -293,23 +310,41 @@ class _P14_15ViewState extends State<P14_15View> {
                                   'đang đi học mà có trình độ phổ thông dạt '
                                   'được là chưa học xong tiểu học. Có đúng không?',
                               onpress: (){
-                                p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                  idho: thanhvien.idho,
-                                  idtv: thanhvien.idtv,
-                                  c12: p14,
-                                  c13: p15,
-                                ));
+                                if(check) {
+                                  p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c12: p14,
+                                    c13: p15,
+                                  ));
+                                }
+                                else {
+                                  p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c13: p15,
+                                  ));
+                                }
                               },
                             )
                         );
                       }
                       else {
-                        p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c12: p14,
-                          c13: p15,
-                        ));
+                        if(check) {
+                          p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c12: p14,
+                            c13: p15,
+                          ));
+                        }
+                        else {
+                          p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c13: p15,
+                          ));
+                        }
                       }
                     }),
                   ],

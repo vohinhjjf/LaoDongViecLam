@@ -101,6 +101,10 @@ class _P48_49ViewState extends State<P48_49View> {
                     }
                     return null;
                   },
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                  ],
+                  maxLength: 6,
                   keyboardType: TextInputType.datetime,
                   style: const TextStyle( color: Colors.black),
                   readOnly: check,
