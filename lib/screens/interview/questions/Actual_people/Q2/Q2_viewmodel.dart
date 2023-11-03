@@ -41,6 +41,15 @@ class Q2ViewModel extends BaseViewModel {
     await _executeDatabase.getHoNKTT(idho).then((value) => data = value);
   }
 
+  updateName(thongTinThanhVienNKTTModel data) async {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.updateNameNTKK(thongTinThanhVienNKTTModel(
+        idho: idho,
+        idtv: data.idtv,
+        q1_New: data.q1_New
+    ));
+  }
+
   deleteNTKK(int id) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.deleteNKTT(id, idho, 1);

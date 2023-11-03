@@ -27,7 +27,7 @@ class _P01_04ViewState extends State<P01_04View> {
   final _age = TextEditingController();
   int p01 = 0, p02 = 0, p03 = 0, ThangDT = 8;
   String month = 'Chọn tháng';
-  bool check = false;
+  bool check = false, check_draw = true;
 
   var _quanhe = [
     "VỢ/CHỒNG",
@@ -100,7 +100,7 @@ class _P01_04ViewState extends State<P01_04View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -123,6 +123,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       return null;
                     },
                     textCapitalization: TextCapitalization.words,
+                    style: const TextStyle( color: Colors.black),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
@@ -195,6 +196,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                 }
                                 return null;
                               },
+                              style: const TextStyle( color: Colors.black),
                               decoration: InputDecoration(
                                 errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -395,6 +397,7 @@ class _P01_04ViewState extends State<P01_04View> {
                             return null;
                           },
                           keyboardType: TextInputType.datetime,
+                          style: const TextStyle( color: Colors.black),
                           readOnly: check,
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -458,7 +461,8 @@ class _P01_04ViewState extends State<P01_04View> {
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.datetime,
+                            style: const TextStyle( color: Colors.black),
                             decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -466,135 +470,106 @@ class _P01_04ViewState extends State<P01_04View> {
                           ),
                         ],
                       )
+                  ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p01_04viewModel.P01_04Back(thanhvien.c01!);
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p01 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Mối quan hệ với chủ hộ nhập vào chưa đúng!.',)
+                            );
+                          }
+                          else if (p02 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Giới tính nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (month == "Chọn tháng") {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Tháng nhập vào chưa đúng',)
+                            );
+                          }
+                          else if (p01 == 8 && _orther.text == "") {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Mối quan hệ khác nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (p03 == 1 && _age.text == "") {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Số tuổi nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (p01 == 2 && tinh_tuoi() < 15) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Vợ/chồng chủ hộ ${_name
+                                      .text} có tuổi< 15 tuổi!',)
+                            );
+                          }
+                          else {
+                            if (thanhvien.c01 != 1) {
+                              p01_04viewModel.P01_04Next(
+                                  thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c00: _name.text,
+                                      c01: p01,
+                                      c01K: p01 == 8 ? _orther.text : "",
+                                      c02: p02,
+                                      c03A: month,
+                                      c03B: _year.text,
+                                      c04: p03 == 1
+                                          ? int.parse(_age.text)
+                                          : tinh_tuoi()
+                                  ));
+                            }
+                            else {
+                              p01_04viewModel.P01_04Next(
+                                  thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c00: _name.text,
+                                      c01: p01,
+                                      c02: p02,
+                                      c03A: month,
+                                      c03B: _year.text,
+                                      c04: p03 == 1
+                                          ? int.parse(_age.text)
+                                          : tinh_tuoi()
+                                  ));
+                            }
+                          }
+                        }
+                      }),
+                    ],
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p01_04viewModel.P01_04Back(thanhvien.c01!);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p01 == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'Mối quan hệ với chủ hộ nhập vào chưa đúng!.',)
-                              );
-                            }
-                            else if (p02 == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'Giới tính nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (month == "Chọn tháng") {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'Tháng nhập vào chưa đúng',)
-                              );
-                            }
-                            else if (p01 == 8 && _orther.text == "") {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'Mối quan hệ khác nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (p03 == 1 && _age.text == "") {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'Số tuổi nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (p01 == 2 && tinh_tuoi() < 15) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UIWarningDialog(
-                                    waring: 'Vợ/chồng chủ hộ ${_name
-                                        .text} có tuổi< 15 tuổi!',)
-                              );
-                            }
-                            else {
-                              if (thanhvien.c01 != 1) {
-                                p01_04viewModel.P01_04Next(
-                                    thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c00: _name.text,
-                                        c01: p01,
-                                        c01K: p01 == 8 ? _orther.text : "",
-                                        c02: p02,
-                                        c03A: month,
-                                        c03B: _year.text,
-                                        c04: p03 == 1
-                                            ? int.parse(_age.text)
-                                            : tinh_tuoi()
-                                    ));
-                              }
-                              else {
-                                p01_04viewModel.P01_04Next(
-                                    thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c00: _name.text,
-                                        c01: p01,
-                                        c02: p02,
-                                        c03A: month,
-                                        c03B: _year.text,
-                                        c04: p03 == 1
-                                            ? int.parse(_age.text)
-                                            : tinh_tuoi()
-                                    ));
-                              }
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
@@ -602,7 +577,13 @@ class _P01_04ViewState extends State<P01_04View> {
             // Set the transparency here
             canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

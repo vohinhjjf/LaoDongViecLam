@@ -23,6 +23,7 @@ class _P10_12ViewState extends State<P10_12View> {
   final _other = TextEditingController();
   List _hanhchinh = [];
   int p10 = 0, p11 = 0, p12 =0;
+  bool check_draw = true;
   String hanhchinh = "Chọn Tỉnh/Thành phố", quocgia = "Chọn mã quốc gia";
   final  _quocgia = [
     "Chọn mã quốc gia",
@@ -105,7 +106,7 @@ class _P10_12ViewState extends State<P10_12View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -399,117 +400,100 @@ class _P10_12ViewState extends State<P10_12View> {
                         )
                       ],
                     )
+                ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p10_12ViewModel.P10_12Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p10 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P10 - Nơi trước khi chuyển đến nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p10 == 1 && hanhchinh == "00"){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p10 == 2 && quocgia == "Chọn mã quốc gia"){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p11 == 0 && p10 == 1){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P11 - Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
+                        );
+                      } else if(p12 == 0 && p10 == 1){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P12 - Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if((p12 == 1 || p12 == 3) && thanhvien.c08 == 4){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành '
+                                  'viên ${thanhvien.c00} có thường trú từ 12 tháng đến 5 năm'
+                                  ' mà lý do chuyển đến là tìm ${_lydo[p12-1]}. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c09: p10,
+                                    c09A: p10 == 1 ? hanhchinh : null,
+                                    c09B: p10 == 1 ? null : quocgia,
+                                    c10: p11,
+                                    c10M: p12,
+                                    c10_MK: _other.text
+                                ));
+                              },
+                            )
+                        );
+                      }
+                      else {
+                        p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c09: p10,
+                            c09A: p10 == 1 ? hanhchinh : null,
+                            c09B: p10 == 1 ? null : quocgia,
+                            c10: p11,
+                            c10M: p12,
+                            c10_MK: _other.text
+                        ));
+                      }
+                    }),
+                  ],
                 )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p10_12ViewModel.P10_12Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p10 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P10 - Nơi trước khi chuyển đến nhập vào chưa đúng!',)
-                            );
-                          } else if(p10 == 1 && hanhchinh == "00"){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
-                            );
-                          } else if(p10 == 2 && quocgia == "Chọn mã quốc gia"){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
-                            );
-                          } else if(p11 == 0 && p10 == 1){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P11 - Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
-                            );
-                          } else if(p12 == 0 && p10 == 1){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P12 - Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
-                            );
-                          } else if((p12 == 1 || p12 == 3) && thanhvien.c08 == 4){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành '
-                                      'viên ${thanhvien.c00} có thường trú từ 12 tháng đến 5 năm'
-                                      ' mà lý do chuyển đến là tìm ${_lydo[p12-1]}. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c09: p10,
-                                        c09A: p10 == 1 ? hanhchinh : null,
-                                        c09B: p10 == 1 ? null : quocgia,
-                                        c10: p11,
-                                        c10M: p12,
-                                        c10_MK: _other.text
-                                    ));
-                                  },
-                                )
-                            );
-                          } else {
-                            p10_12ViewModel.P10_12Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c09: p10,
-                                c09A: p10 == 1 ? hanhchinh : null,
-                                c09B: p10 == 1 ? null : quocgia,
-                                c10: p11,
-                                c10M: p12,
-                                c10_MK: _other.text
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

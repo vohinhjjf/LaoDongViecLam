@@ -22,6 +22,7 @@ class _P17ViewState extends State<P17View> {
   final _nganh = TextEditingController();
   final _nam = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
+  bool check_draw = true;
 
   String trinhdo(){
     if (thanhvien.c14F == 1){
@@ -84,7 +85,7 @@ class _P17ViewState extends State<P17View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -115,10 +116,11 @@ class _P17ViewState extends State<P17View> {
                     },
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -139,58 +141,34 @@ class _P17ViewState extends State<P17View> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p17ViewModel.P17Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (int.parse(_nam.text) < 1956 ||
-                                int.parse(_nam.text) > 2023) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có năm tốt nghiệp chưa hợp lý!',)
-                              );
-                            }
-                            /*else if (int.parse(_nam.text) >=
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p17ViewModel.P17Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (int.parse(_nam.text) < 1956 ||
+                              int.parse(_nam.text) > 2023) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có năm tốt nghiệp chưa hợp lý!',)
+                            );
+                          }
+                          /*else if (int.parse(_nam.text) >=
                                 (2023 - thanhvien.c04!) &&
                                 int.parse(_nam.text) <= 2023) {
                               showDialog(
@@ -206,45 +184,48 @@ class _P17ViewState extends State<P17View> {
                                                 .text))} tuổi. Kiểm tra lại!',)
                               );
                             }*/
-                            else if (int.parse(_nam.text) <
-                                (2023 - thanhvien.c04!)) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} tốt nghiệp năm = ${_nam.text}'
-                                            ' trước năm sinh ${2023 -
-                                            thanhvien.c04!}. Kiểm tra lại!',)
-                              );
-                            }
-                            else {
-                              p17ViewModel.P17Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c15A: _nganh.text,
-                                c15C: int.parse(_nam.text),
-                              ));
-                            }
+                          else if (int.parse(_nam.text) <
+                              (2023 - thanhvien.c04!)) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} tốt nghiệp năm = ${_nam.text}'
+                                          ' trước năm sinh ${2023 -
+                                          thanhvien.c04!}. Kiểm tra lại!',)
+                            );
                           }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
+                          else {
+                            p17ViewModel.P17Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c15A: _nganh.text,
+                              c15C: int.parse(_nam.text),
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

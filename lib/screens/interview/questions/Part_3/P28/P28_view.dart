@@ -21,6 +21,7 @@ class _P28ViewState extends State<P28View> {
   late P28ViewModel p28ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p28 =0;
+  bool check_draw = true;
 
   var _nganh = [
     "CHỈ ĐỂ BÁN",
@@ -69,7 +70,7 @@ class _P28ViewState extends State<P28View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -118,69 +119,47 @@ class _P28ViewState extends State<P28View> {
                     );
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p28ViewModel.P28Back(thanhvien.c24);
+                    }),
+                    UINextButton(ontap: (){
+                      if(p28 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
+                        );
+                      }else {
+                        p28ViewModel.P28Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c26: p28,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p28ViewModel.P28Back(thanhvien.c24);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p28 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
-                            );
-                          }else {
-                            p28ViewModel.P28Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c26: p28,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

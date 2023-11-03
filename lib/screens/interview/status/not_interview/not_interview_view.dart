@@ -16,7 +16,6 @@ class NotInterviewedView extends StatefulWidget {
 class _NotInterviewedViewState extends State<NotInterviewedView> {
   late NotInterviewedViewModel notInterviewedViewModel;
   List<BangKeCsModel> listBangKeCs = [];
-  List<BangKeThangDTModel> listBangKeThangDTModel = [];
   final _text_find = TextEditingController();
 
   @override
@@ -28,11 +27,9 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = notInterviewedViewModel.data;
-          listBangKeThangDTModel = notInterviewedViewModel.bangKeThangDTModel;
-          for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 3).toList()){
+          for(var item in notInterviewedViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList()){
             listBangKeCs.removeWhere((e) => e.idho == item.idhO_BKE);
           }
-          listBangKeCs.removeWhere((e) => e.hoDuPhong == 1);
         })
       });
     });
@@ -116,17 +113,21 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
   }
 
   Widget _item(BangKeCsModel bangKeCsModel) {
+    print(bangKeCsModel.trangthai_BK);
     String trangThai = "CHƯA PHỎNG VẤN";
-    for(var bangke in listBangKeThangDTModel){
-      if(bangke.idhO_BKE == bangKeCsModel.idho && bangke.trangThai != 1){
-        trangThai = "ĐANG PHỎNG VẤN";
-      }
+    Color textColor = Colors.black;
+    if(bangKeCsModel.trangthai_BK == 5){
+      trangThai = "ĐANG PHỎNG VẤN";
+      textColor = Colors.amber.shade800;
+    } else if(bangKeCsModel.trangthai_BK == 6){
+      trangThai = "HỘ CHUYỂN ĐI - ĐẾN";
+      textColor = Colors.amber.shade800;
     }
     return UIRichText(
       text1: "",
       text2: "${bangKeCsModel.hoSo} : $trangThai - ${bangKeCsModel.tenChuHo}",
       text3: " - ${bangKeCsModel.diaChi}",
-      textColor: trangThai == "CHƯA PHỎNG VẤN" ? Colors.black : Colors.amber.shade800,
+      textColor: textColor,
       textFontSize: fontLarge,
     );
   }

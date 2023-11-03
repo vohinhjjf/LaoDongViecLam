@@ -65,6 +65,15 @@ class DrawerNavigationModel extends BaseViewModel {
     }
   }
 
+  checkTTTV() async {
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.getListTTTV(idho).then((value) {
+      for(var item in value){
+        //if(i)
+      }
+    });
+  }
+
   void navigateToRoute(int select, int idtv) async {
     switch (select){
       case 0: NavigationServices.instance.navigateToOperatingStatus(context);break;

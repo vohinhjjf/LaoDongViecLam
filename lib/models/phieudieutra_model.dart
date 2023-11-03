@@ -35,7 +35,7 @@ class PhieuDieuTraModel {
 
   String toJson() {
     return jsonEncode({
-      'BangKeHo_ThangDT': bangKeThangDT!.toJson(),
+      'BangKeHo_ThangDT': bangKeThangDT!.toJson1(),
       'ThongTinHo': thongTinHo!.toJson(),
       'ThongTinHoNKTT': thongTinHoNKTT!.toJson(),
       'ThongTinThanhVienNKTT': lst_thongTinThanhVienNKTT!.map((e) => e.toJson()).toList(),

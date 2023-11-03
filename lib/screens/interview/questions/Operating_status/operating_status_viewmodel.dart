@@ -13,7 +13,6 @@ class OperatingStatusViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
   OperatingStatusViewModel(this._sPrefAppModel, this._executeDatabase);
-  int status = 0;
   var bangkeho = BangKeCsModel();
 
   @override
@@ -23,43 +22,45 @@ class OperatingStatusViewModel extends BaseViewModel {
   }
 
   void fetchData() async {
-    String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-    await _executeDatabase.getStatusHo(id).then((value) => status = value);
+    String id = '${_sPrefAppModel.getIdHo}';
+    await _executeDatabase.getHouseHoldByIDHo(id).then((value) => bangkeho = value);
   }
 
-   void operatingStatus(int status) async {
+   void operatingStatus(BangKeCsModel bangKeCsModel, int status) async {
      String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-     await _executeDatabase.checkHo(id).then((value0) async {
-       if(value0) {
-         await _executeDatabase.getHouseHoldByIDHo(_sPrefAppModel.getIdHo).then((value) {
-           _executeDatabase.setHo(
-               thongTinHoModel(
-                   idho: '${value.idho}${_sPrefAppModel.month}',
-                   hoSo: value.hoSo,
-                   namDT: DateTime
-                       .now()
-                       .year,
-                   maTinh: value.maTinh,
-                   maHuyen: value.maHuyen,
-                   maXa: value.maXa,
-                   maDiaBan: value.maDiaBan,
-                   thangDT: int.parse(_sPrefAppModel.month),
-                   tenChuHo: value.tenChuHo,
-                   diachi: value.diaChi,
-                   maDTV: _sPrefAppModel.userModel.userName,
-                   trangThai: status,
-                  ngayPhongVan: DateTime.now().toString()
-               )
-           );
-         });
-       }else {
-         await _executeDatabase.updateTrangThaiHo(id, status);
-       }
-     });
-    if(status == 1) {
+     await _executeDatabase.updateTrangThaiBK(_sPrefAppModel.getIdHo, status, int.parse(_sPrefAppModel.month), DateTime.now().year);
+    if(status == 5 || status == 6) {
+      await _executeDatabase.checkHo(id).then((value0) async {
+        if(value0) {
+          await _executeDatabase.getHouseHoldByIDHo(_sPrefAppModel.getIdHo).then((value) {
+            _executeDatabase.setHo(
+                thongTinHoModel(
+                    idho: '${value.idho}${_sPrefAppModel.month}',
+                    hoSo: value.hoSo,
+                    namDT: DateTime
+                        .now()
+                        .year,
+                    maTinh: value.maTinh,
+                    maHuyen: value.maHuyen,
+                    maXa: value.maXa,
+                    maDiaBan: value.maDiaBan,
+                    thangDT: int.parse(_sPrefAppModel.month),
+                    tenChuHo: value.tenChuHo,
+                    diachi: value.diaChi,
+                    maDTV: _sPrefAppModel.userModel.userName,
+                    trangThai: 2,
+                    ngayPhongVan: DateTime.now().toString()
+                )
+            );
+          });
+        }else {
+          await _executeDatabase.updateTrangThaiHo(id, 2);
+        }
+      });
       NavigationServices.instance.navigateToDetailInformation(context);
-    }else {
-      await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 3);
+    }
+    else {
+      //await _executeDatabase.updateHoDuPhong(bangKeCsModel.nhom!, 1, id, bangKeCsModel.thangDT!, bangKeCsModel.namDT!);
       NavigationServices.instance.navigateToInterviewStatus(context);
     }
   }

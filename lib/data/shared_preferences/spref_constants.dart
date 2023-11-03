@@ -9,4 +9,5 @@ class SPrefConstants {
   static const isAutoSyncKey = 'is_auto_sync';
   static const interviewStatusKey = 'interview_status';
   static const id_ho = 'id_ho';
+  static const nhom = 'nhom';
 }

@@ -21,6 +21,7 @@ class _P43ViewState extends State<P43View> {
   late P43ViewModel p43ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p43 = 0;
+  bool check_draw = true;
 
   var _loaihinh = [
     "Hộ hoạt động nông, lâm nghiệp, thủy sản",
@@ -78,7 +79,7 @@ class _P43ViewState extends State<P43View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -93,6 +94,7 @@ class _P43ViewState extends State<P43View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _loaihinh.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -127,70 +129,48 @@ class _P43ViewState extends State<P43View> {
                     );
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p43ViewModel.P43Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p43 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P43 - Loại hình cơ sở nhập vào chưa đúng!',)
+                        );
+                      }
+                      else {
+                        p43ViewModel.P43Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c38: p43,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p43ViewModel.P43Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p43 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P43 - Loại hình cơ sở nhập vào chưa đúng!',)
-                            );
-                          }
-                          else {
-                            p43ViewModel.P43Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c38: p43,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

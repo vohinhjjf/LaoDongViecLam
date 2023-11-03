@@ -72,7 +72,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -191,39 +191,15 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                           counterText: ''
                       ),
                     ),
-                  ]),
-            ),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
+                    //Button
+                    const SizedBox(height: 25,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        UIBackButton(ontap: (){
                           informationProviderviewModel.InformationProviderBack();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
+                        }),
+                        UINextButton(ontap: (){
                           if(_formKey.currentState!.validate()){
                             if(groupValue == 0){
                               showDialog(
@@ -255,17 +231,12 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                               informationProviderviewModel.InformationProviderNext(_text_phone.text, stt.toString());
                             }
                           }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
+                        }),
+                      ],
+                    )
+                  ]),
             ),
-          )
+          ),
         ],
       ),
       drawer: const DrawerNavigation(),

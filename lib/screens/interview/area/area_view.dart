@@ -69,15 +69,18 @@ class _AreaViewState extends State<AreaView>{
             primary: false,
             itemCount: list_area.length,
             itemBuilder: (context, index) {
-              return MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {
-                    areaViewModel.AreaNext(list_area[index].iddb!);
-                  },
-                  color: Colors.white,
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  shape: const RoundedRectangleBorder(
-                      side: BorderSide(
+              return Padding(
+                  padding: EdgeInsets.only(top: 10),
+                child: MaterialButton(
+                    minWidth: MediaQuery.of(context).size.width,
+                    onPressed: () {
+                      areaViewModel.AreaNext(list_area[index].iddb!);
+                      print(list_area[index].iddb!);
+                    },
+                    color: Colors.white,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(
                           width: 0,
                       ),
                       borderRadius: BorderRadius.all(

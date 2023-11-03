@@ -22,6 +22,7 @@ class _P27ViewState extends State<P27View> {
   var thanhvien = thongTinThanhVienModel();
   var _tt = "đang tạm nghỉ";
   int p20 =0,p21 =0,p27 =0;
+  bool check_draw = true;
 
   var _nganh = [
     "TRỒNG TRỌT/CHĂN NUÔI",
@@ -75,7 +76,7 @@ class _P27ViewState extends State<P27View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -125,69 +126,47 @@ class _P27ViewState extends State<P27View> {
                     );
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p27ViewModel.P27Back(thanhvien);
+                    }),
+                    UINextButton(ontap: (){
+                      if(p27 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27 - Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
+                        );
+                      }else {
+                        p27ViewModel.P27Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c25: p27,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p27ViewModel.P27Back(thanhvien);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p27 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27 - Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
-                            );
-                          }else {
-                            p27ViewModel.P27Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c25: p27,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

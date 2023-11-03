@@ -26,8 +26,12 @@ class P38ViewModel extends BaseViewModel {
     });
   }
 
-  void P38Back() async {
-    NavigationServices.instance.navigateToP36_37(context);
+  void P38Back(thongTinThanhVienModel data) async {
+    if(data.c30A == 2){
+      NavigationServices.instance.navigateToP34(context);
+    } else {
+      NavigationServices.instance.navigateToP36_37(context);
+    }
   }
 
   void P38Next(thongTinThanhVienModel data) async {

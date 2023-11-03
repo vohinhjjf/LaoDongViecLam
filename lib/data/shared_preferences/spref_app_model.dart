@@ -100,4 +100,12 @@ class SPrefAppModel {
   String get getPassword {
     return _sharedPref.getString(SPrefConstants.passWord) ?? '';
   }
+
+  Future<void> setNhom(int nhom) async {
+    await _sharedPref.setInt(SPrefConstants.nhom, nhom);
+  }
+
+  int get getNhom {
+    return _sharedPref.getInt(SPrefConstants.nhom) ?? 0;
+  }
 }

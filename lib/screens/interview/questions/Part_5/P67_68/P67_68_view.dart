@@ -21,6 +21,7 @@ class _P67_68ViewState extends State<P67_68View> {
   late P67_68ViewModel p67_68ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p67 =0, p68 =0;
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _P67_68ViewState extends State<P67_68View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -208,95 +209,73 @@ class _P67_68ViewState extends State<P67_68View> {
                         ),
                       ],
                     )
+                ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p67_68ViewModel.P67_68Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p67 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P67 - Có muốn làm thêm giờ nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p67 != 2 && p68 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P68 - Có thể bắt đầu làm thêm trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p67 == 1  && thanhvien.c59! >= 64){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} có Tổng số giờ làm việc quá cao trên 64 giờ mà vẫn muốn làm thêm giờ. Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
+                                  idho: thanhvien.idho,
+                                  idtv: thanhvien.idtv,
+                                  c61: p67,
+                                  c62: p67 == 2 ? null : p68,
+                                ));
+                              },
+                            )
+                        );
+                      }
+                      else {
+                        p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c61: p67,
+                          c62: p68,
+                        ));
+                      }
+                    }),
+                  ],
                 )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p67_68ViewModel.P67_68Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p67 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P67 - Có muốn làm thêm giờ nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p67 != 2 && p68 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P68 - Có thể bắt đầu làm thêm trong vòng 2 tuần tới nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(p67 == 1  && thanhvien.c59! >= 64){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: 'Thành viên ${thanhvien.c00} có Tổng số giờ làm việc quá cao trên 64 giờ mà vẫn muốn làm thêm giờ. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c61: p67,
-                                      c62: p67 == 2 ? null : p68,
-                                    ));
-                                  },
-                                )
-                            );
-                          }
-                          else {
-                            p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c61: p67,
-                              c62: p68,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

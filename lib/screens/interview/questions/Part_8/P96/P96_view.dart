@@ -155,6 +155,13 @@ class _P96ViewState extends State<P96View> {
                           }
                           return null;
                         },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(
+                              '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                        ],
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle( color: Colors.black),
                         decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),

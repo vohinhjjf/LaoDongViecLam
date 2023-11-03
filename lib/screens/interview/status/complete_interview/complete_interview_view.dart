@@ -16,8 +16,18 @@ class CompleteInterviewView extends StatefulWidget {
 class _CompleteInterviewViewState extends State<CompleteInterviewView> {
   late CompleteInterviewViewModel completeInterviewViewModel;
   List<BangKeCsModel> listBangKeCs = [];
+  List<BangKeCsModel> list = [];
   List<BangKeThangDTModel> listBangKeThangDTModel = [];
   final _text_find = TextEditingController();
+
+  queryList(int thangDT) {
+    for(var item in listBangKeThangDTModel) {
+      list.add(listBangKeCs.singleWhere((e) => item.idhO_BKE == e.idho && e.thangDT == thangDT));
+    }
+    var list_query = listBangKeCs.where((e) => (e.trangthai_BK == 2 ||
+        e.trangthai_BK == 3 ||e.trangthai_BK == 4) && e.thangDT == thangDT).toList();
+    list.addAll(list_query);
+  }
 
   @override
   void initState() {
@@ -28,7 +38,8 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           listBangKeCs = completeInterviewViewModel.data;
-          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 3 || e.trangThai == 9).toList();
+          listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList();
+          queryList(completeInterviewViewModel.thangDT!);
         })
       });
     });
@@ -82,18 +93,17 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
             ListView.builder(
               shrinkWrap: true,
               primary: false,
-              itemCount: listBangKeThangDTModel.length,
+              itemCount: list.length,
               itemBuilder: (context, index) {
                 return Card(
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
                       completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel[index]);
-                      print(listBangKeThangDTModel[index].idhO_BKE);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                      child: _item(listBangKeThangDTModel[index]),
+                      child: _item(list[index]),
                     ),
                   ),
                 );
@@ -108,13 +118,37 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
     );
   }
 
-  Widget _item(BangKeThangDTModel bangKeThangDTModel) {
-    BangKeCsModel bangKeCsModel = listBangKeCs.singleWhere((e) => e.idho == bangKeThangDTModel.idhO_BKE);
+  Widget _item(BangKeCsModel bangKeCsModel) {
+    var textColor = Colors.black;
+    var text = "HOÀN THÀNH PHỎNG VẤN";
+    if(listBangKeThangDTModel.any((e) => e.idhO_BKE == bangKeCsModel.idho && e.thangDT == bangKeCsModel.thangDT)) {
+      BangKeThangDTModel bangKeThangDTModel = listBangKeThangDTModel
+          .singleWhere((e) =>
+      e.idhO_BKE == bangKeCsModel.idho && e.thangDT == bangKeCsModel.thangDT);
+      if (bangKeThangDTModel.trangThai == 9) {
+        if (bangKeThangDTModel.sync == 1) {
+          textColor = mCompleteColor;
+        } else {
+          textColor = Colors.blue;
+        }
+        text = "HOÀN THÀNH PHỎNG VẤN";
+      } else {
+        textColor = Colors.black;
+        text = "ĐANG SỬA";
+      }
+    } else {
+      textColor = Colors.red.shade900;
+      switch(bangKeCsModel.trangthai_BK){
+        case 2: text = "TỪ CHỐI PHỎNG VẤN";break;
+        case 3: text = "KHÔNG CÒN TẠI ĐỊA BÀN";break;
+        case 4: text = "KHÔNG LIÊN LẠC ĐƯỢC";break;
+      }
+    }
     return UIRichText(
-      text1: "",
-      text2: "${bangKeCsModel.hoSo} : HOÀN THÀNH PHỎNG VẤN - ${bangKeCsModel.tenChuHo}",
+      text1: "${bangKeCsModel.hoSo} : ",
+      text2: "$text - ${bangKeCsModel.tenChuHo}",
       text3: " - ${bangKeCsModel.diaChi}",
-      textColor: bangKeThangDTModel.trangThai == 3 ? Colors.black : mCompleteColor,
+      textColor: textColor,
       textFontSize: fontLarge,
     );
   }

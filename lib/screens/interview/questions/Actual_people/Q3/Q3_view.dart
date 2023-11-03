@@ -67,7 +67,7 @@ class _Q3ViewState extends State<Q3View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -79,6 +79,7 @@ class _Q3ViewState extends State<Q3View> {
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
+                  const SizedBox(height: 10,),
                   const UIText(
                     text: UIQuestions.q3a,
                     textColor: Colors.black,
@@ -605,77 +606,47 @@ class _Q3ViewState extends State<Q3View> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        q3viewModel.Q3Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(q3_a == 0 ||q3_b == 0 ||q3_c == 0 ||q3_d == 0) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(q3_b == 0) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(q3_c == 0) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(q3_d == 0) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D nhập vào chưa đúng!',)
+                          );
+                        }
+                        else {
+                          q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
+                        }
+                      }),
+                    ],
+                  )
                 ]),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          q3viewModel.Q3Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(q3_a == 0 ||q3_b == 0 ||q3_c == 0 ||q3_d == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q3A nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(q3_b == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q3B nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(q3_c == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q3C nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if(q3_d == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q3D nhập vào chưa đúng!',)
-                            );
-                          }
-                          else {
-                            q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(

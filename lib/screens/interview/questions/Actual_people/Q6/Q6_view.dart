@@ -61,7 +61,7 @@ class _Q6ViewState extends State<Q6View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -91,61 +91,32 @@ class _Q6ViewState extends State<Q6View> {
                       );
                     },
                   ),
-                ]),
-          ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          q6viewModel.Q6Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          List<thongTinThanhVienModel> data = [];
-                          for(var item in list){
-                            data.add(thongTinThanhVienModel(
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        q6viewModel.Q6Back();
+                      }),
+                      UINextButton(ontap: (){
+                        List<thongTinThanhVienModel> data = [];
+                        for(var item in list){
+                          data.add(thongTinThanhVienModel(
                               idho: item.idho,
                               idtv: item.idtv,
                               thangDT: item.thangDT,
                               namDT: item.namDT,
                               c00: item.q1_New
-                            ));
-                          }
-                          print(data.length);
-                          q6viewModel.Q6Next(data);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
+                          ));
+                        }
+                        print(data.length);
+                        q6viewModel.Q6Next(data);
+                      }),
+                    ],
+                  )
+                ]),
+          ),
         ],
       ),
       drawer: Theme(

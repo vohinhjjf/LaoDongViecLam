@@ -102,6 +102,7 @@ class _LoginViewState extends State<LoginView> {
             child: ListView(
               /*crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,*/
+              shrinkWrap: true,
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -162,6 +163,7 @@ class _LoginViewState extends State<LoginView> {
                         Icons.account_circle,
                       ),
                     ),
+                    //scrollPadding: EdgeInsets.only(bottom:40),
                     autovalidateMode: AutovalidateMode.always,
                     style: const TextStyle(color: Colors.black, fontSize: fontLarge),
                     validator: (value) {

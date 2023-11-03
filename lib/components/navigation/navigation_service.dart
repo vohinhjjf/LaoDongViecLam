@@ -6,6 +6,9 @@ import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58
 import 'package:lao_dong_viec_lam/screens/interview/questions/household_information/general_information/general_information_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/status/backup/backup_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/status/complete_interview/complete_interview_view.dart';
+import 'package:lao_dong_viec_lam/screens/replace/area_place/area_replace_view.dart';
+import 'package:lao_dong_viec_lam/screens/replace/backup_replace/backup_replace_view.dart';
+import 'package:lao_dong_viec_lam/screens/replace/household_replace/household_replace_view.dart';
 
 import '../../screens/interview/questions/GPS/gps_view.dart';
 import '../../screens/interview/questions/Part_1/P05/P05_view.dart';
@@ -117,6 +120,12 @@ class NavigationServices {
         return CustomPageRoute(BottomNavigation());
       case RouteConstants.homeRoute:
         return CustomPageRoute(const HomeView());
+      case RouteConstants.areaReplaceRoute:
+        return CustomPageRoute(AreaReplaceView());
+      case RouteConstants.householdReplaceRoute:
+        return CustomPageRoute(const HouseholdReplaceView());
+      case RouteConstants.backupReplaceRoute:
+        return CustomPageRoute(const BackupReplaceView());
       case RouteConstants.interviewArea:
         return CustomPageRoute(AreaView());
       case RouteConstants.interviewStatusRoute:
@@ -309,6 +318,18 @@ class NavigationServices {
 
   void navigateToProgress(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.progressRoute);
+  }
+
+  void navigateToAreaReplace(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.areaReplaceRoute);
+  }
+
+  void navigateToHouseHoldReplace(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.householdReplaceRoute);
+  }
+
+  void navigateToBackupReplace(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.backupReplaceRoute);
   }
 
   void navigateToArea(BuildContext context) {

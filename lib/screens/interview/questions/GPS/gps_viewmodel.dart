@@ -33,8 +33,48 @@ class GPSViewModel extends BaseViewModel {
   }
 
   void gPSNext() async {
-    await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 3);
-    NavigationServices.instance.navigateToInterviewStatus(context);
+    String idho = _sPrefAppModel.getIdHo;
+    int month = int.parse(_sPrefAppModel.month);
+    int year = DateTime.now().year;
+    await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
+      if(value.any((e) => e.idhO_BKE == idho)){
+        await _executeDatabase.updateTrangThai(idho, 0, month, year);
+      } else {
+        await _executeDatabase.setBangKeThangDTModel([{
+          'idhO_BKE': idho,
+          'namDT': year,
+          'thangDT': month,
+          'trangThai': 9,
+          'sync' : 0
+        }]);
+      }
+    });
+    await _executeDatabase.getListTTTV("$idho$month").then((value) {
+      int index = value.indexWhere((e) => e.c01 == 1);
+      var tttv = value.first;
+      value[0] = value[index];
+      value[index] = tttv;
+      for(int i = 0; i < value.length; i++){
+        _sPrefAppModel.setIDTV(value[i].idtv!);
+        if(value[i].c15A != null){
+          NavigationServices.instance.navigateToP17B(context);
+          print("17B");
+          break;
+        }
+        else if(value[i].c35A != null){
+          NavigationServices.instance.navigateToP40_42(context);
+          print("40-42");
+          break;
+        }
+        else if(value[i].c50A != null){
+          NavigationServices.instance.navigateToP56_58(context);
+          print("56-58");
+          break;
+        }
+      }
+      print(4);
+      //NavigationServices.instance.navigateToInterviewStatus(context);
+    });
   }
 
   void setGPS(double kinhDo, double viDo) async {

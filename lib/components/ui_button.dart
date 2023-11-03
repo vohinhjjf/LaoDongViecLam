@@ -301,3 +301,82 @@ class BodyUIEXITButton extends State<UIEXITButton> {
         ));
   }
 }
+
+class UIBackButton extends StatelessWidget {
+  final Function()? ontap;
+
+  const UIBackButton(
+      {Key? key,
+        required this.ontap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width/2.5,
+      alignment: Alignment.center,
+      height: 50.0,
+      //color: mHightLightColor,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: mPrimaryColor),
+          gradient: LinearGradient(colors: [
+            Colors.grey.shade300,
+            Colors.grey.shade50,
+            Colors.grey.shade300,
+          ])),
+      child: MaterialButton(
+        onPressed: ontap,
+        textColor: Colors.white,
+        padding: const EdgeInsets.all(0),
+        child: const UIText(
+          text: "Trở lại",
+          textAlign: TextAlign.center,
+          textColor: mPrimaryColor,
+          textFontSize: fontLarge,
+          isBold: true,
+        ),
+      ),
+    );
+  }
+}
+
+class UINextButton extends StatelessWidget {
+  final Function()? ontap;
+
+  const UINextButton(
+      {Key? key,
+        required this.ontap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width/2.5,
+      alignment: Alignment.center,
+      height: 50.0,
+      //color: mPrimaryColor,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          gradient: const LinearGradient(colors: [
+            mPrimaryColor,
+            Color(0xFF64B5F6),
+            mPrimaryColor,
+          ])),
+      child: MaterialButton(
+        onPressed: ontap,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0)),
+        textColor: Colors.white,
+        padding: const EdgeInsets.all(0),
+        child: const UIText(
+          text: "Tiếp tục",
+          textAlign: TextAlign.center,
+          textColor: Colors.white,
+          textFontSize: fontLarge,
+          isBold: true,
+        ),
+      ),
+    );
+  }
+}

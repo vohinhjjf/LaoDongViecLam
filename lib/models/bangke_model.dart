@@ -2,6 +2,8 @@ class BangKeCsModel {
   String? idho;
   String? idhO_TDT;
   String? iddb;
+  int? thangDT;
+  int? namDT;
   String? maTinh;
   String? maHuyen;
   String? maXa;
@@ -19,28 +21,32 @@ class BangKeCsModel {
   String? ghiChu;
   String? nguoiTao;
   String? ngayTao;
+  int? trangthai_BK;
 
   BangKeCsModel(
       {this.idho,
-      this.idhO_TDT,
-      this.iddb,
-      this.maTinh,
-      this.maHuyen,
-      this.maXa,
-      this.maDiaBan,
-      this.hoSo,
-      this.tenChuHo,
-      this.diaChi,
-      this.tsKhau,
-      this.tsNu,
-      this.nhom,
-      this.hoDuPhong,
-      this.trangthai,
-      this.ngayTao,
-      this.ghiChu,
-      this.nguoiTao,
-      this.nguoiCapNhat,
-      this.ngayCapNhat
+        this.idhO_TDT,
+        this.iddb,
+        this.thangDT,
+        this.namDT,
+        this.maTinh,
+        this.maHuyen,
+        this.maXa,
+        this.maDiaBan,
+        this.hoSo,
+        this.tenChuHo,
+        this.diaChi,
+        this.tsKhau,
+        this.tsNu,
+        this.nhom,
+        this.hoDuPhong,
+        this.trangthai,
+        this.ngayTao,
+        this.ghiChu,
+        this.nguoiTao,
+        this.nguoiCapNhat,
+        this.ngayCapNhat,
+        this.trangthai_BK
       });
 
   Map<String, dynamic> toJson() {
@@ -48,6 +54,8 @@ class BangKeCsModel {
       'idho': idho,
       'idhO_TDT': idhO_TDT,
       'iddb': iddb,
+      'thangDT': thangDT,
+      'namDT': namDT,
       'maTinh': maTinh,
       'maHuyen': maHuyen,
       'maXa': maXa,
@@ -65,6 +73,7 @@ class BangKeCsModel {
       'nguoiTao': nguoiTao,
       'nguoiCapNhat': nguoiCapNhat,
       'ngayCapNhat': ngayCapNhat,
+      'trangThai_BK': trangthai_BK,
     };
   }
 
@@ -72,6 +81,8 @@ class BangKeCsModel {
     idho = json['idho'];
     idhO_TDT = json['idhO_TDT'];
     iddb = json['iddb'];
+    thangDT = json['thangDT'];
+    namDT = json['namDT'];
     maTinh = json['maTinh'];
     maHuyen = json['maHuyen'];
     maXa = json['maXa'];
@@ -89,5 +100,6 @@ class BangKeCsModel {
     nguoiTao = json['nguoiTao'];
     nguoiCapNhat = json['nguoiCapNhat'];
     ngayCapNhat = json['ngayCapNhat'];
+    trangthai_BK = json['trangThai_BK'];
   }
 }

@@ -21,6 +21,7 @@ class _P08_09ViewState extends State<P08_09View> {
   late P08_09ViewModel p08_09ViewModel;
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
   int p08 = 0, p09 = 0, month = 0;
+  bool check_draw = true;
 
   final _honnhan = [
     "CHƯA VỢ/CHỒNG",
@@ -79,7 +80,7 @@ class _P08_09ViewState extends State<P08_09View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,6 +95,7 @@ class _P08_09ViewState extends State<P08_09View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _honnhan.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -140,6 +142,7 @@ class _P08_09ViewState extends State<P08_09View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thuongtru.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -174,91 +177,73 @@ class _P08_09ViewState extends State<P08_09View> {
                     );
                   },
                 ),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p08_09ViewModel.P08_09Back();
+                    }),
+                    UINextButton(ontap: (){
+                      if(p08 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P08 - Tình trạng hôn nhân nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(p09 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'Thời gian thường trú nhập vào chưa đúng!',)
+                        );
+                      }
+                      else if(thanhvien.c01 == 2 && (p08 == 1 || p08 == 3 || p08 == 4)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành '
+                                'viên ${thanhvien.c00} có P01 - Quan hệ với '
+                                'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
+                                'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
+                        );
+                      }
+                      else if(thanhvien.c01 == 5 && p08 == 1){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: 'Thành '
+                                'viên ${thanhvien.c00} có P01 - Quan hệ với '
+                                'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
+                                'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
+                        );
+                      }
+                      else {
+                        p08_09ViewModel.P08_09Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c07: p08,
+                          c08: p09,
+                        ));
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p08_09ViewModel.P08_09Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p08 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P08 - Tình trạng hôn nhân nhập vào chưa đúng!',)
-                            );
-                          }else if(p09 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thời gian thường trú nhập vào chưa đúng!',)
-                            );
-                          } else if(thanhvien.c01 == 2 && (p08 == 1 || p08 == 3 || p08 == 4)){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành '
-                                    'viên ${thanhvien.c00} có P01 - Quan hệ với '
-                                    'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
-                                    'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
-                            );
-                          } else if(thanhvien.c01 == 5 && p08 == 1){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành '
-                                    'viên ${thanhvien.c00} có P01 - Quan hệ với '
-                                    'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
-                                    'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
-                            );
-                          } else {
-                            p08_09ViewModel.P08_09Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c07: p08,
-                              c08: p09,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

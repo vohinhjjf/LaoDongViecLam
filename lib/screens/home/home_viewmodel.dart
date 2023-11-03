@@ -32,9 +32,33 @@ class HomeViewModel extends BaseViewModel {
     super.onInit(context);
   }
 
+  Future<void> updateBangke() async {
+    String thangDT = await _sPrefAppModel.month;
+    int namDT = DateTime.now().year;
+    final fetchResponse =
+    await _syncServices.fetchHouseHold(_sPrefAppModel.accessToken, thangDT);
+    if (fetchResponse.toString().isNotEmpty) {
+      List listBangKeServer = fetchResponse != null
+          ? fetchResponse.map((c) => BangKeCsModel.fromJson(c)).toList()
+          : [];
+
+      for (int i = 0; i < listBangKeServer.length; i++) {
+        await _executeDatabase.updateHoDuPhong(
+            listBangKeServer[i].nhom,
+            listBangKeServer[i].hoDuPhong,
+            listBangKeServer[i].idho,
+            int.parse(thangDT),
+            namDT);
+      }
+    }
+  }
+
 
   void interview() async {
-    NavigationServices.instance.navigateToArea(context);
+    updateBangke().then((value) {
+      print("object");
+      NavigationServices.instance.navigateToArea(context);
+    });
   }
 
   void sync() async {
@@ -43,6 +67,10 @@ class HomeViewModel extends BaseViewModel {
 
   void progress() async {
     NavigationServices.instance.navigateToProgress(context);
+  }
+
+  void areaReplace() async {
+    NavigationServices.instance.navigateToAreaReplace(context);
   }
 
   Future checkUpdateApp() async {

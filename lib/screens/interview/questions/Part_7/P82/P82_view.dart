@@ -74,7 +74,7 @@ class _P82ViewState extends State<P82View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -455,6 +455,13 @@ class _P82ViewState extends State<P82View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                          ],
+                          keyboardType: TextInputType.text,
+                          style: const TextStyle( color: Colors.black),
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -462,75 +469,46 @@ class _P82ViewState extends State<P82View> {
                         )
                       ],
                     ),
+                  ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p82ViewModel.P82Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p82a == 0 || p82b == 0 || p82c == 0 ||
+                              p82d == 0 || p82e == 0 || p82f == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
+                            );
+                          } else {
+                            p82ViewModel.P82Next(DoiSongHoModel(
+                              idho: doisongho.idho,
+                              c62_M7A: p82a,
+                              c62_M7B: p82b,
+                              c62_M7C: p82c,
+                              c62_M7D: p82d,
+                              c62_M7E: p82e,
+                              c62_M7F: p82f,
+                              c62_M7FK: p82f == 1 ? _orther.text : "",
+                            ));
+                          }
+                        }
+                      }),
+                    ],
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p82ViewModel.P82Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p82a == 0 || p82b == 0 || p82c == 0 ||
-                                p82d == 0 || p82e == 0 || p82f == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
-                              );
-                            } else {
-                              p82ViewModel.P82Next(DoiSongHoModel(
-                                idho: doisongho.idho,
-                                c62_M7A: p82a,
-                                c62_M7B: p82b,
-                                c62_M7C: p82c,
-                                c62_M7D: p82d,
-                                c62_M7E: p82e,
-                                c62_M7F: p82f,
-                                c62_M7FK: p82f == 1 ? _orther.text : "",
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(

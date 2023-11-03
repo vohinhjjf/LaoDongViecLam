@@ -15,7 +15,7 @@ class DbProvider {
 
   Future<Database?> get database async {
     if (_database != null) return _database;
-    _database = await initDatabase();
+    await initDatabase();
     return _database;
   }
 
@@ -31,6 +31,8 @@ class DbProvider {
               "idho TEXT,"
               "idhO_TDT TEXT,"
               "iddb TEXT,"
+              "thangDT INTEGER,"
+              "namDT INTEGER,"
               "maTinh TEXT,"
               "maHuyen TEXT,"
               "maXa TEXT,"
@@ -47,13 +49,15 @@ class DbProvider {
               "ngayCapNhat TEXT,"
               "ghiChu TEXT,"
               "nguoiTao TEXT,"
-              "ngayTao TEXT"
+              "ngayTao TEXT,"
+              "trangThai_BK INTEGER"
               ")");
           await db.execute("CREATE TABLE ${TableConstants.bangkeho_thangdt} ("
-              "idhO_BKE TEXT PRIMARY KEY,"
+              "idhO_BKE TEXT,"
               "thangDT INTEGER,"
               "namDT INTEGER,"
-              "trangThai INTEGER"
+              "trangThai INTEGER,"
+              "sync INTEGER"
               ")");
           await db.execute("CREATE TABLE ${TableConstants.area} ("
               "id INTEGER,"
@@ -75,7 +79,7 @@ class DbProvider {
               "ngayTao TEXT"
               ")");
           await db.execute("CREATE TABLE ${TableConstants.thongtinho} ("
-              "idho TEXT PRIMARY KEY,"
+              "idho TEXT,"
               "namDT INTEGER,"
               "maTinh TEXT,"
               "maHuyen TEXT,"
@@ -387,15 +391,8 @@ class DbProvider {
     final SPrefAppModel sPrefAppModel = getIt.get<SPrefAppModel>();
     final userName = sPrefAppModel.getUserName;
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "$userName.db");
+    String path = join(documentsDirectory.path, userName,"$userName.db");
     await databaseFactory.deleteDatabase(path);
   }
 
-  Future<bool> checkDatabase() async {
-    final SPrefAppModel sPrefAppModel = getIt.get<SPrefAppModel>();
-    final userName = sPrefAppModel.getUserName;
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path,userName,"$userName.db");
-    return await databaseFactory.databaseExists(path);
-  }
 }

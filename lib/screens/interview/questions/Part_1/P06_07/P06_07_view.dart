@@ -22,6 +22,7 @@ class _P06_07ViewState extends State<P06_07View> {
   thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
   int groupValue = 0;
   String nation = "Chọn mã quốc gia";
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -64,7 +65,7 @@ class _P06_07ViewState extends State<P06_07View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -264,84 +265,61 @@ class _P06_07ViewState extends State<P06_07View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                //Button
+                const SizedBox(height: 25,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p06_07viewmodel.P06_07Back(thanhvien.c04A);
+                    }),
+                    UINextButton(ontap: (){
+                      if(groupValue == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'Thông tin bắt buộc không thể bỏ trống!',)
+                        );
+                      } else if(groupValue == 2 && nation == "Chọn mã quốc gia"){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
+                        );
+                      }else {
+                        if(groupValue == 2){
+                          p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c05: groupValue,
+                            c06: nation,
+                          ));
+                        } else {
+                          p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c05: groupValue,
+                          ));
+                        }
+                      }
+                    }),
+                  ],
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p06_07viewmodel.P06_07Back(thanhvien.c04A);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(groupValue == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Thông tin bắt buộc không thể bỏ trống!',)
-                            );
-                          } else if(groupValue == 2 && nation == "Chọn mã quốc gia"){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
-                            );
-                          }else {
-                            if(groupValue == 2){
-                              p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c05: groupValue,
-                                c06: nation,
-                              ));
-                            } else {
-                              p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c05: groupValue,
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

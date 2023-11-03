@@ -21,6 +21,7 @@ class _P36_37ViewState extends State<P36_37View> {
   late P36_37ViewModel p36_37ViewModel;
   var thanhvien = thongTinThanhVienModel();
   int p36 = 0, p37 = 0;
+  bool check_draw = true;
 
   var _thoigian = [
     "DƯỚI 1 THÁNG",
@@ -73,7 +74,7 @@ class _P36_37ViewState extends State<P36_37View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -194,80 +195,57 @@ class _P36_37ViewState extends State<P36_37View> {
                             );
                           },
                         ),
-                        const SizedBox(height: 10,),
+                        //Button
+                        const SizedBox(height: 25,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            UIBackButton(ontap: (){
+                              p36_37ViewModel.P36_37Back(thanhvien);
+                            }),
+                            UINextButton(ontap: (){
+                              if(p36 == 0){
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                                );
+                              } else if(p36 == 1 && p37 == 0){
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
+                                );
+                              }
+                              else {
+                                p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
+                                  idho: thanhvien.idho,
+                                  idtv: thanhvien.idtv,
+                                  c32: p36,
+                                  c33: p37,
+                                ));
+                              }
+                            }),
+                          ],
+                        )
                       ],
                     )
                 )
               ],
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p36_37ViewModel.P36_37Back(thanhvien);
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(p36 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
-                            );
-                          } else if(p36 == 1 && p37 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
-                            );
-                          }
-                          else {
-                            p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c32: p36,
-                              c33: p37,
-                            ));
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

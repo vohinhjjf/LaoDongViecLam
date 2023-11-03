@@ -24,6 +24,7 @@ class _P55_59ViewState extends State<P55_59View> {
   final _tencoso = TextEditingController();
   final _hoatdong = TextEditingController();
   final _gio = TextEditingController();
+  bool check_draw = true;
 
   @override
   void initState() {
@@ -69,7 +70,7 @@ class _P55_59ViewState extends State<P55_59View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -98,6 +99,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -127,6 +129,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -156,6 +159,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -185,6 +189,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -208,149 +213,127 @@ class _P55_59ViewState extends State<P55_59View> {
                       }
                       return null;
                     },
-
-                    keyboardType: TextInputType.text,
+                    style: const TextStyle( color: Colors.black),
+                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
                   const SizedBox(height: 10,),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p55_59viewModel.P55_59Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (_congviec.text.length < 5) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
+                            );
+                          }
+                          else if (_chucdanh.text.length < 5) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P56 - Chức danh nhập vào quá ngắn!',)
+                            );
+                          }
+                          else if (_tencoso.text.length < 5) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
+                            );
+                          }
+                          else if (_hoatdong.text.length < 5) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) > 84) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
+                                          .text} quá lớn!',)
+                            );
+                          }
+                          else if (int.parse(_gio.text) >= 64) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có Số giờ thực tế cho công việc thứ hai = ${_gio
+                                          .text} có đúng không?',
+                                      onpress: () {
+                                        Navigator.of(context).pop();
+                                        p55_59viewModel.P55_59Next(
+                                            thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c49: _congviec.text,
+                                              c50A: _chucdanh.text,
+                                              c51: _tencoso.text,
+                                              c52A: _hoatdong.text,
+                                              c53: int.parse(_gio.text),
+                                            ));
+                                      },
+                                    )
+                            );
+                          }
+                          else {
+                            p55_59viewModel.P55_59Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c49: _congviec.text,
+                              c50A: _chucdanh.text,
+                              c51: _tencoso.text,
+                              c52A: _hoatdong.text,
+                              c53: int.parse(_gio.text),
+                            ));
+                          }
+                        }
+                      }),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p55_59viewModel.P55_59Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (_congviec.text.length < 5) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
-                              );
-                            }
-                            else if (_chucdanh.text.length < 5) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P56 - Chức danh nhập vào quá ngắn!',)
-                              );
-                            }
-                            else if (_tencoso.text.length < 5) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
-                              );
-                            }
-                            else if (_hoatdong.text.length < 5) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) > 84) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
-                                            .text} quá lớn!',)
-                              );
-                            }
-                            else if (int.parse(_gio.text) >= 64) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien
-                                            .c00} có Số giờ thực tế cho công việc thứ hai = ${_gio
-                                            .text} có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          p55_59viewModel.P55_59Next(
-                                              thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c49: _congviec.text,
-                                                c50A: _chucdanh.text,
-                                                c51: _tencoso.text,
-                                                c52A: _hoatdong.text,
-                                                c53: int.parse(_gio.text),
-                                              ));
-                                        },
-                                      )
-                              );
-                            }
-                            else {
-                              p55_59viewModel.P55_59Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c49: _congviec.text,
-                                c50A: _chucdanh.text,
-                                c51: _tencoso.text,
-                                c52A: _hoatdong.text,
-                                c53: int.parse(_gio.text),
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

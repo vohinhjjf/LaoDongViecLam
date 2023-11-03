@@ -165,6 +165,13 @@ class _P93_94ViewState extends State<P93_94View> {
                           }
                           return null;
                         },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(
+                              '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                        ],
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle( color: Colors.black),
                         decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -250,6 +257,13 @@ class _P93_94ViewState extends State<P93_94View> {
                           }
                           return null;
                         },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(
+                              '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                        ],
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle( color: Colors.black),
                         decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),

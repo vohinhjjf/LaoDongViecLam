@@ -23,6 +23,7 @@ class _P35ViewState extends State<P35View> {
   final _orther = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p35 =0;
+  bool check_draw = true;
 
   var _lydo = [
     "QUÁ GIÀ/QUÁ TRẺ",
@@ -85,7 +86,7 @@ class _P35ViewState extends State<P35View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(55, 25, 55, 10),
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -159,6 +160,13 @@ class _P35ViewState extends State<P35View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                            FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                          ],
+                          keyboardType: TextInputType.text,
+                          style: const TextStyle( color: Colors.black),
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -166,85 +174,63 @@ class _P35ViewState extends State<P35View> {
                         )
                       ],
                     ),
+                  ),
+                  //Button
+                  const SizedBox(height: 25,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UIBackButton(ontap: (){
+                        p35ViewModel.P35Back();
+                      }),
+                      UINextButton(ontap: (){
+                        if(_formKey.currentState!.validate()) {
+                          if (p35 == 0) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'P35 - Lý do không tìm việc nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (p35 == 9 && thanhvien.c30 == 2) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'P35 - Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
+                            );
+                          }
+                          else {
+                            p35ViewModel.P35Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c31: p35,
+                              c31K: _orther.text,
+                            ));
+                          }
+                        }
+                      }),
+                    ],
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p35ViewModel.P35Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p35 == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'P35 - Lý do không tìm việc nhập vào chưa đúng!',)
-                              );
-                            }
-                            else if (p35 == 9 && thanhvien.c30 == 2) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                  const UIWarningDialog(
-                                    waring: 'P35 - Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
-                              );
-                            }
-                            else {
-                              p35ViewModel.P35Next(thongTinThanhVienModel(
-                                idho: thanhvien.idho,
-                                idtv: thanhvien.idtv,
-                                c31: p35,
-                                c31K: _orther.text,
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+            // Set the transparency here
+            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigationThanhVien()
+          child: check_draw
+              ? DrawerNavigationThanhVien(onTap: (){
+            setState(() {
+              check_draw = false;
+            });
+          },)
+              : const DrawerNavigation()
       ),
       drawerScrimColor: Colors.transparent,
     );

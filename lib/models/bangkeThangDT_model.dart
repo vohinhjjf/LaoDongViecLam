@@ -3,6 +3,7 @@ class BangKeThangDTModel {
   int? namDT;
   int? thangDT;
   int? trangThai;
+  int? sync;
 
   BangKeThangDTModel(
       {
@@ -10,9 +11,20 @@ class BangKeThangDTModel {
         this.namDT,
         this.thangDT,
         this.trangThai,
+        this.sync
       });
 
   Map<String, dynamic> toJson() {
+    return {
+      'idhO_BKE': idhO_BKE,
+      'namDT': namDT,
+      'thangDT': thangDT,
+      'trangThai': trangThai,
+      'sync': sync,
+    };
+  }
+
+  Map<String, dynamic> toJson1() {
     return {
       'idhO_BKE': idhO_BKE,
       'namDT': namDT,
@@ -26,5 +38,6 @@ class BangKeThangDTModel {
     namDT = json['namDT'];
     thangDT = json['thangDT'];
     trangThai = json['trangThai'];
+    sync = json['sync'];
   }
 }

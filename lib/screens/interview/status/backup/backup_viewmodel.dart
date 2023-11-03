@@ -21,11 +21,11 @@ class BackupViewModel extends BaseViewModel {
 
   void fetchData() async {
     String iddb = _sPrefAppModel.IDDB;
-    await _executeDatabase.getHouseHold(iddb).then((value) => data= value.where((e) => e.hoDuPhong == 1).toList());
+    int thangdt = int.parse(_sPrefAppModel.month);
+    int namdt = DateTime.now().year;
+    String condition = "iddb = $iddb AND HoDuPhong = 1 AND nhom = 99 AND thangDT = $thangdt AND namDT = $namdt";
+    await _executeDatabase.getHouseHold(condition).then((value) => data= value);
   }
-
-  /*Future<List<BangKeCsModel>> searchData(String name) =>
-      _executeDatabase.getDanhSachBangKeCs(1, name);*/
 
   void Backup() async {
     NavigationServices.instance.navigateToInterviewStatus(context);
