@@ -54,7 +54,7 @@ class _Q1ViewState extends State<Q1View> {
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
         actions: const [
@@ -75,7 +75,7 @@ class _Q1ViewState extends State<Q1View> {
                   UIText(
                     text: UIQuestions.q1(month),
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -199,7 +199,7 @@ class _Q1ViewState extends State<Q1View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -263,6 +263,7 @@ class _Q1ViewState extends State<Q1View> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
+            textAlign: TextAlign.center,
             isBold: false,
           ),
           content: Container(
@@ -280,7 +281,7 @@ class _Q1ViewState extends State<Q1View> {
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium
+                        textFontSize: fontLarge
                     ),
                     onPressed: onpress1
                 ),
@@ -292,7 +293,7 @@ class _Q1ViewState extends State<Q1View> {
                     ),
                     child: const UIText(
                       text: 'Không',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
@@ -347,7 +348,7 @@ class _Q1ViewState extends State<Q1View> {
                     child: const UIText(
                         text: 'Đồng ý',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium,
+                        textFontSize: fontLarge,
                       isBold: true,
                     ),
                     onPressed: (){
@@ -369,7 +370,7 @@ class _Q1ViewState extends State<Q1View> {
                     ),
                     child: const UIText(
                       text: 'Hủy',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,

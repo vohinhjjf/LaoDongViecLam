@@ -58,7 +58,7 @@ class _P24_25ViewState extends State<P24_25View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -86,7 +86,7 @@ class _P24_25ViewState extends State<P24_25View> {
                   title: const UIText(
                     text: "CÓ",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -115,7 +115,7 @@ class _P24_25ViewState extends State<P24_25View> {
                   title: const UIText(
                     text: "KHÔNG",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -159,7 +159,7 @@ class _P24_25ViewState extends State<P24_25View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -188,7 +188,7 @@ class _P24_25ViewState extends State<P24_25View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -217,7 +217,7 @@ class _P24_25ViewState extends State<P24_25View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

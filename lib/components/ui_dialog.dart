@@ -78,7 +78,8 @@ class UINotificationDialog extends StatelessWidget {
       title: UIText(
         text: notification,
         textColor: Colors.black,
-        textFontSize:fontMedium,
+        textAlign: TextAlign.center,
+        textFontSize:fontLarge,
         isBold: true,
       ),
       content: Container(
@@ -95,7 +96,7 @@ class UINotificationDialog extends StatelessWidget {
                 ),
                 child: const UIText(
                   text: 'Nhập lại',
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   textAlign: TextAlign.center,
                   textColor: mPrimaryColor,
                   isBold: true,
@@ -113,7 +114,7 @@ class UINotificationDialog extends StatelessWidget {
                 onPressed: onpress,
                 child: const UIText(
                   text: 'Tiếp tục',
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   textAlign: TextAlign.center,
                   textColor: mPrimaryColor,
                   isBold: true,

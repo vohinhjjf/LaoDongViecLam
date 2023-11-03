@@ -73,7 +73,7 @@ class _P08_09ViewState extends State<P08_09View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -102,7 +102,7 @@ class _P08_09ViewState extends State<P08_09View> {
                       title: UIText(
                         text: _honnhan[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -149,7 +149,7 @@ class _P08_09ViewState extends State<P08_09View> {
                       title: UIText(
                         text: _thuongtru[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -178,7 +178,7 @@ class _P08_09ViewState extends State<P08_09View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

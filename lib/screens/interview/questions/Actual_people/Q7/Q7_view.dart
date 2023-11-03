@@ -77,7 +77,7 @@ class _Q7ViewState extends State<Q7View> {
                   const UIText(
                     text: UIQuestions.q7,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),

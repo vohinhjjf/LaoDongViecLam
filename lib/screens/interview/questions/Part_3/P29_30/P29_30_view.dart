@@ -57,7 +57,7 @@ class _P29_30ViewState extends State<P29_30View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -81,7 +81,7 @@ class _P29_30ViewState extends State<P29_30View> {
                   title: const UIText(
                     text: "LÀM CHO GIA ĐÌNH MÌNH",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -110,7 +110,7 @@ class _P29_30ViewState extends State<P29_30View> {
                   title: const UIText(
                     text: "LÀM THUÊ CHO NGƯỜI KHÁC",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -135,7 +135,7 @@ class _P29_30ViewState extends State<P29_30View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 //p30
                 Visibility(
                   visible: p29 == 1,
@@ -155,7 +155,7 @@ class _P29_30ViewState extends State<P29_30View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -184,7 +184,7 @@ class _P29_30ViewState extends State<P29_30View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -213,7 +213,7 @@ class _P29_30ViewState extends State<P29_30View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

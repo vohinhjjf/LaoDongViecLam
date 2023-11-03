@@ -99,7 +99,7 @@ class _P10_12ViewState extends State<P10_12View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -123,7 +123,7 @@ class _P10_12ViewState extends State<P10_12View> {
                   title: const UIText(
                     text: "Ở VIỆT NAM",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -148,10 +148,11 @@ class _P10_12ViewState extends State<P10_12View> {
                     });
                   },
                 ),
-                const SizedBox(height: 5,),
+                // const SizedBox(height: 5,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
                     child: DropdownButtonFormField(
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.grey, width: 0.5),
@@ -180,12 +181,12 @@ class _P10_12ViewState extends State<P10_12View> {
                       isExpanded: true,
                     ),
                 ),
-                const SizedBox(height: 5,),
+                // const SizedBox(height: 5,),
                 ListTile(
                   title: const UIText(
                     text: "NƯỚC NGOÀI",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -219,6 +220,7 @@ class _P10_12ViewState extends State<P10_12View> {
                     child: Column(
                       children: [
                         DropdownButtonFormField(
+                          style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.grey, width: 0.5),
@@ -267,7 +269,7 @@ class _P10_12ViewState extends State<P10_12View> {
                           title: const UIText(
                             text: "PHƯỜNG/THỊ TRẤN",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -296,7 +298,7 @@ class _P10_12ViewState extends State<P10_12View> {
                           title: const UIText(
                             text: "XÃ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -339,7 +341,7 @@ class _P10_12ViewState extends State<P10_12View> {
                               title: UIText(
                                 text: _lydo[index].toString(),
                                 textColor: Colors.black,
-                                textFontSize: fontLarge,
+                                textFontSize: fontMedium,
                                 textAlign: TextAlign.start,
                                 isBold: false,
                               ),
@@ -402,7 +404,7 @@ class _P10_12ViewState extends State<P10_12View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

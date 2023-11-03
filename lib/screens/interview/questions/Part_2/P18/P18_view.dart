@@ -58,7 +58,7 @@ class _P18ViewState extends State<P18View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -79,37 +79,37 @@ class _P18ViewState extends State<P18View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                const UIText(
-                  text: "1. CÓ\n2. KHÔNG",
-                  textColor: Colors.black,
-                  textFontSize:fontLarge,
-                ),
-                const SizedBox(height: 5,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    SizedBox(
-                      width: 40,
-                      child: UIText(
-                        text: "1",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    SizedBox(
-                      width: 40,
-                      child: UIText(
-                        text: "2",
-                        textColor: Colors.black,
-                        textFontSize: fontLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10,),
+                // const UIText(
+                //   text: "1. CÓ\n2. KHÔNG",
+                //   textColor: Colors.black,
+                //   textFontSize:fontLarge,
+                // ),
+                // const SizedBox(height: 5,),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: const [
+                //     SizedBox(
+                //       width: 40,
+                //       child: UIText(
+                //         text: "1",
+                //         textColor: Colors.black,
+                //         textFontSize: fontLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //     SizedBox(width: 10,),
+                //     SizedBox(
+                //       width: 40,
+                //       child: UIText(
+                //         text: "2",
+                //         textColor: Colors.black,
+                //         textFontSize: fontLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: 10,),
                 Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -120,7 +120,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "CNKT không có bằng/chứng chỉ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -164,7 +164,7 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -175,7 +175,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "Kỹ năng nghề dưới 3 tháng",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -219,7 +219,7 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -230,7 +230,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "Chứng chỉ nghề dưới 3 tháng",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -275,7 +275,7 @@ class _P18ViewState extends State<P18View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

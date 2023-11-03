@@ -63,7 +63,7 @@ class _P16ViewState extends State<P16View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -92,6 +92,7 @@ class _P16ViewState extends State<P16View> {
                         text: "Có",
                         textColor: Colors.black,
                         textFontSize: fontSmall,
+                        isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -102,6 +103,7 @@ class _P16ViewState extends State<P16View> {
                         text: "Không",
                         textColor: Colors.black,
                         textFontSize: fontSmall,
+                        isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -160,9 +162,9 @@ class _P16ViewState extends State<P16View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 5,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -210,20 +212,20 @@ class _P16ViewState extends State<P16View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 5,),
                 Visibility(
                   visible: check,
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                          padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const UIText(
                                 text: "Cao đẳng",
                                 textColor: Colors.black,
-                                textFontSize: fontLarge,
+                                textFontSize: fontMedium,
                                 textAlign: TextAlign.start,
                               ),
                               Row(
@@ -264,16 +266,16 @@ class _P16ViewState extends State<P16View> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const UIText(
                                   text: "Đại học",
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 Row(
@@ -314,16 +316,16 @@ class _P16ViewState extends State<P16View> {
                               ],
                             ),
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const UIText(
                                   text: "Thạc sỹ",
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 Row(
@@ -364,16 +366,16 @@ class _P16ViewState extends State<P16View> {
                               ],
                             ),
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const UIText(
                                   text: "Tiến sỹ",
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 Row(
@@ -418,7 +420,7 @@ class _P16ViewState extends State<P16View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

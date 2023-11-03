@@ -93,7 +93,7 @@ class _P01_04ViewState extends State<P01_04View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -220,7 +220,7 @@ class _P01_04ViewState extends State<P01_04View> {
                     title: const UIText(
                       text: "NAM",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -249,7 +249,7 @@ class _P01_04ViewState extends State<P01_04View> {
                     title: const UIText(
                       text: "NỮ",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -296,6 +296,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       Flexible(
                         flex: 2,
                         child: DropdownButtonFormField(
+                          style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.grey, width: 0.5),
@@ -472,7 +473,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       )
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
