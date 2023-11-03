@@ -154,7 +154,7 @@ class _P78ViewState extends State<P78View> {
                               size: GFSize.LARGE,
                               activeBorderColor: Colors.black,
                               activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              value: 1,
+                              value: 2,
                               groupValue: p78a,
                               onChanged: (value) {
                                 setState(() {
@@ -260,7 +260,7 @@ class _P78ViewState extends State<P78View> {
                               size: GFSize.LARGE,
                               activeBorderColor: Colors.black,
                               activeIcon: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                              value: 1,
+                              value: 2,
                               groupValue: p78c,
                               onChanged: (value) {
                                 setState(() {
@@ -618,7 +618,7 @@ class _P78ViewState extends State<P78View> {
                           },
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(RegExp(
-                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                                '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                             FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                           ],
                           keyboardType: TextInputType.text,

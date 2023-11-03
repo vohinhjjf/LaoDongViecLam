@@ -126,7 +126,7 @@ class _P01_04ViewState extends State<P01_04View> {
                     style: const TextStyle( color: Colors.black),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -196,6 +196,11 @@ class _P01_04ViewState extends State<P01_04View> {
                                 }
                                 return null;
                               },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(
+                                    '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                                FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                              ],
                               style: const TextStyle( color: Colors.black),
                               decoration: InputDecoration(
                                 errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -397,6 +402,10 @@ class _P01_04ViewState extends State<P01_04View> {
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                          ],
+                          maxLength: 4,
                           keyboardType: TextInputType.datetime,
                           style: const TextStyle( color: Colors.black),
                           readOnly: check,
@@ -462,6 +471,10 @@ class _P01_04ViewState extends State<P01_04View> {
                               }
                               return null;
                             },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                            ],
+                            maxLength: 3,
                             keyboardType: TextInputType.datetime,
                             style: const TextStyle( color: Colors.black),
                             decoration: InputDecoration(

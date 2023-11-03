@@ -326,6 +326,9 @@ class UIBackButton extends StatelessWidget {
             Colors.grey.shade300,
           ])),
       child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width/2.5,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0)),
         onPressed: ontap,
         textColor: Colors.white,
         padding: const EdgeInsets.all(0),
@@ -364,6 +367,7 @@ class UINextButton extends StatelessWidget {
             mPrimaryColor,
           ])),
       child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width/2.5,
         onPressed: ontap,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0)),

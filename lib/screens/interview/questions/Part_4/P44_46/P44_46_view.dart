@@ -165,6 +165,10 @@ class _P44_46ViewState extends State<P44_46View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(
@@ -308,26 +312,45 @@ class _P44_46ViewState extends State<P44_46View> {
                                           .c00} có P45 - Số giờ thực tế làm việc/tuần = ${_gio
                                           .text} quá cao, trên 8 giờ/ngày. Có đúng không?',
                                       onpress: () {
-                                        p44_46ViewModel.P44_46Next(
-                                            thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c39: p44,
-                                              c40: int.parse(_gio.text),
-                                              c40A: p46,
-                                            ));
+                                        if(thanhvien.c38 == 1 || thanhvien.c38 == 2 || thanhvien.c38 == 3 || thanhvien.c38 == 13){
+                                          p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c39: p44,
+                                            c40: int.parse(_gio.text),
+                                            c40A: p46,
+                                          ));
+                                        }
+                                        else {
+                                          p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c40: int.parse(_gio.text),
+                                            c40A: p46,
+                                          ));
+                                        }
                                       },
                                     )
                             );
                           }
                           else {
-                            p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c39: p44,
-                              c40: int.parse(_gio.text),
-                              c40A: p46,
-                            ));
+                            if(thanhvien.c38 == 1 || thanhvien.c38 == 2 || thanhvien.c38 == 3 || thanhvien.c38 == 13){
+                              p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c39: p44,
+                                c40: int.parse(_gio.text),
+                                c40A: p46,
+                              ));
+                            }
+                            else {
+                              p44_46ViewModel.P44_46Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c40: int.parse(_gio.text),
+                                c40A: p46,
+                              ));
+                            }
                           }
                         }
                       }),

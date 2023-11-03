@@ -33,6 +33,8 @@ class P34ViewModel extends BaseViewModel {
   void P34Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c30A = ${data.c30A} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c30A == 2){
+      await _executeDatabase.update("SET c31= ${data.c31}, c31K = ${data.c31K.toString()}, c32 = ${data.c32}, "
+          "c33 = ${data.c33} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP38(context);
     }else {
       NavigationServices.instance.navigateToP35(context);

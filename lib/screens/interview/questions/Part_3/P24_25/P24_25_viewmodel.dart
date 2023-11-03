@@ -34,6 +34,7 @@ class P24_25ViewModel extends BaseViewModel {
     _executeDatabase.update("SET c22 = ${data.c22}, c23 = ${data.c23} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c22 == 1 || data.c23 == 1) {
+      _executeDatabase.update("SET c24 = ${data.c24} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP27(context);
     }
     else {

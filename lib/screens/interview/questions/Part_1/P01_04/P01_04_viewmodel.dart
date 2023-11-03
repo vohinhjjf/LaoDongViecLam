@@ -45,7 +45,7 @@ class P01_04ViewModel extends BaseViewModel {
 
   void P01_04Next(thongTinThanhVienModel data) async {
     await _executeDatabase.update("SET c00 = '${data.c00}', c01 = ${data.c01}"
-        ", c01K = '${data.c01K}', c02 = ${data.c02}, c03A = '${data.c03A}'"
+        ", c01K = ${data.c01K.toString()}, c02 = ${data.c02}, c03A = '${data.c03A}'"
         ", c03B = ${data.c03B}, c04 = ${data.c04} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
 

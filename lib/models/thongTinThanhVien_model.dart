@@ -364,6 +364,7 @@ class thongTinThanhVienModel {
     c09B = json['c09B'];
     c10 = json['c10'];
     c10M = json['c10M'];
+    c10_MK = json['c10_MK'];
     c11 = json['c11'];
     c12 = json['c12'];
     c13 = json['c13'];

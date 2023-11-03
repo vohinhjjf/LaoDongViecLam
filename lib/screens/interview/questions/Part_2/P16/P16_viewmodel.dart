@@ -29,6 +29,7 @@ class P16ViewModel extends BaseViewModel {
   void P16Back() async {
     NavigationServices.instance.navigateToP14_15(context);
   }
+
   void P16Next(thongTinThanhVienModel data) async {
     await _executeDatabase.update("SET c14A = ${data.c14A}, c14B = ${data.c14B}"
         ", c14C = ${data.c14C}, c14D = ${data.c14D}, c14E = ${data.c14E}, c14F = ${data.c14F} "
@@ -36,7 +37,7 @@ class P16ViewModel extends BaseViewModel {
     if(data.c14A == 1 || data.c14B == 1 || data.c14C == 1 ||data.c14D == 1 || data.c14E == 1 || data.c14F == 1) {
       NavigationServices.instance.navigateToP17(context);
     } else {
-      await _executeDatabase.update("SET c15A = ${null}, c15B = ${null}, c15C = ${null} "
+      await _executeDatabase.update("SET c15A = '', c15B = '', c15C = '' "
           "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP18(context);
     }

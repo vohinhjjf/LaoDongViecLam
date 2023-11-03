@@ -31,17 +31,30 @@ class P76_77ViewModel extends BaseViewModel {
   }
 
   void P76_77Back() async {
-    NavigationServices.instance.navigateToP70_75(context);
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    await _executeDatabase.getListTTTV(idho).then((value) {
+      if(value.last.c04! < 15){
+        NavigationServices.instance.navigateToP70_75(context);
+      } else if(value.last.c05! == 2){
+        NavigationServices.instance.navigateToP06_07(context);
+      } else {
+        NavigationServices.instance.navigateToP70_75(context);
+      }
+    });
   }
 
   void P76_77Next(DoiSongHoModel data) async {
-    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.updateDSH(
         "SET c62_M1 = ${data.c62_M1}, c62_M2 = ${data.c62_M2} "
-            "WHERE idho = ${data.idho}");
+            "WHERE idho = ${data.idho} AND thangDT = ${data.thangDT} AND namDT = ${data.namDT}");
     if(data.c62_M2 == 3) {
       NavigationServices.instance.navigateToP78(context);
     } else {
+      _executeDatabase.updateDSH("SET c62_M3A = ${data.c62_M3A}, c62_M3B = ${data.c62_M3B}, "
+          "c62_M3C = ${data.c62_M3C}, c62_M3D = ${data.c62_M3D}, c62_M3E = ${data.c62_M3E}, "
+          "c62_M3F = ${data.c62_M3F}, c62_M3G = ${data.c62_M3G}, c62_M3H = ${data.c62_M3H}, "
+          "c62_M3I = ${data.c62_M3I}, c62_M3IK = ${data.c62_M3IK.toString()} "
+          "WHERE idho = ${data.idho} AND thangDT = ${data.thangDT} AND namDT = ${data.namDT}");
       NavigationServices.instance.navigateToP79(context);
     }
   }

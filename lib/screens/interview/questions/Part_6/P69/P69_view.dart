@@ -90,6 +90,10 @@ class _P69ViewState extends State<P69View> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 3,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle( color: Colors.black),
                     decoration: InputDecoration(

@@ -78,36 +78,34 @@ class _P61_62ViewState extends State<P61_62View> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //p61
-                  Visibility(
-                      visible: thanhvien.c54 != 1,
-                      child: Column(
-                        children: [
-                          UIRichText(
-                            text1: "P61. Cụ thể, ",
-                            text2: thanhvien.c00 ?? "",
-                            text3: " nhận được bao nhiêu tiền cho công việc này? "
-                                "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
-                            textColor: Colors.black,
-                            textFontSize:fontLarge,
-                          ),
-                          const SizedBox(height: 10,),
-                          TextFormField(
-                            controller: _tiencong,
-                            validator: (value){
-                              if(value!.isEmpty){
-                                return 'Vui lòng nhập số tiền';
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.datetime,
-                            style: const TextStyle( color: Colors.black),
-                            decoration: InputDecoration(
-                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                            ),
-                          ),
-                        ],
-                      )
+                  UIRichText(
+                    text1: "P61. Cụ thể, ",
+                    text2: thanhvien.c00 ?? "",
+                    text3: " nhận được bao nhiêu tiền cho công việc này? "
+                        "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
+                    textColor: Colors.black,
+                    textFontSize:fontLarge,
+                  ),
+                  const SizedBox(height: 10,),
+                  TextFormField(
+                    controller: _tiencong,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'Vui lòng nhập số tiền';
+                      }
+                      return null;
+                    },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    ],
+                    maxLength: 6,
+                    readOnly: check,
+                    keyboardType: TextInputType.datetime,
+                    style: const TextStyle( color: Colors.black),
+                    decoration: InputDecoration(
+                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                    ),
                   ),
                   //p62
                   const SizedBox(height: 10,),

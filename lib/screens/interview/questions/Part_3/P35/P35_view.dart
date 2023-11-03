@@ -103,6 +103,7 @@ class _P35ViewState extends State<P35View> {
                   const SizedBox(height: 10,),
                   ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: _lydo.length,
                     itemBuilder: (context, index) {
                       return ListTile(
@@ -162,7 +163,7 @@ class _P35ViewState extends State<P35View> {
                           },
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(RegExp(
-                                '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                                '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                             FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                           ],
                           keyboardType: TextInputType.text,
