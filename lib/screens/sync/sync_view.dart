@@ -111,7 +111,7 @@ class Body extends State<SyncView>{
                   alignment: Alignment.center,
                   height: 50.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(5.0),
                       gradient: const LinearGradient(colors: [
                         mPrimaryColor,
                         Color(0xFF64B5F6),
@@ -122,6 +122,7 @@ class Body extends State<SyncView>{
                     text: "THỰC HIỆN",
                     textAlign: TextAlign.center,
                     textColor: Colors.white,
+                    textFontSize: fontLarge,
                     isBold: true,
                   ),
                 ),
@@ -132,8 +133,9 @@ class Body extends State<SyncView>{
       ),
       bottomSheet: Container(
         padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
             gradient: const LinearGradient(colors: [
               Colors.limeAccent,
               Colors.limeAccent,
@@ -141,7 +143,7 @@ class Body extends State<SyncView>{
         ),
         child: UIText(
           text: 'Mã ĐTV: ${syncViewModel.userName}',
-            textFontSize: fontLarge,
+            textFontSize: fontMedium,
             isBold: true,
             textColor: mPrimaryColor
         ),
@@ -172,6 +174,7 @@ class Body extends State<SyncView>{
                     text: "Đồng bộ thành công $value hộ",
                     textAlign: TextAlign.center,
                     textColor: Colors.black,
+                    textFontSize: fontLarge,
                     isBold: true,
                   ),
                 ),
@@ -183,7 +186,7 @@ class Body extends State<SyncView>{
                     child: const UIText(
                         text: 'Đóng',
                         textColor: mPrimaryColor,
-                        textFontSize: fontLarge
+                        textFontSize: fontLarge,
                     ),
                     onPressed: () {
                       setState(() {
@@ -215,7 +218,7 @@ class Body extends State<SyncView>{
                 ),
                 const UIText(
                   text: "Thất bại",
-                    textFontSize: fontSmall,
+                    textFontSize: fontLarge,
                     textColor: Colors.red
                 ),
                 const SizedBox(
@@ -225,7 +228,7 @@ class Body extends State<SyncView>{
                   text: "Lỗi xử lý yêu cầu đồng bộ: $error",
                   textAlign: TextAlign.center,
                     textColor: Colors.black,
-                    textFontSize: fontSmall
+                    textFontSize: fontLarge
                 ),
                 const SizedBox(
                   height: 10,
@@ -237,7 +240,7 @@ class Body extends State<SyncView>{
                     color: mPrimaryColor,
                     child: const UIText(
                         text: 'Quay lại',
-                        textColor: Colors.white, textFontSize: 15
+                        textColor: Colors.white, textFontSize: fontLarge
                     ),
                     onPressed: () {
                       setState(() {
@@ -262,7 +265,7 @@ class Body extends State<SyncView>{
           ),
           title: Column(
             children: const [
-              Text('Không có hộ cần động bộ!', style: TextStyle(fontSize: fontLarge, color: mDividerColor),),
+              Text('Không có hộ cần đồng bộ!', style: TextStyle(fontSize: fontLarge, color: mDividerColor),),
               SizedBox(height: 5,),
               Divider(
                   height: 10,
@@ -276,7 +279,7 @@ class Body extends State<SyncView>{
               child: MaterialButton(
                   child: const Text('Đóng',
                       style: TextStyle(
-                          color: mPrimaryColor, fontSize: fontMedium)),
+                          color: mPrimaryColor, fontSize: fontLarge)),
                   onPressed: () {
                     setState(() {
                       Navigator.of(context, rootNavigator: true).pop();

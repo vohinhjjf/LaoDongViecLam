@@ -72,7 +72,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     TextFormField(
                       controller: _name,
                       validator: (value){
@@ -94,7 +94,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       ),
                     ),
-                    SizedBox(height: 25,),
+                    SizedBox(height: 15,),
                     //address
                     const UIText(
                       text:UIDescribes.householderAddress,
@@ -102,7 +102,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     TextFormField(
                       controller: _address,
                       validator: (value){

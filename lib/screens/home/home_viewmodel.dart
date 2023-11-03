@@ -116,9 +116,10 @@ class HomeViewModel extends BaseViewModel {
               borderRadius: BorderRadius.circular(5.0),
             ),
             title: UIText(
-              text: 'Đã có phiên bản mới'
-                  'Chọn "Đồng ý" để cập nhật phiên bản mới nhất(${status.storeVersion})',
+              text: 'Đã có phiên bản mới\n'
+                  'Chọn "Đồng ý" để cập nhật phiên bản mới nhất (${status.storeVersion})',
               textColor: Colors.black,
+              textAlign: TextAlign.center,
               textFontSize:fontLarge,
               isBold: false,
             ),
@@ -173,8 +174,8 @@ class HomeViewModel extends BaseViewModel {
               borderRadius: BorderRadius.circular(5.0),
             ),
             title: const UIText(
-              text: 'Đã có phiên bản mới'
-                  'Chọn "Đồng ý" để cập nhật phiên bản mới nhất(0.0.1)',
+              text: 'Đã có phiên bản mới\n'
+                  'Chọn "Đồng ý" để cập nhật phiên bản mới nhất (0.0.1)',
               textColor: Colors.black,
               textFontSize:fontLarge,
               isBold: false,

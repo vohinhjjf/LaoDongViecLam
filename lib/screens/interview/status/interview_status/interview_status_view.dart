@@ -41,7 +41,7 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
           text: UIDescribes.interviewStatus,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -145,8 +145,9 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
       ),
       bottomSheet: Container(
         padding: EdgeInsets.all(6),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
             gradient: const LinearGradient(colors: [
               Colors.limeAccent,
               Colors.limeAccent,

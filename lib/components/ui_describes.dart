@@ -86,7 +86,7 @@ class UIDescribes {
   static const informationCommon = 'Thông tin hộ';
   static const interviewDetails = 'Chi tiết phỏng vấn';
   static const householderName = 'Họ và tên chủ hộ';
-  static const householderAddress = 'Địa chỉ của hộ(số nhà, đường phố, tổ/thôn/ấp)';
+  static const householderAddress = 'Địa chỉ của hộ (số nhà, đường phố, tổ/thôn/ấp)';
   static const householdSurvey = 'Điều tra hộ';
   static const notHadDb = 'Chưa có dữ liệu';
   static const needUpdateDb =

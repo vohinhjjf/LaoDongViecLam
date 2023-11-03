@@ -72,7 +72,7 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -102,14 +102,14 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                       readOnly: true,
                       style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Tỉnh
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.provinceCode,
                       textColor: Colors.black,
@@ -123,15 +123,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _province,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Huyện
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.districtCode,
                       textColor: Colors.black,
@@ -145,15 +146,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _district,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Xã
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.communeCode,
                       textColor: Colors.black,
@@ -167,15 +169,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _commune,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Địa bàn
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.area,
                       textColor: Colors.black,
@@ -189,15 +192,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _area,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Tên địa bàn
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.areaName,
                       textColor: Colors.black,
@@ -211,15 +215,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _name_area,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Ttnt
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.ttnt,
                       textColor: Colors.black,
@@ -233,15 +238,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _ttnt,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),
                   //Hộ số
                   Padding(
-                    padding: EdgeInsets.only(top: 20.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: const UIText(
                       text:UIDescribes.householdNumber,
                       textColor: Colors.black,
@@ -255,9 +261,10 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     child: TextFormField(
                       controller: _ho_so,
                       readOnly: true,
+                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
                       ),
                     ),
                   ),

@@ -23,6 +23,7 @@ class UIWarningDialog extends StatelessWidget {
       ),
       title: UIText(
         text: waring,
+        textAlign: TextAlign.center,
         textColor: Colors.black,
         textFontSize: fontLarge,
         isBold: true,

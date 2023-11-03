@@ -54,7 +54,7 @@ class _AreaViewState extends State<AreaView>{
         title: Text(
           'Danh sách địa bàn - Tháng $_month',
           style: const TextStyle(
-            fontSize: fontGreater,
+            fontSize: fontLarge,
             color: mPrimaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -82,30 +82,32 @@ class _AreaViewState extends State<AreaView>{
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(
                           width: 0,
-                        ),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(10.0)
-                        )
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        UIText(
-                            text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Chưa hoàn thành",
-                            textFontSize: fontLarge,
-                            isBold: true,
-                            textColor: Colors.black
-                        ),
-                        UIText(
-                            text: 'Số hộ: ${list_household.where((e) => e.iddb == list_area[index].iddb).length}',
-                            textFontSize: fontMedium,
-                            isBold: true,
-                            textColor: Colors.yellow.shade800
-                        ),
-                      ],
-                    )
-                ),
+                      ),
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(10.0)
+                      )
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      UIText(
+                          text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Chưa hoàn thành",
+                          textFontSize: fontLarge,
+                          isBold: true,
+                          textColor: Colors.black
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      UIText(
+                          text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
+                          textFontSize: fontMedium,
+                          isBold: true,
+                          textColor: Colors.yellow.shade800
+                      ),
+                    ],
+                  )
               );
             },
           ),
@@ -113,8 +115,9 @@ class _AreaViewState extends State<AreaView>{
       ),
       bottomSheet: Container(
         padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
             gradient: const LinearGradient(colors: [
               Colors.limeAccent,
               Colors.limeAccent,
