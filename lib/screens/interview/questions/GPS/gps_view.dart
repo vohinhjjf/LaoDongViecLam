@@ -344,7 +344,7 @@ class Body extends State<GPSView> {
               const UIText(
                 text:'Cơ sở này đã có GPS!',
                 textAlign: TextAlign.center,
-                textStyle: TextStyle(fontSize: fontMedium, color: mDividerColor,fontWeight: FontWeight.w600),),
+                textStyle: TextStyle(fontSize: fontLarge, color: mDividerColor,fontWeight: FontWeight.w600),),
               const SizedBox(height: 10,),
               UIText(
                 text: "Kinh độ: $longitude",
@@ -368,7 +368,7 @@ class Body extends State<GPSView> {
                       child: const UIText(
                         text: 'Đóng',
                         textColor: Colors.red,
-                        textFontSize: fontMedium,
+                        textFontSize: fontLarge,
                         isBold: true,
                       ),
                       onPressed: () {
@@ -378,7 +378,7 @@ class Body extends State<GPSView> {
                       child: const  UIText(
                         text: 'Cập nhật',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium,
+                        textFontSize: fontLarge,
                         isBold: true,),
                       onPressed: () {
                         setState(() {

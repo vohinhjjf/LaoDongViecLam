@@ -56,7 +56,7 @@ class _Q2ViewState extends State<Q2View> {
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
         actions: const [
@@ -77,7 +77,7 @@ class _Q2ViewState extends State<Q2View> {
                   UIText(
                     text: UIQuestions.q2(month),
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -86,7 +86,7 @@ class _Q2ViewState extends State<Q2View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -115,7 +115,7 @@ class _Q2ViewState extends State<Q2View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -146,7 +146,7 @@ class _Q2ViewState extends State<Q2View> {
                       child: const UIText(
                         text: UIDescribes.personName,
                         textColor: Colors.black,
-                        textFontSize: fontGreater,
+                        textFontSize: fontLarge,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -275,7 +275,7 @@ class _Q2ViewState extends State<Q2View> {
                       ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -364,7 +364,7 @@ class _Q2ViewState extends State<Q2View> {
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium
+                        textFontSize: fontLarge
                     )
                 ),
                 MaterialButton(
@@ -376,7 +376,7 @@ class _Q2ViewState extends State<Q2View> {
                     onPressed: onpress2,
                     child: const UIText(
                       text: 'Không',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
@@ -430,7 +430,7 @@ class _Q2ViewState extends State<Q2View> {
                     child: const UIText(
                       text: 'Đồng ý',
                       textColor: mPrimaryColor,
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       isBold: true,
                     ),
                     onPressed: (){
@@ -452,7 +452,7 @@ class _Q2ViewState extends State<Q2View> {
                     ),
                     child: const UIText(
                       text: 'Hủy',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,

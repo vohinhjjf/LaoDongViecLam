@@ -77,7 +77,7 @@ class _Q5ViewState extends State<Q5View> {
                   UIText(
                     text: UIQuestions.q5(month),
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -86,7 +86,7 @@ class _Q5ViewState extends State<Q5View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -115,7 +115,7 @@ class _Q5ViewState extends State<Q5View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -146,7 +146,7 @@ class _Q5ViewState extends State<Q5View> {
                     child: const UIText(
                       text: UIDescribes.personName,
                       textColor: Colors.black,
-                      textFontSize: fontGreater,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.start,
                       isBold: false,
                     ),
@@ -225,7 +225,7 @@ class _Q5ViewState extends State<Q5View> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  // const SizedBox(height: 10,),
                   Visibility(
                     visible: groupValue == 1,
                     child: ListView.builder(
@@ -288,7 +288,7 @@ class _Q5ViewState extends State<Q5View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -374,7 +374,7 @@ class _Q5ViewState extends State<Q5View> {
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium
+                        textFontSize: fontLarge
                     ),
                     onPressed:  onpress1
                 ),
@@ -386,7 +386,7 @@ class _Q5ViewState extends State<Q5View> {
                     ),
                     child: const UIText(
                       text: 'Không',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,

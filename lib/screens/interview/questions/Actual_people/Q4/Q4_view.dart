@@ -92,7 +92,7 @@ class _Q4ViewState extends State<Q4View> {
                   UIText(
                     text: UIQuestions.q4(month),
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -158,7 +158,7 @@ class _Q4ViewState extends State<Q4View> {
                     });
                   }, _text_q4_f, 6, list_q4_f),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -176,37 +176,37 @@ class _Q4ViewState extends State<Q4View> {
                         else if (q4_a == 1 && list_q4_a.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.A - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4A - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_b == 1 && list_q4_b.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.B - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4B - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_c == 1 && list_q4_c.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.C - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4C - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_d == 1 && list_q4_d.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.D - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4D - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_e == 1 && list_q4_e.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.E - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4E - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_f == 1 && list_q4_f.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4.F - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4F - Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else {
@@ -268,7 +268,7 @@ class _Q4ViewState extends State<Q4View> {
         UIText(
           text: title,
           textColor: Colors.black,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           textAlign: TextAlign.start,
           isBold: false,
         ),
@@ -277,7 +277,7 @@ class _Q4ViewState extends State<Q4View> {
           title: const UIText(
             text: "Có",
             textColor: Colors.black,
-            textFontSize: fontLarge,
+            textFontSize: fontMedium,
             textAlign: TextAlign.start,
           ),
           leading: RoundCheckBox(
@@ -297,7 +297,7 @@ class _Q4ViewState extends State<Q4View> {
           title: const UIText(
             text: "Không",
             textColor: Colors.black,
-            textFontSize: fontLarge,
+            textFontSize: fontMedium,
             textAlign: TextAlign.start,
           ),
           leading: RoundCheckBox(
@@ -324,7 +324,7 @@ class _Q4ViewState extends State<Q4View> {
           child: const UIText(
             text: UIDescribes.personName,
             textColor: Colors.black,
-            textFontSize: fontGreater,
+            textFontSize: fontLarge,
             textAlign: TextAlign.start,
             isBold: false,
           ),

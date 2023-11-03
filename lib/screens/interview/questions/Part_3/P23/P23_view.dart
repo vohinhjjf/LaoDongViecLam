@@ -75,7 +75,7 @@ class _P23ViewState extends State<P23View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -104,7 +104,7 @@ class _P23ViewState extends State<P23View> {
                       title: UIText(
                         text: _lydo[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -132,7 +132,7 @@ class _P23ViewState extends State<P23View> {
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Visibility(
                   visible: p23 == 14 ? true : false,
                   child: Column(
@@ -171,7 +171,7 @@ class _P23ViewState extends State<P23View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

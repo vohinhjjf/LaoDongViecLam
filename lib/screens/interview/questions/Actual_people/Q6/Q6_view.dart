@@ -68,7 +68,7 @@ class _Q6ViewState extends State<Q6View> {
                   const UIText(
                     text: UIQuestions.q6,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -84,7 +84,7 @@ class _Q6ViewState extends State<Q6View> {
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 18,
-                              fontWeight: FontWeight.normal
+                              fontWeight: FontWeight.bold
                           ),
                           maxLines: 10,
                         ),
@@ -92,7 +92,7 @@ class _Q6ViewState extends State<Q6View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 2,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

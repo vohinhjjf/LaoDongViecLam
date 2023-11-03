@@ -78,7 +78,7 @@ class _P17ViewState extends State<P17View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -103,6 +103,7 @@ class _P17ViewState extends State<P17View> {
                   const UIText(
                     text: "- Ngành",
                     textColor: Colors.black,
+                    isBold: true,
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 5,),
@@ -130,6 +131,7 @@ class _P17ViewState extends State<P17View> {
                   const UIText(
                     text: "- Năm tốt nghiệp",
                     textColor: Colors.black,
+                    isBold: true,
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 5,),
@@ -153,7 +155,7 @@ class _P17ViewState extends State<P17View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
