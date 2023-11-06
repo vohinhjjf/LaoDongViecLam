@@ -112,6 +112,7 @@ class _P06_07ViewState extends State<P06_07View> {
                   title: const UIText(
                     text: "Ở NƯỚC NGOÀI",
                     textColor: Colors.black,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(

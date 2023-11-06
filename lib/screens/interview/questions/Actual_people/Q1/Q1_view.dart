@@ -263,7 +263,7 @@ class _Q1ViewState extends State<Q1View> {
             textColor: Colors.black,
             textFontSize:fontLarge,
             textAlign: TextAlign.center,
-            isBold: false,
+            isBold: true,
           ),
           content: Container(
             height: 60,
