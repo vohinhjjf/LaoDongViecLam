@@ -40,10 +40,11 @@ class P83ViewModel extends BaseViewModel {
   }
 
   void P83Next(DoiSongHoModel data) async {
-    await _executeDatabase.updateDSH("SET c62_M8A = ${data.c62_M8A}, c62_M8B = ${data.c62_M8B}, "
-        "c62_M8C = ${data.c62_M8C}, c62_M8D = ${data.c62_M8D}, c62_M8E = ${data.c62_M8E}, "
-        "c62_M8F = ${data.c62_M8F}, c62_M8FK = ${data.c62_M8FK.toString()} "
-        "WHERE idho = ${data.idho} AND thangDT = ${data.thangDT} AND namDT = ${data.namDT}");
+    await _executeDatabase.updateDSH("SET c62_M8A = ?, c62_M8B = ?, "
+        "c62_M8C = ?, c62_M8D = ?, c62_M8E = ?, c62_M8F = ?, c62_M8FK = ? "
+        "WHERE idho = ? AND thangDT = ? AND namDT = ?",
+        [data.c62_M8A,data.c62_M8B,data.c62_M8C,data.c62_M8D,data.c62_M8E,data.c62_M8F,
+          data.c62_M8FK,data.idho,data.thangDT,data.namDT]);
     NavigationServices.instance.navigateToP84(context);
   }
 }

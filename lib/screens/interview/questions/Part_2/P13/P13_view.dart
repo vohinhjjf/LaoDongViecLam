@@ -189,7 +189,7 @@ class _P13ViewState extends State<P13View> {
                             )
                         );
                       }
-                      else if(groupValue == 2 && thanhvien.c10 != null && thanhvien.c10 == 5){
+                      else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(

@@ -337,7 +337,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         const SizedBox(height: 10,),
                         ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: _lydo.length,
                           itemBuilder: (context, index) {
                             return ListTile(

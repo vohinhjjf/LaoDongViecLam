@@ -31,8 +31,8 @@ class P23ViewModel extends BaseViewModel {
   }
 
   void P23Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c21 = ${data.c21}, c21K = ${data.c21K} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c21 = ?, c21K = ? WHERE idho = ? AND idtv = ?",
+        [data.c21,data.c21K,data.idho,data.idtv]);
     if(data.c21 == 1 || data.c21 == 3){
       _executeDatabase.update("SET c22 = ${data.c22}, c23 = ${data.c23} "
           "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");

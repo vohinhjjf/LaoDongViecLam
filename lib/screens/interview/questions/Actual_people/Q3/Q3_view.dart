@@ -639,6 +639,30 @@ class _Q3ViewState extends State<Q3View> {
                               builder: (_) => const UIWarningDialog(waring: 'Q3D chưa được chọn!',)
                           );
                         }
+                        else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_b == 1 && !list.any((e) => e.q3B_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_c == 1 && !list.any((e) => e.q3C_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_d == 1 && !list.any((e) => e.q3D_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa chọn thành viên!',)
+                          );
+                        }
                         else {
                           q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
                         }

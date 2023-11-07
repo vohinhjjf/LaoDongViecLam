@@ -40,15 +40,16 @@ class P81ViewModel extends BaseViewModel {
   }
 
   void P81Next(DoiSongHoModel data) async {
-    await _executeDatabase.updateDSH("SET c62_M6 = ${data.c62_M6} "
-        "WHERE idho = ${data.idho} AND thangDT = ${data.thangDT} AND namDT = ${data.namDT}");
+    await _executeDatabase.updateDSH("SET c62_M6 = ? "
+        "WHERE idho = ? AND thangDT = ? AND namDT = ?",
+        [data.c62_M6, data.idho, data.thangDT, data.namDT]);
     if(data.c62_M4 == 3) {
       NavigationServices.instance.navigateToP82(context);
     } else {
-      await _executeDatabase.updateDSH("SET c62_M7A = ${data.c62_M7A}, c62_M7B = ${data.c62_M7B}, "
-          "c62_M7C = ${data.c62_M7C}, c62_M7D = ${data.c62_M7D}, c62_M7E = ${data.c62_M7E}, "
-          "c62_M7F = ${data.c62_M7F}, c62_M7FK = ${data.c62_M7FK.toString()} "
-          "WHERE idho = ${data.idho} AND thangDT = ${data.thangDT} AND namDT = ${data.namDT}");
+      await _executeDatabase.updateDSH("SET c62_M7A = ?, c62_M7B = ?, c62_M7C = ?, "
+          "c62_M7D = ?, c62_M7E = ?, c62_M7F = ?, c62_M7FK = ? WHERE idho = ? AND thangDT = ? AND namDT = ?",
+          [data.c62_M7A,data.c62_M7B,data.c62_M7C,data.c62_M7D,data.c62_M7E,data.c62_M7F,
+            data.c62_M7FK, data.idho,data.thangDT,data.namDT]);
       NavigationServices.instance.navigateToP83(context);
     }
   }

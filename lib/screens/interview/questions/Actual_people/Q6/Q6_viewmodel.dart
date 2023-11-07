@@ -38,9 +38,14 @@ class Q6ViewModel extends BaseViewModel {
     list.removeWhere((e) => toRemove.contains(e));
   }
 
+  void Q1Back() async {
+    NavigationServices.instance.navigateToQ1(context);
+  }
+
   void Q6Back() async {
     NavigationServices.instance.navigateToQ5(context);
   }
+
   void Q6Next(List<thongTinThanhVienModel> data) async {
     _executeDatabase.setTTTV(data);
     NavigationServices.instance.navigateToQ7(context);

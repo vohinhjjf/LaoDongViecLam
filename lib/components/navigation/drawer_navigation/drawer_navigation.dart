@@ -709,14 +709,19 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         selected4 ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                         color: selected4 ? mPrimaryColor : Colors.white,
                       ),
-                      children: [
+                    children: dataDSH.c62_M1 != null ?
+                       [
                         Container(
                           height: 1,
                           color: mPrimaryColor,
                         ),
                         ListTile(
                           onTap: () {
-                            drawerNavigationModel.navigateToRoute(11, list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P76",
+                                dataDSH.c62_M1,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P76. Đời sống gia đình hiện nay",
@@ -737,7 +742,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P77",
+                                dataDSH.c62_M2,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P77. Thu nhập gia đình hiện nay",
@@ -758,7 +767,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P78",
+                                dataDSH.c62_M3A,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P78. Nguyên nhân thu nhập giảm đi",
@@ -773,9 +786,17 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                           ),
                           tileColor: Colors.white,
                         ),
+                        Container(
+                           height: 1,
+                           color: Colors.grey.shade100,
+                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P79",
+                                dataDSH.c62_M4,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P79. Thu nhập thay đổi",
@@ -796,7 +817,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P80",
+                                dataDSH.c62_M5A,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P80. Nguyên nhân làm giảm thu nhập",
@@ -817,7 +842,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P81",
+                                dataDSH.c62_M6,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P81. Chỉ tiêu thay đổi",
@@ -838,7 +867,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P82",
+                                dataDSH.c62_M7A,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P82. Nguyên nhân làm chỉ tiêu giảm",
@@ -859,7 +892,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P83",
+                                dataDSH.c62_M8A,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P83. Chịu ảnh hưởng tiêu cực",
@@ -880,7 +917,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            //drawerNavigationModel.navigateToRoute(3, 0);
+                            drawerNavigationModel.navigateToDSH(
+                                dataDSH,
+                                "P84",
+                                dataDSH.c62_M9A,
+                                list_NKTT.singleWhere((e) => e.q6_New == 1).idtv!);
                           },
                           title: const UIText(
                             text: "P84. Những nguồn trợ giúp",
@@ -899,7 +940,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                           height: 1,
                           color: Colors.grey.shade100,
                         ),
-                      ]
+                      ] : []
                   ),
                   Container(
                     height: 1,
@@ -931,18 +972,23 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                         ),
                         ListTile(
                           onTap: () {
-                            drawerNavigationModel.navigateToRoute(19, list_NKTT.firstWhere((e) => e.q6_New == 1).idtv!);
+                            if(dataDSH.c62_M9A != null) {
+                              drawerNavigationModel.navigateToRoute(
+                                  19, 0);
+                            } else {
+                              Navigator.of(context).pop();
+                            }
                           },
                           title: UIText(
                             text: so_dien_thoai,
-                            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: mPrimaryColor),
+                            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: mPrimaryColor),
                             maxLines: 1,
                             isBold: true,
                           ),
                           contentPadding: const EdgeInsets.only(left: 20),
-                          subtitle: UIText(
+                          subtitle: const UIText(
                             text: '',
-                            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
+                            textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
                           ),
                           tileColor: Colors.white,
                         ),
@@ -1106,7 +1152,7 @@ class _DrawerNavigationThanhVienState extends State<DrawerNavigationThanhVien> {
                 padding: EdgeInsets.zero,
                 itemCount: list_NKTT.length,
                 itemBuilder: (context, index){
-                  var tttv = list_tttv.firstWhere((e) => e.idtv == list_NKTT[index].idtv);
+                  var tttv = list_tttv.firstWhere((e) => e.idtv == list_NKTT[index].idtv && e.idho == list_NKTT[index].idho);
                   return Column(
                     children: [
                       ExpansionTile(
@@ -1136,7 +1182,8 @@ class _DrawerNavigationThanhVienState extends State<DrawerNavigationThanhVien> {
                               ),
                                 ListTile(
                                   onTap: () {
-                                    //drawerNavigationModel.navigateToRoute(3, 0);
+                                    drawerNavigationModel.navigateToTTTV(tttv, e.keys.single.substring(0,3), e.values.single);
+                                    print("object: ${e.values.single}");
                                   },
                                   title: UIText(
                                     text: e.keys.single,

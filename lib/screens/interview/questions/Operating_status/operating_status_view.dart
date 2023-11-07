@@ -19,7 +19,6 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
   late OperatingStatusViewModel operatingStatusViewModel;
   int groupValue = 0;
   var bangkeho = BangKeCsModel();
-  int? get index => null;
 
   @override
   void initState() {
@@ -167,10 +166,10 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
-                      isChecked: groupValue == 6 ? true : false,
+                      isChecked: groupValue == 4 ? true : false,
                       onTap: (selected) {
                         setState(() {
-                          groupValue = groupValue == 6 ? 0 : 6;
+                          groupValue = groupValue == 4 ? 0 : 4;
                         });
                       },
                       border: Border.all(
@@ -184,7 +183,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     ),
                     onTap: () {
                       setState(() {
-                        groupValue = groupValue == 6 ? 0 : 6;
+                        groupValue = groupValue == 4 ? 0 : 4;
                       });
                     },
                   ),
@@ -244,6 +243,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                               groupValue);
                         }
                       },
+                      minWidth: MediaQuery.of(context).size.width/2.5,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0)),
                       textColor: Colors.white,

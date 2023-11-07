@@ -654,6 +654,8 @@ class _P80ViewState extends State<P80View> {
                           } else {
                             p80ViewModel.P80Next(DoiSongHoModel(
                               idho: thanhvien.idho,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
                               c62_M5A: p80a,
                               c62_M5B: p80b,
                               c62_M5C: p80c,
@@ -674,74 +676,6 @@ class _P80ViewState extends State<P80View> {
               ),
             ),
           ),
-          SizedBox(
-            height: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          p80ViewModel.P80Back();
-                        },
-                        icon: const Icon(
-                          Icons.navigate_before,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //back
-                ClipOval(
-                    child: Container(
-                      padding: const EdgeInsets.all(0),
-                      decoration: const ShapeDecoration(
-                          shape: CircleBorder(
-                              side: BorderSide(color: Colors.black54, width: 2))),
-                      child: IconButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()) {
-                            if (p80a == 0 || p80b == 0 || p80c == 0 ||
-                                p80d == 0 || p80e == 0 || p80f == 0 ||
-                                p80g == 0 || p80h == 0 || p80i == 0) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
-                              );
-                            } else {
-                              p80ViewModel.P80Next(DoiSongHoModel(
-                                idho: thanhvien.idho,
-                                c62_M5A: p80a,
-                                c62_M5B: p80b,
-                                c62_M5C: p80c,
-                                c62_M5D: p80d,
-                                c62_M5E: p80e,
-                                c62_M5F: p80f,
-                                c62_M5G: p80g,
-                                c62_M5H: p80h,
-                                c62_M5I: p80i,
-                                c62_M5IK: p80i == 1 ? _orther.text : "",
-                              ));
-                            }
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.navigate_next,
-                          color: Colors.black54,
-                          size: 35,
-                        ),
-                      ),
-                    )), //next
-              ],
-            ),
-          )
         ],
       ),
       drawer: Theme(
