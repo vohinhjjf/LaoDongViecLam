@@ -492,6 +492,8 @@ class _P82ViewState extends State<P82View> {
                           } else {
                             p82ViewModel.P82Next(DoiSongHoModel(
                               idho: doisongho.idho,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
                               c62_M7A: p82a,
                               c62_M7B: p82b,
                               c62_M7C: p82c,

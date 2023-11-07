@@ -129,4 +129,62 @@ class _Q6ViewState extends State<Q6View> {
       drawerScrimColor: Colors.transparent,
     );
   }
+
+  _showNotificationDialog(){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          titlePadding: const EdgeInsets.all(20),
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          title: UIText(
+            text: "Hộng ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
+            textColor: Colors.black,
+            textFontSize:fontLarge,
+            isBold: false,
+          ),
+          content: Container(
+            height: 60,
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                MaterialButton(
+                    height: 60,
+                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black,width: 0.1)
+                    ),
+                    onPressed: (){
+                      q6viewModel.Q1Back();
+                    },
+                    child: const UIText(
+                        text: 'Kiểm tra lại thông tin thành viên',
+                        textColor: mPrimaryColor,
+                        textFontSize: fontMedium
+                    )
+                ),
+                MaterialButton(
+                    height: 60,
+                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black,width: 0.1)
+                    ),
+                    onPressed: (){
+
+                    },
+                    child: const UIText(
+                      text: 'Hoàn thành phỏng vấn',
+                      textFontSize: fontMedium,
+                      textAlign: TextAlign.center,
+                      textColor: mPrimaryColor,
+                      isBold: true,
+                    )
+                )
+              ],
+            ),
+          ),
+        ));
+  }
 }

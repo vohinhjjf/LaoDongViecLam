@@ -433,6 +433,8 @@ class _P84ViewState extends State<P84View> {
                           } else {
                             p84ViewModel.P84Next(DoiSongHoModel(
                               idho: thanhvien.idho,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
                               c62_M9A: p84a,
                               c62_M9B: p84b,
                               c62_M9C: p84c,

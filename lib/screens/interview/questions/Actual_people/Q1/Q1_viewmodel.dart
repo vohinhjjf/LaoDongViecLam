@@ -50,7 +50,13 @@ class Q1ViewModel extends BaseViewModel {
 
   deleteNTKK(int id) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    int namDT = DateTime.now().year;
     await _executeDatabase.deleteNKTT(id, idho, 1);
+    await _executeDatabase.getListTTTV(idho).then((value) async {
+      if(value.any((e) => e.idtv == id)){
+        await _executeDatabase.deleteTTTV(idho, id, namDT);
+      }
+    });
   }
 
   void Q1Back() async {

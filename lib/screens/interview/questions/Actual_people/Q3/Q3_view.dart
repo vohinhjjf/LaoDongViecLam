@@ -615,7 +615,7 @@ class _Q3ViewState extends State<Q3View> {
                         q3viewModel.Q3Back();
                       }),
                       UINextButton(ontap: (){
-                        if(q3_a == 0 ||q3_b == 0 ||q3_c == 0 ||q3_d == 0) {
+                        if(q3_a == 0) {
                           showDialog(
                               context: context,
                               builder: (_) => const UIWarningDialog(waring: 'Q3A nhập vào chưa đúng!',)
@@ -637,6 +637,30 @@ class _Q3ViewState extends State<Q3View> {
                           showDialog(
                               context: context,
                               builder: (_) => const UIWarningDialog(waring: 'Q3D nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_b == 1 && !list.any((e) => e.q3B_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_c == 1 && !list.any((e) => e.q3C_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa chọn thành viên!',)
+                          );
+                        }
+                        else if(q3_d == 1 && !list.any((e) => e.q3D_New == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa chọn thành viên!',)
                           );
                         }
                         else {

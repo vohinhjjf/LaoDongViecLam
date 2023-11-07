@@ -150,6 +150,7 @@ class _P17ViewState extends State<P17View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                      counterText: ''
                     ),
                   ),
                   //Button
@@ -204,7 +205,7 @@ class _P17ViewState extends State<P17View> {
                             p17ViewModel.P17Next(thongTinThanhVienModel(
                               idho: thanhvien.idho,
                               idtv: thanhvien.idtv,
-                              //c15A: _nganh.text,
+                              c15A: _nganh.text,
                               c15C: int.parse(_nam.text),
                             ));
                           }

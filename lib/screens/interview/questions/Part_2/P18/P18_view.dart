@@ -79,19 +79,13 @@ class _P18ViewState extends State<P18View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                const UIText(
-                  text: "1. CÓ\n2. KHÔNG",
-                  textColor: Colors.black,
-                  textFontSize:fontLarge,
-                ),
-                const SizedBox(height: 5,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     SizedBox(
-                      width: 40,
+                      width: 45,
                       child: UIText(
-                        text: "1",
+                        text: "Có",
                         textColor: Colors.black,
                         textFontSize: fontLarge,
                         textAlign: TextAlign.center,
@@ -99,9 +93,9 @@ class _P18ViewState extends State<P18View> {
                     ),
                     SizedBox(width: 10,),
                     SizedBox(
-                      width: 40,
+                      width: 45,
                       child: UIText(
-                        text: "2",
+                        text: "Không",
                         textColor: Colors.black,
                         textFontSize: fontLarge,
                         textAlign: TextAlign.center,
@@ -111,7 +105,7 @@ class _P18ViewState extends State<P18View> {
                 ),
                 const SizedBox(height: 10,),
                 Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -142,7 +136,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           RoundCheckBox(
                             isChecked: p18a == 2 ? true : false,
                             onTap: (selected) {
@@ -166,7 +160,7 @@ class _P18ViewState extends State<P18View> {
                 ),
                 const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -197,7 +191,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           RoundCheckBox(
                             isChecked: p18b == 2 ? true : false,
                             onTap: (selected) {
@@ -221,7 +215,7 @@ class _P18ViewState extends State<P18View> {
                 ),
                 const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -252,7 +246,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 12,),
                           RoundCheckBox(
                             isChecked: p18c == 2 ? true : false,
                             onTap: (selected) {

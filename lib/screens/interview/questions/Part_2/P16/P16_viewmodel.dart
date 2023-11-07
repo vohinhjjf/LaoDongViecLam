@@ -37,7 +37,7 @@ class P16ViewModel extends BaseViewModel {
     if(data.c14A == 1 || data.c14B == 1 || data.c14C == 1 ||data.c14D == 1 || data.c14E == 1 || data.c14F == 1) {
       NavigationServices.instance.navigateToP17(context);
     } else {
-      await _executeDatabase.update("SET c15A = '', c15B = '', c15C = '' "
+      await _executeDatabase.update("SET c15A = ${data.c15A.toString()}, c15B = ${data.c15B}, c15C = ${data.c15C} "
           "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
       NavigationServices.instance.navigateToP18(context);
     }
