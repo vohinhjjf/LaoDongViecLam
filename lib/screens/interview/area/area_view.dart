@@ -107,7 +107,8 @@ class _AreaViewState extends State<AreaView>{
                           textColor: Colors.yellow.shade800
                       ),
                     ],
-                  ))
+                  )
+                )
               );
             },
           ),

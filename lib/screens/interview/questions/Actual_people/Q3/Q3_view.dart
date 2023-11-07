@@ -53,7 +53,7 @@ class _Q3ViewState extends State<Q3View> {
           text: UIDescribes.interviewDetails,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
         actions: const [
@@ -75,7 +75,7 @@ class _Q3ViewState extends State<Q3View> {
                   const UIText(
                     text: UIQuestions.q3,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -83,7 +83,7 @@ class _Q3ViewState extends State<Q3View> {
                   const UIText(
                     text: UIQuestions.q3a,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -92,7 +92,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -121,7 +121,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -215,7 +215,7 @@ class _Q3ViewState extends State<Q3View> {
                   const UIText(
                     text: UIQuestions.q3b,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -224,7 +224,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -253,7 +253,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -347,7 +347,7 @@ class _Q3ViewState extends State<Q3View> {
                   const UIText(
                     text: UIQuestions.q3c,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -356,7 +356,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -385,7 +385,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -479,7 +479,7 @@ class _Q3ViewState extends State<Q3View> {
                   const UIText(
                     text: UIQuestions.q3d,
                     textColor: Colors.black,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
@@ -488,7 +488,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Có",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -517,7 +517,7 @@ class _Q3ViewState extends State<Q3View> {
                     title: const UIText(
                       text: "Không",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -607,7 +607,7 @@ class _Q3ViewState extends State<Q3View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -618,25 +618,25 @@ class _Q3ViewState extends State<Q3View> {
                         if(q3_a == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3A nhập vào chưa đúng!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa được chọn!',)
                           );
                         }
                         else if(q3_b == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3B nhập vào chưa đúng!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa được chọn!',)
                           );
                         }
                         else if(q3_c == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3C nhập vào chưa đúng!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa được chọn!',)
                           );
                         }
                         else if(q3_d == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3D nhập vào chưa đúng!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa được chọn!',)
                           );
                         }
                         else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){

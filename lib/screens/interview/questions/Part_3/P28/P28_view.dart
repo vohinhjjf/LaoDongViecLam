@@ -63,7 +63,7 @@ class _P28ViewState extends State<P28View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -92,7 +92,7 @@ class _P28ViewState extends State<P28View> {
                       title: UIText(
                         text: _nganh[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -121,7 +121,7 @@ class _P28ViewState extends State<P28View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

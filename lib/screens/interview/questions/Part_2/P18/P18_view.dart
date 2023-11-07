@@ -58,7 +58,7 @@ class _P18ViewState extends State<P18View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -114,7 +114,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "CNKT không có bằng/chứng chỉ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -158,7 +158,7 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
@@ -169,7 +169,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "Kỹ năng nghề dưới 3 tháng",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -213,7 +213,7 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
                   child: Row(
@@ -224,7 +224,7 @@ class _P18ViewState extends State<P18View> {
                           child: UIText(
                             text: "Chứng chỉ nghề dưới 3 tháng",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           )
                       ),
@@ -269,7 +269,7 @@ class _P18ViewState extends State<P18View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -280,7 +280,7 @@ class _P18ViewState extends State<P18View> {
                       if(p18a == 0 || p18b == 0 || p18c == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P18 - Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
+                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P18-Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
                         );
                       }else {
                         p18ViewModel.P18Next(thongTinThanhVienModel(

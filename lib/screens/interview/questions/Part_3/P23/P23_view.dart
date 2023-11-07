@@ -21,12 +21,12 @@ class _P23ViewState extends State<P23View> {
   late P23ViewModel p23ViewModel;
   final _orther = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
-  int p23 =0;
+  int p23 = 0;
   bool check_draw = true;
 
   var _lydo = [
     "CHỜ BẮT ĐẦU CÔNG VIỆC HOẶC HOẠT ĐỘNG KINH DOANH MỚI",
-    "LÀM THEO CA/KÍP, THỜI GIAN LINH HOẠT/ DO TÍNH CHẤT CÔNG VIỆC",
+    "LÀM THEO CA/KÍP, THỜI GIAN LINH HOẠT/DO TÍNH CHẤT CÔNG VIỆC",
     "CÔNG VIỆC THEO MÙA/VỤ",
     "NGHỈ HÈ/NGHỈ LỄ/ĐI DU LỊCH",
     "ỐM ĐAU/TAI NẠN",
@@ -37,7 +37,7 @@ class _P23ViewState extends State<P23View> {
     "THỜI TIẾT XẤU/THIÊN TAI",
     "DO DỊCH BỆNH",
     "ĐÌNH CÔNG/BIỂU TÌNH",
-    "KHUYẾT TẬT/ ỐM ĐAU LÂU DÀI",
+    "KHUYẾT TẬT/ỐM ĐAU LÂU DÀI",
     "KHÁC (GHI CỤ THẾ)",
   ];
 
@@ -49,13 +49,13 @@ class _P23ViewState extends State<P23View> {
       p23ViewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 100),
-              () => {
-            setState(() {
-              thanhvien = p23ViewModel.thanhvien;
-              p23 = p23ViewModel.thanhvien.c21 ?? 0;
-              _orther.text = p23ViewModel.thanhvien.c21K ?? "";
-            })
-          });
+          () => {
+                setState(() {
+                  thanhvien = p23ViewModel.thanhvien;
+                  p23 = p23ViewModel.thanhvien.c21 ?? 0;
+                  _orther.text = p23ViewModel.thanhvien.c21K ?? "";
+                })
+              });
     });
   }
 
@@ -63,10 +63,7 @@ class _P23ViewState extends State<P23View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         titleSpacing: 0,
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: mPrimaryColor),
@@ -75,7 +72,7 @@ class _P23ViewState extends State<P23View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -92,9 +89,11 @@ class _P23ViewState extends State<P23View> {
                   text2: thanhvien.c00 ?? "",
                   text3: " tạm nghỉ việc trong 7 ngày qua?",
                   textColor: Colors.black,
-                  textFontSize:fontLarge,
+                  textFontSize: fontLarge,
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -104,15 +103,15 @@ class _P23ViewState extends State<P23View> {
                       title: UIText(
                         text: _lydo[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
                       leading: RoundCheckBox(
-                        isChecked: p23 == index+1 ? true : false,
+                        isChecked: p23 == index + 1 ? true : false,
                         onTap: (selected) {
                           setState(() {
-                            p23 = p23 == index+1 ? 0 : index+1;
+                            p23 = p23 == index + 1 ? 0 : index + 1;
                           });
                         },
                         border: Border.all(
@@ -120,19 +119,20 @@ class _P23ViewState extends State<P23View> {
                           color: Colors.black,
                         ),
                         checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        checkedWidget: const Icon(Icons.check,
+                            size: 30, color: GFColors.PRIMARY),
                         uncheckedColor: Colors.white,
                         uncheckedWidget: Container(),
                       ),
                       onTap: () {
                         setState(() {
-                          p23 = p23 == index+1 ? 0 : index+1;
+                          p23 = p23 == index + 1 ? 0 : index + 1;
                         });
                       },
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
+                // const SizedBox(height: 10,),
                 Visibility(
                   visible: p23 == 14 ? true : false,
                   child: Column(
@@ -145,13 +145,15 @@ class _P23ViewState extends State<P23View> {
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         autofocus: true,
                         controller: _orther,
-                        validator: (value){
-                          if(value!.isEmpty){
-                            return 'Vui lòng nhập lý do';
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Lý do chưa được nhập';
                           }
                           return null;
                         },
@@ -161,37 +163,43 @@ class _P23ViewState extends State<P23View> {
                           FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                         ],
                         keyboardType: TextInputType.text,
-                        style: const TextStyle( color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
-                          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.r)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.r)),
                         ),
                       )
                     ],
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    UIBackButton(ontap: (){
+                    UIBackButton(ontap: () {
                       p23ViewModel.P23Back();
                     }),
-                    UINextButton(ontap: (){
-                      if(p23 == 0){
+                    UINextButton(ontap: () {
+                      if (p23 == 0) {
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P23 - Lý do tạm nghỉ việc bị bỏ trống!',)
-                        );
-                      }
-                      else if(thanhvien.c02 == 1 && p23 == 6){
+                            builder: (_) => const UIWarningDialog(
+                                  waring:
+                                      'P23-Lý do tạm nghỉ việc bị bỏ trống!',
+                                ));
+                      } else if (thanhvien.c02 == 1 && p23 == 6) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',)
-                        );
-                      }
-                      else {
+                            builder: (_) => UIWarningDialog(
+                                  waring:
+                                      '${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',
+                                ));
+                      } else {
                         p23ViewModel.P23Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
@@ -210,16 +218,18 @@ class _P23ViewState extends State<P23View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
           child: check_draw
-              ? DrawerNavigationThanhVien(onTap: (){
-            setState(() {
-              check_draw = false;
-            });
-          },)
-              : const DrawerNavigation()
-      ),
+              ? DrawerNavigationThanhVien(
+                  onTap: () {
+                    setState(() {
+                      check_draw = false;
+                    });
+                  },
+                )
+              : const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }

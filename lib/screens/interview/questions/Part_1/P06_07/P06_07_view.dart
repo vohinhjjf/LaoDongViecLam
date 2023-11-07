@@ -59,7 +59,7 @@ class _P06_07ViewState extends State<P06_07View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -83,7 +83,7 @@ class _P06_07ViewState extends State<P06_07View> {
                   title: const UIText(
                     text: "Ở VIỆT NAM",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -112,7 +112,7 @@ class _P06_07ViewState extends State<P06_07View> {
                   title: const UIText(
                     text: "Ở NƯỚC NGOÀI",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -150,6 +150,7 @@ class _P06_07ViewState extends State<P06_07View> {
                       ),
                       const SizedBox(height: 10,),
                       DropdownButtonFormField(
+                        style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.grey, width: 0.5),
@@ -175,7 +176,7 @@ class _P06_07ViewState extends State<P06_07View> {
                           items: const [ //add items in the dropdown
                             DropdownMenuItem(
                               value: "Chọn mã quốc gia",
-                              child: Text("- - Chọn mã quốc gia - -"),
+                              child: Text("-- Chọn mã quốc gia --"),
                             ),
                             DropdownMenuItem(
                               value: "KHM",
@@ -267,7 +268,7 @@ class _P06_07ViewState extends State<P06_07View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

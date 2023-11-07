@@ -341,8 +341,7 @@ class Body extends State<GPSView> {
               const UIText(
                 text:'Cơ sở này đã có GPS!',
                 textAlign: TextAlign.center,
-                textFontSize: fontLarge,
-                textStyle: TextStyle(fontSize: fontMedium, color: mDividerColor,fontWeight: FontWeight.w600),),
+                textStyle: TextStyle(fontSize: fontLarge, color: mDividerColor,fontWeight: FontWeight.w600),),
               const SizedBox(height: 10,),
               UIText(
                 text: "Kinh độ: $longitude",

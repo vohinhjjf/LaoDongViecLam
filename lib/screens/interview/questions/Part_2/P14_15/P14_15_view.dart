@@ -20,7 +20,7 @@ class P14_15View extends StatefulWidget {
 class _P14_15ViewState extends State<P14_15View> {
   late P14_15ViewModel p14_15ViewModel;
   var thanhvien = thongTinThanhVienModel();
-  int p14 = 0, p15 =0;
+  int p14 = 0, p15 = 0;
   bool check = true, check_draw = true;
 
   var _trinhdo = [
@@ -39,16 +39,16 @@ class _P14_15ViewState extends State<P14_15View> {
       p14_15ViewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 100),
-              () => {
-            setState(() {
-              thanhvien = p14_15ViewModel.thanhvien;
-              p14 = p14_15ViewModel.thanhvien.c12 ?? 0;
-              p15 = p14_15ViewModel.thanhvien.c13 ?? 0;
-              if(thanhvien.c04! >= 15 && thanhvien.c04! <= 24){
-                check = false;
-              }
-            })
-          });
+          () => {
+                setState(() {
+                  thanhvien = p14_15ViewModel.thanhvien;
+                  p14 = p14_15ViewModel.thanhvien.c12 ?? 0;
+                  p15 = p14_15ViewModel.thanhvien.c13 ?? 0;
+                  if (thanhvien.c04! >= 15 && thanhvien.c04! <= 24) {
+                    check = false;
+                  }
+                })
+              });
     });
   }
 
@@ -56,10 +56,7 @@ class _P14_15ViewState extends State<P14_15View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         titleSpacing: 0,
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: mPrimaryColor),
@@ -68,7 +65,7 @@ class _P14_15ViewState extends State<P14_15View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -81,7 +78,7 @@ class _P14_15ViewState extends State<P14_15View> {
               children: [
                 //p14
                 Visibility(
-                  visible: check,
+                    visible: check,
                     child: Column(
                       children: [
                         UIRichText(
@@ -90,14 +87,16 @@ class _P14_15ViewState extends State<P14_15View> {
                           text3: " có đang theo học đào tạo nghề "
                               "ngắn hạn hoặc bổ sung kiến thức, kỹ năng gì không?",
                           textColor: Colors.black,
-                          textFontSize:fontLarge,
+                          textFontSize: fontLarge,
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         ListTile(
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -112,7 +111,8 @@ class _P14_15ViewState extends State<P14_15View> {
                               color: Colors.black,
                             ),
                             checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                            checkedWidget: const Icon(Icons.check,
+                                size: 30, color: GFColors.PRIMARY),
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
@@ -126,7 +126,7 @@ class _P14_15ViewState extends State<P14_15View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -141,7 +141,8 @@ class _P14_15ViewState extends State<P14_15View> {
                               color: Colors.black,
                             ),
                             checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                            checkedWidget: const Icon(Icons.check,
+                                size: 30, color: GFColors.PRIMARY),
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
@@ -151,19 +152,22 @@ class _P14_15ViewState extends State<P14_15View> {
                             });
                           },
                         ),
-                        const SizedBox(height: 5,),
+                        const SizedBox(
+                          height: 5,
+                        ),
                       ],
-                    )
-                ),
+                    )),
                 //p15
                 UIRichText(
                   text1: "P15. Trình độ giáo dục phổ thông cao nhất mà ",
                   text2: thanhvien.c00 ?? "",
                   text3: " đã tốt nghiệp/đạt được là gì?",
                   textColor: Colors.black,
-                  textFontSize:fontLarge,
+                  textFontSize: fontLarge,
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -173,15 +177,15 @@ class _P14_15ViewState extends State<P14_15View> {
                       title: UIText(
                         text: _trinhdo[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
                       leading: RoundCheckBox(
-                        isChecked: p15 == index+1 ? true : false,
+                        isChecked: p15 == index + 1 ? true : false,
                         onTap: (selected) {
                           setState(() {
-                            p15 = p15 == index+1 ? 0 : index+1;
+                            p15 = p15 == index + 1 ? 0 : index + 1;
                           });
                         },
                         border: Border.all(
@@ -189,156 +193,167 @@ class _P14_15ViewState extends State<P14_15View> {
                           color: Colors.black,
                         ),
                         checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        checkedWidget: const Icon(Icons.check,
+                            size: 30, color: GFColors.PRIMARY),
                         uncheckedColor: Colors.white,
                         uncheckedWidget: Container(),
                       ),
                       onTap: () {
                         setState(() {
-                          p15 = p15 == index+1 ? 0 : index+1;
+                          p15 = p15 == index + 1 ? 0 : index + 1;
                         });
                       },
                     );
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(
+                  height: 25,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    UIBackButton(ontap: (){
+                    UIBackButton(ontap: () {
                       p14_15ViewModel.P14_15Back();
                     }),
-                    UINextButton(ontap: (){
-                      if(p14 == 0 && check){
+                    UINextButton(ontap: () {
+                      if (p14 == 0 && check) {
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P14 - Tình trạng học đào tạo nghề nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p15 == 0){
+                            builder: (_) => const UIWarningDialog(
+                                  waring:
+                                      'P14-Tình trạng học đào tạo nghề nhập vào chưa đúng!',
+                                ));
+                      } else if (p15 == 0) {
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P15 - Trình độ giáo dục nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p14 == 1 && p15 == 4 && (thanhvien.c03B == '2009' || thanhvien.c04! <= 14)
-                          && thanhvien.thangDT! < 6){
+                            builder: (_) => const UIWarningDialog(
+                                  waring:
+                                      'P15-Trình độ giáo dục nhập vào chưa đúng!',
+                                ));
+                      } else if (p14 == 1 &&
+                          p15 == 4 &&
+                          (thanhvien.c03B == '2009' || thanhvien.c04! <= 14) &&
+                          thanhvien.thangDT! < 6) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} sinh năm 2009 và đang đi học mà có '
-                                'trình độ phổ thông đạt được là đã tốt nghiệp THCS',)
-                        );
-                      }
-                      else if(p14 == 1 && p15 == 5 && (int.parse(thanhvien.c03B!) >= 2006 || thanhvien.c04! >= 17)
-                          && (thanhvien.thangDT ?? 0) < 6){
+                            builder: (_) => UIWarningDialog(
+                                  waring:
+                                      '${thanhvien.c00} sinh năm 2009 và đang đi học mà có '
+                                      'trình độ phổ thông đạt được là đã tốt nghiệp THCS',
+                                ));
+                      } else if (p14 == 1 &&
+                          p15 == 5 &&
+                          (int.parse(thanhvien.c03B!) >= 2006 ||
+                              thanhvien.c04! >= 17) &&
+                          (thanhvien.thangDT ?? 0) < 6) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} sinh năm 2006 và đang đi học mà có '
-                                'trình độ phổ thông đạt được là đã tốt nghiệp THPT',)
-                        );
-                      }
-                      else if(thanhvien.c11 == 1 && p15 == 1){
+                            builder: (_) => UIWarningDialog(
+                                  waring:
+                                      '${thanhvien.c00} sinh năm 2006 và đang đi học mà có '
+                                      'trình độ phổ thông đạt được là đã tốt nghiệp THPT',
+                                ));
+                      } else if (thanhvien.c11 == 1 && p15 == 1) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} đang đi học mà có '
-                                'trình độ phổ thông đạt được là chưa bao giờ học',)
-                        );
-                      }
-                      else if(thanhvien.c10M == 5 && p14 == 2){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${thanhvien.c00} chuyển đến nơi '
-                                  'ở mới để đi học mà hiện không theo học đào '
-                                  'tạo nghề. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c04! > 15 && p15 == 2){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trên 15 tuổi, '
-                                            'đang đi học mà có trình độ phổ thông dạt '
-                                            'được là chưa học xong tiểu học. Có đúng không?',
-                                        onpress: (){
-                                          if(check) {
-                                            p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c12: p14,
-                                              c13: p15,
-                                            ));
-                                          }
-                                          else {
-                                            p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c13: p15,
-                                            ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else {
-                                  if(check) {
-                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c12: p14,
-                                      c13: p15,
-                                    ));
-                                  }
-                                  else {
-                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c13: p15,
-                                    ));
-                                  }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c04! > 15 && p15 == 2){
+                            builder: (_) => UIWarningDialog(
+                                  waring: '${thanhvien.c00} đang đi học mà có '
+                                      'trình độ phổ thông đạt được là chưa bao giờ học',
+                                ));
+                      } else if (thanhvien.c10M == 6 && p14 == 2) {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: '${thanhvien.c00} trên 15 tuổi, '
-                                  'đang đi học mà có trình độ phổ thông dạt '
-                                  'được là chưa học xong tiểu học. Có đúng không?',
-                              onpress: (){
-                                if(check) {
-                                  p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c12: p14,
-                                    c13: p15,
-                                  ));
-                                }
-                                else {
-                                  p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c13: p15,
-                                  ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else {
-                        if(check) {
+                                  notification:
+                                      '${thanhvien.c00} chuyển đến nơi '
+                                      'ở mới để đi học mà hiện không theo học đào '
+                                      'tạo nghề. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (thanhvien.c04! > 15 && p15 == 2) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                                notification:
+                                                    '${thanhvien.c00} trên 15 tuổi, '
+                                                    'đang đi học mà có trình độ phổ thông đạt '
+                                                    'được là chưa học xong tiểu học. Có đúng không?',
+                                                onpress: () {
+                                                  if (check) {
+                                                    p14_15ViewModel.P14_15Next(
+                                                        thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c12: p14,
+                                                      c13: p15,
+                                                    ));
+                                                  } else {
+                                                    p14_15ViewModel.P14_15Next(
+                                                        thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c13: p15,
+                                                    ));
+                                                  }
+                                                },
+                                              ));
+                                    } else {
+                                      if (check) {
+                                        p14_15ViewModel.P14_15Next(
+                                            thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c12: p14,
+                                          c13: p15,
+                                        ));
+                                      } else {
+                                        p14_15ViewModel.P14_15Next(
+                                            thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c13: p15,
+                                        ));
+                                      }
+                                    }
+                                  },
+                                ));
+                      } else if (thanhvien.c04! > 15 && p15 == 2) {
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                                  notification:
+                                      '${thanhvien.c00} trên 15 tuổi, '
+                                      'đang đi học mà có trình độ phổ thông đạt '
+                                      'được là chưa học xong tiểu học. Có đúng không?',
+                                  onpress: () {
+                                    if (check) {
+                                      p14_15ViewModel.P14_15Next(
+                                          thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c12: p14,
+                                        c13: p15,
+                                      ));
+                                    } else {
+                                      p14_15ViewModel.P14_15Next(
+                                          thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c13: p15,
+                                      ));
+                                    }
+                                  },
+                                ));
+                      } else {
+                        if (check) {
                           p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c12: p14,
                             c13: p15,
                           ));
-                        }
-                        else {
+                        } else {
                           p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
@@ -357,16 +372,18 @@ class _P14_15ViewState extends State<P14_15View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
           child: check_draw
-              ? DrawerNavigationThanhVien(onTap: (){
-            setState(() {
-              check_draw = false;
-            });
-          },)
-              : const DrawerNavigation()
-      ),
+              ? DrawerNavigationThanhVien(
+                  onTap: () {
+                    setState(() {
+                      check_draw = false;
+                    });
+                  },
+                )
+              : const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }

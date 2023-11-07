@@ -58,7 +58,7 @@ class _P20_22ViewState extends State<P20_22View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -84,7 +84,7 @@ class _P20_22ViewState extends State<P20_22View> {
                   title: const UIText(
                     text: "CÓ",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -113,7 +113,7 @@ class _P20_22ViewState extends State<P20_22View> {
                   title: const UIText(
                     text: "KHÔNG",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -157,7 +157,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -186,7 +186,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -234,7 +234,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -263,7 +263,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -292,7 +292,7 @@ class _P20_22ViewState extends State<P20_22View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -303,19 +303,19 @@ class _P20_22ViewState extends State<P20_22View> {
                       if(p20 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P20 - Sản xuất kinh doanh, làm nông nghiệp nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P20-Tham gia việc sản xuất kinh doanh từ 1 giờ trở lên nhập vào chưa đúng!',)
                         );
                       }
                       else if(p20 == 2 && p21 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P21 - Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P21-Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
                         );
                       }
                       else if(p20 == 2 && p21 == 2 && p22 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P22 - Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P22-Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
                         );
                       }
                       else if(p22 == 2){
@@ -323,7 +323,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           showDialog(
                               context: context,
                               builder: (_) => UINotificationDialog(
-                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
+                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
                                 onpress: (){
                                   p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
@@ -340,7 +340,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           showDialog(
                               context: context,
                               builder: (_) => UINotificationDialog(
-                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} ${thanhvien.c04} tuổi nhưng không làm việc gì từ 1 giờ trở lên để tạo thu nhập. Có đúng không?',
+                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
                                 onpress: (){
                                   p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,

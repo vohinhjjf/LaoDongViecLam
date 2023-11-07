@@ -51,7 +51,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -59,7 +59,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+              padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -94,7 +94,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(height: 10,),
                     //address
                     const UIText(
                       text:UIDescribes.householderAddress,
@@ -107,7 +107,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       controller: _address,
                       validator: (value){
                         if(value!.isEmpty){
-                          return 'Vui lòng nhập địa chỉ';
+                          return 'Địa chỉ chưa được nhập';
                         }
                         return null;
                       },
@@ -119,7 +119,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       ),
                     ),
                     //
-                    const SizedBox(height: 25,),
+                    const SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -156,7 +156,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                               showDialog(
                                   context: context,
                                   builder: (_) => UINotificationDialog(
-                                      notification: 'Địa chỉ sơ sở quá ngắn dưới 5 ký tự!',
+                                      notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
                                       onpress:   (){
                                         Navigator.of(context, rootNavigator: true).pop();
                                         detailInformationViewModel.HouseholdNext(_name.text, _address.text);

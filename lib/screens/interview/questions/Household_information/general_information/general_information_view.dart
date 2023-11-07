@@ -80,7 +80,7 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+              padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
