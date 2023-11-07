@@ -20,7 +20,7 @@ class InformationProviderView extends StatefulWidget {
 
 class _InformationProviderViewState extends State<InformationProviderView> {
   late InformationProviderViewModel informationProviderviewModel;
-  int groupValue = 0, stt = 0;
+  int groupValue = 0;
   List<Map<String, int>> list_map = [];
   final _text_name = TextEditingController();
   final _text_phone = TextEditingController();
@@ -38,9 +38,8 @@ class _InformationProviderViewState extends State<InformationProviderView> {
             setState(() {
               list_map = informationProviderviewModel.list_map;
               groupValue = informationProviderviewModel.thongTinHo.maNCC == null 
-                  ? informationProviderviewModel.list.indexWhere((e) => e.q6_New == 1) + 1
+                  ? 0
                   : int.parse(informationProviderviewModel.thongTinHo.maNCC!);
-              stt = informationProviderviewModel.list.lastWhere((e) => e.q6_New == 1).idtv ?? 0;
               _text_phone.text = informationProviderviewModel.thongTinHo.dienThoai ?? "";
             })
           });
@@ -103,7 +102,6 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                             onTap: (selected) {
                               setState(() {
                                 groupValue = groupValue == list_map[index].values.first ? 0 : list_map[index].values.first;
-                                stt = list_map[index].values.first;
                               });
                             },
                             border: Border.all(
@@ -118,7 +116,6 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                           onTap: (){
                             setState(() {
                               groupValue = groupValue == list_map[index].values.first ? 0 : list_map[index].values.first;
-                              stt = list_map[index].values.first;
                             });
                           },
                         );
@@ -173,17 +170,10 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                     TextFormField(
                       controller: _text_phone,
                       maxLength: 15,
-                      validator: (value){
-                        if(value!.isEmpty){
-                          return 'Vui lòng nhập số điện thoại';
-                        }
-                        return null;
-                      },
                       keyboardType: TextInputType.phone,
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                       ],
-                      autofocus: true,
                       style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                       decoration: InputDecoration(
                           errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -200,6 +190,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                           informationProviderviewModel.InformationProviderBack();
                         }),
                         UINextButton(ontap: (){
+                          print(groupValue);
                           if(_formKey.currentState!.validate()){
                             if(groupValue == 0){
                               showDialog(
@@ -207,7 +198,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                                   builder: (_) => const UIWarningDialog(waring: 'Người cung cấp thông tin nhập vào chưa đúng!')
                               );
                             }
-                            else if (_text_phone.text.length < 10){
+                            else if (_text_phone.text.isNotEmpty && _text_phone.text.length < 10){
                               showDialog(
                                   context: context,
                                   builder: (_) => const UIWarningDialog(waring: 'Số điện thoại nhập vào phải có 10 ký số (nếu là di động), 11 hoặc 12 ký số (nếu là cố định)'));
@@ -222,13 +213,13 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                                   builder: (_) => UINotificationDialog(
                                       notification: 'Họ tên người cung cấp thông tin nhỏ hơn 5 ký tự có đúng không?',
                                       onpress: (){
-                                        informationProviderviewModel.InformationProviderNext(_text_phone.text, stt.toString());
+                                        informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
                                       }
                                   )
                               );
                             }
                             else {
-                              informationProviderviewModel.InformationProviderNext(_text_phone.text, stt.toString());
+                              informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
                             }
                           }
                         }),

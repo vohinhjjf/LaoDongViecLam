@@ -176,37 +176,37 @@ class _Q4ViewState extends State<Q4View> {
                         else if (q4_a == 1 && list_q4_a.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4A - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4A-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_b == 1 && list_q4_b.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4B - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4B-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_c == 1 && list_q4_c.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4C - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4C-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_d == 1 && list_q4_d.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4D - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4D-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_e == 1 && list_q4_e.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4E - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4E-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else if(q4_f == 1 && list_q4_f.isEmpty){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4F - Chưa nhập họ tên thành viên.',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q4F-Chưa nhập họ tên thành viên.',)
                           );
                         }
                         else {

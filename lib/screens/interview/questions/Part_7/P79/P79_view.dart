@@ -143,9 +143,12 @@ class _P79ViewState extends State<P79View> {
                             builder: (_) => UINotificationDialog(
                               notification: 'Thu nhập so tháng trước ${(doisongho.c62_M2 == 1 && p79 == 3) ? "tăng lên":"giảm đi"} mà thu nhập so năm trước lại ${(doisongho.c62_M2 == 1 && p79 == 3) ? "giảm đi":"tăng lên"}. Có đúng không?',
                               onpress: (){
+                                print(p79);
                                 Navigator.of(context).pop();
                                 p79ViewModel.P79Next(DoiSongHoModel(
                                     idho: doisongho.idho,
+                                    thangDT: thanhvien.thangDT,
+                                    namDT: thanhvien.namDT,
                                     c62_M4: p79
                                 ));
                               },
@@ -153,8 +156,11 @@ class _P79ViewState extends State<P79View> {
                         );
                       }
                       else {
+                        print(p79);
                         p79ViewModel.P79Next(DoiSongHoModel(
                             idho: doisongho.idho,
+                            thangDT: thanhvien.thangDT,
+                            namDT: thanhvien.namDT,
                             c62_M4: p79
                         ));
                       }

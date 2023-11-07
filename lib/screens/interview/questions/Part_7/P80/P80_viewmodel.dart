@@ -40,7 +40,9 @@ class P80ViewModel extends BaseViewModel {
         "c62_M5C = ${data.c62_M5C}, c62_M5D = ${data.c62_M5D}, c62_M5E = ${data.c62_M5E}, "
         "c62_M5F = ${data.c62_M5F}, c62_M5G = ${data.c62_M5G}, c62_M5H = ${data.c62_M5H}, "
         "c62_M5I = ${data.c62_M5I}, c62_M5IK = ${data.c62_M5IK.toString()} "
-        "WHERE idho = ${data.idho}");
+        "WHERE idho = ${data.idho}",
+        [data.c62_M3A,data.c62_M3B,data.c62_M3C,data.c62_M3D,data.c62_M3E,data.c62_M3F,
+          data.c62_M3G,data.c62_M3H,data.c62_M3I,data.c62_M3IK,data.idho,data.thangDT,data.namDT]);
     NavigationServices.instance.navigateToP81(context);
   }
 }

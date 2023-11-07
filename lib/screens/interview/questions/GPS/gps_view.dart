@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/thongTinHo_model.dart';
 import '../../../../models/thongTinThanhVien_model.dart';
 import 'gps_viewmodel.dart';
 
@@ -25,6 +26,7 @@ class Body extends State<GPSView> {
   late StreamSubscription<Position> positionStream;
   bool check = false;
   List<thongTinThanhVienModel> list = [];
+  var thongTinHo = thongTinHoModel();
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class Body extends State<GPSView> {
       Future.delayed(const Duration(milliseconds: 100), () => {
         setState((){
           list = gpsViewModel.list;
+          thongTinHo = gpsViewModel.thongTinHo;
           if(gpsViewModel.thongTinHo.kinhDo == null){
             check = false;
           } else {
@@ -106,121 +109,111 @@ class Body extends State<GPSView> {
           textFontSize: fontLarge,
           isBold: true,
         ),
+        leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: mPrimaryColor,
+              size: fontMedium,
+            ),
+            onPressed: () => gpsViewModel.gPSBack()),
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
         ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
-            child: Column(
-              children: [
-                MaterialButton(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  //color: Colors.redAccent,
-                  minWidth: 240.w,
-                  onPressed: () async {
-                    checkGps();
-                  },
-                  shape: const RoundedRectangleBorder(
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          padding:
+          EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
+          child: Column(
+            children: [
+              MaterialButton(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                //color: Colors.redAccent,
+                minWidth: 240.w,
+                onPressed: () async {
+                  checkGps();
+                },
+                shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.blue,width: 3),
-                      borderRadius: BorderRadius.all(Radius.circular(15))
-                  ),
-                  child: Column(
-                    children: const [
-                      Image(
-                        image: AssetImage("assets/icons/GPS.png"),
-                        width: 40,
-                        height: 40,
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      UIText(
-                        text: 'ĐỊNH VỊ GPS',
-                        textFontSize: fontMedium,
-                        isBold: true,
-                        textColor: Colors.blue,
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                    ],
-                  ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))
                 ),
-                const SizedBox(
-                  height: 15,
+                child: Column(
+                  children: const [
+                    Image(
+                      image: AssetImage("assets/icons/GPS.png"),
+                      width: 40,
+                      height: 40,
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    UIText(
+                      text: 'ĐỊNH VỊ GPS',
+                      textFontSize: fontMedium,
+                      isBold: true,
+                      textColor: Colors.blue,
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                  ],
                 ),
-                MaterialButton(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  minWidth: 240.w,
-                  onPressed: () async {
-                    await gpsViewModel.checkGPS().then((value) => {
-                      if(value){
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              MaterialButton(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                minWidth: 240.w,
+                onPressed: () async {
+                  await gpsViewModel.checkGPS().then((value) => {
+                    if(value){
+                      if(!gpsViewModel.checkQuestion(list, thongTinHo)){
+                        if (gpsViewModel.typeStop == 1){
+                          _showErrorDialog("Trong hộ có thành viên ${list[gpsViewModel.currentPos].c00} chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+                        }
+                        else if (gpsViewModel.typeStop == 0){
+                          _showErrorDialog("Trong hộ có câu hỏi chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+                        }
+                      } else {
                         gpsViewModel.finish(DateTime.now().toString(), list),
                         _showFinishDialog()
-                      } else {
-                        showDialog(
+                      }
+                    } else {
+                      showDialog(
                           context: context,
                           builder: (_) => const UIWarningDialog(waring: 'Chưa định vị GPS!')
-                        )
-                      }
-                    });
-                  },
-                  color: Colors.blue,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: Column(
-                    children: const [
-                      Image(
-                        image: AssetImage("assets/icons/finish1.png"),
-                        width: 40,
-                        height: 40,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      UIText(
-                          text: 'HOÀN THÀNH \nPHỎNG VẤN',
-                          textFontSize: fontMedium,
-                          textAlign: TextAlign.center,
-                          isBold: true,
-                          textColor: Colors.white
                       )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 600,
-            child: ClipOval(
-                child: Container(
-                  padding: const EdgeInsets.only(right: 4),
-                  decoration: const ShapeDecoration(
-                      color: Colors.white,
-                      shape: CircleBorder(
-                          side: BorderSide(color: Colors.black54, width: 2)
-                      )
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      gpsViewModel.gPSBack();
-                    },
-                    icon: const Icon(
-                      Icons.navigate_before,
-                      color: Colors.black54,
-                      size: 35,
+                    }
+                  });
+                },
+                color: Colors.blue,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Column(
+                  children: const [
+                    Image(
+                      image: AssetImage("assets/icons/finish1.png"),
+                      width: 40,
+                      height: 40,
                     ),
-                  ),
-                )
-            ),
-          )
-        ],
+                    SizedBox(
+                      height: 5,
+                    ),
+                    UIText(
+                        text: 'HOÀN THÀNH \nPHỎNG VẤN',
+                        textFontSize: fontMedium,
+                        textAlign: TextAlign.center,
+                        isBold: true,
+                        textColor: Colors.white
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       //drawer: const DrawerNavigation(),
     );
@@ -246,6 +239,7 @@ class Body extends State<GPSView> {
                   text: "Hoàn thành phỏng vấn hộ",
                   textAlign: TextAlign.center,
                   textColor: Colors.black,
+                  textFontSize: fontLarge,
                     isBold: true,
                 ),
               ),
@@ -295,17 +289,20 @@ class Body extends State<GPSView> {
                 text: "Lấy địa chỉ GPS thành công!",
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
+                textFontSize: fontLarge,
                 isBold: true,
               ),
               UIText(
                 text: "Kinh độ: $longitude",
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
+                textFontSize: fontLarge,
               ),
               UIText(
                 text: "Vĩ độ: $latitude",
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
+                textFontSize: fontLarge,
               ),
               const SizedBox(
                 height: 20.0,
@@ -349,11 +346,13 @@ class Body extends State<GPSView> {
               UIText(
                 text: "Kinh độ: $longitude",
                 textAlign: TextAlign.center,
+                textFontSize: fontLarge,
                 textColor: Colors.black,
               ),
               UIText(
                 text: "Vĩ độ: $latitude",
                 textAlign: TextAlign.center,
+                textFontSize: fontLarge,
                 textColor: Colors.black,
               ),
             ],
@@ -390,5 +389,42 @@ class Body extends State<GPSView> {
                 ]),
           ),
         ));
+  }
+
+  _showErrorDialog(String title, String question){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          title: UIText(
+            text: title,
+            textAlign: TextAlign.center,
+            textColor: Colors.black,
+            textFontSize: fontLarge,
+            isBold: true,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              MaterialButton(
+                  child: Text('Kiểm tra câu $question',
+                      style: const TextStyle(
+                          color: mPrimaryColor, fontSize: fontLarge, fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    gpsViewModel.gPSCheck(question);
+                  }),
+              MaterialButton(
+                  child: const Text('Đóng',
+                      style: TextStyle(
+                          color: mPrimaryColor, fontSize: fontLarge, fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          ),
+        )
+    );
   }
 }

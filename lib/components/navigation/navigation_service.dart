@@ -98,6 +98,7 @@ import '../../screens/login/login_view.dart';
 import '../../screens/progress/progress_view.dart';
 import '../../screens/splash/splash_view.dart';
 import '../../screens/sync/sync_view.dart';
+import '../ui_describes.dart';
 import 'custom_pageroute.dart';
 import 'route_constants.dart';
 
@@ -290,6 +291,103 @@ class NavigationServices {
         return CustomPageRoute(ProgressView());
       default:
         return MaterialPageRoute(builder: (_) => const SplashView());
+    }
+  }
+
+  routeNavigate(String value, BuildContext context){
+    switch (value){
+      case UIDescribes.QUESTION_P00: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P01: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P01K: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P02: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P03: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P04: NavigationServices.instance.navigateToP01_04(context);break;
+      case UIDescribes.QUESTION_P05: NavigationServices.instance.navigateToP05(context);break;
+      case UIDescribes.QUESTION_P06: NavigationServices.instance.navigateToP06_07(context);break;
+      case UIDescribes.QUESTION_P07: NavigationServices.instance.navigateToP06_07(context);break;
+      case UIDescribes.QUESTION_P08: NavigationServices.instance.navigateToP08_09(context);break;
+      case UIDescribes.QUESTION_P09: NavigationServices.instance.navigateToP08_09(context);break;
+      case UIDescribes.QUESTION_P10: NavigationServices.instance.navigateToP10_12(context);break;
+      case UIDescribes.QUESTION_P11: NavigationServices.instance.navigateToP10_12(context);break;
+      case UIDescribes.QUESTION_P12: NavigationServices.instance.navigateToP10_12(context);break;
+      case UIDescribes.QUESTION_P13: NavigationServices.instance.navigateToP13(context);break;
+      case UIDescribes.QUESTION_P14: NavigationServices.instance.navigateToP14_15(context);break;
+      case UIDescribes.QUESTION_P15: NavigationServices.instance.navigateToP14_15(context);break;
+      case UIDescribes.QUESTION_P16: NavigationServices.instance.navigateToP16(context);break;
+      case UIDescribes.QUESTION_P17: NavigationServices.instance.navigateToP17(context);break;
+      case UIDescribes.QUESTION_P17B: NavigationServices.instance.navigateToP17B(context);break;
+      case UIDescribes.QUESTION_P18: NavigationServices.instance.navigateToP18(context);break;
+      case UIDescribes.QUESTION_P19: NavigationServices.instance.navigateToP19(context);break;
+      case UIDescribes.QUESTION_P20: NavigationServices.instance.navigateToP20_22(context);break;
+      case UIDescribes.QUESTION_P21: NavigationServices.instance.navigateToP20_22(context);break;
+      case UIDescribes.QUESTION_P22: NavigationServices.instance.navigateToP20_22(context);break;
+      case UIDescribes.QUESTION_P23: NavigationServices.instance.navigateToP23(context);break;
+      case UIDescribes.QUESTION_P24: NavigationServices.instance.navigateToP24_25(context);break;
+      case UIDescribes.QUESTION_P25: NavigationServices.instance.navigateToP24_25(context);break;
+      case UIDescribes.QUESTION_P26: NavigationServices.instance.navigateToP26(context);break;
+      case UIDescribes.QUESTION_P27: NavigationServices.instance.navigateToP27(context);break;
+      case UIDescribes.QUESTION_P28: NavigationServices.instance.navigateToP28(context);break;
+      case UIDescribes.QUESTION_P29: NavigationServices.instance.navigateToP29_30(context);break;
+      case UIDescribes.QUESTION_P30: NavigationServices.instance.navigateToP29_30(context);break;
+      case UIDescribes.QUESTION_P31: NavigationServices.instance.navigateToP31_32(context);break;
+      case UIDescribes.QUESTION_P32: NavigationServices.instance.navigateToP31_32(context);break;
+      case UIDescribes.QUESTION_P33: NavigationServices.instance.navigateToP33(context);break;
+      case UIDescribes.QUESTION_P34: NavigationServices.instance.navigateToP34(context);break;
+      case UIDescribes.QUESTION_P35: NavigationServices.instance.navigateToP35(context);break;
+      case UIDescribes.QUESTION_P35B: NavigationServices.instance.navigateToP40_42(context);break;
+      case UIDescribes.QUESTION_P36: NavigationServices.instance.navigateToP36_37(context);break;
+      case UIDescribes.QUESTION_P37: NavigationServices.instance.navigateToP36_37(context);break;
+      case UIDescribes.QUESTION_P37B: NavigationServices.instance.navigateToP40_42(context);break;
+      case UIDescribes.QUESTION_P38: NavigationServices.instance.navigateToP38(context);break;
+      case UIDescribes.QUESTION_P39: NavigationServices.instance.navigateToP39_42(context);break;
+      case UIDescribes.QUESTION_P40: NavigationServices.instance.navigateToP39_42(context);break;
+      case UIDescribes.QUESTION_P41: NavigationServices.instance.navigateToP39_42(context);break;
+      case UIDescribes.QUESTION_P42: NavigationServices.instance.navigateToP39_42(context);break;
+      case UIDescribes.QUESTION_P43: NavigationServices.instance.navigateToP43(context);break;
+      case UIDescribes.QUESTION_P44: NavigationServices.instance. navigateToP44_46(context);break;
+      case UIDescribes.QUESTION_P45: NavigationServices.instance. navigateToP44_46(context);break;
+      case UIDescribes.QUESTION_P46: NavigationServices.instance. navigateToP44_46(context);break;
+      case UIDescribes.QUESTION_P47: NavigationServices.instance. navigateToP47(context);break;
+      case UIDescribes.QUESTION_P48: NavigationServices.instance. navigateToP48_49(context);break;
+      case UIDescribes.QUESTION_P49: NavigationServices.instance. navigateToP48_49(context);break;
+      case UIDescribes.QUESTION_P50: NavigationServices.instance. navigateToP50_51(context);break;
+      case UIDescribes.QUESTION_P50B: NavigationServices.instance. navigateToP56_58(context);break;
+      case UIDescribes.QUESTION_P51: NavigationServices.instance. navigateToP50_51(context);break;
+      case UIDescribes.QUESTION_P52: NavigationServices.instance. navigateToP52_54(context);break;
+      case UIDescribes.QUESTION_P52B: NavigationServices.instance. navigateToP56_58(context);break;
+      case UIDescribes.QUESTION_P53: NavigationServices.instance. navigateToP52_54(context);break;
+      case UIDescribes.QUESTION_P54: NavigationServices.instance. navigateToP52_54(context);break;
+      case UIDescribes.QUESTION_P55: NavigationServices.instance. navigateToP55_59(context);break;
+      case UIDescribes.QUESTION_P56: NavigationServices.instance. navigateToP55_59(context);break;
+      case UIDescribes.QUESTION_P57: NavigationServices.instance. navigateToP55_59(context);break;
+      case UIDescribes.QUESTION_P58: NavigationServices.instance. navigateToP55_59(context);break;
+      case UIDescribes.QUESTION_P59: NavigationServices.instance. navigateToP55_59(context);break;
+      case UIDescribes.QUESTION_P60: NavigationServices.instance. navigateToP60(context);break;
+      case UIDescribes.QUESTION_P61: NavigationServices.instance. navigateToP61_62(context);break;
+      case UIDescribes.QUESTION_P62: NavigationServices.instance. navigateToP61_62(context);break;
+      case UIDescribes.QUESTION_P63: NavigationServices.instance. navigateToP63_64(context);break;
+      case UIDescribes.QUESTION_P64: NavigationServices.instance. navigateToP63_64(context);break;
+      case UIDescribes.QUESTION_P65: NavigationServices.instance. navigateToP65_66(context);break;
+      case UIDescribes.QUESTION_P66: NavigationServices.instance. navigateToP65_66(context);break;
+      case UIDescribes.QUESTION_P67: NavigationServices.instance. navigateToP67_68(context);break;
+      case UIDescribes.QUESTION_P68: NavigationServices.instance. navigateToP67_68(context);break;
+      case UIDescribes.QUESTION_P69: NavigationServices.instance. navigateToP69(context);break;
+      case UIDescribes.QUESTION_P70: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P71: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P72: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P73: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P74: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P75: NavigationServices.instance. navigateToP70_75(context);break;
+      case UIDescribes.QUESTION_P76: NavigationServices.instance.navigateToP76_77(context);break;
+      case UIDescribes.QUESTION_P77: NavigationServices.instance.navigateToP76_77(context);break;
+      case UIDescribes.QUESTION_P78: NavigationServices.instance.navigateToP78(context);break;
+      case UIDescribes.QUESTION_P79: NavigationServices.instance.navigateToP79(context);break;
+      case UIDescribes.QUESTION_P80: NavigationServices.instance.navigateToP80(context);break;
+      case UIDescribes.QUESTION_P81: NavigationServices.instance.navigateToP81(context);break;
+      case UIDescribes.QUESTION_P82: NavigationServices.instance.navigateToP82(context);break;
+      case UIDescribes.QUESTION_P83: NavigationServices.instance.navigateToP83(context);break;
+      case UIDescribes.QUESTION_P84: NavigationServices.instance.navigateToP84(context);break;
+      case UIDescribes.mDIENTHOAI: NavigationServices.instance.navigateToInformationProvider(context);break;
     }
   }
 

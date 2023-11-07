@@ -26,8 +26,9 @@ class _P01_04ViewState extends State<P01_04View> {
   final _year = TextEditingController();
   final _age = TextEditingController();
   int p01 = 0, p02 = 0, p03 = 0, ThangDT = 8;
-  String month = 'Chọn tháng';
+  String month = 'Chọn tháng', name = "";
   bool check = false, check_draw = true;
+  List<thongTinThanhVienModel> list_tttv = [];
 
   var _quanhe = [
     "VỢ/CHỒNG",
@@ -39,16 +40,21 @@ class _P01_04ViewState extends State<P01_04View> {
     "KHÁC (GHI RÕ)"
   ];
 
-  int tinh_tuoi(){
+  int tinh_tuoi() {
     var tuoi = 0;
-    if(int.parse(month) >= 1 && int.parse(month) < ThangDT){
-      tuoi = (DateTime.now().year - int.parse(_year.text));
-    }
-    else if(int.parse(month) >= ThangDT && int.parse(month) < 13){
-      tuoi = (DateTime.now().year - int.parse(_year.text) - 1);
-    }
-    else{
+    if(int.parse(_year.text) == 9998){
       tuoi = int.parse(_age.text);
+    } else {
+      if (int.parse(month) >= 1 && int.parse(month) < ThangDT) {
+        tuoi = (DateTime
+            .now()
+            .year - int.parse(_year.text));
+      }
+      else if (int.parse(month) >= ThangDT && int.parse(month) < 13) {
+        tuoi = (DateTime
+            .now()
+            .year - int.parse(_year.text) - 1);
+      }
     }
     return tuoi;
   }
@@ -63,8 +69,10 @@ class _P01_04ViewState extends State<P01_04View> {
           const Duration(milliseconds: 100),
               () => {
             setState(() {
+              list_tttv = p01_04viewModel.list_tttv;
               thanhvien = p01_04viewModel.thanhvien;
               _name.text = p01_04viewModel.thanhvien.c00 ?? "";
+              name = _name.text;
               p01 = p01_04viewModel.thanhvien.c01 ?? 0;
               p02 = p01_04viewModel.thanhvien.c02 ?? 0;
               month = p01_04viewModel.thanhvien.c03A ?? "Chọn tháng";
@@ -72,6 +80,7 @@ class _P01_04ViewState extends State<P01_04View> {
               _age.text = p01_04viewModel.thanhvien.c04 == null ? ""
                   : p01_04viewModel.thanhvien.c04.toString();
               p03 = p01_04viewModel.thanhvien.c03B == "9998" ? 1 : 0;
+              ThangDT = p01_04viewModel.thanhvien.thangDT ?? 0;
             })
           });
     });
@@ -81,10 +90,7 @@ class _P01_04ViewState extends State<P01_04View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         titleSpacing: 0,
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: mPrimaryColor),
@@ -110,20 +116,28 @@ class _P01_04ViewState extends State<P01_04View> {
                   const UIText(
                     text: "P00. HỌ VÀ TÊN",
                     textColor: Colors.black,
-                    textFontSize:fontLarge,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.start,
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     controller: _name,
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return 'Vui lòng nhập tên';
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Tên chưa được nhập';
                       }
                       return null;
                     },
+                    onChanged: (value){
+                      setState(() {
+                        //_name.value = TextEditingValue(text: value);
+                        name = value;
+                      });
+                    },
                     textCapitalization: TextCapitalization.words,
-                    style: const TextStyle( color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
@@ -131,41 +145,49 @@ class _P01_04ViewState extends State<P01_04View> {
                     ],
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.r)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.r)),
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   //p01
                   Visibility(
                       visible: thanhvien.c01 == 1 ? false : true,
                       child: Column(
                         children: [
                           UIText(
-                            text: "P01. ${_name.text} có mối quan hệ nào với chủ hộ?",
+                            text:
+                                "P01. ${_name.text} có mối quan hệ như thế nào với chủ hộ?",
                             textColor: Colors.black,
                             textFontSize: fontLarge,
                             textAlign: TextAlign.start,
                             isBold: false,
                           ),
-                          const SizedBox(height: 10,),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           ListView.builder(
                             shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: _quanhe.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 title: UIText(
                                   text: _quanhe[index].toString(),
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                   isBold: false,
                                 ),
                                 leading: RoundCheckBox(
-                                  isChecked: p01 == index+2 ? true : false,
+                                  isChecked: p01 == index + 2 ? true : false,
                                   onTap: (selected) {
                                     setState(() {
-                                      p01 = p01 == index+2 ? 0 : index+2;
+                                      p01 = p01 == index + 2 ? 0 : index + 2;
                                     });
                                   },
                                   border: Border.all(
@@ -173,54 +195,63 @@ class _P01_04ViewState extends State<P01_04View> {
                                     color: Colors.black,
                                   ),
                                   checkedColor: Colors.white,
-                                  checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                                  checkedWidget: const Icon(Icons.check,
+                                      size: 30, color: GFColors.PRIMARY),
                                   uncheckedColor: Colors.white,
                                   uncheckedWidget: Container(),
                                 ),
                                 onTap: () {
                                   setState(() {
-                                    p01 = p01 == index+2 ? 0 : index+2;
+                                    p01 = p01 == index + 2 ? 0 : index + 2;
                                   });
                                 },
                               );
                             },
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Visibility(
                             visible: p01 == 8,
                             child: TextFormField(
                               controller: _orther,
-                              validator: (value){
-                                if(p01 == 8 && value!.isEmpty){
-                                  return 'Vui lòng nhập quan hệ khác';
+                              validator: (value) {
+                                if (p01 == 8 && value!.isEmpty) {
+                                  return 'Quan hệ khác chưa được nhập';
                                 }
                                 return null;
                               },
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(RegExp(
                                     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
-                                FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                                FilteringTextInputFormatter.deny(
+                                    RegExp('[×÷]')),
                               ],
-                              style: const TextStyle( color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
-                                errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                                errorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.r)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.r)),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10,),
+                          const SizedBox(
+                            height: 10,
+                          ),
                         ],
-                      )
-                  ),
+                      )),
                   //p02
-                  UIText(
-                    text: "P02. ${_name.text} là nam hay nữ?",
-                    textColor: Colors.black,
-                    textFontSize: fontLarge,
-                    textAlign: TextAlign.start,
-                    isBold: false,
+                  UIRichText(
+                      text1: "P02. ",
+                      text2: name,
+                      text3: " là nam hay nữ?",
+                      textColor: Colors.black,
+                      textFontSize: fontLarge,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   ListTile(
                     title: const UIText(
                       text: "NAM",
@@ -240,7 +271,8 @@ class _P01_04ViewState extends State<P01_04View> {
                         color: Colors.black,
                       ),
                       checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      checkedWidget: const Icon(Icons.check,
+                          size: 30, color: GFColors.PRIMARY),
                       uncheckedColor: Colors.white,
                       uncheckedWidget: Container(),
                     ),
@@ -269,7 +301,8 @@ class _P01_04ViewState extends State<P01_04View> {
                         color: Colors.black,
                       ),
                       checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      checkedWidget: const Icon(Icons.check,
+                          size: 30, color: GFColors.PRIMARY),
                       uncheckedColor: Colors.white,
                       uncheckedWidget: Container(),
                     ),
@@ -279,14 +312,17 @@ class _P01_04ViewState extends State<P01_04View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 15,),
-                  //p03
-                  UIText(
-                    text: "P03. ${_name.text} sinh vào tháng, năm dương lịch nào?",
-                    textColor: Colors.black,
-                    textFontSize:fontLarge,
+                  const SizedBox(
+                    height: 15,
                   ),
-                  const SizedBox(height: 10,),
+                  //p03
+                  UIRichText(
+                    text1: "P03. ",
+                    text2: name,
+                    text3: " sinh vào tháng, năm dương lịch nào?",
+                    textColor: Colors.black,
+                    textFontSize: fontLarge,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -295,20 +331,23 @@ class _P01_04ViewState extends State<P01_04View> {
                         child: UIText(
                           text: "Tháng",
                           textColor: Colors.black,
-                          textFontSize:fontLarge,
+                          textFontSize: fontLarge,
                         ),
                       ),
                       Flexible(
                         flex: 2,
                         child: DropdownButtonFormField(
-                          style: const TextStyle(color: Colors.black, fontSize: fontMedium),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: fontMedium),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 0.5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 0.5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             filled: true,
@@ -316,7 +355,8 @@ class _P01_04ViewState extends State<P01_04View> {
                           ),
                           dropdownColor: Colors.white,
                           value: month,
-                          items: const [ //add items in the dropdown
+                          items: const [
+                            //add items in the dropdown
                             DropdownMenuItem(
                               value: 'Chọn tháng',
                               child: Text("Chọn tháng"),
@@ -327,47 +367,50 @@ class _P01_04ViewState extends State<P01_04View> {
                             ),
                             DropdownMenuItem(
                                 value: "02",
-                                child: Text("Tháng 2")
-                            ),
+                                child: Text("Tháng 2")),
                             DropdownMenuItem(
                               value: "03",
-                              child:  Text("Tháng 3"),
+                              child: Text("Tháng 3"),
                             ),
                             DropdownMenuItem(
                               value: "04",
-                              child:  Text("Tháng 4"),
+                              child: Text("Tháng 4"),
                             ),
                             DropdownMenuItem(
                               value: "05",
-                              child:  Text("Tháng 5"),
+                              child: Text("Tháng 5"),
                             ),
                             DropdownMenuItem(
                               value: "06",
-                              child:  Text("Tháng 6"),
+                              child: Text("Tháng 6"),
                             ),
                             DropdownMenuItem(
                               value: "07",
-                              child:  Text("Tháng 7"),
+                              child: Text("Tháng 7"),
                             ),
                             DropdownMenuItem(
                               value: "08",
-                              child:  Text("Tháng 8"),
+                              child: Text("Tháng 8"),
                             ),
                             DropdownMenuItem(
                               value: "09",
-                              child:  Text("Tháng 9"),
+                              child: Text("Tháng 9"),
                             ),
                             DropdownMenuItem(
                               value: "10",
-                              child:  Text("Tháng 10"),
+                              child: Text("Tháng 10"),
                             ),
                             DropdownMenuItem(
                               value: "11",
-                              child:  Text("Tháng 11"),
+                              child: Text("Tháng 11"),
                             ),
                             DropdownMenuItem(
                               value: "12",
                               child: Text("Tháng 12"),
+                            ),
+                            DropdownMenuItem(
+                              value: "98",
+                              child: Text("98"),
                             ),
                           ],
                           onChanged: (value) {
@@ -380,7 +423,9 @@ class _P01_04ViewState extends State<P01_04View> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -389,16 +434,16 @@ class _P01_04ViewState extends State<P01_04View> {
                         child: UIText(
                           text: "Năm",
                           textColor: Colors.black,
-                          textFontSize:fontLarge,
+                          textFontSize: fontLarge,
                         ),
                       ),
                       Flexible(
                         flex: 2,
                         child: TextFormField(
                           controller: _year,
-                          validator: (value){
-                            if(value!.isEmpty){
-                              return 'Vui lòng nhập năm';
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Năm sinh chưa được nhập';
                             }
                             return null;
                           },
@@ -407,11 +452,12 @@ class _P01_04ViewState extends State<P01_04View> {
                           ],
                           maxLength: 4,
                           keyboardType: TextInputType.datetime,
-                          style: const TextStyle( color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           readOnly: check,
                           decoration: InputDecoration(
                             errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                              counterText: ''
                           ),
                         ),
                       )
@@ -439,7 +485,8 @@ class _P01_04ViewState extends State<P01_04View> {
                         color: Colors.black,
                       ),
                       checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                      checkedWidget: const Icon(Icons.check,
+                          size: 30, color: GFColors.PRIMARY),
                       uncheckedColor: Colors.white,
                       uncheckedWidget: Container(),
                     ),
@@ -451,59 +498,66 @@ class _P01_04ViewState extends State<P01_04View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Visibility(
                       visible: p03 == 0 ? false : true,
                       child: Column(
                         children: [
-                          UIText(
-                            text: "P04. Hiện nay, ${_name.text} bao nhiêu tuổi tròn theo dương lịch?",
+                          UIRichText(
+                            text1: "P04. Hiện nay, ",
+                            text2: name,
+                            text3: " bao nhiêu tuổi tròn theo dương lịch?",
                             textColor: Colors.black,
-                            textFontSize:fontLarge,
+                            textFontSize: fontLarge,
                           ),
-                          const SizedBox(height: 10,),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           TextFormField(
-                            autofocus: true,
                             controller: _age,
-                            validator: (value){
-                              if(p03 != 0 && value!.isEmpty){
-                                return 'Vui lòng nhập số tuổi';
+                            validator: (value) {
+                              if (p03 != 0 && value!.isEmpty) {
+                                return 'Số tuổi chưa được nhập';
                               }
                               return null;
                             },
                             inputFormatters: [
-                              FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                              FilteringTextInputFormatter.allow(
+                                  RegExp('[0-9]')),
                             ],
                             maxLength: 3,
                             keyboardType: TextInputType.datetime,
-                            style: const TextStyle( color: Colors.black),
+                            style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                                counterText: ''
                             ),
                           ),
                         ],
-                      )
-                  ),
+                      )),
                   //Button
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      UIBackButton(ontap: (){
+                      UIBackButton(ontap: () {
                         p01_04viewModel.P01_04Back(thanhvien.c01!);
                       }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
+                      UINextButton(ontap: () {
+                        if (_formKey.currentState!.validate()) {
                           if (p01 == 0) {
                             showDialog(
                                 context: context,
-                                builder: (_) =>
-                                const UIWarningDialog(
-                                  waring: 'Mối quan hệ với chủ hộ nhập vào chưa đúng!.',)
-                            );
-                          }
-                          else if (p02 == 0) {
+                                builder: (_) => const UIWarningDialog(
+                                      waring:
+                                          'Mối quan hệ với chủ hộ nhập vào chưa đúng!',
+                                    ));
+                          } else if (p02 == 0) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
@@ -511,20 +565,42 @@ class _P01_04ViewState extends State<P01_04View> {
                                   waring: 'Giới tính nhập vào chưa đúng!',)
                             );
                           }
-                          else if (month == "Chọn tháng") {
+                          else if (p01 == 2 && p02 == list_tttv.firstWhere((e) => e.c01 == 1).c02) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
-                                const UIWarningDialog(
-                                  waring: 'Tháng nhập vào chưa đúng',)
+                                UIWarningDialog(
+                                  waring: 'Thành viên ${_name.text} có mối quan hệ Vợ/Chồng với chủ hộ mà có giới tính trùng giới tính chủ hộ. Kiểm tra lại!',)
                             );
                           }
-                          else if (p01 == 8 && _orther.text == "") {
+                          else if (month == "Chọn tháng") {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(
+                                      waring: 'Tháng nhập vào chưa đúng',
+                                    ));
+                          } else if (p01 == 8 && _orther.text == "") {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
                                 const UIWarningDialog(
                                   waring: 'Mối quan hệ khác nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if ((int.parse(_year.text) > 2023 || int.parse(_year.text) < 1902) && int.parse(_year.text) != 9998) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Năm sinh nhập vào chưa đúng!',)
+                            );
+                          }
+                          else if (int.parse(_year.text) == 2023 && int.parse(month) >= ThangDT && month != '98') {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                const UIWarningDialog(
+                                  waring: 'Tháng sinh hoặc năm sinh nhập vào chưa đúng!',)
                             );
                           }
                           else if (p03 == 1 && _age.text == "") {
@@ -535,6 +611,14 @@ class _P01_04ViewState extends State<P01_04View> {
                                   waring: 'Số tuổi nhập vào chưa đúng!',)
                             );
                           }
+                          else if (tinh_tuoi() < 0 || tinh_tuoi() > 150) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên ${_name
+                                      .text} có tuổi = ${tinh_tuoi()}. Kiểm tra lại!',)
+                            );
+                          }
                           else if (p01 == 2 && tinh_tuoi() < 15) {
                             showDialog(
                                 context: context,
@@ -543,15 +627,75 @@ class _P01_04ViewState extends State<P01_04View> {
                                       .text} có tuổi< 15 tuổi!',)
                             );
                           }
+                          else if (p01 == 3 && (tinh_tuoi() >= list_tttv.firstWhere((e) => e.c01 == 1).c04! || list_tttv.firstWhere((e) => e.c01 == 1).c04! - tinh_tuoi() < 8)) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Thành viên là con đẻ của chủ hộ sinh '
+                                      '$month/${DateTime.now().year - tinh_tuoi()} mà chủ hộ '
+                                      '${_name.text} sinh ${list_tttv.firstWhere((e) => e.c01 == 1).c03A}/'
+                                      '${DateTime.now().year - list_tttv.firstWhere((e) => e.c01 == 1).c04!}?',)
+                            );
+                          }
+                          else if (p01 == 5 && tinh_tuoi() < list_tttv.firstWhere((e) => e.c01 == 1).c04!) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Chủ hộ ${list_tttv.firstWhere((e) => e.c01 == 1).c00} có tuổi '
+                                      '${list_tttv.firstWhere((e) => e.c01 == 1).c04!} tuổi > tuổi của bố/mẹ '
+                                      '${tinh_tuoi()} tuổi. Kiểm tra lại!',)
+                            );
+                          }
+                          else if (int.parse(_year.text) == 9998){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Năm sinh của thành viên không xác định có đúng không?',
+                                  onpress: () {
+                                    if (p01 == 8) {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c01K: _orther.text,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                    else {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
                           else {
-                            if (thanhvien.c01 != 1) {
+                            if (p01 == 8) {
                               p01_04viewModel.P01_04Next(
                                   thongTinThanhVienModel(
                                       idho: thanhvien.idho,
                                       idtv: thanhvien.idtv,
                                       c00: _name.text,
                                       c01: p01,
-                                      c01K: p01 == 8 ? _orther.text : "",
+                                      c01K: _orther.text,
                                       c02: p02,
                                       c03A: month,
                                       c03B: _year.text,
@@ -589,16 +733,18 @@ class _P01_04ViewState extends State<P01_04View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
           child: check_draw
-              ? DrawerNavigationThanhVien(onTap: (){
-            setState(() {
-              check_draw = false;
-            });
-          },)
-              : const DrawerNavigation()
-      ),
+              ? DrawerNavigationThanhVien(
+                  onTap: () {
+                    setState(() {
+                      check_draw = false;
+                    });
+                  },
+                )
+              : const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }

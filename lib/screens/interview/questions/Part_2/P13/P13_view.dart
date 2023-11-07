@@ -147,7 +147,7 @@ class _P13ViewState extends State<P13View> {
                       if(groupValue == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P13 - Tình trạng đi học nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P13-Tình trạng đi học nhập vào chưa đúng!',)
                         );
                       } else if(groupValue == 2 && (thanhvien.c04! >= 15 && thanhvien.c04! < 18)){
                         showDialog(
@@ -189,7 +189,7 @@ class _P13ViewState extends State<P13View> {
                             )
                         );
                       }
-                      else if(groupValue == 2 && thanhvien.c10 != null && thanhvien.c10 == 5){
+                      else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(

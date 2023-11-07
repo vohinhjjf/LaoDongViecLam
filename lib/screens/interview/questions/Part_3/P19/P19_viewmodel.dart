@@ -27,7 +27,7 @@ class P19ViewModel extends BaseViewModel {
   }
 
   void P19Back(thongTinThanhVienModel data) async {
-    if(data.c15A != null){
+    if(data.c15C != null){
       NavigationServices.instance.navigateToP17(context);
     } else {
       NavigationServices.instance.navigateToP18(context);

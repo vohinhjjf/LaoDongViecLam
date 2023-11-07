@@ -354,12 +354,12 @@ class ExecuteDatabase {
             .thongTinThanhVien} SET c01 = ? WHERE idho = ? AND idtv = ?',
         [c01, idho, idtv]);
   }
-  updateC00(String name, String idho, int idtv) async {
+  updateC00(String query, List? arguments) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
         'UPDATE ${TableConstants
-            .thongTinThanhVien} SET c00 = ? WHERE idho = ? AND idtv = ?',
-        [name, idho, idtv]);
+            .thongTinThanhVien} $query',
+        arguments);
   }
 
   update(String query) async {
@@ -396,11 +396,12 @@ class ExecuteDatabase {
     await _database?.insert(TableConstants.DoiSongHo, data.toJson());
   }
 
-  updateDSH(String query) async {
+  updateDSH(String query, List? arguments) async {
     _database = await _dbProvider.database;
     await _database?.rawUpdate(
         'UPDATE ${TableConstants
-            .DoiSongHo} $query');
+            .DoiSongHo} $query',
+        arguments);
   }
 
   Future<DoiSongHoModel> getDoiSongHo(String idho) async {

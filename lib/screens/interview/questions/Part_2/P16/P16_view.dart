@@ -431,7 +431,7 @@ class _P16ViewState extends State<P16View> {
                       if(p16a == 0 || p16b == 0 || (check && (p16c == 0 ||p16d == 0 || p16e == 0 || p16f == 0))){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P16 - Trình độ CMKT bị bỏ trống!',)
+                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P16-Trình độ CMKT bị bỏ trống!',)
                         );
                       }
                       else if(p16c == 1 && thanhvien.c04! < 18){

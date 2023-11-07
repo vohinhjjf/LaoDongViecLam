@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:lao_dong_viec_lam/components/uis.dart';
 import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
 
+import '../../../base/base_logic.dart';
 import '../../../base/base_viewmodel.dart';
 import '../../../data/shared_preferences/spref_app_model.dart';
 import '../../../models/doiSongHo_model.dart';
@@ -74,6 +76,64 @@ class DrawerNavigationModel extends BaseViewModel {
     });
   }
 
+  void navigateToTTTV(thongTinThanhVienModel thongTinTV, String title, String data){
+      String stopQuestion = title;
+      if(!BaseLogic.getInstance().procedureMember(thongTinTV)){
+        stopQuestion = BaseLogic.getInstance().mQuestion;
+        if(data == ""){
+          if(int.parse(title.substring(1, 3)) < int.parse(stopQuestion.substring(1, 3))){
+            print(1);
+            Navigator.of(context).pop();
+            return;
+          } else {
+            print(2);
+            stopQuestion = BaseLogic.getInstance().mQuestion;
+          }
+          print(3);
+        }
+        else if (int.parse(title.substring(1, 3)) < int.parse(stopQuestion.substring(1, 3))) {
+          stopQuestion = title;
+          print(4);
+        }
+        else {
+          print(5);
+          stopQuestion = BaseLogic.getInstance().mQuestion;
+        }
+        print(6);
+      }
+
+      NavigationServices.instance.routeNavigate(stopQuestion, context);
+  }
+
+  Future<void> navigateToDSH(DoiSongHoModel dsh, String title, int? data, int idtv) async {
+    String stopQuestion = title;
+    if(!BaseLogic.getInstance().checkC62_M1(dsh)){
+      stopQuestion = BaseLogic.getInstance().mQuestion;
+      if(data == null){
+        if(int.parse(title.substring(1, 3)) < int.parse(stopQuestion.substring(1, 3))){
+          print(1);
+          Navigator.of(context).pop();
+          return;
+        } else {
+          print(2);
+          stopQuestion = BaseLogic.getInstance().mQuestion;
+        }
+        print(3);
+      }
+      else if (int.parse(title.substring(1, 3)) < int.parse(stopQuestion.substring(1, 3))) {
+        stopQuestion = title;
+        print(4);
+      }
+      else {
+        print(5);
+        stopQuestion = BaseLogic.getInstance().mQuestion;
+      }
+      print(6);
+    }
+    await _sPrefAppModel.setIDTV(idtv);
+    NavigationServices.instance.routeNavigate(stopQuestion, context);
+  }
+
   void navigateToRoute(int select, int idtv) async {
     switch (select){
       case 0: NavigationServices.instance.navigateToOperatingStatus(context);break;
@@ -90,42 +150,7 @@ class DrawerNavigationModel extends BaseViewModel {
         await _sPrefAppModel.setIDTV(idtv);
         NavigationServices.instance.navigateToP01_04(context);
       };break;
-      case 11: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP76_77(context);
-      };break;
-      case 12: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP78(context);
-      };break;
-      case 13: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP79(context);
-      };break;
-      case 14: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP80(context);
-      };break;
-      case 15: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP81(context);
-      };break;
-      case 16: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP82(context);
-      };break;
-      case 17: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP83(context);
-      };break;
-      case 18: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToP84(context);
-      };break;
-      case 19: {
-        await _sPrefAppModel.setIDTV(idtv);
-        NavigationServices.instance.navigateToInformationProvider(context);
-      };break;
+      case 19: NavigationServices.instance.navigateToInformationProvider(context);break;
       /*default: NavigationServices.instance.navigateToSync(context);break;*/
     }
   }

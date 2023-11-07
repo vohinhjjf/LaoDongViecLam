@@ -159,7 +159,7 @@ class _P05ViewState extends State<P05View> {
                       if(groupValue == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P05 - Có con dưới 3 tuổi nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P05-Có con dưới 3 tuổi nhập vào chưa đúng!',)
                         );
                       }
                       else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){

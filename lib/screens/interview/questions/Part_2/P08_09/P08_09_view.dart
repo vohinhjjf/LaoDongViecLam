@@ -47,13 +47,13 @@ class _P08_09ViewState extends State<P08_09View> {
       p08_09ViewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 100),
-              () => {
-            setState(() {
-              thanhvien = p08_09ViewModel.thanhvien;
-              p08 = p08_09ViewModel.thanhvien.c07 ?? 0;
-              p09 = p08_09ViewModel.thanhvien.c08 ?? 0;
-            })
-          });
+          () => {
+                setState(() {
+                  thanhvien = p08_09ViewModel.thanhvien;
+                  p08 = p08_09ViewModel.thanhvien.c07 ?? 0;
+                  p09 = p08_09ViewModel.thanhvien.c08 ?? 0;
+                })
+              });
     });
   }
 
@@ -61,10 +61,7 @@ class _P08_09ViewState extends State<P08_09View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         titleSpacing: 0,
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: mPrimaryColor),
@@ -90,9 +87,11 @@ class _P08_09ViewState extends State<P08_09View> {
                   text2: thanhvien.c00 ?? "",
                   text3: " là gì?",
                   textColor: Colors.black,
-                  textFontSize:fontLarge,
+                  textFontSize: fontLarge,
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -107,10 +106,10 @@ class _P08_09ViewState extends State<P08_09View> {
                         isBold: false,
                       ),
                       leading: RoundCheckBox(
-                        isChecked: p08 == index+1 ? true : false,
+                        isChecked: p08 == index + 1 ? true : false,
                         onTap: (selected) {
                           setState(() {
-                            p08 = p08 == index+1 ? 0 : index+1;
+                            p08 = p08 == index + 1 ? 0 : index + 1;
                           });
                         },
                         border: Border.all(
@@ -118,28 +117,34 @@ class _P08_09ViewState extends State<P08_09View> {
                           color: Colors.black,
                         ),
                         checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        checkedWidget: const Icon(Icons.check,
+                            size: 30, color: GFColors.PRIMARY),
                         uncheckedColor: Colors.white,
                         uncheckedWidget: Container(),
                       ),
                       onTap: () {
                         setState(() {
-                          p08 = p08 == index+1 ? 0 : index+1;
+                          p08 = p08 == index + 1 ? 0 : index + 1;
                         });
                       },
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 //p09
                 UIRichText(
                   text1: "P09. ",
                   text2: thanhvien.c00 ?? "",
-                  text3: " đã thường trú ở phường, thị trấn hay xã này được bao lâu?",
+                  text3:
+                      " đã thường trú ở phường, thị trấn hay xã này được bao lâu?",
                   textColor: Colors.black,
-                  textFontSize:fontLarge,
+                  textFontSize: fontLarge,
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -154,10 +159,10 @@ class _P08_09ViewState extends State<P08_09View> {
                         isBold: false,
                       ),
                       leading: RoundCheckBox(
-                        isChecked: p09 == index+1 ? true : false,
+                        isChecked: p09 == index + 1 ? true : false,
                         onTap: (selected) {
                           setState(() {
-                            p09 = p09 == index+1 ? 0 : index+1;
+                            p09 = p09 == index + 1 ? 0 : index + 1;
                           });
                         },
                         border: Border.all(
@@ -165,58 +170,64 @@ class _P08_09ViewState extends State<P08_09View> {
                           color: Colors.black,
                         ),
                         checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        checkedWidget: const Icon(Icons.check,
+                            size: 30, color: GFColors.PRIMARY),
                         uncheckedColor: Colors.white,
                         uncheckedWidget: Container(),
                       ),
                       onTap: () {
                         setState(() {
-                          p09 = p09 == index+1 ? 0 : index+1;
+                          p09 = p09 == index + 1 ? 0 : index + 1;
                         });
                       },
                     );
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    UIBackButton(ontap: (){
+                    UIBackButton(ontap: () {
                       p08_09ViewModel.P08_09Back();
                     }),
-                    UINextButton(ontap: (){
-                      if(p08 == 0){
+                    UINextButton(ontap: () {
+                      if (p08 == 0) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P08 - Tình trạng hôn nhân nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p09 == 0){
+                            builder: (_) => UIWarningDialog(
+                                  waring:
+                                      'Thành viên ${thanhvien.c00} có P08-Tình trạng hôn nhân nhập vào chưa đúng!',
+                                ));
+                      } else if (p09 == 0) {
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'Thời gian thường trú nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(thanhvien.c01 == 2 && (p08 == 1 || p08 == 3 || p08 == 4)){
+                            builder: (_) => const UIWarningDialog(
+                                  waring:
+                                      'Thời gian thường trú nhập vào chưa đúng!',
+                                ));
+                      } else if (thanhvien.c01 == 2 &&
+                          (p08 == 1 || p08 == 3 || p08 == 4)) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành '
-                                'viên ${thanhvien.c00} có P01 - Quan hệ với '
-                                'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
-                                'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
-                        );
-                      }
-                      else if(thanhvien.c01 == 5 && p08 == 1){
+                            builder: (_) => UIWarningDialog(
+                                  waring: 'Thành '
+                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
+                                      'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
+                                      'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
+                                ));
+                      } else if (thanhvien.c01 == 5 && p08 == 1) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành '
-                                'viên ${thanhvien.c00} có P01 - Quan hệ với '
-                                'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
-                                'là ${_honnhan[p08-1]}. Kiểm tra lại!',)
-                        );
-                      }
-                      else {
+                            builder: (_) => UIWarningDialog(
+                                  waring: 'Thành '
+                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
+                                      'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
+                                      'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
+                                ));
+                      } else {
                         p08_09ViewModel.P08_09Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
@@ -235,16 +246,18 @@ class _P08_09ViewState extends State<P08_09View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
           child: check_draw
-              ? DrawerNavigationThanhVien(onTap: (){
-            setState(() {
-              check_draw = false;
-            });
-          },)
-              : const DrawerNavigation()
-      ),
+              ? DrawerNavigationThanhVien(
+                  onTap: () {
+                    setState(() {
+                      check_draw = false;
+                    });
+                  },
+                )
+              : const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }

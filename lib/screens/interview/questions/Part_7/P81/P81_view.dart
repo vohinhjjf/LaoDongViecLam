@@ -140,6 +140,8 @@ class _P81ViewState extends State<P81View> {
                       else {
                         p81ViewModel.P81Next(DoiSongHoModel(
                             idho: thanhvien.idho,
+                            thangDT: thanhvien.thangDT,
+                            namDT: thanhvien.namDT,
                             c62_M6: p81
                         ));
                       }

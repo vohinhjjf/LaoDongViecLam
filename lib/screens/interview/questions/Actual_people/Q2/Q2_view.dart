@@ -301,7 +301,7 @@ class _Q2ViewState extends State<Q2View> {
                           if(list_q2.isEmpty){
                             showDialog(
                                 context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q2 - Họ tên thành viên nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'Q2-Họ tên thành viên nhập vào chưa đúng!',)
                             );
                           }
                           else{
