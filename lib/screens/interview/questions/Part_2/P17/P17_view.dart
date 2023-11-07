@@ -111,7 +111,7 @@ class _P17ViewState extends State<P17View> {
                     controller: _nganh,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập tên ngành';
+                        return 'Tên ngành chưa được nhập';
                       }
                       return null;
                     },
@@ -121,7 +121,7 @@ class _P17ViewState extends State<P17View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black),
+                    style: const TextStyle( color: Colors.black, fontSize: fontMedium),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -139,7 +139,7 @@ class _P17ViewState extends State<P17View> {
                     controller: _nam,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập năm';
+                        return 'Năm TN chưa được nhập';
                       }
                       return null;
                     },
@@ -148,7 +148,7 @@ class _P17ViewState extends State<P17View> {
                     ],
                     maxLength: 4,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
+                    style: const TextStyle( color: Colors.black, fontSize: fontMedium),
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
@@ -164,7 +164,7 @@ class _P17ViewState extends State<P17View> {
                       }),
                       UINextButton(ontap: (){
                         if(_formKey.currentState!.validate()) {
-                          if (int.parse(_nam.text) < 1956 ||
+                          if (int.parse(_nam.text) < 1957 ||
                               int.parse(_nam.text) > 2023) {
                             showDialog(
                                 context: context,

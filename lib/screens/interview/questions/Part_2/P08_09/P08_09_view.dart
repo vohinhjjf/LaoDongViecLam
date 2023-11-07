@@ -199,7 +199,7 @@ class _P08_09ViewState extends State<P08_09View> {
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring:
-                                      'Thành viên ${thanhvien.c00} có P08 - Tình trạng hôn nhân nhập vào chưa đúng!',
+                                      'Thành viên ${thanhvien.c00} có P08-Tình trạng hôn nhân nhập vào chưa đúng!',
                                 ));
                       } else if (p09 == 0) {
                         showDialog(
@@ -214,7 +214,7 @@ class _P08_09ViewState extends State<P08_09View> {
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring: 'Thành '
-                                      'viên ${thanhvien.c00} có P01 - Quan hệ với '
+                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
                                       'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
                                       'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
                                 ));
@@ -223,7 +223,7 @@ class _P08_09ViewState extends State<P08_09View> {
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring: 'Thành '
-                                      'viên ${thanhvien.c00} có P01 - Quan hệ với '
+                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
                                       'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
                                       'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
                                 ));

@@ -107,7 +107,7 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       controller: _address,
                       validator: (value){
                         if(value!.isEmpty){
-                          return 'Vui lòng nhập địa chỉ';
+                          return 'Địa chỉ chưa được nhập';
                         }
                         return null;
                       },

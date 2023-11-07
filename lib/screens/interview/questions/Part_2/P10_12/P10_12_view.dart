@@ -397,7 +397,7 @@ class _P10_12ViewState extends State<P10_12View> {
                                 keyboardType: TextInputType.text,
                                 validator: (value){
                                   if(value!.isEmpty){
-                                    return 'Vui lòng nhập lý do';
+                                    return 'Lý do chưa được nhập';
                                   }
                                   return null;
                                 },
@@ -424,30 +424,30 @@ class _P10_12ViewState extends State<P10_12View> {
                       if(p10 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P10 - Nơi trước khi chuyển đến nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P10-Nơi trước khi chuyển đến nhập vào chưa đúng!',)
                         );
                       }
                       else if(p10 == 1 && hanhchinh == "00"){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P10A - Mã tỉnh nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P10A-Mã tỉnh nhập vào chưa đúng!',)
                         );
                       }
                       else if(p10 == 2 && quocgia == "Chọ"){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P10B - Mã quốc gia nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P10B-Mã quốc gia nhập vào chưa đúng!',)
                         );
                       }
                       else if(p11 == 0 && p10 == 1){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P11 - Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P11-Nơi thực tế thường trú cũ nhập vào chưa đúng!',)
                         );
                       } else if(p12 == 0 && p10 == 1){
                         showDialog(
                             context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P12 - Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P12-Lý do chính chuyển đến nơi ở nhập vào chưa đúng!',)
                         );
                       }
                       else if((p12 == 1 || p12 == 3) && thanhvien.c08 == 4){

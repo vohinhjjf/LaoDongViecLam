@@ -176,7 +176,7 @@ class _P06_07ViewState extends State<P06_07View> {
                           items: const [ //add items in the dropdown
                             DropdownMenuItem(
                               value: "Chọn mã quốc gia",
-                              child: Text("- - Chọn mã quốc gia - -"),
+                              child: Text("-- Chọn mã quốc gia --"),
                             ),
                             DropdownMenuItem(
                               value: "KHM",

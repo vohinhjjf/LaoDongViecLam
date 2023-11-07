@@ -163,7 +163,7 @@ class _Q5ViewState extends State<Q5View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(
-                                    notification: 'Q5 Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                                    notification: 'Q5-Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
                                     onpress: (){
                                       Navigator.of(context).pop();
                                       q5viewModel.addNTKK(thongTinThanhVienNKTTModel(
@@ -314,7 +314,7 @@ class _Q5ViewState extends State<Q5View> {
                           if(list_q5.isEmpty){
                             showDialog(
                                 context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q5 - Họ tên thành viên nhập vào chưa đúng!',)
+                                builder: (_) => const UIWarningDialog(waring: 'Q5-Họ tên thành viên nhập vào chưa đúng!',)
                             );
                           }
                           else{
