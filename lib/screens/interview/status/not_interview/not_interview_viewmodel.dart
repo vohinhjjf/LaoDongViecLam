@@ -40,9 +40,30 @@ class NotInterviewedViewModel extends BaseViewModel {
     });
   }
 
+  Future<List<BangKeCsModel>> searchData(String name) async {
+    String iddb = _sPrefAppModel.IDDB;
+    int thangdt = int.parse(_sPrefAppModel.month);
+    String condition = "";
+    int namdt = DateTime.now().year;
+
+    if (thangdt == 1 || thangdt == 2 || thangdt == 3) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 9 OR nhom = 10 OR nhom = 13 OR nhom = 14) AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+    } else if (thangdt == 4 || thangdt == 5 || thangdt == 6) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 10 OR nhom = 11 OR nhom = 14 OR nhom = 15) AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+    } else if (thangdt == 7 || thangdt == 8 || thangdt == 9) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 11 OR nhom = 12 OR nhom = 15 OR nhom = 16) AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+    } else if (thangdt == 10 || thangdt == 11 || thangdt == 12) {
+      condition = "iddb = $iddb AND HoDuPhong = 0 AND (trangThai_BK == 1 OR trangThai_BK == 5 OR trangThai_BK == 6) AND (nhom = 12 OR nhom = 13 OR nhom = 16 OR nhom = 17) AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+    }
+    List<BangKeCsModel> value = await _executeDatabase.getHouseHold(condition);
+    for(var item in bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList()){
+      value.removeWhere((e) => e.idho == item.idhO_BKE);
+    }
+    return value;
+  }
+
   void notInterviewed(BangKeCsModel bangKeCsModel) async {
     await _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
-    //await _executeDatabase.updateTrangThaiBK(bangKeCsModel.idho!, 5, bangKeCsModel.thangDT!, bangKeCsModel.namDT!);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

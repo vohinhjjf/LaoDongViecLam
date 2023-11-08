@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -79,7 +80,7 @@ class _P79ViewState extends State<P79View> {
                 //p79
                 UIRichText(
                   text1: "P79. So với tháng ${thanhvien.thangDT} của năm trước, thu nhập "
-                      "hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                      "hiện nay của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " thay đổi như thế nào?",
                   textColor: Colors.black,
@@ -88,6 +89,7 @@ class _P79ViewState extends State<P79View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thaydoi.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -123,7 +125,7 @@ class _P79ViewState extends State<P79View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -134,7 +136,7 @@ class _P79ViewState extends State<P79View> {
                       if(p79 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
                         );
                       }
                       else if((doisongho.c62_M2 == 1 && p79 == 3) || (doisongho.c62_M2 == 3 && p79 == 1)){

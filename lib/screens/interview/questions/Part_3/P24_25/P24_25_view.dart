@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -71,7 +72,7 @@ class _P24_25ViewState extends State<P24_25View> {
               children: [
                 //p24
                 UIRichText(
-                  text1: "P24. ",
+                  text1: "P24. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: p23 == 6
                       ? " có chắc chắn sẽ quay lại làm công việc đang"
@@ -140,14 +141,14 @@ class _P24_25ViewState extends State<P24_25View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
                 //p25
                 Visibility(
                     visible: p24 == 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
-                          text1: "P25. Trong thời gian tạm nghỉ, ",
+                          text1: "P25. Trong thời gian tạm nghỉ, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " có được nhận tiền công/tiền lương hoặc hưởng "
                               "lợi từ công việc đó không?",
@@ -228,13 +229,13 @@ class _P24_25ViewState extends State<P24_25View> {
                       if(p24 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P24-Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P24-Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
                         );
                       }
                       else if(p25 == 0 && p24 == 2){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P25-Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P25-Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
                         );
                       }else {
                         p24_25ViewModel.P24_25Next(thongTinThanhVienModel(

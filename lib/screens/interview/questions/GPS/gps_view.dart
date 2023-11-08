@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../components/uis.dart';
+import '../../../../models/doiSongHo_model.dart';
 import '../../../../models/thongTinHo_model.dart';
 import '../../../../models/thongTinThanhVien_model.dart';
 import 'gps_viewmodel.dart';
@@ -27,6 +28,7 @@ class Body extends State<GPSView> {
   bool check = false;
   List<thongTinThanhVienModel> list = [];
   var thongTinHo = thongTinHoModel();
+  var doisongho = DoiSongHoModel();
 
   @override
   void initState() {
@@ -38,6 +40,7 @@ class Body extends State<GPSView> {
         setState((){
           list = gpsViewModel.list;
           thongTinHo = gpsViewModel.thongTinHo;
+          doisongho = gpsViewModel.doisongho;
           if(gpsViewModel.thongTinHo.kinhDo == null){
             check = false;
           } else {
@@ -169,14 +172,18 @@ class Body extends State<GPSView> {
                 onPressed: () async {
                   await gpsViewModel.checkGPS().then((value) => {
                     if(value){
-                      if(!gpsViewModel.checkQuestion(list, thongTinHo)){
+                      if(!gpsViewModel.checkQuestion(list, thongTinHo, doisongho)){
                         if (gpsViewModel.typeStop == 1){
                           _showErrorDialog("Trong hộ có thành viên ${list[gpsViewModel.currentPos].c00} chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
                         }
-                        else if (gpsViewModel.typeStop == 0){
+                        else{
                           _showErrorDialog("Trong hộ có câu hỏi chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
                         }
-                      } else {
+                      }
+                      else if(gpsViewModel.checkC01_04(list) && gpsViewModel.checkC01_04(list)){
+                        _showErrorDialog("Hộ có con đẻ sống cùng hộ dưới 3 tuổi mà thành viên hộ ko con đẻ dưới 3 tuổi. Kiểm tra lại!", gpsViewModel.stopQuestion)
+                      }
+                      else {
                         gpsViewModel.finish(DateTime.now().toString(), list),
                         _showFinishDialog()
                       }

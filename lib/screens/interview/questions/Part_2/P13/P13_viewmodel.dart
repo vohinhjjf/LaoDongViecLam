@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/thongTinHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
@@ -10,7 +11,8 @@ class P13ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
   P13ViewModel(this._executeDatabase, this._sPrefAppModel);
-  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var thanhvien = thongTinThanhVienModel();
+  var thongtinho = thongTinHoModel();
 
   @override
   void onInit(BuildContext context) {
@@ -24,6 +26,7 @@ class P13ViewModel extends BaseViewModel {
     await _executeDatabase.getTTTV(idho, idtv).then((value) {
       thanhvien = value;
     });
+    await _executeDatabase.getHo(idho).then((value) => thongtinho = value);
   }
 
   void P13Back(int? c09) async {

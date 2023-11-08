@@ -22,6 +22,28 @@ class BaseLogic {
     }
     return mQuestion;
   }
+  
+  String getMember(thongTinThanhVienModel thongTinTV){
+    String question = "";
+    if (thongTinTV.c02 != null && thongTinTV.c02 == 1) {
+      if (thongTinTV.c04 != null && thongTinTV.c04! > 60) {
+        question = "Ông";
+      } else if (thongTinTV.c04 != null && thongTinTV.c04! < 18) {
+        question = "Em";
+      } else {
+        question = "Anh";
+      }
+    } else {
+      if (thongTinTV.c04 != null && thongTinTV.c04! > 60) {
+        question = "Bà";
+      } else if (thongTinTV.c04 != null && thongTinTV.c04! < 18) {
+        question = "Em";
+      } else {
+        question = "Chị";
+      }
+    }
+    return question;
+  }
 
   //=============== PRocedure MEMBER ================//
   procedureMember(thongTinThanhVienModel thongTinTV) {
@@ -1195,4 +1217,5 @@ class BaseLogic {
     mQuestion = UIDescribes.QUESTION_P84;
     return true;
   }
+
 }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -93,7 +94,7 @@ class _P17ViewState extends State<P17View> {
                 children: [
                   //p08
                   UIRichText(
-                    text1: "P17. Với trình độ học vấn cao nhất là ${trinhdo()}, ",
+                    text1: "P17. Với trình độ học vấn cao nhất là ${trinhdo()}, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " đã được đào tạo chuyên ngành gì và năm tốt nghiệp ngành đó là năm nào?",
                     textColor: Colors.black,
@@ -164,43 +165,130 @@ class _P17ViewState extends State<P17View> {
                         p17ViewModel.P17Back();
                       }),
                       UINextButton(ontap: (){
+                        int namHT = DateTime.now().year;
                         if(_formKey.currentState!.validate()) {
                           if (int.parse(_nam.text) < 1957 ||
-                              int.parse(_nam.text) > 2023) {
+                              int.parse(_nam.text) > namHT) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
                                       waring: 'Thành viên ${thanhvien
-                                          .c00} có năm tốt nghiệp chưa hợp lý!',)
+                                          .c00} có năm tốt nghiệp chưa hợp lý!',
+                                    )
                             );
                           }
-                          /*else if (int.parse(_nam.text) >=
-                                (2023 - thanhvien.c04!) &&
-                                int.parse(_nam.text) <= 2023) {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) =>
-                                      UIWarningDialog(
-                                        waring: 'Thành viên ${thanhvien
-                                            .c00} sinh năm ${2023 -
-                                            thanhvien.c04!}, '
-                                            'tốt nghiệp năm = ${_nam
-                                            .text} khi ${thanhvien.c04! -
-                                            (2023 - int.parse(_nam
-                                                .text))} tuổi. Kiểm tra lại!',)
-                              );
-                            }*/
-                          else if (int.parse(_nam.text) <
-                              (2023 - thanhvien.c04!)) {
+                          else if(_nganh.text.length < 5){
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    const UIWarningDialog(
+                                      waring: 'Mô tả quá ngắn!',
+                                    )
+                            );
+                          }
+                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) <
+                              int.parse(thanhvien.c03B!)) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
                                       waring: 'Thành viên ${thanhvien
-                                          .c00} tốt nghiệp năm = ${_nam.text}'
-                                          ' trước năm sinh ${2023 -
-                                          thanhvien.c04!}. Kiểm tra lại!',)
+                                          .c00} có P17C - Năm tốt nghiệp = ${_nam.text}'
+                                          ' trước năm sinh = ${thanhvien.c03B}. Kiểm tra lại!',)
+                            );
+                          }
+                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) <
+                              (namHT - thanhvien.c04!)) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) - (namHT - thanhvien.c04!)}'
+                                          ' > tuổi hiện tại = ${thanhvien.c04}. Kiểm tra lại!',)
+                            );
+                          }
+                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
+                              int.parse(thanhvien.c03B!) < 10) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
+                                          ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Kiểm tra lại!',)
+                            );
+                          }
+                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                              (namHT - thanhvien.c04!) < 10) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UIWarningDialog(
+                                      waring: 'Thành viên ${thanhvien
+                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                          (namHT - thanhvien.c04!)}. Kiểm tra lại!',)
+                            );
+                          }
+                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
+                              int.parse(thanhvien.c03B!) > 60) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
+                                          ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Có đúng không?',
+                                      onpress: () {
+                                        Navigator.of(context).pop();
+                                        if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                                            (namHT - thanhvien.c04!) > 10) {
+                                          showDialog(
+                                              context: context,
+                                              builder: (_) =>
+                                                  UINotificationDialog(
+                                                    notification: 'Thành viên ${thanhvien
+                                                        .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                                        (namHT - thanhvien.c04!)}. Có đúng không?',
+                                                    onpress: () {
+                                                      p17ViewModel.P17Next(thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c15A: _nganh.text,
+                                                        c15C: int.parse(_nam.text),
+                                                      ));
+                                                    },)
+                                          );
+                                        }
+                                        else {
+                                          p17ViewModel.P17Next(thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c15A: _nganh.text,
+                                            c15C: int.parse(_nam.text),
+                                          ));
+                                        }
+                                      },)
+                            );
+                          }
+                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                              (namHT - thanhvien.c04!) > 10) {
+                            showDialog(
+                                context: context,
+                                builder: (_) =>
+                                    UINotificationDialog(
+                                      notification: 'Thành viên ${thanhvien
+                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                          (namHT - thanhvien.c04!)}. Có đúng không?',
+                                      onpress: () {
+                                        p17ViewModel.P17Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c15A: _nganh.text,
+                                          c15C: int.parse(_nam.text),
+                                        ));
+                                      },)
                             );
                           }
                           else {

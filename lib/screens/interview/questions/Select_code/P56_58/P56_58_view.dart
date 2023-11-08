@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -103,10 +104,10 @@ class _P56_58ViewState extends State<P56_58View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p40
                   UIRichText(
-                    text1: "P56. (Câu 56A) Hãy mô tả chức danh (nếu có) của ",
+                    text1: "P56. (Câu 56A) Hãy mô tả chức danh (nếu có) của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " trong công việc này?",
                     textColor: Colors.black,
@@ -151,7 +152,7 @@ class _P56_58ViewState extends State<P56_58View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //P57
                   const UIText(
                     text: "P57. Tên cơ sở làm công việc này",
@@ -167,10 +168,10 @@ class _P56_58ViewState extends State<P56_58View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p42
                   UIRichText(
-                    text1: "P58. (Câu 58A) Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ",
+                    text1: "P58. (Câu 58A) Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm việc là gì?",
                     textColor: Colors.black,
@@ -216,7 +217,7 @@ class _P56_58ViewState extends State<P56_58View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -224,12 +225,715 @@ class _P56_58ViewState extends State<P56_58View> {
                         p56_58viewModel.P56_58Back();
                       }),
                       UINextButton(ontap: (){
-                        p56_58viewModel.P56_58Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c50B: _machucdanh.text,
-                            c52B: _mahoatdong.text
-                        ));
+                        if (_machucdanh.text == "") {
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                                  UIWarningDialog(
+                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                        .c00} có P40B - Mã nghề nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if (_mahoatdong.text == "") {
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                                  UIWarningDialog(
+                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                        .c00} có P42B - Mã ngành nhập vào chưa đúng!',)
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 3642
+                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là Nhà chuyên môn bậc cao mà không có trình độ CMKT!',)
+                          );
+                        }
+                        else if(((int.parse(_machucdanh.text) >= 3111 && int.parse(_machucdanh.text) <= 3315)
+                            || (int.parse(_machucdanh.text) >= 3342 && int.parse(_machucdanh.text) <= 3359)
+                            || (int.parse(_machucdanh.text) >= 3511 && int.parse(_machucdanh.text) <= 3620))
+                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là Nhà chuyên môn bậc trung mà không có trình độ CMKT!',)
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 2659
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là Nhà chuyên môn bậc cao mà trình độ thấp hơn đại học!',)
+                          );
+                        }
+                        else if((int.parse(_machucdanh.text) == 8322
+                            || int.parse(_machucdanh.text) == 8331
+                            || int.parse(_machucdanh.text) == 8332)
+                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là lái xe ô tô mà không có trình độ CMKT!',)
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 6310 && int.parse(_machucdanh.text) <= 6340
+                            && (thanhvien.c26 == 1 || thanhvien.c26 == 2)){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là Lao động tự cung tự cấp trong nông nghiệp, lâm nghiệp và thủy sản mà mục đích chủ yếu của sản phẩm sản xuất ra để bán!',)
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 1111 && int.parse(_machucdanh.text) <= 1526
+                            && (int.parse(_mahoatdong.text) < 8411 || int.parse(_mahoatdong.text) > 8430)){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Lãnh đạo trong các cấp các ngành có mã ngành không thuộc ngành quản lý NN!',)
+                          );
+                        }
+                        else if(((int.parse(_machucdanh.text) >= 2311 && int.parse(_machucdanh.text) <= 2342)
+                            || (int.parse(_machucdanh.text) >= 3610 && int.parse(_machucdanh.text) <= 3630))
+                            && (int.parse(_mahoatdong.text) < 8511 || int.parse(_mahoatdong.text) > 8560)){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Giáo viên các cấp mà không thuộc ngành giá dục đào tạo!',)
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 2211 && int.parse(_machucdanh.text) <= 2261
+                            && (int.parse(_mahoatdong.text) < 8610 || int.parse(_mahoatdong.text) > 8699)){
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                              const UIWarningDialog(
+                                waring: 'Nghề là y tá, bác sỹ mà có ngành khác hoạt động y tế!',)
+                          );
+                        }
+                        //Notifi
+                        else if((int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6224)
+                            && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                            && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                            && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Nghề là Lao động có kỹ năng trong nông nghiệp, lâm nghiệp, thủy sản và săn bắt mà ko có trình độ CMKT hoặc không có tay nghề. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(int.parse(_machucdanh.text) >= 0110 && int.parse(_machucdanh.text) <= 0310
+                                      && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                      && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Nghề là lực lượng vũ trang mà không có trình độ CMKT. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(((int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 8209)
+                                                || (int.parse(_machucdanh.text) >= 8311 && int.parse(_machucdanh.text) <= 8350))
+                                                && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                                                && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                                                && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Nghề là nhóm thợ mà không có tay nghề hoặc trình độ CMKT. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                                          && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                                          && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                                              onpress: (){
+                                                                Navigator.of(context).pop();
+                                                                if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                                    || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                                    || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                                    || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                                    || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                                    || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                                    || (int.parse(_machucdanh.text) >= 7511))
+                                                                    && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                                                  showDialog(
+                                                                      context: context,
+                                                                      builder: (_) => UINotificationDialog(
+                                                                        notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                                        onpress: (){
+                                                                          p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                                              idho: thanhvien.idho,
+                                                                              idtv: thanhvien.idtv,
+                                                                              c50B: _machucdanh.text,
+                                                                              c52B: _mahoatdong.text
+                                                                          ));
+                                                                        },
+                                                                      )
+                                                                  );
+                                                                }
+                                                                else {
+                                                                  p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                                      idho: thanhvien.idho,
+                                                                      idtv: thanhvien.idtv,
+                                                                      c50B: _machucdanh.text,
+                                                                      c52B: _mahoatdong.text
+                                                                  ));
+                                                                }
+                                                              },
+                                                            )
+                                                        );
+                                                      }
+                                                      else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                          || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                          || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                          || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                          || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                          || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                          || (int.parse(_machucdanh.text) >= 7511))
+                                                          && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                              onpress: (){
+                                                                p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                                    idho: thanhvien.idho,
+                                                                    idtv: thanhvien.idtv,
+                                                                    c50B: _machucdanh.text,
+                                                                    c52B: _mahoatdong.text
+                                                                ));
+                                                              },
+                                                            )
+                                                        );
+                                                      }
+                                                      else {
+                                                        p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c50B: _machucdanh.text,
+                                                            c52B: _mahoatdong.text
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                                && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                                && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                          || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                          || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                          || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                          || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                          || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                          || (int.parse(_machucdanh.text) >= 7511))
+                                                          && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                              onpress: (){
+                                                                p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                                    idho: thanhvien.idho,
+                                                                    idtv: thanhvien.idtv,
+                                                                    c50B: _machucdanh.text,
+                                                                    c52B: _mahoatdong.text
+                                                                ));
+                                                              },
+                                                            )
+                                                        );
+                                                      }
+                                                      else {
+                                                        p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c50B: _machucdanh.text,
+                                                            c52B: _mahoatdong.text
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                || (int.parse(_machucdanh.text) >= 7511))
+                                                && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                    onpress: (){
+                                                      p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c50B: _machucdanh.text,
+                                                          c52B: _mahoatdong.text
+                                                      ));
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else {
+                                              p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c50B: _machucdanh.text,
+                                                  c52B: _mahoatdong.text
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                      && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                      && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                || (int.parse(_machucdanh.text) >= 7511))
+                                                && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                    onpress: (){
+                                                      p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c50B: _machucdanh.text,
+                                                          c52B: _mahoatdong.text
+                                                      ));
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else {
+                                              p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c50B: _machucdanh.text,
+                                                  c52B: _mahoatdong.text
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                      || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                      || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                      || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                      || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                      || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                      || (int.parse(_machucdanh.text) >= 7511))
+                                      && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                          onpress: (){
+                                            p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c50B: _machucdanh.text,
+                                                c52B: _mahoatdong.text
+                                            ));
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else {
+                                    p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c50B: _machucdanh.text,
+                                        c52B: _mahoatdong.text
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 0110 && int.parse(_machucdanh.text) <= 0310
+                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Nghề là lực lượng vũ trang mà không có trình độ CMKT. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(((int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 8209)
+                                      || (int.parse(_machucdanh.text) >= 8311 && int.parse(_machucdanh.text) <= 8350))
+                                      && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                                      && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                                      && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Nghề là nhóm thợ mà không có tay nghề hoặc trình độ CMKT. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                                && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                                && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                          || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                          || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                          || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                          || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                          || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                          || (int.parse(_machucdanh.text) >= 7511))
+                                                          && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                              onpress: (){
+                                                                p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                                    idho: thanhvien.idho,
+                                                                    idtv: thanhvien.idtv,
+                                                                    c50B: _machucdanh.text,
+                                                                    c52B: _mahoatdong.text
+                                                                ));
+                                                              },
+                                                            )
+                                                        );
+                                                      }
+                                                      else {
+                                                        p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c50B: _machucdanh.text,
+                                                            c52B: _mahoatdong.text
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                || (int.parse(_machucdanh.text) >= 7511))
+                                                && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                    onpress: (){
+                                                      p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c50B: _machucdanh.text,
+                                                          c52B: _mahoatdong.text
+                                                      ));
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else {
+                                              p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c50B: _machucdanh.text,
+                                                  c52B: _mahoatdong.text
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                      && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                      && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                || (int.parse(_machucdanh.text) >= 7511))
+                                                && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                    onpress: (){
+                                                      p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c50B: _machucdanh.text,
+                                                          c52B: _mahoatdong.text
+                                                      ));
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else {
+                                              p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c50B: _machucdanh.text,
+                                                  c52B: _mahoatdong.text
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                      || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                      || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                      || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                      || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                      || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                      || (int.parse(_machucdanh.text) >= 7511))
+                                      && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                          onpress: (){
+                                            p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c50B: _machucdanh.text,
+                                                c52B: _mahoatdong.text
+                                            ));
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else {
+                                    p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c50B: _machucdanh.text,
+                                        c52B: _mahoatdong.text
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(((int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 8209)
+                            || (int.parse(_machucdanh.text) >= 8311 && int.parse(_machucdanh.text) <= 8350))
+                            && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                            && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                            && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Nghề là nhóm thợ mà không có tay nghề hoặc trình độ CMKT. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                                      && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                                      && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                                || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                                || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                                || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                                || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                                || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                                || (int.parse(_machucdanh.text) >= 7511))
+                                                && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                                    onpress: (){
+                                                      p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c50B: _machucdanh.text,
+                                                          c52B: _mahoatdong.text
+                                                      ));
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else {
+                                              p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c50B: _machucdanh.text,
+                                                  c52B: _mahoatdong.text
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                      || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                      || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                      || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                      || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                      || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                      || (int.parse(_machucdanh.text) >= 7511))
+                                      && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                          onpress: (){
+                                            p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c50B: _machucdanh.text,
+                                                c52B: _mahoatdong.text
+                                            ));
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else {
+                                    p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c50B: _machucdanh.text,
+                                        c52B: _mahoatdong.text
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Nhà Lãnh đạo/quản lý mà không có trình độ chuyên môn kĩ thuật. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                                      || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                                      || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                                      || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                                      || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                                      || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                                      || (int.parse(_machucdanh.text) >= 7511))
+                                      && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                          onpress: (){
+                                            p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c50B: _machucdanh.text,
+                                                c52B: _mahoatdong.text
+                                            ));
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else {
+                                    p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c50B: _machucdanh.text,
+                                        c52B: _mahoatdong.text
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                            || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                            || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                            || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                            || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                            || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                            || (int.parse(_machucdanh.text) >= 7511))
+                            && (int.parse(_mahoatdong.text) >= 8491 && int.parse(_mahoatdong.text) <= 8430)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Lao động bá hàng trong các cửa hàng, thợ đúc, thợ rèn...lao động trong nông nghiệp mà có ngành là quản lý NN. Có đúng không?',
+                                onpress: (){
+                                  p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c50B: _machucdanh.text,
+                                      c52B: _mahoatdong.text
+                                  ));
+                                },
+                              )
+                          );
+                        }
+                        else {
+                          p56_58viewModel.P56_58Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c50B: _machucdanh.text,
+                              c52B: _mahoatdong.text
+                          ));
+                        }
                       }),
                     ],
                   )

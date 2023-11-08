@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -85,7 +86,7 @@ class _P80ViewState extends State<P80View> {
                 children: [
                   //p80
                   UIRichText(
-                    text1: "P80. Các nguyên nhân làm thu nhập hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                    text1: "P80. Các nguyên nhân làm thu nhập hiện nay của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " giảm đi so với tháng ${thanhvien.thangDT} của năm trước là gì?",
                     textColor: Colors.black,
@@ -632,7 +633,7 @@ class _P80ViewState extends State<P80View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -648,7 +649,7 @@ class _P80ViewState extends State<P80View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
                             );
                           } else {

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -71,7 +72,7 @@ class _P18ViewState extends State<P18View> {
               children: [
                 //p18
                 UIRichText(
-                  text1: "P18. ",
+                  text1: "P18. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có được công nhận hoặc được cấp các loại "
                       "bằng cấp/chứng chỉ nghề/kỹ năng nghề sau đây không?",
@@ -280,7 +281,7 @@ class _P18ViewState extends State<P18View> {
                       if(p18a == 0 || p18b == 0 || p18c == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: '${thanhvien.c00} có P18-Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P18-Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
                         );
                       }else {
                         p18ViewModel.P18Next(thongTinThanhVienModel(

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -86,7 +87,7 @@ class _P76_77ViewState extends State<P76_77View> {
               children: [
                 //p76
                 UIRichText(
-                  text1: "P76. So với tháng trước, đời sống gia đình hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                  text1: "P76. So với tháng trước, đời sống gia đình hiện nay của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có được cải thiện hơn không?",
                   textColor: Colors.black,
@@ -129,10 +130,10 @@ class _P76_77ViewState extends State<P76_77View> {
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
                 //p77
                 UIRichText(
-                  text1: "P77. So với tháng trước, thu nhập hiện nay của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                  text1: "P77. So với tháng trước, thu nhập hiện nay của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " thay đổi như thế nào?",
                   textColor: Colors.black,
@@ -176,7 +177,7 @@ class _P76_77ViewState extends State<P76_77View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -187,13 +188,13 @@ class _P76_77ViewState extends State<P76_77View> {
                       if(p76 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
                         );
                       }
                       else if(p77 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
                         );
                       }
                       else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){

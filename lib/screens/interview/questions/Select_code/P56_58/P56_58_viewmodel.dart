@@ -280,8 +280,9 @@ class P56_58ViewModel extends BaseViewModel {
       if (index == 0) {
         await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
           if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
-            await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 0, month, year);
-          } else {
+            await _executeDatabase.updateTrangThai(9, 0, _sPrefAppModel.getIdHo, month, year);
+          }
+          else {
             await _executeDatabase.setBangKeThangDTModel([{
               'idhO_BKE': _sPrefAppModel.getIdHo,
               'namDT': year,

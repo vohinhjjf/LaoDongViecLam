@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -79,7 +80,7 @@ class _P61_62ViewState extends State<P61_62View> {
                 children: [
                   //p61
                   UIRichText(
-                    text1: "P61. Cụ thể, ",
+                    text1: "P61. Cụ thể, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " nhận được bao nhiêu tiền cho công việc này? "
                         "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
@@ -108,9 +109,9 @@ class _P61_62ViewState extends State<P61_62View> {
                     ),
                   ),
                   //p62
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   UIRichText(
-                    text1: "P62. Ngoài hai công việc trên, ",
+                    text1: "P62. Ngoài hai công việc trên, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: "  có làm công việc nào khác nữa không? (Không bao "
                         "gồm các công việc tạo ra sản phẩm với mục đích chủ yếu "
@@ -178,7 +179,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -200,7 +201,7 @@ class _P61_62ViewState extends State<P61_62View> {
                                 context: context,
                                 builder: (_) =>
                                     UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
+                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có thu nhập dưới 100 nghìn đồng/tháng. Có đúng không?',
                                       onpress: () {
                                         Navigator.of(context).pop();

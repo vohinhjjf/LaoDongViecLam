@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -79,7 +80,7 @@ class _P47ViewState extends State<P47View> {
               children: [
                 //p47
                 UIRichText(
-                  text1: "P47. Tháng trước, ",
+                  text1: "P47. Tháng trước, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " nhận được khoảng bao nhiêu tiền công/tiền lương hoặc "
                       "lợi nhuận từ công việc này? Tiền công/tiền lương bao gồm "
@@ -91,7 +92,7 @@ class _P47ViewState extends State<P47View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _khoangtien.length,
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -127,7 +128,7 @@ class _P47ViewState extends State<P47View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

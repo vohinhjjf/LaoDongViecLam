@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -76,7 +77,7 @@ class _P28ViewState extends State<P28View> {
               children: [
                 //p28
                 UIRichText(
-                  text1: "P28. Mục đích chủ yếu của các sản phẩm ",
+                  text1: "P28. Mục đích chủ yếu của các sản phẩm ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " sản xuất ra từ công việc này là để bán hay để gia đình sử dụng?",
                   textColor: Colors.black,

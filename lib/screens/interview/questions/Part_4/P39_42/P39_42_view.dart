@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -78,7 +79,7 @@ class _P39_42ViewState extends State<P39_42View> {
                 children: [
                   //p39
                   UIRichText(
-                    text1: "P39. Hãy mô tả công việc chính của ",
+                    text1: "P39. Hãy mô tả công việc chính của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: "?\n(VÍ DỤ: ĐÁNH VỮA, KHUÂN GẠCH ĐỂ XÂY NHÀ)",
                     textColor: Colors.black,
@@ -105,10 +106,10 @@ class _P39_42ViewState extends State<P39_42View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p40
                   UIRichText(
-                    text1: "P40. Hãy mô tả chức danh (nếu có) của ",
+                    text1: "P40. Hãy mô tả chức danh (nếu có) của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " trong công việc này?",
                     textColor: Colors.black,
@@ -135,10 +136,10 @@ class _P39_42ViewState extends State<P39_42View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p41
                   UIRichText(
-                    text1: "P41. Tên cơ sở nơi ",
+                    text1: "P41. Tên cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm công việc trên là gì?",
                     textColor: Colors.black,
@@ -165,10 +166,10 @@ class _P39_42ViewState extends State<P39_42View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p42
                   UIRichText(
-                    text1: "P42.  Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ",
+                    text1: "P42.  Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm việc là gì?",
                     textColor: Colors.black,
@@ -196,7 +197,7 @@ class _P39_42ViewState extends State<P39_42View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

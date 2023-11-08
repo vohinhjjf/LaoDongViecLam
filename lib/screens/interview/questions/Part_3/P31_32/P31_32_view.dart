@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -70,7 +71,7 @@ class _P31_32ViewState extends State<P31_32View> {
               children: [
                 //p31
                 UIRichText(
-                  text1: "P31. Trong 30 ngày qua, ",
+                  text1: "P31. Trong 30 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có chủ động tìm kiếm việc làm hoặc chuẩn bị để bắt "
                       "đầu hoạt động sản xuất kinh doanh không?",
@@ -136,14 +137,14 @@ class _P31_32ViewState extends State<P31_32View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
                 //p32
                 Visibility(
                   visible: p31 == 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
-                          text1: "P32. ",
+                          text1: "P32. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " không tìm việc có phải là do đã tìm được việc"
                               " hoặc đã sẵn sàng hoạt động kinh doanh?",

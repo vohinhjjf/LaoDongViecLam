@@ -6,6 +6,7 @@ import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';
 import '../../../../components/uis.dart';
 import '../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../models/doiSongHo_model.dart';
 import '../../../../models/thongTinHo_model.dart';
 import '../../../../models/thongTinThanhVien_model.dart';
 import '../../../../services/sqlite/execute_database.dart';
@@ -15,6 +16,7 @@ class GPSViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   GPSViewModel(this._executeDatabase, this._sPrefAppModel);
   var thongTinHo = thongTinHoModel();
+  var doisongho = DoiSongHoModel();
   List<thongTinThanhVienModel> list = [];
   String stopQuestion = "";
   int typeStop = 0;  //0: normal , 1 : member , 2 : dead;
@@ -30,6 +32,9 @@ class GPSViewModel extends BaseViewModel {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.getHo(idho).then((value) => thongTinHo = value);
     await _executeDatabase.getListTTTV(idho).then((value) => list = value);
+    await _executeDatabase.getDoiSongHo(idho).then((value) {
+      doisongho = value;
+    });
   }
 
 
@@ -52,7 +57,7 @@ class GPSViewModel extends BaseViewModel {
       if(index == 0) {
         await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
           if(value.any((e) => e.idhO_BKE == idho)){
-            await _executeDatabase.updateTrangThai(idho, 0, month, year);
+            await _executeDatabase.updateTrangThai(9, 0, idho, month, year);
           } else {
             await _executeDatabase.setBangKeThangDTModel([{
               'idhO_BKE': idho,
@@ -87,6 +92,26 @@ class GPSViewModel extends BaseViewModel {
     return true;
   }
 
+  checkC01_04(List<thongTinThanhVienModel> list){
+    for (var thanhvien in list){
+      if(thanhvien.c01 == 3 && thanhvien.c04! < 3){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool checkC05(List<thongTinThanhVienModel> list){
+    for (var thanhvien in list){
+      if(thanhvien.c04A == 1){
+        _sPrefAppModel.setIDTV(thanhvien.idtv!);
+        stopQuestion = "P05";
+        return true;
+      }
+    }
+    return false;
+  }
+
   void gPSCheck(String stopQuestion){
     NavigationServices.instance.routeNavigate(stopQuestion, context);
   }
@@ -101,14 +126,20 @@ class GPSViewModel extends BaseViewModel {
     return await _executeDatabase.getKD_VD(idho);
   }
 
-  checkQuestion(List<thongTinThanhVienModel> list_tv, thongTinHoModel thongTinHo){
+  checkQuestion(List<thongTinThanhVienModel> list_tv, thongTinHoModel thongTinHo, DoiSongHoModel doiSongHo){
     if (!procedureMember(list_tv)) {
       typeStop = 1;
       return false;
     }
 
     if (!procedureThongTinHo(thongTinHo)) {
-      typeStop = 0;
+      typeStop = 2;
+      return false;
+    }
+
+    if(!BaseLogic.getInstance().checkC62_M1(doiSongHo)){
+      typeStop = 3;
+      stopQuestion = BaseLogic.getInstance().mQuestion;
       return false;
     }
 
@@ -122,6 +153,7 @@ class GPSViewModel extends BaseViewModel {
         currentPos = i;
         print(stopQuestion);
         print(currentPos);
+        _sPrefAppModel.setIDTV(list_tv[i].idtv!);
         return false;
       }
     }

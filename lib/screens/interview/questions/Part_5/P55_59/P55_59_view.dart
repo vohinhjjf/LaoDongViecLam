@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -78,7 +79,7 @@ class _P55_59ViewState extends State<P55_59View> {
                 children: [
                   //p55
                   UIRichText(
-                    text1: "P55. Hãy mô tả công việc thứ hai của ",
+                    text1: "P55. Hãy mô tả công việc thứ hai của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " ?\n(VÍ DỤ: ĐÁNH VỮA, KHUÂN GẠCH ĐỂ XÂY NHÀ)",
                     textColor: Colors.black,
@@ -105,10 +106,10 @@ class _P55_59ViewState extends State<P55_59View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p56
                   UIRichText(
-                    text1: "P56. Hãy mô tả chức danh (nếu có) của ",
+                    text1: "P56. Hãy mô tả chức danh (nếu có) của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " trong công việc này?",
                     textColor: Colors.black,
@@ -135,10 +136,10 @@ class _P55_59ViewState extends State<P55_59View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p57
                   UIRichText(
-                    text1: "P57. Tên cơ sở nơi ",
+                    text1: "P57. Tên cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm công việc trên là gì?",
                     textColor: Colors.black,
@@ -165,10 +166,10 @@ class _P55_59ViewState extends State<P55_59View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p58
                   UIRichText(
-                    text1: "P58. Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ",
+                    text1: "P58. Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm việc là gì?",
                     textColor: Colors.black,
@@ -195,10 +196,10 @@ class _P55_59ViewState extends State<P55_59View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   //p59
                   UIRichText(
-                    text1: "P59. Trong 7 ngày qua, ",
+                    text1: "P59. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm công việc này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
@@ -224,9 +225,8 @@ class _P55_59ViewState extends State<P55_59View> {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                     ),
                   ),
-                  const SizedBox(height: 10,),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -240,7 +240,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
                             );
                           }
@@ -249,7 +249,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P56 - Chức danh nhập vào quá ngắn!',)
                             );
                           }
@@ -258,7 +258,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
                             );
                           }
@@ -267,7 +267,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
                             );
                           }
@@ -276,7 +276,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
                                           .text} quá lớn!',)
                             );
@@ -286,7 +286,7 @@ class _P55_59ViewState extends State<P55_59View> {
                                 context: context,
                                 builder: (_) =>
                                     UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
+                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có Số giờ thực tế cho công việc thứ hai = ${_gio
                                           .text} có đúng không?',
                                       onpress: () {

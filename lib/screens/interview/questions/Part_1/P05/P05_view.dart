@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lao_dong_viec_lam/base/base_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
@@ -82,7 +83,7 @@ class _P05ViewState extends State<P05View> {
               children: [
                 //p05
                 UIRichText(
-                  text1: "P05. ",
+                  text1: "P05. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có con dưới 3 tuổi sống cùng hộ không?",
                   textColor: Colors.black,
@@ -148,7 +149,7 @@ class _P05ViewState extends State<P05View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

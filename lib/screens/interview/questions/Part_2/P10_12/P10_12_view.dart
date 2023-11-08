@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -114,7 +115,7 @@ class _P10_12ViewState extends State<P10_12View> {
               children: [
                 //p10
                 UIRichText(
-                  text1: "P10. ",
+                  text1: "P10. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " chuyển đến đây từ tỉnh/thành phố/quốc gia nào?",
                   textColor: Colors.black,
@@ -260,7 +261,7 @@ class _P10_12ViewState extends State<P10_12View> {
                       children: [
                         //p11
                         UIRichText(
-                          text1: "P11. Nơi thực tế thường trú trước khi ",
+                          text1: "P11. Nơi thực tế thường trú trước khi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " chuyển đến đây là phường, thị trấn hay xã?",
                           textColor: Colors.black,
@@ -328,7 +329,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         const SizedBox(height: 15,),
                         //p12
                         UIRichText(
-                          text1: "P12. Lý do chính mà ",
+                          text1: "P12. Lý do chính mà ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " chuyển đến nơi ở hiện tại là gì?",
                           textColor: Colors.black,

@@ -5,8 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
+import '../../../../../models/thongTinHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'P13_viewmodel.dart';
 
@@ -20,6 +22,7 @@ class P13View extends StatefulWidget {
 class _P13ViewState extends State<P13View> {
   late P13ViewModel p13ViewModel;
   var thanhvien = thongTinThanhVienModel();
+  var thongtinho = thongTinHoModel();
   int groupValue = 0;
   bool check_draw = true;
 
@@ -34,6 +37,7 @@ class _P13ViewState extends State<P13View> {
               () => {
             setState(() {
               thanhvien = p13ViewModel.thanhvien;
+              thongtinho = p13ViewModel.thongtinho;
               groupValue = p13ViewModel.thanhvien.c11 ?? 0;
             })
           });
@@ -69,7 +73,7 @@ class _P13ViewState extends State<P13View> {
               children: [
                 //p13
                 UIRichText(
-                  text1: "P13. Hiện nay, ",
+                  text1: "P13. Hiện nay, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có đang theo học một trường lớp nào "
                       "thuộc Hệ thống giáo dục quốc dân không?",
@@ -147,17 +151,185 @@ class _P13ViewState extends State<P13View> {
                       if(groupValue == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P13-Tình trạng đi học nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P13-Tình trạng đi học nhập vào chưa đúng!',)
                         );
-                      } else if(groupValue == 2 && (thanhvien.c04! >= 15 && thanhvien.c04! < 18)){
+                      }
+                      else if(thongtinho.ttnt == 1 && (thanhvien.c04 == 16 || thanhvien.c04 == 17) && groupValue == 2){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có '
-                                  'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                              notification: 'Thành viên ${thanhvien.c00} ở khu vực thành thị: '
+                                  'Tuổi tròn ${thanhvien.c04} mà hiện không đi học (P13 = 2). Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
+                                if(groupValue == 2 && (thanhvien.c04! >= 15 && thanhvien.c04! < 18)){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có '
+                                            'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if(groupValue == 2 && (thanhvien.c04! >= 5 && thanhvien.c04! <= 15)){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
+                                                      'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+                                                    if(groupValue == 1 && thanhvien.c04! >= 60){
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (_) => UINotificationDialog(
+                                                            notification: 'Thành viên ${thanhvien.c00} có '
+                                                                'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                                            onpress: (){
+                                                              Navigator.of(context).pop();
 
+                                                            },
+                                                          )
+                                                      );
+                                                    }
+                                                    else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (_) => UINotificationDialog(
+                                                            notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                                                'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                                            onpress: (){
+                                                              Navigator.of(context).pop();
+
+                                                            },
+                                                          )
+                                                      );
+                                                    }
+                                                    else {
+                                                      p13ViewModel.P13Next(thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c11: groupValue,
+                                                      ));
+                                                    }
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else if(groupValue == 1 && thanhvien.c04! >= 60){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} có '
+                                                      'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                                      'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p13ViewModel.P13Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c11: groupValue,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 2 && (thanhvien.c04! >= 5 && thanhvien.c04! <= 15)){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
+                                            'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if(groupValue == 1 && thanhvien.c04! >= 60){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} có '
+                                                      'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                                      'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p13ViewModel.P13Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c11: groupValue,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 1 && thanhvien.c04! >= 60){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có '
+                                            'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p13ViewModel.P13Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c11: groupValue,
+                                  ));
+                                }
                               },
                             )
                         );
@@ -166,12 +338,133 @@ class _P13ViewState extends State<P13View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} ở '
-                                  'khu vực thành thị: Tuổi tròn ${thanhvien.c04}'
-                                  ' mà hiện không đi học (P13 = 2). Có đúng không?',
+                              notification: 'Thành viên ${thanhvien.c00} có '
+                                  'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
+                                if(groupValue == 2 && (thanhvien.c04! >= 5 && thanhvien.c04! <= 15)){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
+                                            'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+                                          if(groupValue == 1 && thanhvien.c04! >= 60){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} có '
+                                                      'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
 
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                                      'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                                  onpress: (){
+                                                    Navigator.of(context).pop();
+
+                                                  },
+                                                )
+                                            );
+                                          }
+                                          else {
+                                            p13ViewModel.P13Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c11: groupValue,
+                                            ));
+                                          }
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 1 && thanhvien.c04! >= 60){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có '
+                                            'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p13ViewModel.P13Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c11: groupValue,
+                                  ));
+                                }
+                              },
+                            )
+                        );
+                      }
+                      else if(groupValue == 2 && (thanhvien.c04! >= 5 && thanhvien.c04! <= 15)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
+                                  'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                              onpress: (){
+                                Navigator.of(context).pop();
+                                if(groupValue == 1 && thanhvien.c04! >= 60){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} có '
+                                            'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else if(groupValue == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                        onpress: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                      )
+                                  );
+                                }
+                                else {
+                                  p13ViewModel.P13Next(thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c11: groupValue,
+                                  ));
+                                }
                               },
                             )
                         );
@@ -201,7 +494,8 @@ class _P13ViewState extends State<P13View> {
                               },
                             )
                         );
-                      }else {
+                      }
+                      else {
                         p13ViewModel.P13Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,

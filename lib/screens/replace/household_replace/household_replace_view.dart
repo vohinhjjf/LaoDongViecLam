@@ -65,7 +65,7 @@ class _HouseholdReplaceViewState extends State<HouseholdReplaceView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //householdReplaceViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    householdReplaceViewModel.searchData(text).then((value) => listBangKeCs = value);
                   });
                 },
                 decoration: const InputDecoration(

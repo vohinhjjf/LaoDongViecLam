@@ -48,6 +48,24 @@ class CompleteInterviewViewModel extends BaseViewModel {
     });
   }
 
+  Future<List<BangKeCsModel>> searchData(List<BangKeThangDTModel> bangKeThangDTModel, String name) async {
+    String iddb = _sPrefAppModel.IDDB;
+    int thangdt = int.parse(_sPrefAppModel.month);
+    int namdt = DateTime.now().year;
+    String condition = "iddb = $iddb AND HoDuPhong = 0 AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+    List<BangKeCsModel> list_complete = [];
+    List<BangKeCsModel> value = await _executeDatabase.getHouseHold(condition);
+
+    for(var bk_ho in value){
+      for(var bk_tdt in bangKeThangDTModel) {
+        if (bk_ho.idho == bk_tdt.idhO_BKE || (bk_ho.trangthai_BK == 2 || bk_ho.trangthai_BK == 3 ||bk_ho.trangthai_BK == 4)) {
+          list_complete.add(bk_ho);
+        }
+      }
+    }
+    return list_complete;
+  }
+
   Future<void> getEnquiry(String id, String namDT) async {
     late thongTinHoModel thongtinHoModel;
     late thongTinHoNKTTModel thongtinHoNKTTModel;
@@ -86,7 +104,7 @@ class CompleteInterviewViewModel extends BaseViewModel {
     if(bangKeThangDTModel.trangThai == 9 && bangKeThangDTModel.sync == 1) {
       await getEnquiry(bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.namDT!.toString());
     }
-    await _executeDatabase.updateTrangThai(bangKeThangDTModel.idhO_BKE!, 8, bangKeThangDTModel.thangDT!, bangKeThangDTModel.namDT!);
+    await _executeDatabase.updateTrangThai(8, 0, bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.thangDT!, bangKeThangDTModel.namDT!);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

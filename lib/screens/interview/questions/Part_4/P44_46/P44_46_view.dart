@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -79,7 +80,7 @@ class _P44_46ViewState extends State<P44_46View> {
                       child: Column(
                         children: [
                           UIRichText(
-                            text1: "P44. Cơ sở nơi ",
+                            text1: "P44. Cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                             text2: thanhvien.c00 ?? "",
                             text3: " làm việc có đăng ký kinh doanh không?",
                             textColor: Colors.black,
@@ -148,9 +149,9 @@ class _P44_46ViewState extends State<P44_46View> {
                       )
                   ),
                   //p45
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   UIRichText(
-                    text1: "P45. Thực tế, trong 7 ngày qua, ",
+                    text1: "P45. Thực tế, trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm công việc này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
@@ -177,9 +178,9 @@ class _P44_46ViewState extends State<P44_46View> {
                     ),
                   ),
                   //p46
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   UIRichText(
-                    text1: "P46. Có phải ",
+                    text1: "P46. Có phải ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " đang tạm nghỉ công việc này trong 7 ngày qua không?",
                     textColor: Colors.black,
@@ -245,7 +246,7 @@ class _P44_46ViewState extends State<P44_46View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -275,7 +276,7 @@ class _P44_46ViewState extends State<P44_46View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: 'Thành viên ${thanhvien
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                       .c00} có cơ sở thuộc loại hình tổ chức đoàn thể khác mà không có ĐKKD!',)
                             );
                           }
@@ -283,7 +284,7 @@ class _P44_46ViewState extends State<P44_46View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: 'Thành viên ${thanhvien
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                       .c00} là cá nhân làm tự do (P43 = 3) mà cơ sở có đăng ký kinh doanh (P44 = 1). Kiểm tra lại!',)
                             );
                           }
@@ -291,7 +292,7 @@ class _P44_46ViewState extends State<P44_46View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: '${thanhvien
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                       .c00} có 0 giờ làm việc trong 7 ngày qua mà P46 = 2!',)
                             );
                           }
@@ -308,7 +309,7 @@ class _P44_46ViewState extends State<P44_46View> {
                                 context: context,
                                 builder: (_) =>
                                     UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
+                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P45 - Số giờ thực tế làm việc/tuần = ${_gio
                                           .text} quá cao, trên 8 giờ/ngày. Có đúng không?',
                                       onpress: () {

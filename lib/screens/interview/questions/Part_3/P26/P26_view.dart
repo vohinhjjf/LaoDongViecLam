@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -69,7 +70,7 @@ class _P26ViewState extends State<P26View> {
               children: [
                 //p26
                 UIRichText(
-                  text1: "P26. Trong 7 ngày qua, ",
+                  text1: "P26. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có làm công việc gì trong ngành trồng trọt/chăn nuôi, "
                       "thủy sản hay lâm nghiệp không?",
@@ -147,7 +148,7 @@ class _P26ViewState extends State<P26View> {
                       if(p26 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P26 - Có làm việc trong ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P26 - Có làm việc trong ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
                         );
                       }else {
                         p26ViewModel.P26Next(thongTinThanhVienModel(

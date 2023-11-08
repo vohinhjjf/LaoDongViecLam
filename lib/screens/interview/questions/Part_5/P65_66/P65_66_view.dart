@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -74,7 +75,7 @@ class _P65_66ViewState extends State<P65_66View> {
                 //p65
                 UIRichText(
                   text1: "P65. Trong 7 ngày qua, tổng số giờ làm tất cả các công "
-                      "việc của ",
+                      "việc của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: ", bao gồm công việc chính và các"
                       " công việc khác nếu có, là:",
@@ -92,10 +93,10 @@ class _P65_66ViewState extends State<P65_66View> {
                   ),
                 ),
                 //p62
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
                 UIRichText(
                   text1: "P66. Tháng trước, tổng thu nhập từ tất cả các công việc "
-                      "của ",
+                      "của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: "bao gồm công việc chính và các công "
                       "việc khác nếu có, là:",
@@ -113,7 +114,7 @@ class _P65_66ViewState extends State<P65_66View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -124,27 +125,27 @@ class _P65_66ViewState extends State<P65_66View> {
                       if(int.parse(_gio.text) > 84){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} quá lớn!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} quá lớn!',)
                         );
                       }
                       else if(int.parse(_thunhap.text) > 900000){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_thunhap.text} quá lớn!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_thunhap.text} quá lớn!',)
                         );
                       }
                       else if(int.parse(_gio.text) >= 64){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 if(int.parse(_thunhap.text) >= 400000){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           p65_66ViewModel.P65_66Next(thongTinThanhVienModel(
@@ -173,7 +174,7 @@ class _P65_66ViewState extends State<P65_66View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 p65_66ViewModel.P65_66Next(thongTinThanhVienModel(

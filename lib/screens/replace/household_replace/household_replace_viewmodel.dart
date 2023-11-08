@@ -36,6 +36,15 @@ class HouseholdReplaceViewModel extends BaseViewModel {
     await _executeDatabase.getHouseHold(condition).then((value) => data = value);
   }
 
+  Future<List<BangKeCsModel>> searchData(String name) async {
+    String iddb = _sPrefAppModel.IDDB;
+    int thangdt = int.parse(_sPrefAppModel.month);
+    int namdt = DateTime.now().year;
+    String condition = "iddb = $iddb AND HoDuPhong = 0 AND (trangThai_BK == 2 OR trangThai_BK == 3 OR trangThai_BK == 4) AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+
+    return _executeDatabase.getHouseHold(condition);
+  }
+
   void HouseholdReplaceNext(int nhom, String idho) async {
     await _sPrefAppModel.setIdHo(idho);
     await _sPrefAppModel.setNhom(nhom);

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -70,7 +71,7 @@ class _P67_68ViewState extends State<P67_68View> {
               children: [
                 //p67
                 UIRichText(
-                  text1: "P67. ",
+                  text1: "P67. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có muốn làm thêm giờ không?",
                   textColor: Colors.black,
@@ -135,14 +136,14 @@ class _P67_68ViewState extends State<P67_68View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
                 //p68
                 Visibility(
                   visible: p67 != 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
-                          text1: "P68. ",
+                          text1: "P68. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " có thể bắt đầu làm thêm giờ trong vòng 2 tuần tới không?",
                           textColor: Colors.black,
@@ -211,7 +212,7 @@ class _P67_68ViewState extends State<P67_68View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -235,7 +236,7 @@ class _P67_68ViewState extends State<P67_68View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có Tổng số giờ làm việc quá cao trên 64 giờ mà vẫn muốn làm thêm giờ. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có Tổng số giờ làm việc quá cao trên 64 giờ mà vẫn muốn làm thêm giờ. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
@@ -249,12 +250,20 @@ class _P67_68ViewState extends State<P67_68View> {
                         );
                       }
                       else {
-                        p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c61: p67,
-                          c62: p68,
-                        ));
+                        if(p67 == 1) {
+                          p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c61: p67,
+                            c62: p68,
+                          ));
+                        } else {
+                          p67_68ViewModel.P67_68Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c61: p67,
+                          ));
+                        }
                       }
                     }),
                   ],

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -70,7 +71,7 @@ class _P29_30ViewState extends State<P29_30View> {
               children: [
                 //p29
                 UIRichText(
-                  text1: "P29. Công việc này ",
+                  text1: "P29. Công việc này ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " làm thuê cho người khác hay cho gia đình mình?",
                   textColor: Colors.black,
@@ -141,9 +142,10 @@ class _P29_30ViewState extends State<P29_30View> {
                   visible: p29 == 1,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
                           text1: "P30. Ngoài công việc tạo ra sản phẩm với mục đích để gia"
-                              " đình sử dụng, trong 7 ngày qua, ",
+                              " đình sử dụng, trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " có làm công việc hoặc hoạt động kinh doanh nào "
                               "khác dù chỉ một giờ để tạo thu nhập không?",

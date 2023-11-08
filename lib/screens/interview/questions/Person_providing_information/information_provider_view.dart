@@ -87,6 +87,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                     const SizedBox(height: 10,),
                     ListView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: list_map.length,
                       itemBuilder: (context, index) {
                         return ListTile(
@@ -121,7 +122,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                         );
                       },
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 20,),
                     Visibility(
                       visible: groupValue == 87,
                       child: const UIText(
@@ -160,13 +161,13 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15,),
+                    const SizedBox(height: 20,),
                     const UIText(
                       text: "Xin ông bà cho biết số điện thoại cố định/di động của hộ:",
                       textColor: Colors.black,
                       textFontSize:fontGreater,
                     ),
-                    const SizedBox(height: 5,),
+                    const SizedBox(height: 10,),
                     TextFormField(
                       controller: _text_phone,
                       maxLength: 15,
@@ -182,7 +183,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                       ),
                     ),
                     //Button
-                    const SizedBox(height: 25,),
+                    const SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

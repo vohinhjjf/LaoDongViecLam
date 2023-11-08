@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -85,7 +86,7 @@ class _P43ViewState extends State<P43View> {
               children: [
                 //p43
                 UIRichText(
-                  text1: "P43. Cơ sở nơi ",
+                  text1: "P43. Cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " làm việc thuộc loại hình nào sau đây?",
                   textColor: Colors.black,
@@ -130,7 +131,7 @@ class _P43ViewState extends State<P43View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

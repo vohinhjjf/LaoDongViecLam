@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -83,7 +84,7 @@ class _P83ViewState extends State<P83View> {
                   //p83
                   UIRichText(
                     text1: "P83. Tính từ đầu năm đến thời điểm hiện nay, hộ "
-                        "${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                        "${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " chịu ảnh hưởng tiêu cực của sự kiện nào dưới đây?",
                     textColor: Colors.black,
@@ -470,7 +471,7 @@ class _P83ViewState extends State<P83View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -485,7 +486,7 @@ class _P83ViewState extends State<P83View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
                             );
                           } else {

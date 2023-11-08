@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -95,7 +96,7 @@ class _P17BViewState extends State<P17BView> {
                 children: <Widget>[
                   //p17
                   UIRichText(
-                    text1: "P17. Với trình độ học vấn cao nhất là ${trinhdo()}, ",
+                    text1: "P17. Với trình độ học vấn cao nhất là ${trinhdo()}, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " đã được đào tạo chuyên ngành gì và năm tốt nghiệp ngành đó là năm nào?",
                     textColor: Colors.black,
@@ -141,7 +142,7 @@ class _P17BViewState extends State<P17BView> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -149,11 +150,21 @@ class _P17BViewState extends State<P17BView> {
                         p17BviewModel.P17BBack();
                       }),
                       UINextButton(ontap: (){
-                        p17BviewModel.P17BNext(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c15B: _madaotao.text
-                        ));
+                        if (_madaotao.text == "") {
+                          showDialog(
+                              context: context,
+                              builder: (_) =>
+                                  UIWarningDialog(
+                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                        .c00} có P17B - Mã ngành đào tạo nhập vào chưa đúng!',)
+                          );
+                        } else {
+                          p17BviewModel.P17BNext(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c15B: _madaotao.text
+                          ));
+                        }
                       }),
                     ],
                   )

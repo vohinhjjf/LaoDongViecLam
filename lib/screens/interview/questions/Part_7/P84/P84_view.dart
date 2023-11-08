@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -80,7 +81,7 @@ class _P84ViewState extends State<P84View> {
                   //p84
                   UIRichText(
                     text1: "P84. Tính từ đầu năm đến thời điểm hiện nay, hộ "
-                        "${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                        "${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " đã nhận được những nguồn trợ giúp nào?",
                     textColor: Colors.black,
@@ -412,7 +413,7 @@ class _P84ViewState extends State<P84View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -427,7 +428,7 @@ class _P84ViewState extends State<P84View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
                             );
                           } else {

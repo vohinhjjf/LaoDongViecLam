@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -82,7 +83,7 @@ class _P27ViewState extends State<P27View> {
               children: [
                 //p27
                 UIRichText(
-                  text1: "P27. Công việc mà ",
+                  text1: "P27. Công việc mà ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " $_tt thuộc ngành trồng trọt/chăn nuôi,"
                       " thủy sản, lâm nghiệp hay ngành khác?",

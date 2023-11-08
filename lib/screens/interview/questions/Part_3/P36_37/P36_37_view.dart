@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -80,7 +81,7 @@ class _P36_37ViewState extends State<P36_37View> {
               children: [
                 //p36
                 UIRichText(
-                  text1: "P36. Nếu có một công việc, ",
+                  text1: "P36. Nếu có một công việc, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có sẵn sàng làm việc trong vòng 2 tuần tới không?",
                   textColor: Colors.black,
@@ -150,8 +151,9 @@ class _P36_37ViewState extends State<P36_37View> {
                     visible: p36 == 1,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
-                          text1: "P37. Khoảng thời gian ",
+                          text1: "P37. Khoảng thời gian ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " không có việc làm và tìm kiếm việc làm hoặc "
                               "chuẩn bị hoạt động sản xuất kinh doanh là bao lâu?",
@@ -196,39 +198,39 @@ class _P36_37ViewState extends State<P36_37View> {
                             );
                           },
                         ),
-                        //Button
-                        const SizedBox(height: 25,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            UIBackButton(ontap: (){
-                              p36_37ViewModel.P36_37Back(thanhvien);
-                            }),
-                            UINextButton(ontap: (){
-                              if(p36 == 0){
-                                showDialog(
-                                    context: context,
-                                    builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
-                                );
-                              } else if(p36 == 1 && p37 == 0){
-                                showDialog(
-                                    context: context,
-                                    builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
-                                );
-                              }
-                              else {
-                                p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
-                                  idho: thanhvien.idho,
-                                  idtv: thanhvien.idtv,
-                                  c32: p36,
-                                  c33: p37,
-                                ));
-                              }
-                            }),
-                          ],
-                        )
                       ],
                     )
+                ),
+                //Button
+                const SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UIBackButton(ontap: (){
+                      p36_37ViewModel.P36_37Back(thanhvien);
+                    }),
+                    UINextButton(ontap: (){
+                      if(p36 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                        );
+                      } else if(p36 == 1 && p37 == 0){
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
+                        );
+                      }
+                      else {
+                        p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
+                          idho: thanhvien.idho,
+                          idtv: thanhvien.idtv,
+                          c32: p36,
+                          c33: p37,
+                        ));
+                      }
+                    }),
+                  ],
                 )
               ],
             ),

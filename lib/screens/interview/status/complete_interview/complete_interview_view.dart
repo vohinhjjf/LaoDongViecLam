@@ -78,7 +78,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //CompleteInterviewViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    completeInterviewViewModel.searchData(listBangKeThangDTModel,text).then((value) => list = value);
                   });
                 },
                 style: const TextStyle(color: Colors.black, fontSize: fontMedium),
@@ -99,7 +99,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel[index]);
+                      completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel.firstWhere((e) => e.idhO_BKE == list[index].idho && e.thangDT == list[index].thangDT));
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),

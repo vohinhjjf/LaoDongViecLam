@@ -136,13 +136,8 @@ class SyncServices {
       if (response.statusCode == 200) {
         print("Success!1");
         tempt++;
-        await _executeDatabase.updateTrangThai(
-            listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 9,
-            listphieuDieuTra[i].bangKeThangDT!.thangDT!,
-            listphieuDieuTra[i].bangKeThangDT!.namDT!
-        );
-        await _executeDatabase.updateSync(
-            listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!, 1,
+        await _executeDatabase.updateTrangThai(9, 1,
+            listphieuDieuTra[i].bangKeThangDT!.idhO_BKE!,
             listphieuDieuTra[i].bangKeThangDT!.thangDT!,
             listphieuDieuTra[i].bangKeThangDT!.namDT!
         );

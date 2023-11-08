@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -85,7 +86,7 @@ class _P23ViewState extends State<P23View> {
               children: [
                 //p23
                 UIRichText(
-                  text1: "P23. Lý do chính ",
+                  text1: "P23. Lý do chính ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " tạm nghỉ việc trong 7 ngày qua?",
                   textColor: Colors.black,
@@ -138,6 +139,7 @@ class _P23ViewState extends State<P23View> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 5,),
                       const UIText(
                         text: "Lý do khác",
                         textColor: Colors.black,
@@ -197,7 +199,7 @@ class _P23ViewState extends State<P23View> {
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring:
-                                      '${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',
+                                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',
                                 ));
                       } else {
                         p23ViewModel.P23Next(thongTinThanhVienModel(

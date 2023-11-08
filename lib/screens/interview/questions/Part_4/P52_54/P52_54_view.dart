@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -84,7 +85,7 @@ class _P52_54ViewState extends State<P52_54View> {
                     child: Column(
                       children: [
                         UIRichText(
-                          text1: "P52. Loại hình BHXH mà ",
+                          text1: "P52. Loại hình BHXH mà ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " đang tham gia đóng là gì?",
                           textColor: Colors.black,
@@ -149,13 +150,13 @@ class _P52_54ViewState extends State<P52_54View> {
                             });
                           },
                         ),
-                        const SizedBox(height: 10,),
+                        const SizedBox(height: 20,),
                       ],
                     )
                 ),
                 //p53
                 UIRichText(
-                  text1: "P53. ",
+                  text1: "P53. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " đã làm công việc trên được bao lâu?",
                   textColor: Colors.black,
@@ -199,10 +200,10 @@ class _P52_54ViewState extends State<P52_54View> {
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
                 //p54
                 UIRichText(
-                  text1: "P54. Ngoài công việc này,",
+                  text1: "P54. Ngoài công việc này, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có làm một công việc nào khác để nhận tiền lương/tiền "
                       "công hoặc hoạt động sản xuất, kinh doanh để tạo ra thu "
@@ -271,7 +272,7 @@ class _P52_54ViewState extends State<P52_54View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -282,25 +283,25 @@ class _P52_54ViewState extends State<P52_54View> {
                       if(thanhvien.c45 == 1 && p52 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P52 - Loại hình BHXH nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P52 - Loại hình BHXH nhập vào chưa đúng!',)
                         );
                       }
                       else if(p53 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P53 - Thời gian làm công việc chính nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P53 - Thời gian làm công việc chính nhập vào chưa đúng!',)
                         );
                       }
                       else if(p54 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P54 - Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P54 - Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
                         );
                       }
                       else if(thanhvien.c38 == 1 && thanhvien.c39 == 2 && (thanhvien.c45 == 1 && p52 == 1)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} làm việc trong khu vực hộ NN không có ĐKKD mà có BHXH bắt bắt buộc!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực hộ NN không có ĐKKD mà có BHXH bắt bắt buộc!',)
                         );
                       }
                       else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
@@ -310,21 +311,21 @@ class _P52_54ViewState extends State<P52_54View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/nhà nước và có HĐLĐ từ 3 tháng trở lên mà không có BHXH tự nguyện. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/nhà nước và có HĐLĐ từ 3 tháng trở lên mà không có BHXH tự nguyện. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 if(thanhvien.c44! >= 5 && p52 == 1){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           if(thanhvien.c39 == 2 && p52 == 1){
                                             showDialog(
                                                 context: context,
                                                 builder: (_) => UINotificationDialog(
-                                                  notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
                                                   onpress: (){
                                                     Navigator.of(context).pop();
                                                     p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
@@ -355,7 +356,7 @@ class _P52_54ViewState extends State<P52_54View> {
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
@@ -386,14 +387,14 @@ class _P52_54ViewState extends State<P52_54View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 if(thanhvien.c39 == 2 && p52 == 1){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
@@ -424,7 +425,7 @@ class _P52_54ViewState extends State<P52_54View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 p52_54ViewModel.P52_54Next(thongTinThanhVienModel(

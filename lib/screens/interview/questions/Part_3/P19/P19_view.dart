@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -69,7 +70,7 @@ class _P19ViewState extends State<P19View> {
               children: [
                 //p19
                 UIRichText(
-                  text1: "P19. Trong 7 ngày qua, ",
+                  text1: "P19. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có làm một việc gì từ 1 giờ"
                       " trở lên để được nhân tiền công/tiền lương không?",
@@ -147,7 +148,7 @@ class _P19ViewState extends State<P19View> {
                       if(groupValue == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P19-Làm việc 7 ngày qua nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P19-Làm việc 7 ngày qua nhập vào chưa đúng!',)
                         );
                       }else {
                         p19ViewModel.P19Next(thongTinThanhVienModel(

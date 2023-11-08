@@ -30,6 +30,15 @@ class BackupReplaceViewModel extends BaseViewModel {
     await _executeDatabase.getHouseHold(condition).then((value) => data= value);
   }
 
+  Future<List<BangKeCsModel>> searchData(String name) async {
+    String iddb = _sPrefAppModel.IDDB;
+    int thangdt = int.parse(_sPrefAppModel.month);
+    int namdt = DateTime.now().year;
+    String condition = "iddb = $iddb AND HoDuPhong = 1 AND nhom = 99 AND thangDT = $thangdt AND namDT = $namdt AND tenChuHo LIKE '$name%'";
+
+    return _executeDatabase.getHouseHold(condition);
+  }
+
   void BackupReplace(BangKeCsModel hoDuPhong) async {
     List<BangKeCsModel> list = [];
     String token = _sPrefAppModel.accessToken;

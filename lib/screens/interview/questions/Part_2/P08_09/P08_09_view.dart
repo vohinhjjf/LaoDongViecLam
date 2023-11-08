@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -83,7 +84,7 @@ class _P08_09ViewState extends State<P08_09View> {
               children: [
                 //p08
                 UIRichText(
-                  text1: "P08. Tình trạng hôn nhân hiện nay của ",
+                  text1: "P08. Tình trạng hôn nhân hiện nay của ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " là gì?",
                   textColor: Colors.black,
@@ -135,10 +136,9 @@ class _P08_09ViewState extends State<P08_09View> {
                 ),
                 //p09
                 UIRichText(
-                  text1: "P09. ",
+                  text1: "P09. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
-                  text3:
-                      " đã thường trú ở phường, thị trấn hay xã này được bao lâu?",
+                  text3: " đã thường trú ở phường, thị trấn hay xã này được bao lâu?",
                   textColor: Colors.black,
                   textFontSize: fontLarge,
                 ),

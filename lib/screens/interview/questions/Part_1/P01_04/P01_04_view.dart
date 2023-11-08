@@ -549,6 +549,8 @@ class _P01_04ViewState extends State<P01_04View> {
                         p01_04viewModel.P01_04Back(thanhvien.c01!);
                       }),
                       UINextButton(ontap: () {
+                        int namHT = DateTime.now().year;
+                        var thongtinCH = list_tttv.firstWhere((e) => e.c01 == 1);
                         if (_formKey.currentState!.validate()) {
                           if (p01 == 0) {
                             showDialog(
@@ -565,7 +567,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                   waring: 'Giới tính nhập vào chưa đúng!',)
                             );
                           }
-                          else if (p01 == 2 && p02 == list_tttv.firstWhere((e) => e.c01 == 1).c02) {
+                          else if (p01 == 2 && p02 == thongtinCH.c02) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
@@ -587,7 +589,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                   waring: 'Mối quan hệ khác nhập vào chưa đúng!',)
                             );
                           }
-                          else if ((int.parse(_year.text) > 2023 || int.parse(_year.text) < 1902) && int.parse(_year.text) != 9998) {
+                          else if ((int.parse(_year.text) > namHT || int.parse(_year.text) < 1902) && int.parse(_year.text) != 9998) {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
@@ -595,7 +597,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                   waring: 'Năm sinh nhập vào chưa đúng!',)
                             );
                           }
-                          else if (int.parse(_year.text) == 2023 && int.parse(month) >= ThangDT && month != '98') {
+                          else if (int.parse(_year.text) == namHT && int.parse(month) >= ThangDT && month != '98') {
                             showDialog(
                                 context: context,
                                 builder: (_) =>
@@ -627,30 +629,1474 @@ class _P01_04ViewState extends State<P01_04View> {
                                       .text} có tuổi< 15 tuổi!',)
                             );
                           }
-                          else if (p01 == 3 && (tinh_tuoi() >= list_tttv.firstWhere((e) => e.c01 == 1).c04! || list_tttv.firstWhere((e) => e.c01 == 1).c04! - tinh_tuoi() < 8)) {
+                          else if (p01 == 3 && ((tinh_tuoi() >= thongtinCH.c04!) || (thongtinCH.c04! - tinh_tuoi() < 8))) {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
                                   waring: 'Thành viên là con đẻ của chủ hộ sinh '
                                       '$month/${DateTime.now().year - tinh_tuoi()} mà chủ hộ '
-                                      '${_name.text} sinh ${list_tttv.firstWhere((e) => e.c01 == 1).c03A}/'
-                                      '${DateTime.now().year - list_tttv.firstWhere((e) => e.c01 == 1).c04!}?',)
+                                      '${_name.text} sinh ${thongtinCH.c03A}/'
+                                      '${DateTime.now().year - thongtinCH.c04!}?',)
                             );
                           }
-                          else if (p01 == 5 && tinh_tuoi() < list_tttv.firstWhere((e) => e.c01 == 1).c04!) {
+                          else if (p01 == 5 && tinh_tuoi() < thongtinCH.c04!) {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: 'Chủ hộ ${list_tttv.firstWhere((e) => e.c01 == 1).c00} có tuổi '
-                                      '${list_tttv.firstWhere((e) => e.c01 == 1).c04!} tuổi > tuổi của bố/mẹ '
+                                  waring: 'Chủ hộ ${thongtinCH.c00} có tuổi '
+                                      '${thongtinCH.c04!} tuổi > tuổi của bố/mẹ '
                                       '${tinh_tuoi()} tuổi. Kiểm tra lại!',)
                             );
                           }
+                          else if (p01 == 2 && tinh_tuoi() < 7){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UIWarningDialog(
+                                  waring: 'Vợ/chồng chủ hộ có tuổi = ${tinh_tuoi()} nhỏ hơn 7 tuổi!',
+                                )
+                            );
+                          }
+                          //Notifi
                           else if (int.parse(_year.text) == 9998){
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(
                                   notification: 'Năm sinh của thành viên không xác định có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (p01 == 1 && tinh_tuoi() <= 15){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Tuổi của chủ hộ <= 15 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              p01_04viewModel.P01_04Next(
+                                                  thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c00: _name.text,
+                                                      c01: p01,
+                                                      c02: p02,
+                                                      c03A: month,
+                                                      c03B: _year.text,
+                                                      c04: p03 == 1
+                                                          ? int.parse(_age.text)
+                                                          : tinh_tuoi()
+                                                  ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 2 && (thongtinCH.c04! - tinh_tuoi() > 25)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Chủ hộ ${thongtinCH.c00} có tuổi = ${thongtinCH.c04} - tuổi vợ/chồng chủ hộ = ${tinh_tuoi()} > 25. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (p01 == 2 && tinh_tuoi() < 15){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Vợ/chồng chủ hộ có tuổi = ${tinh_tuoi()} nhỏ hơn 15 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        Navigator.of(context).pop();
+                                                        p01_04viewModel.P01_04Next(
+                                                            thongTinThanhVienModel(
+                                                                idho: thanhvien.idho,
+                                                                idtv: thanhvien.idtv,
+                                                                c00: _name.text,
+                                                                c01: p01,
+                                                                c02: p02,
+                                                                c03A: month,
+                                                                c03B: _year.text,
+                                                                c04: p03 == 1
+                                                                    ? int.parse(_age.text)
+                                                                    : tinh_tuoi()
+                                                            ));
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 2 && (tinh_tuoi() - thongtinCH.c04! > 25)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Vợ/chồng chủ hộ ${thongtinCH.c00} có tuổi = ${tinh_tuoi()} - tuổi chủ hộ = ${thongtinCH.c04} > 25. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 2 && tinh_tuoi() < 15){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Vợ/chồng chủ hộ có tuổi = ${tinh_tuoi()} nhỏ hơn 15 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              p01_04viewModel.P01_04Next(
+                                                  thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c00: _name.text,
+                                                      c01: p01,
+                                                      c02: p02,
+                                                      c03A: month,
+                                                      c03B: _year.text,
+                                                      c04: p03 == 1
+                                                          ? int.parse(_age.text)
+                                                          : tinh_tuoi()
+                                                  ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 3 && ((thongtinCH.c04! - tinh_tuoi() < 13) || (thongtinCH.c04! - tinh_tuoi() > 60))){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: ' Chủ hộ ${thongtinCH.c00} = ${thongtinCH.c04} tuổi mà tuổi của con đẻ chủ hộ = ${tinh_tuoi()} tuổi, chênh nhau ${thongtinCH.c04! - tinh_tuoi()} tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                if (p01 == 8) {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c01K: _orther.text,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                                else {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 4 && (thongtinCH.c04! - tinh_tuoi() < 30)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${_name.text} là cháu nội/ngoại của chủ hộ mà chủ hộ ${thongtinCH.c04} tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 5 && thongtinCH.c04! > tinh_tuoi()){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Chủ hộ ${thongtinCH.c00} có tuổi ${thongtinCH.c04} tuổi > tuổi của ${p02 == 1 ? "bố" : "mẹ"} ${tinh_tuoi()} tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                if (p01 == 8) {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c01K: _orther.text,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                                else {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 5 && p02 == 2 && (tinh_tuoi() - thongtinCH.c04! >= 50)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${_name.text} là mẹ của chủ hộ có tuổi là ${tinh_tuoi()} tuổi không phù hợp với tuổi của chủ hộ là ${thongtinCH.c04} tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                if (p01 == 8) {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c01K: _orther.text,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                                else {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 5 && p02 == 1 && (tinh_tuoi() - thongtinCH.c04! >= 60)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${_name.text} là bố của chủ hộ có tuổi là ${tinh_tuoi()} tuổi không phù hợp với tuổi của chủ hộ là ${thongtinCH.c04} tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                if (p01 == 8) {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c01K: _orther.text,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                                else {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (p01 == 5 && (tinh_tuoi() - thongtinCH.c04! < 13)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${p02 == 1 ? "Bố" : "Mẹ"} của chủ'
+                                                ' hộ ${thongtinCH.c00} có tuổi ${tinh_tuoi()} '
+                                                '- tuổi chủ hộ = ${thongtinCH.c04} nhỏ hơn 13 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              if (tinh_tuoi() > 120){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                                      onpress: () {
+                                                        if (p01 == 8) {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c01K: _orther.text,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                        else {
+                                                          p01_04viewModel.P01_04Next(
+                                                              thongTinThanhVienModel(
+                                                                  idho: thanhvien.idho,
+                                                                  idtv: thanhvien.idtv,
+                                                                  c00: _name.text,
+                                                                  c01: p01,
+                                                                  c02: p02,
+                                                                  c03A: month,
+                                                                  c03B: _year.text,
+                                                                  c04: p03 == 1
+                                                                      ? int.parse(_age.text)
+                                                                      : tinh_tuoi()
+                                                              ));
+                                                        }
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                if (p01 == 8) {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c01K: _orther.text,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                                else {
+                                                  p01_04viewModel.P01_04Next(
+                                                      thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c00: _name.text,
+                                                          c01: p01,
+                                                          c02: p02,
+                                                          c03A: month,
+                                                          c03B: _year.text,
+                                                          c04: p03 == 1
+                                                              ? int.parse(_age.text)
+                                                              : tinh_tuoi()
+                                                      ));
+                                                }
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 1 && tinh_tuoi() <= 15){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Tuổi của chủ hộ <= 15 tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    p01_04viewModel.P01_04Next(
+                                        thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c00: _name.text,
+                                            c01: p01,
+                                            c02: p02,
+                                            c03A: month,
+                                            c03B: _year.text,
+                                            c04: p03 == 1
+                                                ? int.parse(_age.text)
+                                                : tinh_tuoi()
+                                        ));
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 2 && (thongtinCH.c04! - tinh_tuoi() > 25)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Chủ hộ ${thongtinCH.c00} có tuổi = ${thongtinCH.c04} - tuổi vợ/chồng chủ hộ = ${tinh_tuoi()} > 25. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (p01 == 2 && tinh_tuoi() < 15){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Vợ/chồng chủ hộ có tuổi = ${tinh_tuoi()} nhỏ hơn 15 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              Navigator.of(context).pop();
+                                              p01_04viewModel.P01_04Next(
+                                                  thongTinThanhVienModel(
+                                                      idho: thanhvien.idho,
+                                                      idtv: thanhvien.idtv,
+                                                      c00: _name.text,
+                                                      c01: p01,
+                                                      c02: p02,
+                                                      c03A: month,
+                                                      c03B: _year.text,
+                                                      c04: p03 == 1
+                                                          ? int.parse(_age.text)
+                                                          : tinh_tuoi()
+                                                  ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 2 && (tinh_tuoi() - thongtinCH.c04! > 25)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Vợ/chồng chủ hộ ${thongtinCH.c00} có tuổi = ${tinh_tuoi()} - tuổi chủ hộ = ${thongtinCH.c04} > 25. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 2 && tinh_tuoi() < 15){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Vợ/chồng chủ hộ có tuổi = ${tinh_tuoi()} nhỏ hơn 15 tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    p01_04viewModel.P01_04Next(
+                                        thongTinThanhVienModel(
+                                            idho: thanhvien.idho,
+                                            idtv: thanhvien.idtv,
+                                            c00: _name.text,
+                                            c01: p01,
+                                            c02: p02,
+                                            c03A: month,
+                                            c03B: _year.text,
+                                            c04: p03 == 1
+                                                ? int.parse(_age.text)
+                                                : tinh_tuoi()
+                                        ));
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 3 && ((thongtinCH.c04! - tinh_tuoi() < 13) || (thongtinCH.c04! - tinh_tuoi() > 60))){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: ' Chủ hộ ${thongtinCH.c00} = ${thongtinCH.c04} tuổi mà tuổi của con đẻ chủ hộ = ${tinh_tuoi()} tuổi, chênh nhau ${thongtinCH.c04! - tinh_tuoi()} tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 4 && (thongtinCH.c04! - tinh_tuoi() < 30)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Thành viên ${_name.text} là cháu nội/ngoại của chủ hộ mà chủ hộ ${thongtinCH.c04} tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (p01 == 8) {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c01K: _orther.text,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                    else {
+                                      p01_04viewModel.P01_04Next(
+                                          thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c00: _name.text,
+                                              c01: p01,
+                                              c02: p02,
+                                              c03A: month,
+                                              c03B: _year.text,
+                                              c04: p03 == 1
+                                                  ? int.parse(_age.text)
+                                                  : tinh_tuoi()
+                                          ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 5 && thongtinCH.c04! > tinh_tuoi()){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Chủ hộ ${thongtinCH.c00} có tuổi ${thongtinCH.c04} tuổi > tuổi của ${p02 == 1 ? "bố" : "mẹ"} ${tinh_tuoi()} tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 5 && p02 == 2 && (tinh_tuoi() - thongtinCH.c04! >= 50)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Thành viên ${_name.text} là mẹ của chủ hộ có tuổi là ${tinh_tuoi()} tuổi không phù hợp với tuổi của chủ hộ là ${thongtinCH.c04} tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 5 && p02 == 1 && (tinh_tuoi() - thongtinCH.c04! >= 60)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Thành viên ${_name.text} là bố của chủ hộ có tuổi là ${tinh_tuoi()} tuổi không phù hợp với tuổi của chủ hộ là ${thongtinCH.c04} tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (p01 == 5 && (tinh_tuoi() - thongtinCH.c04! < 13)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${p02 == 1 ? "Bố" : "Mẹ"} của chủ'
+                                      ' hộ ${thongtinCH.c00} có tuổi ${tinh_tuoi()} '
+                                      '- tuổi chủ hộ = ${thongtinCH.c04} nhỏ hơn 13 tuổi. Có đúng không?',
+                                  onpress: () {
+                                    Navigator.of(context).pop();
+                                    if (tinh_tuoi() > 120){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
+                                            onpress: () {
+                                              if (p01 == 8) {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c01K: _orther.text,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                              else {
+                                                p01_04viewModel.P01_04Next(
+                                                    thongTinThanhVienModel(
+                                                        idho: thanhvien.idho,
+                                                        idtv: thanhvien.idtv,
+                                                        c00: _name.text,
+                                                        c01: p01,
+                                                        c02: p02,
+                                                        c03A: month,
+                                                        c03B: _year.text,
+                                                        c04: p03 == 1
+                                                            ? int.parse(_age.text)
+                                                            : tinh_tuoi()
+                                                    ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      if (p01 == 8) {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c01K: _orther.text,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                      else {
+                                        p01_04viewModel.P01_04Next(
+                                            thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c00: _name.text,
+                                                c01: p01,
+                                                c02: p02,
+                                                c03A: month,
+                                                c03B: _year.text,
+                                                c04: p03 == 1
+                                                    ? int.parse(_age.text)
+                                                    : tinh_tuoi()
+                                            ));
+                                      }
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (tinh_tuoi() > 120){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: 'Thành viên ${thanhvien.c00} có tuổi = ${tinh_tuoi()} > 120 tuổi. Có đúng không?',
                                   onpress: () {
                                     if (p01 == 8) {
                                       p01_04viewModel.P01_04Next(

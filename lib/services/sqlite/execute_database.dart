@@ -150,10 +150,10 @@ class ExecuteDatabase {
         [sync, id, thangDT, namDT]);
   }
 
-  updateTrangThai(String id, int sync, int thangDT, int namDT) async {
+  updateTrangThai(int trangThai, int sync, String id, int thangDT, int namDT) async {
     await _database?.rawUpdate(
         'UPDATE ${TableConstants.bangkeho_thangdt} SET trangThai = ?, sync = ? WHERE idhO_BKE = ? AND thangDT = ? AND namDT = ?',
-        [9, sync, id, thangDT, namDT]);
+        [trangThai, sync, id, thangDT, namDT]);
   }
 
   //Operating status

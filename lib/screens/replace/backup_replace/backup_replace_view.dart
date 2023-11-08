@@ -64,7 +64,7 @@ class _BackupReplaceViewState extends State<BackupReplaceView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //backupReplaceViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    backupReplaceViewModel.searchData(text).then((value) => listBangKeCs = value);
                   });
                 },
                 decoration: const InputDecoration(

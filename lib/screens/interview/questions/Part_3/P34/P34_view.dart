@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -69,7 +70,7 @@ class _P34ViewState extends State<P34View> {
               children: [
                 //p34
                 UIRichText(
-                  text1: "P34. Hiện tại, ",
+                  text1: "P34. Hiện tại, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có thực sự cần một công việc để tạo ra thu nhập không?",
                   textColor: Colors.black,
@@ -135,7 +136,7 @@ class _P34ViewState extends State<P34View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -146,7 +147,7 @@ class _P34ViewState extends State<P34View> {
                       if(p34 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P34 - Quyết định cần một công việc nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P34 - Quyết định cần một công việc nhập vào chưa đúng!',)
                         );
                       }else {
                         p34ViewModel.P34Next(thongTinThanhVienModel(

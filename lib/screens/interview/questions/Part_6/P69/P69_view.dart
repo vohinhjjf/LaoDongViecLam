@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -71,7 +72,7 @@ class _P69ViewState extends State<P69View> {
                 children: [
                   //p69
                   UIRichText(
-                    text1: "P69. Trong 7 ngày qua, ",
+                    text1: "P69. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu "
                         "giờ để trồng trọt hoặc thu hoạch hoặc chăn nuôi gia súc, "
@@ -103,7 +104,7 @@ class _P69ViewState extends State<P69View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -112,11 +113,121 @@ class _P69ViewState extends State<P69View> {
                       }),
                       UINextButton(ontap: (){
                         if(_formKey.currentState!.validate()) {
-                          p69ViewModel.P69Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c63: int.parse(_gio.text)
-                          ));
+                          if(int.parse(_gio.text) >= 70){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dành thời gian làm việc trong 1 tuần quá nhiều. Có đúng không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if(thanhvien.c24 == 2 && int.parse(_gio.text) >= 1){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                          'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
+                                                      onpress: (){
+                                                        Navigator.of(context).pop();
+
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                p69ViewModel.P69Next(thongTinThanhVienModel(
+                                                    idho: thanhvien.idho,
+                                                    idtv: thanhvien.idtv,
+                                                    c63: int.parse(_gio.text)
+                                                ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p69ViewModel.P69Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c63: int.parse(_gio.text)
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if(thanhvien.c24 == 2 && int.parse(_gio.text) >= 1){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p69ViewModel.P69Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c63: int.parse(_gio.text)
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+
+                                  },
+                                )
+                            );
+                          }
+                          else {
+                            p69ViewModel.P69Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c63: int.parse(_gio.text)
+                            ));
+                          }
                         }
                       }),
                     ],

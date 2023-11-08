@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -71,7 +72,7 @@ class _P20_22ViewState extends State<P20_22View> {
               children: [
                 //p20
                 UIRichText(
-                  text1: "P20. Trong 7 ngày qua, ",
+                  text1: "P20. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " có tham gia hoặc thực hiện"
                       " bất kỳ công việc sản xuất, kinh doanh từ 1 giờ trở lên "
@@ -138,13 +139,13 @@ class _P20_22ViewState extends State<P20_22View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
                 Visibility(
                     visible: p20 == 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
-                          text1: "P21. Trong 7 ngày qua, ",
+                          text1: "P21. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " có giúp thành viên của hộ hoặc của gia đình "
                               "trong công việc họ được nhận tiền công/tiền lương "
@@ -214,14 +215,14 @@ class _P20_22ViewState extends State<P20_22View> {
                       ],
                     )
                 ),
-                const SizedBox(height: 10,),
                 Visibility(
                     visible: p20 == 2 && p21 == 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 20,),
                         UIRichText(
                           text1: "P22. Mặc dù không làm việc trong 7 ngày qua, nhưng"
-                              " có phải ",
+                              " có phải ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " vẫn có công việc được trả công/trả"
                               " lương hoặc công việc sản xuất kinh doanh và dự định"
@@ -303,19 +304,19 @@ class _P20_22ViewState extends State<P20_22View> {
                       if(p20 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P20-Tham gia việc sản xuất kinh doanh từ 1 giờ trở lên nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P20-Tham gia việc sản xuất kinh doanh từ 1 giờ trở lên nhập vào chưa đúng!',)
                         );
                       }
                       else if(p20 == 2 && p21 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P21-Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P21-Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
                         );
                       }
                       else if(p20 == 2 && p21 == 2 && p22 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P22-Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
+                            builder: (_) => const UIWarningDialog(waring: 'P22-Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
                         );
                       }
                       else if(p22 == 2){
@@ -323,7 +324,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           showDialog(
                               context: context,
                               builder: (_) => UINotificationDialog(
-                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
                                 onpress: (){
                                   p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
@@ -340,7 +341,7 @@ class _P20_22ViewState extends State<P20_22View> {
                           showDialog(
                               context: context,
                               builder: (_) => UINotificationDialog(
-                                notification: '${thanhvien.c02 == 1 ? "Ông" : "Bà"} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
                                 onpress: (){
                                   p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,

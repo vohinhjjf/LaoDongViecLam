@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -85,7 +86,7 @@ class _P48_49ViewState extends State<P48_49View> {
               children: [
                 //p48
                 UIRichText(
-                  text1: "P48. Cụ thể, ",
+                  text1: "P48. Cụ thể, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " nhận được bao nhiêu tiền cho công việc này? "
                       "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
@@ -114,9 +115,9 @@ class _P48_49ViewState extends State<P48_49View> {
                   ),
                 ),
                 //p49
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
                 UIRichText(
-                  text1: "P49. ",
+                  text1: "P49. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " làm công việc này với vai trò là gì?",
                   textColor: Colors.black,
@@ -161,7 +162,7 @@ class _P48_49ViewState extends State<P48_49View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 25,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -178,57 +179,57 @@ class _P48_49ViewState extends State<P48_49View> {
                       else if(thanhvien.c41 == 2 && (int.parse(_tien.text) > 1000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 2)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 2)!',)
                         );
                       }
                       else if(thanhvien.c41 == 3 && (int.parse(_tien.text) < 1000 || int.parse(_tien.text) > 10000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 3)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 3)!',)
                         );
                       }
                       else if(thanhvien.c41 == 4 && (int.parse(_tien.text) < 10000 || int.parse(_tien.text) > 20000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 4)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 4)!',)
                         );
                       }
                       else if(thanhvien.c41 == 5 && (int.parse(_tien.text) < 20000 || int.parse(_tien.text) > 50000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 5)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 5)!',)
                         );
                       }
                       else if(thanhvien.c41 == 6 && (int.parse(_tien.text) < 50000 || int.parse(_tien.text) > 100000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 6)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 6)!',)
                         );
                       }
                       else if(thanhvien.c41 == 7 && (int.parse(_tien.text) < 100000)){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 7)!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 7)!',)
                         );
                       }
                       else if(int.parse(_tien.text) > 900000){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P48 - Tổng số tiền nhận được của CV chính  = ${_tien.text} quá lớn!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P48 - Tổng số tiền nhận được của CV chính  = ${_tien.text} quá lớn!',)
                         );
                       }
                       else if(thanhvien.c38! >= 8 && (p49 == 2 || p49 == 3)){
                         String vithe = p49 == 2 ? "Tự làm" : "Lao động gia đình";
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} làm việc trong khu vực nhà nước/tổ chức mà vị thế là $vithe!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực nhà nước/tổ chức mà vị thế là $vithe!',)
                         );
                       }
                       else if(thanhvien.c38! == 4 && (p49 == 1 || p49 == 2 || p49 == 3)){
                         String vaitro = p49 == 1 ?  "Chủ cơ sở" : (p49 == 2 ? "Tự làm" : "Lao động gia đình");
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có loại hình cơ sở là HTX (p49 = 4) nhưng P49 - Vai trò trong công việc chính là $vaitro!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có loại hình cơ sở là HTX (p49 = 4) nhưng P49 - Vai trò trong công việc chính là $vaitro!',)
                         );
                       }
                       else if(thanhvien.c38 != 4 && p49 == 4){
@@ -249,7 +250,7 @@ class _P48_49ViewState extends State<P48_49View> {
                         }
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} là xã viên hợp tác xã (P49 = 4) mà cơ sở làm việc thuộc loại hình không phải hợp tác xã (p49 là $p49). Kiểm tra lại!',)
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là xã viên hợp tác xã (P49 = 4) mà cơ sở làm việc thuộc loại hình không phải hợp tác xã (p49 là $p49). Kiểm tra lại!',)
                         );
                       }
                       //Notifi
@@ -257,7 +258,7 @@ class _P48_49ViewState extends State<P48_49View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập quá cao trên 500 triệu đồng/tháng. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập quá cao trên 500 triệu đồng/tháng. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 Navigator.of(context).pop();
@@ -265,14 +266,14 @@ class _P48_49ViewState extends State<P48_49View> {
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           if(thanhvien.c38 == 4 && p49 == 5){
                                             showDialog(
                                                 context: context,
                                                 builder: (_) => UINotificationDialog(
-                                                  notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                                                   onpress: (){
                                                     p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                                       idho: thanhvien.idho,
@@ -300,7 +301,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                                         onpress: (){
                                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                             idho: thanhvien.idho,
@@ -328,21 +329,21 @@ class _P48_49ViewState extends State<P48_49View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập thấp dưới 50 nghìn đồng/tháng. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập thấp dưới 50 nghìn đồng/tháng. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 if((thanhvien.c38 == 5 || thanhvien.c38 == 9) && (p49 == 2 || p49 == 3)){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
                                         onpress: (){
                                           Navigator.of(context).pop();
                                           if(thanhvien.c38 == 4 && p49 == 5){
                                             showDialog(
                                                 context: context,
                                                 builder: (_) => UINotificationDialog(
-                                                  notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                                                   onpress: (){
                                                     p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                                       idho: thanhvien.idho,
@@ -370,7 +371,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                                         onpress: (){
                                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                             idho: thanhvien.idho,
@@ -398,14 +399,14 @@ class _P48_49ViewState extends State<P48_49View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực doanh nghiệp/đơn vị sự nghiệp ngoài nhà nước mà vị thế là ${p49 == 2 ? "Tự làm" : "Lao động gia đình"} . Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
                                 if(thanhvien.c38 == 4 && p49 == 5){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                                         onpress: (){
                                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                             idho: thanhvien.idho,
@@ -433,7 +434,7 @@ class _P48_49ViewState extends State<P48_49View> {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có cơ sở làm việc thuộc loại hình là hợp tác xã mà vị thế là làm công ăn lương. Có đúng không?',
                               onpress: (){
                                 p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                   idho: thanhvien.idho,

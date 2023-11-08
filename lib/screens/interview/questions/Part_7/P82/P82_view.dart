@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/doiSongHo_model.dart';
@@ -83,7 +84,7 @@ class _P82ViewState extends State<P82View> {
                   //p82
                   UIRichText(
                     text1: "P82. Các nguyên nhân làm chi tiêu cho các mặt hàng lương "
-                        "thực, thực phẩm của hộ ${thanhvien.c02 == 1 ? "Ông" : "Bà"} ",
+                        "thực, thực phẩm của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " giảm đi so với tháng trước là gì?",
                     textColor: Colors.black,
@@ -471,7 +472,7 @@ class _P82ViewState extends State<P82View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -486,7 +487,7 @@ class _P82ViewState extends State<P82View> {
                                 context: context,
                                 builder: (_) =>
                                     UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
+                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
                             );
                           } else {

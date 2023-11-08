@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -94,7 +95,7 @@ class _P35ViewState extends State<P35View> {
                 children: [
                   //p35
                   UIRichText(
-                    text1: "P35. Lý do chính mà ",
+                    text1: "P35. Lý do chính mà ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " không tìm việc trong 30 ngày qua là gì?",
                     textColor: Colors.black,
@@ -177,7 +178,7 @@ class _P35ViewState extends State<P35View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -65,7 +65,7 @@ class _BackupViewState extends State<BackupView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //backupViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    backupViewModel.searchData(text).then((value) => listBangKeCs = value);
                   });
                 },
                 style: const TextStyle(color: Colors.black, fontSize: fontMedium),

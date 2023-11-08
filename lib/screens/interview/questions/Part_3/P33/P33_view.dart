@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -82,7 +83,7 @@ class _P33ViewState extends State<P33View> {
                 children: [
                   //p33
                   UIRichText(
-                    text1: "P33. ",
+                    text1: "P33. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " đã tìm việc hoặc bắt đầu hoạt động sản xuất"
                         " kinh doanh bằng cách nào?",
@@ -625,7 +626,7 @@ class _P33ViewState extends State<P33View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

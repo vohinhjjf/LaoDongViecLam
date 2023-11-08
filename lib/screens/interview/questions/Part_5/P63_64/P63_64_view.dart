@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -72,7 +73,7 @@ class _P63_64ViewState extends State<P63_64View> {
                 children: [
                   //p63
                   UIRichText(
-                    text1: "P63. Trong 7 ngày qua, ",
+                    text1: "P63. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm các công việc khác này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
@@ -99,9 +100,9 @@ class _P63_64ViewState extends State<P63_64View> {
                     ),
                   ),
                   //p64
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   UIRichText(
-                    text1: "P64. Tháng trước, ",
+                    text1: "P64. Tháng trước, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " nhận được bao nhiêu "
                         "tiền công/tiền lương hoặc lợi nhuận từ các công việc này? "
@@ -131,7 +132,7 @@ class _P63_64ViewState extends State<P63_64View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -144,7 +145,7 @@ class _P63_64ViewState extends State<P63_64View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: 'Thành viên ${thanhvien
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                       .c00} có P63 - Số giờ cho công việc khác = ${_gio
                                       .text} quá lớn!',)
                             );
@@ -153,7 +154,7 @@ class _P63_64ViewState extends State<P63_64View> {
                             showDialog(
                                 context: context,
                                 builder: (_) => UIWarningDialog(
-                                  waring: 'Thành viên ${thanhvien
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                       .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
                                       .text} quá lớn!',)
                             );
@@ -163,7 +164,7 @@ class _P63_64ViewState extends State<P63_64View> {
                                 context: context,
                                 builder: (_) =>
                                     UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
+                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có Số giờ cho công việc khác = ${_gio
                                           .text} có đúng không?',
                                       onpress: () {
@@ -174,7 +175,7 @@ class _P63_64ViewState extends State<P63_64View> {
                                               context: context,
                                               builder: (_) =>
                                                   UINotificationDialog(
-                                                    notification: 'Thành viên ${thanhvien
+                                                    notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                                         .c00} có Thu nhập của công việc khác = ${_gio
                                                         .text} có đúng không?',
                                                     onpress: () {
@@ -216,7 +217,7 @@ class _P63_64ViewState extends State<P63_64View> {
                                 context: context,
                                 builder: (_) =>
                                     UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
+                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                           .c00} có Thu nhập của công việc khác = ${_gio
                                           .text} có đúng không?',
                                       onpress: () {

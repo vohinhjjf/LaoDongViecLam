@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -82,7 +83,7 @@ class _P14_15ViewState extends State<P14_15View> {
                     child: Column(
                       children: [
                         UIRichText(
-                          text1: "P14. Hiện nay, ",
+                          text1: "P14. Hiện nay, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
                           text3: " có đang theo học đào tạo nghề "
                               "ngắn hạn hoặc bổ sung kiến thức, kỹ năng gì không?",
@@ -159,7 +160,7 @@ class _P14_15ViewState extends State<P14_15View> {
                     )),
                 //p15
                 UIRichText(
-                  text1: "P15. Trình độ giáo dục phổ thông cao nhất mà ",
+                  text1: "P15. Trình độ giáo dục phổ thông cao nhất mà ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " đã tốt nghiệp/đạt được là gì?",
                   textColor: Colors.black,
@@ -208,7 +209,7 @@ class _P14_15ViewState extends State<P14_15View> {
                 ),
                 //Button
                 const SizedBox(
-                  height: 25,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,6 +218,7 @@ class _P14_15ViewState extends State<P14_15View> {
                       p14_15ViewModel.P14_15Back();
                     }),
                     UINextButton(ontap: () {
+                      int namHT = DateTime.now().year;
                       if (p14 == 0 && check) {
                         showDialog(
                             context: context,
@@ -231,42 +233,173 @@ class _P14_15ViewState extends State<P14_15View> {
                                   waring:
                                       'P15-Trình độ giáo dục nhập vào chưa đúng!',
                                 ));
-                      } else if (p14 == 1 &&
-                          p15 == 4 &&
-                          (thanhvien.c03B == '2009' || thanhvien.c04! <= 14) &&
+                      } else if (p15 == 4 &&
+                          (int.parse(thanhvien.c03B!) >= 2010 || namHT - thanhvien.c04! >= 2010) &&
                           thanhvien.thangDT! < 6) {
                         showDialog(
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring:
-                                      '${thanhvien.c00} sinh năm 2009 và đang đi học mà có '
-                                      'trình độ phổ thông đạt được là đã tốt nghiệp THCS',
+                                      '${BaseLogic.getInstance().getMember(thanhvien)} '
+                                          '${thanhvien.c00} sinh năm 2010 và đang đi học mà có '
+                                      'trình độ phổ thông đạt được là đã tốt nghiệp THCS!',
                                 ));
-                      } else if (p14 == 1 &&
-                          p15 == 5 &&
-                          (int.parse(thanhvien.c03B!) >= 2006 ||
-                              thanhvien.c04! >= 17) &&
+                      } else if (p15 == 5 &&
+                          (int.parse(thanhvien.c03B!) >= 2007 ||
+                              namHT - thanhvien.c04! >= 2007) &&
                           (thanhvien.thangDT ?? 0) < 6) {
                         showDialog(
                             context: context,
                             builder: (_) => UIWarningDialog(
                                   waring:
-                                      '${thanhvien.c00} sinh năm 2006 và đang đi học mà có '
-                                      'trình độ phổ thông đạt được là đã tốt nghiệp THPT',
+                                      '${BaseLogic.getInstance().getMember(thanhvien)} '
+                                      '${thanhvien.c00} sinh năm 2007 và đang đi học mà có '
+                                      'trình độ phổ thông đạt được là đã tốt nghiệp THPT!',
                                 ));
-                      } else if (thanhvien.c11 == 1 && p15 == 1) {
+                      }
+                      else if (thanhvien.c11 == 1 && p15 == 1) {
                         showDialog(
                             context: context,
                             builder: (_) => UIWarningDialog(
-                                  waring: '${thanhvien.c00} đang đi học mà có '
+                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} '
+                                      '${thanhvien.c00} đang đi học mà có '
                                       'trình độ phổ thông đạt được là chưa bao giờ học',
                                 ));
-                      } else if (thanhvien.c10M == 6 && p14 == 2) {
+                      }
+                      else if(thanhvien.c03B != "9998" && ((int.parse(thanhvien.c03B!) >= 2010 && thanhvien.thangDT! < 6) && p15 == 4) || ((int.parse(thanhvien.c03B!) >= 2007 && thanhvien.thangDT! < 6) && p15 == 5)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(
+                              waring: 'Thành viên ${thanhvien.c00} có trình độ phổ thông cao nhất ${_trinhdo[p15 - 1]} mà năm sinh = ${thanhvien.c03B}. Kiểm tra lại!',
+                            ));
+                      }
+                      else if(thanhvien.c03B == "9998" && ((namHT - thanhvien.c04! >= 2010 && thanhvien.thangDT! < 6) && p15 == 4) || ((namHT - thanhvien.c04! >= 2007 && thanhvien.thangDT! < 6) && p15 == 5)){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(
+                              waring: 'Thành viên ${thanhvien.c00} có trình độ phổ thông cao nhất ${_trinhdo[p15 - 1]} mà tuổi = ${thanhvien.c04}. Kiểm tra lại!',
+                            ));
+                      }
+                      //Notifi
+                      else if(p14 == 1 && thanhvien.c04! > 60){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UINotificationDialog(
+                              notification:
+                              '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                              onpress: () {
+                                Navigator.of(context).pop();
+                                if (thanhvien.c10M == 6 && p14 == 2) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification:
+                                        '${thanhvien.c00} chuyển đến nơi '
+                                            'ở mới để đi học mà hiện không theo học đào '
+                                            'tạo nghề. Có đúng không?',
+                                        onpress: () {
+                                          Navigator.of(context).pop();
+                                          if (thanhvien.c04! > 15 && p15 == 2) {
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) => UINotificationDialog(
+                                                  notification:
+                                                  '${thanhvien.c00} trên 15 tuổi, '
+                                                      'đang đi học mà có trình độ phổ thông đạt '
+                                                      'được là chưa học xong tiểu học. Có đúng không?',
+                                                  onpress: () {
+                                                    if (check) {
+                                                      p14_15ViewModel.P14_15Next(
+                                                          thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c12: p14,
+                                                            c13: p15,
+                                                          ));
+                                                    } else {
+                                                      p14_15ViewModel.P14_15Next(
+                                                          thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c13: p15,
+                                                          ));
+                                                    }
+                                                  },
+                                                ));
+                                          } else {
+                                            if (check) {
+                                              p14_15ViewModel.P14_15Next(
+                                                  thongTinThanhVienModel(
+                                                    idho: thanhvien.idho,
+                                                    idtv: thanhvien.idtv,
+                                                    c12: p14,
+                                                    c13: p15,
+                                                  ));
+                                            } else {
+                                              p14_15ViewModel.P14_15Next(
+                                                  thongTinThanhVienModel(
+                                                    idho: thanhvien.idho,
+                                                    idtv: thanhvien.idtv,
+                                                    c13: p15,
+                                                  ));
+                                            }
+                                          }
+                                        },
+                                      ));
+                                }
+                                else if (thanhvien.c04! > 15 && p15 == 2) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) => UINotificationDialog(
+                                        notification:
+                                        '${thanhvien.c00} trên 15 tuổi, '
+                                            'đang đi học mà có trình độ phổ thông đạt '
+                                            'được là chưa học xong tiểu học. Có đúng không?',
+                                        onpress: () {
+                                          if (check) {
+                                            p14_15ViewModel.P14_15Next(
+                                                thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c12: p14,
+                                                  c13: p15,
+                                                ));
+                                          } else {
+                                            p14_15ViewModel.P14_15Next(
+                                                thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c13: p15,
+                                                ));
+                                          }
+                                        },
+                                      ));
+                                }
+                                else {
+                                  if (check) {
+                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c12: p14,
+                                      c13: p15,
+                                    ));
+                                  } else {
+                                    p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c13: p15,
+                                    ));
+                                  }
+                                }
+                              },
+                            ));
+                      }
+                      else if (thanhvien.c10M == 6 && p14 == 2) {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
                                   notification:
-                                      '${thanhvien.c00} chuyển đến nơi '
+                                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
                                       'ở mới để đi học mà hiện không theo học đào '
                                       'tạo nghề. Có đúng không?',
                                   onpress: () {
@@ -318,12 +451,13 @@ class _P14_15ViewState extends State<P14_15View> {
                                     }
                                   },
                                 ));
-                      } else if (thanhvien.c04! > 15 && p15 == 2) {
+                      }
+                      else if (thanhvien.c04! > 15 && p15 == 2) {
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
                                   notification:
-                                      '${thanhvien.c00} trên 15 tuổi, '
+                                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trên 15 tuổi, '
                                       'đang đi học mà có trình độ phổ thông đạt '
                                       'được là chưa học xong tiểu học. Có đúng không?',
                                   onpress: () {
@@ -345,7 +479,8 @@ class _P14_15ViewState extends State<P14_15View> {
                                     }
                                   },
                                 ));
-                      } else {
+                      }
+                      else {
                         if (check) {
                           p14_15ViewModel.P14_15Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,

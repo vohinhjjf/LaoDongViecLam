@@ -68,7 +68,9 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
-                    //notInterviewedViewModel.searchData(text).then((value) => listBangKeCs = value);
+                    notInterviewedViewModel.searchData(text).then((value) {
+                      listBangKeCs = value;
+                    });
                   });
                 },
                 style: const TextStyle(color: Colors.black, fontSize: fontMedium),

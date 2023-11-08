@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -87,10 +88,10 @@ class _P70_75ViewState extends State<P70_75View> {
                       child: Column(
                         children: [
                           UIRichText(
-                            text1: "P70. Với công việc trên, ",
+                            text1: "P70. Với công việc trên, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                             text2: thanhvien.c00 ?? "",
                             text3: " là người làm "
-                                "chính hay phụ giúp thành viên trong hộ/gia đình?",
+                                "chính hay phụ giúp ${BaseLogic.getInstance().getMember(thanhvien)} trong hộ/gia đình?",
                             textColor: Colors.black,
                             textFontSize:fontLarge,
                           ),
@@ -153,13 +154,13 @@ class _P70_75ViewState extends State<P70_75View> {
                               });
                             },
                           ),
-                          const SizedBox(height: 15,),
+                          const SizedBox(height: 20,),
                         ],
                       )
                   ),
                   //p71
                   UIRichText(
-                    text1: "P71. Trong 7 ngày qua, ",
+                    text1: "P71. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để dọn dẹp nhà cửa, giặt quần áo, "
                         "nấu ăn, chế biến đồ ăn uống của hộ, đi mua đồ lương thực, "
@@ -193,10 +194,10 @@ class _P70_75ViewState extends State<P70_75View> {
                         counterText: ''
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p72
                   UIRichText(
-                    text1: "P72. Trong 7 ngày qua, ",
+                    text1: "P72. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để sản xuất sản phẩm cho gia đình "
                         "sử dụng như đóng giường tủ bàn ghế, làm gốm, may quần áo, "
@@ -228,10 +229,10 @@ class _P70_75ViewState extends State<P70_75View> {
                         counterText: ''
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p73
                   UIRichText(
-                    text1: "P73. Trong 7 ngày qua, ",
+                    text1: "P73. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để tự xây sửa, cơi nới, mở rộng "
                         "nhà cửa hoặc các công trình xây dựng của hộ? (ĐƠN VỊ TÍNH: GIỜ)",
@@ -260,12 +261,12 @@ class _P70_75ViewState extends State<P70_75View> {
                         counterText: ''
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p74
                   UIRichText(
-                    text1: "P74. Trong 7 ngày qua, ",
+                    text1: "P74. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: " làm bao nhiêu giờ để chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
+                    text3: " làm bao nhiêu giờ để chăm sóc, giúp đỡ hoặc hỗ trợ cho các ${BaseLogic.getInstance().getMember(thanhvien)} (từ 18 "
                         "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu? (ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
@@ -292,10 +293,10 @@ class _P70_75ViewState extends State<P70_75View> {
                         counterText: ''
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
                   //p75
                   UIRichText(
-                    text1: "P75. Trong 7 ngày qua, ",
+                    text1: "P75. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để chăm sóc trẻ em dưới 18 tuổi của hộ? (ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
@@ -323,7 +324,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -335,7 +336,7 @@ class _P70_75ViewState extends State<P70_75View> {
                           if(thanhvien.c63 != 0 && p70 == 0){
                             showDialog(
                                 context: context,
-                                builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
+                                builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
                             );
                           }
                           else {

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
 import '../../../../../components/uis.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
@@ -70,9 +71,9 @@ class _P06_07ViewState extends State<P06_07View> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //p00
+                //p06
                 UIRichText(
-                  text1: "P06. Hiện nay, ",
+                  text1: "P06. Hiện nay, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " đang cư trú ở Việt Nam hay ở nước ngoài?",
                   textColor: Colors.black,
@@ -137,7 +138,7 @@ class _P06_07ViewState extends State<P06_07View> {
                     });
                   },
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 20,),
                 Visibility(
                   visible: groupValue == 2,
                   child: Column(
