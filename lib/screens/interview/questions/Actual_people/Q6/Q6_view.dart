@@ -8,7 +8,6 @@ import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import 'Q6_viewmodel.dart';
 
-
 class Q6View extends StatefulWidget {
   const Q6View({Key? key}) : super(key: key);
 
@@ -28,11 +27,11 @@ class _Q6ViewState extends State<Q6View> {
       q6viewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 200),
-              () => {
-            setState(() {
-              list = q6viewModel.list;
-            })
-          });
+          () => {
+                setState(() {
+                  list = q6viewModel.list;
+                })
+              });
     });
   }
 
@@ -50,10 +49,7 @@ class _Q6ViewState extends State<Q6View> {
           textFontSize: fontLarge,
           isBold: true,
         ),
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         shape: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black87),
         ),
@@ -61,7 +57,7 @@ class _Q6ViewState extends State<Q6View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -72,43 +68,46 @@ class _Q6ViewState extends State<Q6View> {
                     textAlign: TextAlign.start,
                     isBold: false,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   ListView.builder(
                     shrinkWrap: true,
                     itemCount: list.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 0),
                         child: Text(
-                          "${index+1}. ${list[index].q1_New}",
+                          "${index + 1}. ${list[index].q1_New}",
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 18,
-                              fontWeight: FontWeight.bold
-                          ),
+                              fontWeight: FontWeight.bold),
                           maxLines: 10,
                         ),
                       );
                     },
                   ),
                   //Button
-                  const SizedBox(height: 2,),
+                  const SizedBox(
+                    height: 2,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      UIBackButton(ontap: (){
+                      UIBackButton(ontap: () {
                         q6viewModel.Q6Back();
                       }),
-                      UINextButton(ontap: (){
+                      UINextButton(ontap: () {
                         List<thongTinThanhVienModel> data = [];
-                        for(var item in list){
+                        for (var item in list) {
                           data.add(thongTinThanhVienModel(
                               idho: item.idho,
                               idtv: item.idtv,
                               thangDT: item.thangDT,
                               namDT: item.namDT,
-                              c00: item.q1_New
-                          ));
+                              c00: item.q1_New));
                         }
                         print(data.length);
                         q6viewModel.Q6Next(data);
@@ -122,69 +121,63 @@ class _Q6ViewState extends State<Q6View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
-          child: const DrawerNavigation()
-      ),
+          child: const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }
 
-  _showNotificationDialog(){
+  _showNotificationDialog() {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          titlePadding: const EdgeInsets.all(20),
-          contentPadding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-          ),
-          title: UIText(
-            text: "Hộng ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
-            textColor: Colors.black,
-            textFontSize:fontLarge,
-            isBold: false,
-          ),
-          content: Container(
-            height: 60,
-            alignment: Alignment.center,
-            child: Column(
-              children: <Widget>[
-                MaterialButton(
-                    height: 60,
-                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
-                    shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black,width: 0.1)
-                    ),
-                    onPressed: (){
-                      q6viewModel.Q1Back();
-                    },
-                    child: const UIText(
-                        text: 'Kiểm tra lại thông tin thành viên',
-                        textColor: mPrimaryColor,
-                        textFontSize: fontMedium
-                    )
+              titlePadding: const EdgeInsets.all(20),
+              contentPadding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              title: UIText(
+                text:
+                    "Hộ ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
+                textColor: Colors.black,
+                textFontSize: fontLarge,
+                isBold: false,
+              ),
+              content: Container(
+                height: 60,
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    MaterialButton(
+                        height: 60,
+                        //minWidth: (MediaQuery.of(context).size.width-80)/2,
+                        shape: const RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black, width: 0.1)),
+                        onPressed: () {
+                          q6viewModel.Q1Back();
+                        },
+                        child: const UIText(
+                            text: 'Kiểm tra lại thông tin thành viên',
+                            textColor: mPrimaryColor,
+                            textFontSize: fontLarge)),
+                    MaterialButton(
+                        height: 60,
+                        //minWidth: (MediaQuery.of(context).size.width-80)/2,
+                        shape: const RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black, width: 0.1)),
+                        onPressed: () {},
+                        child: const UIText(
+                          text: 'Hoàn thành phỏng vấn',
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.center,
+                          textColor: mPrimaryColor,
+                          isBold: true,
+                        ))
+                  ],
                 ),
-                MaterialButton(
-                    height: 60,
-                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
-                    shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black,width: 0.1)
-                    ),
-                    onPressed: (){
-
-                    },
-                    child: const UIText(
-                      text: 'Hoàn thành phỏng vấn',
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.center,
-                      textColor: mPrimaryColor,
-                      isBold: true,
-                    )
-                )
-              ],
-            ),
-          ),
-        ));
+              ),
+            ));
   }
 }

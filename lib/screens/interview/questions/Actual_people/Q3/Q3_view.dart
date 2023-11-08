@@ -67,7 +67,7 @@ class _Q3ViewState extends State<Q3View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -607,7 +607,7 @@ class _Q3ViewState extends State<Q3View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -618,49 +618,49 @@ class _Q3ViewState extends State<Q3View> {
                         if(q3_a == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa được chọn!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A-Chưa được chọn!',)
                           );
                         }
                         else if(q3_b == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa được chọn!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B-Chưa được chọn!',)
                           );
                         }
                         else if(q3_c == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa được chọn!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C-Chưa được chọn!',)
                           );
                         }
                         else if(q3_d == 0) {
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa được chọn!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D-Chưa được chọn!',)
                           );
                         }
                         else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa chọn thành viên!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3A-Chưa chọn thành viên!',)
                           );
                         }
                         else if(q3_b == 1 && !list.any((e) => e.q3B_New == 1)){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa chọn thành viên!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3B-Chưa chọn thành viên!',)
                           );
                         }
                         else if(q3_c == 1 && !list.any((e) => e.q3C_New == 1)){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa chọn thành viên!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3C-Chưa chọn thành viên!',)
                           );
                         }
                         else if(q3_d == 1 && !list.any((e) => e.q3D_New == 1)){
                           showDialog(
                               context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa chọn thành viên!',)
+                              builder: (_) => const UIWarningDialog(waring: 'Q3D-Chưa chọn thành viên!',)
                           );
                         }
                         else {

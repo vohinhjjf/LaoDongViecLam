@@ -20,7 +20,7 @@ class P27View extends StatefulWidget {
 class _P27ViewState extends State<P27View> {
   late P27ViewModel p27ViewModel;
   var thanhvien = thongTinThanhVienModel();
-  var _tt = "đang tạm nghỉ";
+  var _tt = "ĐANG TẠM NGHỈ";
   int p20 =0,p21 =0,p27 =0;
   bool check_draw = true;
 
@@ -49,7 +49,7 @@ class _P27ViewState extends State<P27View> {
           });
     });
     if(p20 ==1 || p21 == 1){
-      _tt = "đang làm";
+      _tt = "ĐANG LÀM";
     }
   }
 
@@ -76,7 +76,7 @@ class _P27ViewState extends State<P27View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

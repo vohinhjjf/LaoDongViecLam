@@ -108,7 +108,7 @@ class _P10_12ViewState extends State<P10_12View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -253,7 +253,7 @@ class _P10_12ViewState extends State<P10_12View> {
                       ],
                     )
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 10,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
                     child: Column(
@@ -325,7 +325,7 @@ class _P10_12ViewState extends State<P10_12View> {
                             });
                           },
                         ),
-                        const SizedBox(height: 15,),
+                        const SizedBox(height: 10,),
                         //p12
                         UIRichText(
                           text1: "P12. Lý do chính mà ",

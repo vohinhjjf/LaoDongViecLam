@@ -70,7 +70,7 @@ class _Q2ViewState extends State<Q2View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -346,6 +346,7 @@ class _Q2ViewState extends State<Q2View> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
+            textAlign: TextAlign.center,
             isBold: false,
           ),
           content: Container(

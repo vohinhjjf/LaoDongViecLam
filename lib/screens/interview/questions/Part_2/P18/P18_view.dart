@@ -65,7 +65,7 @@ class _P18ViewState extends State<P18View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -87,7 +87,8 @@ class _P18ViewState extends State<P18View> {
                       child: UIText(
                         text: "Có",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontSmall,
+                        isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -97,15 +98,16 @@ class _P18ViewState extends State<P18View> {
                       child: UIText(
                         text: "Không",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontSmall,
+                        isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 5,),
                 Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -160,7 +162,7 @@ class _P18ViewState extends State<P18View> {
                 ),
                 // const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -215,7 +217,7 @@ class _P18ViewState extends State<P18View> {
                 ),
                 // const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

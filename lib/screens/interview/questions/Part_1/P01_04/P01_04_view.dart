@@ -106,7 +106,7 @@ class _P01_04ViewState extends State<P01_04View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -313,7 +313,7 @@ class _P01_04ViewState extends State<P01_04View> {
                     },
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   //p03
                   UIRichText(
@@ -322,6 +322,9 @@ class _P01_04ViewState extends State<P01_04View> {
                     text3: " sinh vào tháng, năm dương lịch nào?",
                     textColor: Colors.black,
                     textFontSize: fontLarge,
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -469,6 +472,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       text: "Không xác định năm",
                       textColor: Colors.black,
                       textFontSize: fontLarge,
+                      isBold:true,
                       textAlign: TextAlign.start,
                     ),
                     trailing: RoundCheckBox(

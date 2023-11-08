@@ -70,7 +70,7 @@ class _Q5ViewState extends State<Q5View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -252,7 +252,7 @@ class _Q5ViewState extends State<Q5View> {
                                       "${index+1}. ${list_q5[index].q1_New}",
                                       style: const TextStyle(
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: fontLarge,
                                           fontWeight: FontWeight.normal
                                       ),
                                       maxLines: 10,
@@ -288,7 +288,7 @@ class _Q5ViewState extends State<Q5View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -20,7 +20,7 @@ class P28View extends StatefulWidget {
 class _P28ViewState extends State<P28View> {
   late P28ViewModel p28ViewModel;
   var thanhvien = thongTinThanhVienModel();
-  int p28 =0;
+  int p28 = 0;
   bool check_draw = true;
 
   var _nganh = [
@@ -38,12 +38,12 @@ class _P28ViewState extends State<P28View> {
       p28ViewModel.onInit(context);
       Future.delayed(
           const Duration(milliseconds: 100),
-              () => {
-            setState(() {
-              thanhvien = p28ViewModel.thanhvien;
-              p28 = p28ViewModel.thanhvien.c26 ?? 0;
-            })
-          });
+          () => {
+                setState(() {
+                  thanhvien = p28ViewModel.thanhvien;
+                  p28 = p28ViewModel.thanhvien.c26 ?? 0;
+                })
+              });
     });
   }
 
@@ -51,10 +51,7 @@ class _P28ViewState extends State<P28View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          UIGPSButton(),
-          UIEXITButton()
-        ],
+        actions: const [UIGPSButton(), UIEXITButton()],
         titleSpacing: 0,
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: mPrimaryColor),
@@ -70,7 +67,7 @@ class _P28ViewState extends State<P28View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -78,11 +75,14 @@ class _P28ViewState extends State<P28View> {
                 UIRichText(
                   text1: "P28. Mục đích chủ yếu của các sản phẩm ",
                   text2: thanhvien.c00 ?? "",
-                  text3: " sản xuất ra từ công việc này là để bán hay để gia đình sử dụng?",
+                  text3:
+                      " sản xuất ra từ công việc này là để bán hay để gia đình sử dụng?",
                   textColor: Colors.black,
-                  textFontSize:fontLarge,
+                  textFontSize: fontLarge,
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -97,10 +97,10 @@ class _P28ViewState extends State<P28View> {
                         isBold: false,
                       ),
                       leading: RoundCheckBox(
-                        isChecked: p28 == index+1 ? true : false,
+                        isChecked: p28 == index + 1 ? true : false,
                         onTap: (selected) {
                           setState(() {
-                            p28 = p28 == index+1 ? 0 : index+1;
+                            p28 = p28 == index + 1 ? 0 : index + 1;
                           });
                         },
                         border: Border.all(
@@ -108,33 +108,38 @@ class _P28ViewState extends State<P28View> {
                           color: Colors.black,
                         ),
                         checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                        checkedWidget: const Icon(Icons.check,
+                            size: 30, color: GFColors.PRIMARY),
                         uncheckedColor: Colors.white,
                         uncheckedWidget: Container(),
                       ),
                       onTap: () {
                         setState(() {
-                          p28 = p28 == index+1 ? 0 : index+1;
+                          p28 = p28 == index + 1 ? 0 : index + 1;
                         });
                       },
                     );
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    UIBackButton(ontap: (){
+                    UIBackButton(ontap: () {
                       p28ViewModel.P28Back(thanhvien.c24);
                     }),
-                    UINextButton(ontap: (){
-                      if(p28 == 0){
+                    UINextButton(ontap: () {
+                      if (p28 == 0) {
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
-                        );
-                      }else {
+                            builder: (_) => UIWarningDialog(
+                                  waring:
+                                      'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',
+                                ));
+                      } else {
                         p28ViewModel.P28Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
@@ -152,16 +157,18 @@ class _P28ViewState extends State<P28View> {
       drawer: Theme(
           data: Theme.of(context).copyWith(
             // Set the transparency here
-            canvasColor: Colors.transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+            canvasColor: Colors
+                .transparent, //or any other color you want. e.g Colors.blue.withOpacity(0.5)
           ),
           child: check_draw
-              ? DrawerNavigationThanhVien(onTap: (){
-            setState(() {
-              check_draw = false;
-            });
-          },)
-              : const DrawerNavigation()
-      ),
+              ? DrawerNavigationThanhVien(
+                  onTap: () {
+                    setState(() {
+                      check_draw = false;
+                    });
+                  },
+                )
+              : const DrawerNavigation()),
       drawerScrimColor: Colors.transparent,
     );
   }

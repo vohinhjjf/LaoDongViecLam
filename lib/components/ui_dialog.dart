@@ -26,7 +26,7 @@ class UIWarningDialog extends StatelessWidget {
         textAlign: TextAlign.center,
         textColor: Colors.black,
         textFontSize: fontLarge,
-        isBold: true,
+        isBold: false,
       ),
       content: Container(
         height: 60,
@@ -80,7 +80,7 @@ class UINotificationDialog extends StatelessWidget {
         textColor: Colors.black,
         textAlign: TextAlign.center,
         textFontSize:fontLarge,
-        isBold: true,
+        isBold: false,
       ),
       content: Container(
         height: 60,
@@ -156,8 +156,8 @@ class UINotificationDialog1 extends StatelessWidget {
       title: UIText(
         text: notification,
         textColor: Colors.black,
-        textFontSize:fontMedium,
-        isBold: true,
+        textFontSize:fontLarge,
+        isBold: false,
       ),
       content: Container(
         height: 60,
@@ -240,7 +240,7 @@ class UIStopDialog extends StatelessWidget {
               text: "Tạm dừng phỏng vấn?",
               textAlign: TextAlign.center,
               textColor: Colors.black,
-              isBold: true,
+              isBold: false,
             ),
           ),
           const SizedBox(
