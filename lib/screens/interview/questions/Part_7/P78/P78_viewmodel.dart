@@ -36,11 +36,11 @@ class P78ViewModel extends BaseViewModel {
   }
 
   void P78Next(DoiSongHoModel data) async {
-    _executeDatabase.updateDSH("SET c62_M3A = ${data.c62_M3A}, c62_M3B = ${data.c62_M3B}, "
-        "c62_M3C = ${data.c62_M3C}, c62_M3D = ${data.c62_M3D}, c62_M3E = ${data.c62_M3E}, "
-        "c62_M3F = ${data.c62_M3F}, c62_M3G = ${data.c62_M3G}, c62_M3H = ${data.c62_M3H}, "
-        "c62_M3I = ${data.c62_M3I}, c62_M3IK = ${data.c62_M3IK} "
-        "WHERE idho = ${data.idho}");
+    _executeDatabase.updateDSH("SET c62_M3A = ?, c62_M3B = ?, c62_M3C = ?, "
+        "c62_M3D = ?, c62_M3E = ?, c62_M3F = ?, c62_M3G = ?, c62_M3H = ?, "
+        "c62_M3I = ?, c62_M3IK = ? WHERE idho = ? AND thangDT = ? AND namDT = ?",
+        [data.c62_M3A,data.c62_M3B,data.c62_M3C,data.c62_M3D,data.c62_M3E,data.c62_M3F,
+          data.c62_M3G,data.c62_M3H,data.c62_M3I,data.c62_M3IK,data.idho,data.thangDT,data.namDT]);
     NavigationServices.instance.navigateToP79(context);
   }
 }

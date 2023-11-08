@@ -263,8 +263,60 @@ class P40_42ViewModel extends BaseViewModel {
   }
 
   void P40_42Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c35B = '${data.c35B}', c37B = '${data.c37B}' "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    NavigationServices.instance.navigateToP56_58(context);
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    int month = int.parse(_sPrefAppModel.month);
+    int year = DateTime.now().year;
+    _executeDatabase.updateC00("SET c35B = ?, c37B = ? WHERE idho = ? AND idtv = ?",
+        [data.c35B,data.c37B,data.idho,data.idtv]);
+    if(data.c50A != null){
+      NavigationServices.instance.navigateToP56_58(context);
+    }
+    else {
+      await _executeDatabase.getListTTTV(idho).then((value) async {
+        value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv));
+        int index = 0;
+        for (int i = 0; i < value.length; i++) {
+          if (!checkSelectCode(value[i])) {
+            index ++;
+            break;
+          };
+        }
+        if (index == 0) {
+          await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
+            if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
+              await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 0, month, year);
+            } else {
+              await _executeDatabase.setBangKeThangDTModel([{
+                'idhO_BKE': _sPrefAppModel.getIdHo,
+                'namDT': year,
+                'thangDT': month,
+                'trangThai': 9,
+                'sync' : 0
+              }]);
+            }
+          });
+          NavigationServices.instance.navigateToInterviewStatus(context);
+        }
+      });
+    }
+  }
+
+  bool checkSelectCode(thongTinThanhVienModel tttv){
+    if(tttv.c15A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP17B(context);
+      return false;
+    }
+    if(tttv.c35A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP40_42(context);
+      return false;
+    }
+    if(tttv.c50A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP56_58(context);
+      return false;
+    }
+    return true;
   }
 }

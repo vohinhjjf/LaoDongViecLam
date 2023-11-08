@@ -40,7 +40,7 @@ class UIQuestions{
         'sau thời điểm 0 giờ ngày 01/$month/${DateTime.now().year} và chưa được kế tên ở trên không?';
   }
   static const q6 = 'Q6. Những người là nhân khẩu thực tế thường trú tại hộ:'
-      '\n(ĐỌC TÊN NHỮNG NGƯỜI ĐƯỢC HIỆN THỊ TRONG DANH SÁCH NHỮNG NGƯỜI KHÔNG BỊ '
+      '\n(ĐỌC TÊN NHỮNG NGƯỜI ĐƯỢC HIỂN THỊ TRONG DANH SÁCH NHỮNG NGƯỜI KHÔNG BỊ '
       'GẠCH TÊN Ở CÂU Q1, NHỮNG NGƯỜI CÓ TÊN TRONG CÂU Q4 VÀ CÂU Q5)';
   static const q7 = 'Q7. Xin ông/bà cho biết ai là chủ hộ?';
 }

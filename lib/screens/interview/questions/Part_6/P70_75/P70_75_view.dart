@@ -190,6 +190,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        counterText: ''
                     ),
                   ),
                   const SizedBox(height: 15,),
@@ -224,6 +225,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        counterText: ''
                     ),
                   ),
                   const SizedBox(height: 15,),
@@ -255,6 +257,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        counterText: ''
                     ),
                   ),
                   const SizedBox(height: 15,),
@@ -286,6 +289,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                        counterText: ''
                     ),
                   ),
                   const SizedBox(height: 15,),
@@ -315,6 +319,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                      counterText: ''
                     ),
                   ),
                   //Button

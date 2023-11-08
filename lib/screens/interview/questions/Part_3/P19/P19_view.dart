@@ -147,7 +147,7 @@ class _P19ViewState extends State<P19View> {
                       if(groupValue == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P19 - Làm việc 7 ngày qua nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P19-Làm việc 7 ngày qua nhập vào chưa đúng!',)
                         );
                       }else {
                         p19ViewModel.P19Next(thongTinThanhVienModel(

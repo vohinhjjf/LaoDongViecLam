@@ -10,7 +10,8 @@ class P01_04ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
   P01_04ViewModel(this._executeDatabase, this._sPrefAppModel);
-  thongTinThanhVienModel thanhvien = thongTinThanhVienModel();
+  var thanhvien = thongTinThanhVienModel();
+  List<thongTinThanhVienModel> list_tttv = [];
 
   @override
   void onInit(BuildContext context) {
@@ -30,6 +31,7 @@ class P01_04ViewModel extends BaseViewModel {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
     await _executeDatabase.getListTTTV(idho).then((value) async {
+      list_tttv = value;
       if (c01 == 1) {
         NavigationServices.instance.navigateToQ7(context);
       } else {
@@ -44,10 +46,9 @@ class P01_04ViewModel extends BaseViewModel {
   }
 
   void P01_04Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c00 = '${data.c00}', c01 = ${data.c01}"
-        ", c01K = ${data.c01K.toString()}, c02 = ${data.c02}, c03A = '${data.c03A}'"
-        ", c03B = ${data.c03B}, c04 = ${data.c04} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    await _executeDatabase.updateC00("SET c00 = ?, c01 = ?, c01K = ?, c02 = ?, "
+        "c03A = ?, c03B = ?, c04 = ? WHERE idho = ? AND idtv = ?",
+        [data.c00,data.c01,data.c01K,data.c02,data.c03A,data.c03B,data.c04,data.idho,data.idtv]);
 
     if(data.c04! >= 25 && data.c04! <= 49) {
       NavigationServices.instance.navigateToP05(context);

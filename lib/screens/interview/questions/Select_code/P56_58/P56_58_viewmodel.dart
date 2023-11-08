@@ -263,8 +263,55 @@ class P56_58ViewModel extends BaseViewModel {
   }
 
   void P56_58Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c50B = '${data.c50B}', c52B = '${data.c52B}' "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    //NavigationServices.instance.navigateToP43(context);
+    String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    int month = int.parse(_sPrefAppModel.month);
+    int year = DateTime.now().year;
+    _executeDatabase.updateC00("SET c50B = ?, c52B = ? WHERE idho = ? AND idtv = ?",
+        [data.c50B,data.c52B,data.idho,data.idtv]);
+    await _executeDatabase.getListTTTV(idho).then((value) async {
+      value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv));
+      int index = 0;
+      for (int i = 0; i < value.length; i++) {
+        if (!checkSelectCode(value[i])) {
+          index ++;
+          break;
+        };
+      }
+      if (index == 0) {
+        await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
+          if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
+            await _executeDatabase.updateTrangThai(_sPrefAppModel.getIdHo, 0, month, year);
+          } else {
+            await _executeDatabase.setBangKeThangDTModel([{
+              'idhO_BKE': _sPrefAppModel.getIdHo,
+              'namDT': year,
+              'thangDT': month,
+              'trangThai': 9,
+              'sync' : 0
+            }]);
+          }
+        });
+        NavigationServices.instance.navigateToInterviewStatus(context);
+      }
+    });
+  }
+
+  bool checkSelectCode(thongTinThanhVienModel tttv){
+    if(tttv.c15A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP17B(context);
+      return false;
+    }
+    if(tttv.c35A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP40_42(context);
+      return false;
+    }
+    if(tttv.c50A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.navigateToP56_58(context);
+      return false;
+    }
+    return true;
   }
 }

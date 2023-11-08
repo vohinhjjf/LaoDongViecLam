@@ -99,6 +99,7 @@ class _P69ViewState extends State<P69View> {
                     decoration: InputDecoration(
                       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
+                      counterText: ''
                     ),
                   ),
                   //Button

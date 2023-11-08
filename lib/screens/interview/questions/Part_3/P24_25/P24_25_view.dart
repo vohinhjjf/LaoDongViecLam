@@ -228,13 +228,13 @@ class _P24_25ViewState extends State<P24_25View> {
                       if(p24 == 0){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P24 - Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P24-Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
                         );
                       }
                       else if(p25 == 0 && p24 == 2){
                         showDialog(
                             context: context,
-                            builder: (_) => UIWarningDialog(waring: 'P25 - Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
+                            builder: (_) => UIWarningDialog(waring: 'P25-Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
                         );
                       }else {
                         p24_25ViewModel.P24_25Next(thongTinThanhVienModel(

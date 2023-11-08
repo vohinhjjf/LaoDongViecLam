@@ -37,9 +37,9 @@ class P10_12ViewModel extends BaseViewModel {
   }
 
   void P10_12Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c09 = ${data.c09}, c09A = '${data.c09A}'"
-        ", c09B = '${data.c09B}', c10 = ${data.c10}, c10M = ${data.c10M}, c10_MK = '${data.c10_MK}' "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    await _executeDatabase.updateC00("SET c09 = ?, c09A = ?, c09B = ?, c10 = ?, "
+        "c10M = ?, c10_MK = ? WHERE idho = ? AND idtv =?",
+        [data.c09,data.c09A,data.c09B,data.c10,data.c10M,data.c10_MK,data.idho,data.idtv]);
     NavigationServices.instance.navigateToP13(context);
   }
 }
