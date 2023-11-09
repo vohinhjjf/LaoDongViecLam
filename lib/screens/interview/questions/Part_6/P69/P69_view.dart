@@ -122,7 +122,7 @@ class _P69ViewState extends State<P69View> {
                                                 'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
                                             onpress: (){
                                               Navigator.of(context).pop();
-                                              if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
+                                              if(thanhvien.c59 != null && thanhvien.c59! + int.parse(_gio.text) >= 90){
                                                 showDialog(
                                                     context: context,
                                                     builder: (_) => UINotificationDialog(
@@ -130,7 +130,11 @@ class _P69ViewState extends State<P69View> {
                                                           'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
                                                       onpress: (){
                                                         Navigator.of(context).pop();
-
+                                                        p69ViewModel.P69Next(thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c63: int.parse(_gio.text)
+                                                        ));
                                                       },
                                                     )
                                                 );
@@ -146,7 +150,7 @@ class _P69ViewState extends State<P69View> {
                                           )
                                       );
                                     }
-                                    else if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
+                                    else if(thanhvien.c59 != null && thanhvien.c59! + int.parse(_gio.text) >= 90){
                                       showDialog(
                                           context: context,
                                           builder: (_) => UINotificationDialog(
@@ -154,7 +158,11 @@ class _P69ViewState extends State<P69View> {
                                                 'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
                                             onpress: (){
                                               Navigator.of(context).pop();
-
+                                              p69ViewModel.P69Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c63: int.parse(_gio.text)
+                                              ));
                                             },
                                           )
                                       );
@@ -178,7 +186,7 @@ class _P69ViewState extends State<P69View> {
                                       'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
                                   onpress: (){
                                     Navigator.of(context).pop();
-                                    if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
+                                    if(thanhvien.c59 != null && thanhvien.c59! + int.parse(_gio.text) >= 90){
                                       showDialog(
                                           context: context,
                                           builder: (_) => UINotificationDialog(
@@ -186,7 +194,11 @@ class _P69ViewState extends State<P69View> {
                                                 'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
                                             onpress: (){
                                               Navigator.of(context).pop();
-
+                                              p69ViewModel.P69Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c63: int.parse(_gio.text)
+                                              ));
                                             },
                                           )
                                       );
@@ -202,7 +214,7 @@ class _P69ViewState extends State<P69View> {
                                 )
                             );
                           }
-                          else if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
+                          else if(thanhvien.c59 != null && thanhvien.c59! + int.parse(_gio.text) >= 90){
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(
@@ -210,7 +222,11 @@ class _P69ViewState extends State<P69View> {
                                       'trong 7 ngày qua có tổng số giờ làm việc quá nhiều (C66 + C69). Có đúng không?',
                                   onpress: (){
                                     Navigator.of(context).pop();
-
+                                    p69ViewModel.P69Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c63: int.parse(_gio.text)
+                                    ));
                                   },
                                 )
                             );

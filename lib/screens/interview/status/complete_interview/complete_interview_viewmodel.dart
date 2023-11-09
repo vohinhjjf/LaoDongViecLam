@@ -61,7 +61,9 @@ class CompleteInterviewViewModel extends BaseViewModel {
     for(var bk_ho in value){
       for(var bk_tdt in bangKeThangDTModel) {
         if (bk_ho.idho == bk_tdt.idhO_BKE || (bk_ho.trangthai_BK == 2 || bk_ho.trangthai_BK == 3 ||bk_ho.trangthai_BK == 4)) {
-          list_complete.add(bk_ho);
+          if(!list_complete.any((e) => e.idho == bk_ho.idho)) {
+            list_complete.add(bk_ho);
+          }
         }
       }
     }

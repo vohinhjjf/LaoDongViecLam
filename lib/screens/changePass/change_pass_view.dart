@@ -40,7 +40,7 @@ class Body extends State{
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
+                          child: UITextFormField(
                             controller: _password_old,
                             validator: (value){
                               if(value!.isEmpty){
@@ -48,33 +48,14 @@ class Body extends State{
                               }
                               return null;
                             },
-                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                            decoration: const InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-
-                              hintText: "Mật khẩu hiện tại",
-                            ),
+                            hint: "Mật khẩu hiện tại",
                           ),
                         ),
                         const SizedBox(height: 15),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
+                          child: UITextFormField(
                             controller: _password_new,
                             validator: (value){
                               if(value!.isEmpty){
@@ -82,58 +63,22 @@ class Body extends State{
                               }
                               return null;
                             },
-                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                            decoration: const InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              hintText: "Mật khẩu mới",
-                            ),
+                            hint: "Mật khẩu mới",
                           ),
                         ),
                         const SizedBox(height: 15),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
+                          child: UITextFormField(
                             controller: _password_new_replay,
                             validator: (value){
                               if(value!.isEmpty){
-                                return 'Mật khẩu mới chưa được nhập';
+                                return 'Nhập lại mật khẩu mới';
                               }
                               return null;
                             },
-                            style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                            decoration: const InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: mPrimaryColor, width: 2.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                              ),
-                              hintText: "Nhập lại mật khẩu mới",
-                            ),
+                            hint: "Nhập lại mật khẩu mới",
                           ),
                         ),
                       ],
