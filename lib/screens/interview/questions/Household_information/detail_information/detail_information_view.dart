@@ -66,14 +66,14 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //name
-                    UIText(
+                    const UIText(
                       text:UIDescribes.householderName,
                       textColor: Colors.black,
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 10,),
-                    TextFormField(
+                    const SizedBox(height: 10,),
+                    UITextFormField(
                       controller: _name,
                       validator: (value){
                         if(value!.isEmpty){
@@ -88,13 +88,8 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                       ],
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     //address
                     const UIText(
                       text:UIDescribes.householderAddress,
@@ -102,8 +97,8 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       textFontSize:fontLarge,
                       isBold: true,
                     ),
-                    SizedBox(height: 10,),
-                    TextFormField(
+                    const SizedBox(height: 10,),
+                    UITextFormField(
                       controller: _address,
                       validator: (value){
                         if(value!.isEmpty){
@@ -112,11 +107,6 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                         return null;
                       },
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      ),
                     ),
                     //
                     const SizedBox(height: 20,),

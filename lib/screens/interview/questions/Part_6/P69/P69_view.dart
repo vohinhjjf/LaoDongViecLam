@@ -83,7 +83,7 @@ class _P69ViewState extends State<P69View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _gio,
                     validator: (value){
                       if(value!.isEmpty){
@@ -96,12 +96,6 @@ class _P69ViewState extends State<P69View> {
                     ],
                     maxLength: 3,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      counterText: ''
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),
@@ -128,7 +122,7 @@ class _P69ViewState extends State<P69View> {
                                                 'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
                                             onpress: (){
                                               Navigator.of(context).pop();
-                                              if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                              if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
                                                 showDialog(
                                                     context: context,
                                                     builder: (_) => UINotificationDialog(
@@ -152,7 +146,7 @@ class _P69ViewState extends State<P69View> {
                                           )
                                       );
                                     }
-                                    else if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                    else if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
                                       showDialog(
                                           context: context,
                                           builder: (_) => UINotificationDialog(
@@ -184,7 +178,7 @@ class _P69ViewState extends State<P69View> {
                                       'trong 7 ngày qua không làm công việc gì trong ngành trồng trọt/chăn nuôi, thủy sản hay lâm nghiệp (C26 = 2) nhưng lại có số giờ làm việc trong những ngành này. Có đúng không?',
                                   onpress: (){
                                     Navigator.of(context).pop();
-                                    if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                                    if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
                                       showDialog(
                                           context: context,
                                           builder: (_) => UINotificationDialog(
@@ -208,7 +202,7 @@ class _P69ViewState extends State<P69View> {
                                 )
                             );
                           }
-                          else if(thanhvien.c59! + int.parse(_gio.text) >= 90){
+                          else if((thanhvien.c59 ?? 0) + int.parse(_gio.text) >= 90){
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(

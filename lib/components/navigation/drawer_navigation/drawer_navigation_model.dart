@@ -101,7 +101,7 @@ class DrawerNavigationModel extends BaseViewModel {
         }
         print(6);
       }
-
+      _sPrefAppModel.setIDTV(thongTinTV.idtv!);
       NavigationServices.instance.routeNavigate(stopQuestion, context);
   }
 

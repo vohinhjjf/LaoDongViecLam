@@ -150,8 +150,7 @@ class _P23ViewState extends State<P23View> {
                       const SizedBox(
                         height: 5,
                       ),
-                      TextFormField(
-                        autofocus: true,
+                      UITextFormField(
                         controller: _orther,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -165,14 +164,7 @@ class _P23ViewState extends State<P23View> {
                           FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                         ],
                         keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r)),
-                        ),
-                      )
+                      ),
                     ],
                   ),
                 ),

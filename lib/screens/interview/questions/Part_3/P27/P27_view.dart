@@ -46,12 +46,12 @@ class _P27ViewState extends State<P27View> {
               p20 = p27ViewModel.thanhvien.c18 ?? 0;
               p21 = p27ViewModel.thanhvien.c19 ?? 0;
               p27 = p27ViewModel.thanhvien.c25 ?? 0;
+              if(p20 ==1 || p21 == 1){
+                _tt = "đang làm";
+              }
             })
           });
     });
-    if(p20 ==1 || p21 == 1){
-      _tt = "đang làm";
-    }
   }
 
   @override
@@ -90,7 +90,7 @@ class _P27ViewState extends State<P27View> {
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

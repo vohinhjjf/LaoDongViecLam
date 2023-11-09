@@ -40,6 +40,6 @@ class P10_12ViewModel extends BaseViewModel {
     await _executeDatabase.updateC00("SET c09 = ?, c09A = ?, c09B = ?, c10 = ?, "
         "c10M = ?, c10_MK = ? WHERE idho = ? AND idtv =?",
         [data.c09,data.c09A,data.c09B,data.c10,data.c10M,data.c10_MK,data.idho,data.idtv]);
-    NavigationServices.instance.navigateToP13(context);
+    NavigationServices.instance.navigateToP13_14(context);
   }
 }

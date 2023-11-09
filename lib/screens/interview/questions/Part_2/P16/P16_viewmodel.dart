@@ -27,7 +27,7 @@ class P16ViewModel extends BaseViewModel {
   }
 
   void P16Back() async {
-    NavigationServices.instance.navigateToP14_15(context);
+    NavigationServices.instance.navigateToP15(context);
   }
 
   void P16Next(thongTinThanhVienModel data) async {

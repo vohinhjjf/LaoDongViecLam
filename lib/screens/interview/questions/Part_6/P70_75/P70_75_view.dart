@@ -169,7 +169,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _dondep,
                     validator: (value){
                       if(value!.isEmpty){
@@ -186,13 +186,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     maxLength: 3,
                     autofocus: true,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        counterText: ''
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p72
@@ -207,7 +201,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _sanxuat,
                     validator: (value){
                       if(value!.isEmpty){
@@ -215,19 +209,14 @@ class _P70_75ViewState extends State<P70_75View> {
                       }
                       return null;
                     },
+                    focusNode: focus,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                     ],
                     maxLength: 3,
-                    focusNode: focus,
+                    autofocus: true,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        counterText: ''
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p73
@@ -240,7 +229,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _suachua,
                     validator: (value){
                       if(value!.isEmpty){
@@ -252,14 +241,9 @@ class _P70_75ViewState extends State<P70_75View> {
                       FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                     ],
                     maxLength: 3,
+                    autofocus: true,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        counterText: ''
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p74
@@ -272,7 +256,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _giupdo,
                     validator: (value){
                       if(value!.isEmpty){
@@ -284,14 +268,9 @@ class _P70_75ViewState extends State<P70_75View> {
                       FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                     ],
                     maxLength: 3,
+                    autofocus: true,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        counterText: ''
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p75
@@ -303,7 +282,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _chamsoc,
                     validator: (value){
                       if(value!.isEmpty){
@@ -315,13 +294,8 @@ class _P70_75ViewState extends State<P70_75View> {
                       FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                     ],
                     maxLength: 3,
+                    autofocus: true,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      counterText: ''
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),

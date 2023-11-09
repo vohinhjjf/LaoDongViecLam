@@ -158,7 +158,7 @@ class _P44_46ViewState extends State<P44_46View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _gio,
                     validator: (value){
                       if(value!.isEmpty){
@@ -171,11 +171,6 @@ class _P44_46ViewState extends State<P44_46View> {
                     ],
                     maxLength: 3,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //p46
                   const SizedBox(height: 20,),

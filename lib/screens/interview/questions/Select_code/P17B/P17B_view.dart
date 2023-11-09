@@ -103,13 +103,9 @@ class _P17BViewState extends State<P17BView> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _daotao,
                     readOnly: true,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 10,),
                   Row(
@@ -130,16 +126,12 @@ class _P17BViewState extends State<P17BView> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _madaotao,
                     readOnly: true,
                     onTap: (){
                       _showAddDialog(_daotao.text.toLowerCase());
                     },
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),

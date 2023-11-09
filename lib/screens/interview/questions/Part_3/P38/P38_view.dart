@@ -131,7 +131,7 @@ class _P38ViewState extends State<P38View> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      UIText(
+                      const UIText(
                         text: "Lý do khác",
                         textColor: Colors.black,
                         textFontSize: fontMedium,
@@ -139,7 +139,7 @@ class _P38ViewState extends State<P38View> {
                         isBold: false,
                       ),
                       const SizedBox(height: 5,),
-                      TextFormField(
+                      UITextFormField(
                         autofocus: true,
                         controller: _orther,
                         validator: (value){
@@ -154,12 +154,7 @@ class _P38ViewState extends State<P38View> {
                           FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                         ],
                         keyboardType: TextInputType.text,
-                        style: const TextStyle( color: Colors.black),
-                        decoration: InputDecoration(
-                          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                        ),
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -33,7 +33,7 @@ class P08_09ViewModel extends BaseViewModel {
   void P08_09Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c07 = ${data.c07}, c08 = ${data.c08} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c08 == 5){
-      NavigationServices.instance.navigateToP13(context);
+      NavigationServices.instance.navigateToP13_14(context);
     }else {
       NavigationServices.instance.navigateToP10_12(context);
     }

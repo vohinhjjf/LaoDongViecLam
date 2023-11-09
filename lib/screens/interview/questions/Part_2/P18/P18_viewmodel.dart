@@ -28,7 +28,7 @@ class P18ViewModel extends BaseViewModel {
 
   void P18Back(int? c13, String? c15A) async {
     if(c13 == 1){
-      NavigationServices.instance.navigateToP14_15(context);
+      NavigationServices.instance.navigateToP15(context);
     } else if(c15A == null){
       NavigationServices.instance.navigateToP16(context);
     } else {

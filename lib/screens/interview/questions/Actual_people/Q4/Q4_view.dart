@@ -332,10 +332,9 @@ class _Q4ViewState extends State<Q4View> {
         const SizedBox(height: 5,),
         Visibility(
           visible: groupValue == 1,
-          child: TextField(
+          child: UITextFormField(
             controller: _text_name,
-            autofocus: true,
-            onSubmitted: (value){
+            onFieldSubmitted: (value){
               if(value != "") {
                 if(value.length < 5){
                   showDialog(
@@ -391,14 +390,7 @@ class _Q4ViewState extends State<Q4View> {
               FilteringTextInputFormatter.deny(RegExp('[×÷]')),
             ],
             keyboardType: TextInputType.text,
-            style: const TextStyle(color: Colors.black),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  borderSide: BorderSide(color: mPrimaryColor)),
-              hintText: "Nhập họ và tên",
-              hintStyle: TextStyle(color: Colors.grey),
-            ),
+            hint: "Nhập họ và tên",
           ),
         ),
         const SizedBox(height: 10,),

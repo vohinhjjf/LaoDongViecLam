@@ -439,10 +439,11 @@ class ExecuteDatabase {
         [ngayCapNhat, thoigiankt, tsnk, tsnu, nK_15, nu_15, idho]));
   }
 
-  Future<List<BangKeThangDTModel>> getDongBo(String thang) async {
+  Future<List<BangKeThangDTModel>> getDongBo(String thang, int namDT) async {
     _database = await _dbProvider.database;
     var res = await _database?.query(TableConstants.bangkeho_thangdt,
-        where: "trangThai = ? AND thangDT = ?", whereArgs: [3, thang]);
+        where: "trangThai = ? AND sync = ? AND thangDT = ? AND namDT = ?",
+        whereArgs: [9, 0, thang, namDT]);
     List<BangKeThangDTModel> listBangKeHoThangDT = res!.isNotEmpty
         ? res.map((c) => BangKeThangDTModel.fromJson(c)).toList()
         : [];

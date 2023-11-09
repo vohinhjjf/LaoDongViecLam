@@ -88,7 +88,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _tiencong,
                     validator: (value){
                       if(value!.isEmpty){
@@ -102,11 +102,6 @@ class _P61_62ViewState extends State<P61_62View> {
                     maxLength: 6,
                     readOnly: check,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //p62
                   const SizedBox(height: 20,),

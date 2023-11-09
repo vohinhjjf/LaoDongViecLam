@@ -26,8 +26,8 @@ import 'screens/interview/questions/Part_1/P06_07/P06_07_viewmodel.dart';
 
 import 'screens/interview/questions/Part_2/P08_09/P08_09_viewmodel.dart';
 import 'screens/interview/questions/Part_2/P10_12/P10_12_viewmodel.dart';
-import 'screens/interview/questions/Part_2/P13/P13_viewmodel.dart';
-import 'screens/interview/questions/Part_2/P14_15/P14_15_viewmodel.dart';
+import 'screens/interview/questions/Part_2/P13_14/P13_14_viewmodel.dart';
+import 'screens/interview/questions/Part_2/P15/P15_viewmodel.dart';
 import 'screens/interview/questions/Part_2/P16/P16_viewmodel.dart';
 import 'screens/interview/questions/Part_2/P17/P17_viewmodel.dart';
 import 'screens/interview/questions/Part_2/P18/P18_viewmodel.dart';
@@ -213,10 +213,10 @@ void main() async {
             create: (_) => P10_12ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
         ChangeNotifierProvider(
-            create: (_) => P13ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            create: (_) => P13_14ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
         ChangeNotifierProvider(
-            create: (_) => P14_15ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            create: (_) => P15ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => P16ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),

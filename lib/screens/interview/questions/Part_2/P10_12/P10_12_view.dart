@@ -387,8 +387,7 @@ class _P10_12ViewState extends State<P10_12View> {
                                 isBold: false,
                               ),
                               const SizedBox(height: 5,),
-                              TextFormField(
-                                autofocus: true,
+                              UITextFormField(
                                 controller: _other,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(RegExp(
@@ -402,11 +401,7 @@ class _P10_12ViewState extends State<P10_12View> {
                                   }
                                   return null;
                                 },
-                                decoration: InputDecoration(
-                                  errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                                ),
-                              )
+                              ),
                             ],
                           ),
                         )

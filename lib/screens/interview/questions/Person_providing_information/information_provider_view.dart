@@ -136,7 +136,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                     const SizedBox(height: 5,),
                     Visibility(
                       visible: groupValue == 87,
-                      child: TextFormField(
+                      child: UITextFormField(
                         controller: _text_name,
                         validator: (value){
                           if(value!.isEmpty){
@@ -151,14 +151,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                           FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                         ],
                         keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                              borderSide: BorderSide(color: mPrimaryColor)),
-                          hintText: "Nhập họ và tên",
-                          hintStyle: const TextStyle(color: Colors.grey),
-                        ),
+                        hint: "Nhập họ và tên",
                       ),
                     ),
                     const SizedBox(height: 20,),
@@ -168,19 +161,13 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                       textFontSize:fontGreater,
                     ),
                     const SizedBox(height: 10,),
-                    TextFormField(
+                    UITextFormField(
                       controller: _text_phone,
                       maxLength: 15,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.datetime,
                       inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                       ],
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                          counterText: ''
-                      ),
                     ),
                     //Button
                     const SizedBox(height: 20,),

@@ -29,8 +29,8 @@ class RouteConstants {
   static const String P06_07Route = "/P06_07Route";
   static const String P08_09Route = "/P08_09Route";
   static const String P10_12Route = "/P10_12Route";
-  static const String P13Route = "/P13Route";
-  static const String P14_15Route = "/P14_15Route";
+  static const String P13_14Route = "/P13_14Route";
+  static const String P15Route = "/P15Route";
   static const String P16Route = "/P16Route";
   static const String P17Route = "/P17Route";
   static const String P17BRoute = "/P17BRoute";

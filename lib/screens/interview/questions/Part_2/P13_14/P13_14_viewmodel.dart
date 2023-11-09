@@ -7,10 +7,10 @@ import '../../../../../models/thongTinHo_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
-class P13ViewModel extends BaseViewModel {
+class P13_14ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
-  P13ViewModel(this._executeDatabase, this._sPrefAppModel);
+  P13_14ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
   var thongtinho = thongTinHoModel();
 
@@ -29,15 +29,15 @@ class P13ViewModel extends BaseViewModel {
     await _executeDatabase.getHo(idho).then((value) => thongtinho = value);
   }
 
-  void P13Back(int? c09) async {
+  void P13_14Back(int? c09) async {
     if(c09 == null){
       NavigationServices.instance.navigateToP08_09(context);
     } else {
       NavigationServices.instance.navigateToP10_12(context);
     }
   }
-  void P13Next(thongTinThanhVienModel data) async {
+  void P13_14Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c11 = ${data.c11} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
-    NavigationServices.instance.navigateToP14_15(context);
+    NavigationServices.instance.navigateToP15(context);
   }
 }

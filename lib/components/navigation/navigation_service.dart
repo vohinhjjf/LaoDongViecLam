@@ -17,8 +17,8 @@ import '../../screens/interview/questions/Part_1/P06_07/P06_07_view.dart';
 
 import '../../screens/interview/questions/Part_2/P08_09/P08_09_view.dart';
 import '../../screens/interview/questions/Part_2/P10_12/P10_12_view.dart';
-import '../../screens/interview/questions/Part_2/P13/P13_view.dart';
-import '../../screens/interview/questions/Part_2/P14_15/P14_15_view.dart';
+import '../../screens/interview/questions/Part_2/P13_14/P13_14_view.dart';
+import '../../screens/interview/questions/Part_2/P15/P15_view.dart';
 import '../../screens/interview/questions/Part_2/P16/P16_view.dart';
 import '../../screens/interview/questions/Part_2/P17/P17_view.dart';
 import '../../screens/interview/questions/Part_2/P18/P18_view.dart';
@@ -167,10 +167,10 @@ class NavigationServices {
         return CustomPageRoute(const P08_09View());
       case RouteConstants.P10_12Route:
         return CustomPageRoute(const P10_12View());
-      case RouteConstants.P13Route:
-        return CustomPageRoute(const P13View());
-      case RouteConstants.P14_15Route:
-        return CustomPageRoute(const P14_15View());
+      case RouteConstants.P13_14Route:
+        return CustomPageRoute(const P13_14View());
+      case RouteConstants.P15Route:
+        return CustomPageRoute(const P15View());
       case RouteConstants.P16Route:
         return CustomPageRoute(const P16View());
       case RouteConstants.P17Route:
@@ -310,9 +310,9 @@ class NavigationServices {
       case UIDescribes.QUESTION_P10: NavigationServices.instance.navigateToP10_12(context);break;
       case UIDescribes.QUESTION_P11: NavigationServices.instance.navigateToP10_12(context);break;
       case UIDescribes.QUESTION_P12: NavigationServices.instance.navigateToP10_12(context);break;
-      case UIDescribes.QUESTION_P13: NavigationServices.instance.navigateToP13(context);break;
-      case UIDescribes.QUESTION_P14: NavigationServices.instance.navigateToP14_15(context);break;
-      case UIDescribes.QUESTION_P15: NavigationServices.instance.navigateToP14_15(context);break;
+      case UIDescribes.QUESTION_P13: NavigationServices.instance.navigateToP13_14(context);break;
+      case UIDescribes.QUESTION_P14: NavigationServices.instance.navigateToP15(context);break;
+      case UIDescribes.QUESTION_P15: NavigationServices.instance.navigateToP15(context);break;
       case UIDescribes.QUESTION_P16: NavigationServices.instance.navigateToP16(context);break;
       case UIDescribes.QUESTION_P17: NavigationServices.instance.navigateToP17(context);break;
       case UIDescribes.QUESTION_P17B: NavigationServices.instance.navigateToP17B(context);break;
@@ -504,11 +504,11 @@ class NavigationServices {
   void navigateToP10_12(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.P10_12Route);
   }
-  void navigateToP13(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.P13Route);
+  void navigateToP13_14(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P13_14Route);
   }
-  void navigateToP14_15(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.P14_15Route);
+  void navigateToP15(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.P15Route);
   }
   void navigateToP16(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.P16Route);

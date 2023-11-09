@@ -96,13 +96,9 @@ class _P56_58ViewState extends State<P56_58View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _congviec,
                     readOnly: true,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p40
@@ -114,13 +110,9 @@ class _P56_58ViewState extends State<P56_58View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _chucdanh,
                     readOnly: true,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 10,),
                   Row(
@@ -141,16 +133,12 @@ class _P56_58ViewState extends State<P56_58View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _machucdanh,
                     readOnly: true,
                     onTap: (){
                       _showAddNgheDialog(maNghe_macdinh);
                     },
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //P57
@@ -160,13 +148,9 @@ class _P56_58ViewState extends State<P56_58View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _tencoso,
                     readOnly: true,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p42
@@ -178,13 +162,9 @@ class _P56_58ViewState extends State<P56_58View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _hoatdong,
                     readOnly: true,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 10,),
                   Row(
@@ -205,16 +185,12 @@ class _P56_58ViewState extends State<P56_58View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _mahoatdong,
                     readOnly: true,
                     onTap: (){
                       _showAddNganhDialog(maNganh_macdinh);
                     },
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),

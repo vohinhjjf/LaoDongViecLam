@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lao_dong_viec_lam/models/doiSongHo_model.dart';
 import 'package:lao_dong_viec_lam/models/thongTinHoNKTT_model.dart';
 import 'package:lao_dong_viec_lam/models/thongTinHo_model.dart';
+import 'package:lao_dong_viec_lam/models/thongTinThanhVienNKTT_model.dart';
 import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
 
 import '../../../../base/base_viewmodel.dart';
@@ -69,12 +71,14 @@ class CompleteInterviewViewModel extends BaseViewModel {
   Future<void> getEnquiry(String id, String namDT) async {
     late thongTinHoModel thongtinHoModel;
     late thongTinHoNKTTModel thongtinHoNKTTModel;
+    late DoiSongHoModel doiSongHoModel;
     final fetchResponse = await _syncServices.getEnquiry(_sPrefAppModel.accessToken, _sPrefAppModel.month, namDT, id);
     if (fetchResponse != null) {
       print("Get data: " + fetchResponse.toString());
       Map<String, dynamic> map = json.decode(json.encode(fetchResponse ?? {})) as Map<String, dynamic>;
       thongtinHoModel = thongTinHoModel.fromJson(map['thongTinHo']);
       thongtinHoNKTTModel = thongTinHoNKTTModel.fromJson(map['thongTinHoNKTT']);
+      doiSongHoModel = DoiSongHoModel.fromJson(map['doiSongHo']);
       List list_nktt = map['lst_ThanhVienNKTT'].isNotEmpty ? map['lst_ThanhVienNKTT'] : [];
       List list_tv = map['lst_ThanhVien'].isNotEmpty ? map['lst_ThanhVien'] : [];
       await _executeDatabase.setHo(thongtinHoModel);
@@ -83,7 +87,7 @@ class CompleteInterviewViewModel extends BaseViewModel {
         if(value.length != list_nktt.length){
           await _executeDatabase.deleteNKTT(0, id, 0);
           for(var element in list_nktt) {
-            await _executeDatabase.setHoNKTT(thongTinHoNKTTModel.fromJson(element));
+            await _executeDatabase.setNKTT(thongTinThanhVienNKTTModel.fromJson(element));
           }
         }
       });
@@ -95,14 +99,19 @@ class CompleteInterviewViewModel extends BaseViewModel {
           await _executeDatabase.setTTTV(list_tv.map((e) => thongTinThanhVienModel.fromJson(e)).toList());
         }
       });
+      await _executeDatabase.setDSH(doiSongHoModel);
     }
     //await _executeDatabase.setTimeBD(DateTime.now().toString(), id);
   }
 
   void CompleteInterview(BangKeThangDTModel bangKeThangDTModel) async {
+    String idho = '${bangKeThangDTModel.idhO_BKE!}${_sPrefAppModel.month}';
+    int thangdt = int.parse(_sPrefAppModel.month);
+    int namdt = DateTime.now().year;
     await _sPrefAppModel.setIdHo(bangKeThangDTModel.idhO_BKE!);
     if(bangKeThangDTModel.trangThai == 9 && bangKeThangDTModel.sync == 1) {
-      await getEnquiry(bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.namDT!.toString());
+      await getEnquiry(idho, bangKeThangDTModel.namDT!.toString());
+      await _executeDatabase.updateTrangThaiBK(bangKeThangDTModel.idhO_BKE!, 5, thangdt, namdt);
     }
     await _executeDatabase.updateTrangThai(8, 0, bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.thangDT!, bangKeThangDTModel.namDT!);
     NavigationServices.instance.navigateToOperatingStatus(context);

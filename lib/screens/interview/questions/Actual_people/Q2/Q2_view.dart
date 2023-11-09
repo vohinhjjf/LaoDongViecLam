@@ -154,16 +154,15 @@ class _Q2ViewState extends State<Q2View> {
                   const SizedBox(height: 5,),
                   Visibility(
                       visible: groupValue == 1,
-                      child: TextField(
+                      child: UITextFormField(
                         controller: _text_name,
-                        autofocus: true,
-                        onSubmitted: (value){
+                        onFieldSubmitted: (value){
                           if(value != "") {
                             if(value.length < 5){
                               showDialog(
                                   context: context,
                                   builder: (_) => UINotificationDialog(
-                                    notification: 'Q2 Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                                      notification: 'Q2 Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
                                       onpress: (){
                                         Navigator.of(context).pop();
                                         setState(() {
@@ -205,14 +204,7 @@ class _Q2ViewState extends State<Q2View> {
                           FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                         ],
                         keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                              borderSide: BorderSide(color: mPrimaryColor)),
-                          hintText: "Nhập họ và tên",
-                          hintStyle: const TextStyle(color: Colors.grey),
-                        ),
+                        hint: "Nhập họ và tên",
                       ),
                   ),
                   const SizedBox(height: 10,),

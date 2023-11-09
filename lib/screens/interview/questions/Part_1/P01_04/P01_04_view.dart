@@ -66,7 +66,7 @@ class _P01_04ViewState extends State<P01_04View> {
       p01_04viewModel = context.read();
       p01_04viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 100),
+          const Duration(milliseconds: 200),
               () => {
             setState(() {
               list_tttv = p01_04viewModel.list_tttv;
@@ -122,7 +122,7 @@ class _P01_04ViewState extends State<P01_04View> {
                   const SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
+                  UITextFormField(
                     controller: _name,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -137,19 +137,13 @@ class _P01_04ViewState extends State<P01_04View> {
                       });
                     },
                     textCapitalization: TextCapitalization.words,
-                    style: const TextStyle(color: Colors.black),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.r)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.r)),
-                    ),
+                    hint: "Nhập họ và tên",
                   ),
                   const SizedBox(
                     height: 15,
@@ -213,7 +207,8 @@ class _P01_04ViewState extends State<P01_04View> {
                           ),
                           Visibility(
                             visible: p01 == 8,
-                            child: TextFormField(
+                            child:
+                            UITextFormField(
                               controller: _orther,
                               validator: (value) {
                                 if (p01 == 8 && value!.isEmpty) {
@@ -224,16 +219,9 @@ class _P01_04ViewState extends State<P01_04View> {
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(RegExp(
                                     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
-                                FilteringTextInputFormatter.deny(
-                                    RegExp('[×÷]')),
+                                FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                               ],
-                              style: const TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                errorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.r)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.r)),
-                              ),
+                              keyboardType: TextInputType.text,
                             ),
                           ),
                           const SizedBox(
@@ -439,7 +427,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       ),
                       Flexible(
                         flex: 2,
-                        child: TextFormField(
+                        child: UITextFormField(
                           controller: _year,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -451,14 +439,8 @@ class _P01_04ViewState extends State<P01_04View> {
                             FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                           ],
                           maxLength: 4,
-                          keyboardType: TextInputType.datetime,
-                          style: const TextStyle(color: Colors.black),
                           readOnly: check,
-                          decoration: InputDecoration(
-                            errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                              counterText: ''
-                          ),
+                          keyboardType: TextInputType.datetime,
                         ),
                       )
                     ],
@@ -515,7 +497,7 @@ class _P01_04ViewState extends State<P01_04View> {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextFormField(
+                          UITextFormField(
                             controller: _age,
                             validator: (value) {
                               if (p03 != 0 && value!.isEmpty) {
@@ -529,12 +511,6 @@ class _P01_04ViewState extends State<P01_04View> {
                             ],
                             maxLength: 3,
                             keyboardType: TextInputType.datetime,
-                            style: const TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                                counterText: ''
-                            ),
                           ),
                         ],
                       )),
@@ -550,7 +526,8 @@ class _P01_04ViewState extends State<P01_04View> {
                       }),
                       UINextButton(ontap: () {
                         int namHT = DateTime.now().year;
-                        var thongtinCH = list_tttv.firstWhere((e) => e.c01 == 1);
+                        print(list_tttv.length);
+                        var thongtinCH = list_tttv.firstWhere((e) => e.c01 == 1, orElse: () => thongTinThanhVienModel());
                         if (_formKey.currentState!.validate()) {
                           if (p01 == 0) {
                             showDialog(

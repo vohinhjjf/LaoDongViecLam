@@ -80,7 +80,7 @@ class _P63_64ViewState extends State<P63_64View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _gio,
                     validator: (value){
                       if(value!.isEmpty){
@@ -93,11 +93,6 @@ class _P63_64ViewState extends State<P63_64View> {
                     ],
                     maxLength: 3,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //p64
                   const SizedBox(height: 20,),
@@ -112,7 +107,7 @@ class _P63_64ViewState extends State<P63_64View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _tiencong,
                     validator: (value){
                       if(value!.isEmpty){
@@ -125,11 +120,6 @@ class _P63_64ViewState extends State<P63_64View> {
                     ],
                     maxLength: 6,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),

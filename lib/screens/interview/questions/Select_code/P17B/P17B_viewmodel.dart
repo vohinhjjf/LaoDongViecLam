@@ -150,25 +150,21 @@ class P17BViewModel extends BaseViewModel {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int month = int.parse(_sPrefAppModel.month);
     int year = DateTime.now().year;
-    await _executeDatabase.updateC00("SET c17B = ? WHERE idho = ? AND idtv = ?",
+    await _executeDatabase.updateC00("SET c15B = ? WHERE idho = ? AND idtv = ?",
         [data.c15B,data.idho,data.idtv]);
     if(data.c35A != null){
+      print("object 1");
       NavigationServices.instance.navigateToP40_42(context);
     }
     else if(data.c50A != null){
+      print("object 2");
       NavigationServices.instance.navigateToP56_58(context);
     }
     else {
+      print("object 3");
       await _executeDatabase.getListTTTV(idho).then((value) async {
-        value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv));
-        int index = 0;
-        for (int i = 0; i < value.length; i++) {
-          if (!checkSelectCode(value[i])) {
-            index ++;
-            break;
-          };
-        }
-        if (index == 0) {
+        if(value.last.idtv == thanhvien.idtv){
+          print("object 4");
           await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
             if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
               await _executeDatabase.updateTrangThai(9, 0, _sPrefAppModel.getIdHo, month, year);
@@ -183,6 +179,32 @@ class P17BViewModel extends BaseViewModel {
             }
           });
           NavigationServices.instance.navigateToInterviewStatus(context);
+        } else {
+          print("object 5");
+          value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv)+1);
+          int index = 0;
+          for (int i = 0; i < value.length; i++) {
+            if (!checkSelectCode(value[i])) {
+              index ++;
+              break;
+            };
+          }
+          if (index == 0) {
+            await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
+              if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
+                await _executeDatabase.updateTrangThai(9, 0, _sPrefAppModel.getIdHo, month, year);
+              } else {
+                await _executeDatabase.setBangKeThangDTModel([{
+                  'idhO_BKE': _sPrefAppModel.getIdHo,
+                  'namDT': year,
+                  'thangDT': month,
+                  'trangThai': 9,
+                  'sync' : 0
+                }]);
+              }
+            });
+            NavigationServices.instance.navigateToInterviewStatus(context);
+          }
         }
       });
     }

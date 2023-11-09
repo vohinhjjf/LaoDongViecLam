@@ -83,14 +83,9 @@ class _P65_66ViewState extends State<P65_66View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                TextFormField(
+                UITextFormField(
                   controller: _gio,
                   readOnly: true,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                  ),
                 ),
                 //p62
                 const SizedBox(height: 20,),
@@ -104,14 +99,9 @@ class _P65_66ViewState extends State<P65_66View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                TextFormField(
+                UITextFormField(
                   controller: _thunhap,
                   readOnly: true,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                  ),
                 ),
                 //Button
                 const SizedBox(height: 20,),

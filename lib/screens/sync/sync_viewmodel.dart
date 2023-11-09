@@ -25,7 +25,7 @@ class SyncViewModel extends BaseViewModel {
   }
 
   Future<List<BangKeThangDTModel>> fetchData() async {
-    return await _executeDatabase.getDongBo(_sPrefAppModel.month);
+    return await _executeDatabase.getDongBo(_sPrefAppModel.month, DateTime.now().year);
   }
 
   void syncBack() {
@@ -35,7 +35,7 @@ class SyncViewModel extends BaseViewModel {
   Future<String> Dongbo() async {
     String month = await _sPrefAppModel.month;
     List<PhieuDieuTraModel> listphieuDieuTra = [];
-    List<BangKeThangDTModel> list_BangKeThangDT = await _executeDatabase.getDongBo(month);
+    List<BangKeThangDTModel> list_BangKeThangDT = await _executeDatabase.getDongBo(month, DateTime.now().year);
     String token = _sPrefAppModel.accessToken;
     for(int i=0; i < list_BangKeThangDT.length; i++){
       String idho = "${list_BangKeThangDT[i].idhO_BKE}$month";

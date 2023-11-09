@@ -108,7 +108,7 @@ class _P17ViewState extends State<P17View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 5,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _nganh,
                     validator: (value){
                       if(value!.isEmpty){
@@ -116,17 +116,13 @@ class _P17ViewState extends State<P17View> {
                       }
                       return null;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black, fontSize: fontMedium),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 10,),
                   const UIText(
@@ -136,7 +132,7 @@ class _P17ViewState extends State<P17View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 5,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _nam,
                     validator: (value){
                       if(value!.isEmpty){
@@ -149,12 +145,6 @@ class _P17ViewState extends State<P17View> {
                     ],
                     maxLength: 4,
                     keyboardType: TextInputType.datetime,
-                    style: const TextStyle( color: Colors.black, fontSize: fontMedium),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      counterText: ''
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),

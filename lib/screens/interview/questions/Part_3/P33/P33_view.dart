@@ -601,8 +601,7 @@ class _P33ViewState extends State<P33View> {
                           isBold: false,
                         ),
                         const SizedBox(height: 5,),
-                        TextFormField(
-                          autofocus: true,
+                        UITextFormField(
                           controller: _orther,
                           validator: (value){
                             if(p33i == 1 && value!.isEmpty){
@@ -616,12 +615,7 @@ class _P33ViewState extends State<P33View> {
                             FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                           ],
                           keyboardType: TextInputType.text,
-                          style: const TextStyle( color: Colors.black),
-                          decoration: InputDecoration(
-                            errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                          ),
-                        )
+                        ),
                       ],
                     ),
                   ),

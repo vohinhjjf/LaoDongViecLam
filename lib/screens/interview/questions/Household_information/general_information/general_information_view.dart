@@ -97,14 +97,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _month,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Tỉnh
@@ -120,14 +115,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _province,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Huyện
@@ -143,14 +133,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _district,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Xã
@@ -166,14 +151,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _commune,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Địa bàn
@@ -189,14 +169,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _area,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Tên địa bàn
@@ -212,14 +187,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _name_area,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Ttnt
@@ -235,14 +205,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _ttnt,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Hộ số
@@ -258,14 +223,9 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                   Padding(
                     padding:
                     EdgeInsets.only(top: 10.h),
-                    child: TextFormField(
+                    child: UITextFormField(
                       controller: _ho_so,
                       readOnly: true,
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
-                      ),
                     ),
                   ),
                   //Button

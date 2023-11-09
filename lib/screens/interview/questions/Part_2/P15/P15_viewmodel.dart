@@ -6,10 +6,10 @@ import '../../../../../data/shared_preferences/spref_app_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
 
-class P14_15ViewModel extends BaseViewModel {
+class P15ViewModel extends BaseViewModel {
   final ExecuteDatabase _executeDatabase;
   final SPrefAppModel _sPrefAppModel;
-  P14_15ViewModel(this._executeDatabase, this._sPrefAppModel);
+  P15ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
 
   @override
@@ -26,12 +26,12 @@ class P14_15ViewModel extends BaseViewModel {
     });
   }
 
-  void P14_15Back() async {
-    NavigationServices.instance.navigateToP13(context);
+  void P15Back() async {
+    NavigationServices.instance.navigateToP13_14(context);
   }
 
-  void P14_15Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c12 = ${data.c12}, c13 = ${data.c13} "
+  void P15Next(thongTinThanhVienModel data) async {
+    await _executeDatabase.update("SET c13 = ${data.c13} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
     if(data.c13 == 1){
       await _executeDatabase.update("SET c14A = ${data.c14A}, c14B = ${data.c14B}"

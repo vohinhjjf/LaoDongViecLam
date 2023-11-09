@@ -80,9 +80,9 @@ class _Q1ViewState extends State<Q1View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  TextField(
+                  UITextFormField(
                     controller: _text_name,
-                    onSubmitted: (value){
+                    onFieldSubmitted: (value){
                       if(value != "") {
                         if(value.length < 5){
                           showDialog(
@@ -132,14 +132,7 @@ class _Q1ViewState extends State<Q1View> {
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle(color: Colors.black),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          borderSide: BorderSide(color: mPrimaryColor)),
-                      hintText: "Nhập họ và tên",
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
+                    hint: "Nhập họ và tên",
                   ),
                   const SizedBox(height: 10,),
                   ListView.builder(
@@ -277,12 +270,14 @@ class _Q1ViewState extends State<Q1View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed: onpress1,
                     child: const UIText(
                         text: 'Có',
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.center,
                         textColor: mPrimaryColor,
-                        textFontSize: fontLarge
-                    ),
-                    onPressed: onpress1
+                        isBold: true,
+                    )
                 ),
                 MaterialButton(
                     height: 60,
@@ -290,14 +285,14 @@ class _Q1ViewState extends State<Q1View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed: onpress2,
                     child: const UIText(
                       text: 'Không',
                       textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
-                    ),
-                    onPressed: onpress2
+                    )
                 )
               ],
             ),

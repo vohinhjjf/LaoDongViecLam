@@ -86,25 +86,21 @@ class _P39_42ViewState extends State<P39_42View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _congviec,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập mô tả';
+                        return 'Vui lòng nhập công việc';
                       }
                       return null;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p40
@@ -116,25 +112,21 @@ class _P39_42ViewState extends State<P39_42View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _chucdanh,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập mô tả';
+                        return 'Vui lòng nhập chức danh';
                       }
                       return null;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p41
@@ -146,25 +138,21 @@ class _P39_42ViewState extends State<P39_42View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _tencoso,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập mô tả';
+                        return 'Vui lòng nhập tên cơ sở';
                       }
                       return null;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   const SizedBox(height: 20,),
                   //p42
@@ -176,25 +164,21 @@ class _P39_42ViewState extends State<P39_42View> {
                     textFontSize:fontLarge,
                   ),
                   const SizedBox(height: 10,),
-                  TextFormField(
+                  UITextFormField(
                     controller: _hoatdong,
                     validator: (value){
                       if(value!.isEmpty){
-                        return 'Vui lòng nhập mô tả';
+                        return 'Vui lòng nhập hoạt động';
                       }
                       return null;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
-                    style: const TextStyle( color: Colors.black),
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular( 8.r)),
-                    ),
                   ),
                   //Button
                   const SizedBox(height: 20,),
