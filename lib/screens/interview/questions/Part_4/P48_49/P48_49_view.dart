@@ -218,7 +218,7 @@ class _P48_49ViewState extends State<P48_49View> {
                             builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P48 - Tổng số tiền nhận được của CV chính  = ${_tien.text} quá lớn!',)
                         );
                       }
-                      else if(thanhvien.c38! >= 8 && (p49 == 2 || p49 == 3)){
+                      else if(thanhvien.c38! >= 7 && (p49 == 2 || p49 == 3)){
                         String vithe = p49 == 2 ? "Tự làm" : "Lao động gia đình";
                         showDialog(
                             context: context,
@@ -253,16 +253,21 @@ class _P48_49ViewState extends State<P48_49View> {
                             builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là xã viên hợp tác xã (P49 = 4) mà cơ sở làm việc thuộc loại hình không phải hợp tác xã (p49 là $p49). Kiểm tra lại!',)
                         );
                       }
+                      else if(p49 == 5 && int.parse(_tien.text) < 300){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm công hưởng lương mà thu nhập quá thấp dưới 300 nghìn đồng!',)
+                        );
+                      }
                       //Notifi
-                      else if((int.parse(_tien.text) > 500000)){
+                      else if((p49 == 1 || p49 ==2) && (int.parse(_tien.text) > 500000)){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập quá cao trên 500 triệu đồng/tháng. Có đúng không?',
+                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có vị thế làm là chủ sở hữu hoặc tự làm mà thu nhập quá cao trên 500 triệu đồng/tháng. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
-                                Navigator.of(context).pop();
-                                if((thanhvien.c38 == 5 || thanhvien.c38 == 9) && (p49 == 2 || p49 == 3)){
+                                if((thanhvien.c38 == 5 || thanhvien.c38 == 6 || thanhvien.c38 == 7) && (p49 == 2 || p49 == 3)){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
@@ -332,7 +337,7 @@ class _P48_49ViewState extends State<P48_49View> {
                               notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}), thu nhập thấp dưới 50 nghìn đồng/tháng. Có đúng không?',
                               onpress: (){
                                 Navigator.of(context).pop();
-                                if((thanhvien.c38 == 5 || thanhvien.c38 == 9) && (p49 == 2 || p49 == 3)){
+                                if((thanhvien.c38 == 5 || thanhvien.c38 == 6 || thanhvien.c38 == 7) && (p49 == 2 || p49 == 3)){
                                   showDialog(
                                       context: context,
                                       builder: (_) => UINotificationDialog(
@@ -395,7 +400,7 @@ class _P48_49ViewState extends State<P48_49View> {
                             )
                         );
                       }
-                      else if((thanhvien.c38 == 5 || thanhvien.c38 == 9) && (p49 == 2 || p49 == 3)){
+                      else if((thanhvien.c38 == 5 || thanhvien.c38 == 6 || thanhvien.c38 == 7) && (p49 == 2 || p49 == 3)){
                         showDialog(
                             context: context,
                             builder: (_) => UINotificationDialog(

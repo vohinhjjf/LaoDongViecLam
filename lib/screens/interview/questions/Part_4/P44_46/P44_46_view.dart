@@ -283,6 +283,12 @@ class _P44_46ViewState extends State<P44_46View> {
                                       .c00} là cá nhân làm tự do (P43 = 3) mà cơ sở có đăng ký kinh doanh (P44 = 1). Kiểm tra lại!',)
                             );
                           }
+                          else if(thanhvien.c38! >= 5 && p44 == 2){
+                            showDialog(
+                                context: context,
+                                builder: (_) => const UIWarningDialog(waring: 'Cơ sở thuộc loại hình HTX, doanh nghiệp, cơ quan nhà nước, tổ chức đoàn thể, nước ngoài mà không có đăng ký kinh doanh!',)
+                            );
+                          }
                           else if (int.parse(_gio.text) == 0 && p46 == 2) {
                             showDialog(
                                 context: context,

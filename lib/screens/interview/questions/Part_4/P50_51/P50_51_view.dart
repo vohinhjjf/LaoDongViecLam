@@ -222,6 +222,12 @@ class _P50_51ViewState extends State<P50_51View> {
                             builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P51 - Có đóng BHXH nhập vào chưa đúng!',)
                         );
                       }
+                      else if(p50 >= 5 && p51 == 1){
+                        showDialog(
+                            context: context,
+                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} không có hợp đồng lao động/hợp đồng giao khoán mà có bảo hiểm xã hội bắt buộc!',)
+                        );
+                      }
                       else if((thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
                           || thanhvien.c38 == 10 || thanhvien.c38 == 12) && (p50 == 6 || p50 == 7)){
                         showDialog(

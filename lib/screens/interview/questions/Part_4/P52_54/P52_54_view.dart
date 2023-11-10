@@ -304,6 +304,7 @@ class _P52_54ViewState extends State<P52_54View> {
                             builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực hộ NN không có ĐKKD mà có BHXH bắt bắt buộc!',)
                         );
                       }
+                      //Notifi
                       else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
                           || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
                           || thanhvien.c38 == 10 || thanhvien.c38 == 12) && p52 == 2 &&
@@ -439,6 +440,7 @@ class _P52_54ViewState extends State<P52_54View> {
                             )
                         );
                       }
+
                       else {
                         p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
