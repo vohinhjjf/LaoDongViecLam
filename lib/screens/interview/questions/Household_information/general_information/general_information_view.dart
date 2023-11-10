@@ -80,19 +80,16 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+              padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //month
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.h),
-                    child: const UIText(
-                      text:UIDescribes.month,
-                      textColor: Colors.black,
-                      textFontSize:fontLarge,
-                      isBold: true,
-                    ),
+                  const UIText(
+                    text:UIDescribes.month,
+                    textColor: Colors.black,
+                    textFontSize:fontLarge,
+                    isBold: true,
                   ),
                   Padding(
                     padding:
@@ -229,7 +226,7 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

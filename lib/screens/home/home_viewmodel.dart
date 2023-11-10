@@ -73,6 +73,16 @@ class HomeViewModel extends BaseViewModel {
     NavigationServices.instance.navigateToAreaReplace(context);
   }
 
+  void download() async {
+    await _executeDatabase.deleteDatabase().then((value) {
+      _sPrefAppModel.setAccessToken('');
+      _sPrefAppModel.setUserName('');
+      _sPrefAppModel.setPassWord('');
+      _sPrefAppModel.setIdHo("");
+      NavigationServices.instance.navigateToLogin(context);
+    });
+  }
+
   Future checkUpdateApp() async {
     //mainMenuController.setLoading(true);
     if (Platform.isIOS) {}

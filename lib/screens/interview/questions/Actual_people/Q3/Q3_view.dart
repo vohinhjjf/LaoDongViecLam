@@ -67,7 +67,7 @@ class _Q3ViewState extends State<Q3View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -162,7 +162,7 @@ class _Q3ViewState extends State<Q3View> {
                         const UIText(
                           text: "Đó là những ai:",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                           isBold: false,
                         ),
@@ -294,7 +294,7 @@ class _Q3ViewState extends State<Q3View> {
                         const UIText(
                           text: "Đó là những ai:",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                           isBold: false,
                         ),
@@ -426,7 +426,7 @@ class _Q3ViewState extends State<Q3View> {
                         const UIText(
                           text: "Đó là những ai:",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                           isBold: false,
                         ),
@@ -558,7 +558,7 @@ class _Q3ViewState extends State<Q3View> {
                         const UIText(
                           text: "Đó là những ai:",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                           isBold: false,
                         ),

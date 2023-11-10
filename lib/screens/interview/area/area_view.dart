@@ -51,13 +51,11 @@ class _AreaViewState extends State<AreaView>{
             onPressed: () => areaViewModel.AreaBack()),
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
-          'Danh sách địa bàn - Tháng $_month',
-          style: const TextStyle(
-            fontSize: fontLarge,
-            color: mPrimaryColor,
-            fontWeight: FontWeight.bold,
-          ),
+        title: UIText(
+          text: 'Danh sách địa bàn - Tháng $_month',
+          textFontSize: fontLarge,
+          textColor: mPrimaryColor,
+          isBold: true,
         ),
       ),
       body: SingleChildScrollView(
@@ -70,7 +68,7 @@ class _AreaViewState extends State<AreaView>{
             itemCount: list_area.length,
             itemBuilder: (context, index) {
               return Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {

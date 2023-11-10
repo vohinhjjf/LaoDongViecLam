@@ -156,4 +156,68 @@ class _HomeViewState extends State<HomeView> {
         }
     );
   }
+
+  _showDialog() {
+    showDialog(
+        context: context,
+        builder: (_) =>
+            AlertDialog(
+              title: const UIText(
+                text:
+                "Cảnh báo (Tải lại dữ liệu)",
+                textColor: Colors.black,
+                textAlign: TextAlign.center,
+                textFontSize: fontLarge,
+                isBold: true,
+              ),
+              content: const Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: UIText(
+                  text:
+                  "DỮ LIỆU TRÊN THIẾT BỊ SẼ BỊ XÓA ở các cơ sở ĐANG PHỎNG VẤN hoặc "
+                      "hoàn thành nhưng CHƯA ĐỒNG BỘ.\nĐề nghị ĐTV thực hiện ĐỒNG "
+                      "BỘ DỮ LIỆU trước khi chọn đồng ý",
+                  textColor: Colors.black,
+                  textAlign: TextAlign.center,
+                  textFontSize: fontMedium,
+                  //isBold: true,
+                ),
+              ),
+              //actionsAlignment: MainAxisAlignment.center,
+              //actionsOverflowDirection: VerticalDirection.down,
+              actions: [
+                MaterialButton(
+                    height: 60,
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black,width: 0.1)
+                    ),
+                    child: const UIText(
+                      text: 'Kiểm tra lại',
+                      textFontSize: fontMedium,
+                      textAlign: TextAlign.center,
+                      textColor: mCloseColor,
+                      isBold: true,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    }),
+                MaterialButton(
+                  height: 60,
+                  shape: const RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black,width: 0.1)
+                  ),
+                  child: const UIText(
+                    text: 'Đồng ý',
+                    textFontSize: fontMedium,
+                    textAlign: TextAlign.center,
+                    textColor: mPrimaryColor,
+                    isBold: true,
+                  ),
+                  onPressed: () {
+                    homeViewModel.download();
+                  },
+                ),
+              ],
+            ));
+  }
 }

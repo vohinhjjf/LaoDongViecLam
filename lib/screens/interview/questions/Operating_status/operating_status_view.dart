@@ -67,7 +67,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 25, 10, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -75,7 +75,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     title: const UIText(
                       text: UIDescribes.active,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -104,7 +104,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     title: const UIText(
                       text: UIDescribes.refuse,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -133,7 +133,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     title: const UIText(
                       text: UIDescribes.notArea,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -162,7 +162,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     title: const UIText(
                       text: UIDescribes.notContact,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -191,7 +191,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                     title: const UIText(
                       text: UIDescribes.moveTo,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(

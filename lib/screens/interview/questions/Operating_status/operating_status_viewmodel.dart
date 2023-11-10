@@ -53,7 +53,7 @@ class OperatingStatusViewModel extends BaseViewModel {
                     ttnt: list_area.firstWhere((e) => e.iddb == value.iddb && e.thangDT == thangDT && e.namDT == namDT).ttnt,
                     tenChuHo: value.tenChuHo,
                     diachi: value.diaChi,
-                    maDTV: _sPrefAppModel.userModel.userName,
+                    maDTV: _sPrefAppModel.getUserName,
                     trangThai: 2,
                     ngayPhongVan: DateTime.now().toString()
                 )

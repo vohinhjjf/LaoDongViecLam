@@ -71,14 +71,6 @@ class SPrefAppModel {
     await _sharedPref.setString(SPrefConstants.userModelKey, userEncode);
   }
 
-  int get interviewStatus {
-    return _sharedPref.getInt(SPrefConstants.interviewStatusKey) ?? 0;
-  }
-
-  Future<void> setInterviewStatus(int interviewStatus) async {
-    await _sharedPref.setInt(SPrefConstants.interviewStatusKey, interviewStatus) ;
-  }
-
   Future<void> setIdHo(String stt) async {
     await _sharedPref.setString(SPrefConstants.id_ho, stt);
   }

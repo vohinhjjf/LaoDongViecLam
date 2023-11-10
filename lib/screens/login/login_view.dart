@@ -223,7 +223,7 @@ class _LoginViewState extends State<LoginView> {
                   EdgeInsets.symmetric(horizontal: 20.w),
                   child: MaterialButton(
                     color: Colors.blue,
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     ),
                     onPressed: () {

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -139,7 +137,7 @@ class _P17BViewState extends State<P17BView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       UIBackButton(ontap: (){
-                        p17BviewModel.P17BBack();
+                        p17BviewModel.P17BBack(thanhvien);
                       }),
                       UINextButton(ontap: (){
                         if (_madaotao.text == "") {

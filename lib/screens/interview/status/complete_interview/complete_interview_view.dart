@@ -74,20 +74,14 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
               margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
               height: 50.0,
               width: MediaQuery.of(context).size.width,
-              child: TextField(
+              child: UITextFormField(
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
                     completeInterviewViewModel.searchData(listBangKeThangDTModel,text).then((value) => list = value);
                   });
                 },
-                style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      borderSide: BorderSide(color: mPrimaryColor)),
-                  hintText: "Nhập từ khóa tìm kiếm",
-                ),
+                hint: "Nhập từ khóa tìm kiếm",
               ),
             ),
             ListView.builder(

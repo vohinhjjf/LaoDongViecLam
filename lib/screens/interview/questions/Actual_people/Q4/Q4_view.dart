@@ -324,12 +324,12 @@ class _Q4ViewState extends State<Q4View> {
           child: const UIText(
             text: UIDescribes.personName,
             textColor: Colors.black,
-            textFontSize: fontLarge,
+            textFontSize: fontMedium,
             textAlign: TextAlign.start,
             isBold: false,
           ),
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(height: 10,),
         Visibility(
           visible: groupValue == 1,
           child: UITextFormField(
@@ -412,13 +412,10 @@ class _Q4ViewState extends State<Q4View> {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width - 212.w,
-                        child: Text(
-                          "${index+1}. ${list_item[index].q1_New}",
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal
-                          ),
+                        child: UIText(
+                          text: "${index+1}. ${list_item[index].q1_New}",
+                          textColor: Colors.black,
+                          textFontSize: 18,
                           maxLines: 10,
                         ),
                       ),
@@ -482,12 +479,12 @@ class _Q4ViewState extends State<Q4View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed:  onpress1,
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium
-                    ),
-                    onPressed:  onpress1
+                        textFontSize: fontLarge
+                    )
                 ),
                 MaterialButton(
                     height: 60,
@@ -495,14 +492,14 @@ class _Q4ViewState extends State<Q4View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed: onpress2,
                     child: const UIText(
                       text: 'Không',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
-                    ),
-                    onPressed: onpress2
+                    )
                 )
               ],
             ),

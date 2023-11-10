@@ -68,7 +68,7 @@ class _Q1ViewState extends State<Q1View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -256,7 +256,6 @@ class _Q1ViewState extends State<Q1View> {
             textColor: Colors.black,
             textFontSize:fontLarge,
             textAlign: TextAlign.center,
-            isBold: true,
           ),
           content: Container(
             height: 60,
@@ -311,7 +310,7 @@ class _Q1ViewState extends State<Q1View> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          title: TextField(
+          title: UITextFormField(
             controller: _name,
             textCapitalization: TextCapitalization.words,
             inputFormatters: [
@@ -320,12 +319,6 @@ class _Q1ViewState extends State<Q1View> {
               FilteringTextInputFormatter.deny(RegExp('[×÷]')),
             ],
             keyboardType: TextInputType.text,
-            style: const TextStyle(color: Colors.black),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  borderSide: BorderSide(color: mPrimaryColor)),
-            ),
           ),
           content: Container(
             height: 60,

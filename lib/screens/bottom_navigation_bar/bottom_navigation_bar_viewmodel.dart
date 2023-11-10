@@ -35,8 +35,7 @@ class BottomNavigationViewModel extends BaseViewModel {
   @override
   void onInit(BuildContext context) {
     super.onInit(context);
-    final userModel = _sPrefAppModel.userModel;
-    userName = userModel.userName;
+    userName = _sPrefAppModel.getUserName;
     month = _sPrefAppModel.month;
     // call api lan dau dang nhap
     isAutoSync = _sPrefAppModel.isAutoSync();

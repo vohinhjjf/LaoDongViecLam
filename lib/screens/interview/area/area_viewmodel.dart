@@ -18,7 +18,7 @@ class AreaViewModel extends BaseViewModel {
   @override
   void onInit(BuildContext context) {
     super.onInit(context);
-    userName = _sPrefAppModel.userModel.userName;
+    userName = _sPrefAppModel.getUserName;
     month = _sPrefAppModel.month;
     getArea();
   }

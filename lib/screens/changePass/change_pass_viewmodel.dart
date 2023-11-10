@@ -19,7 +19,7 @@ class ChangePasswordViewModel extends BaseViewModel {
   Future<String> changePass(String oldPassword, String newPassword) async {
     String nowPassword = await _sPrefAppModel.getPassword;
     if(oldPassword == nowPassword){
-      _syncServices.DoiMatKhau(_sPrefAppModel.accessToken, _sPrefAppModel.userModel.userName!, newPassword);
+      _syncServices.DoiMatKhau(_sPrefAppModel.accessToken, _sPrefAppModel.getUserName, newPassword);
       return 'sucessfully';
     } else {
       return 'failed';

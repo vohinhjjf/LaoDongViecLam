@@ -64,7 +64,7 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
               margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
               height: 50.0,
               width: MediaQuery.of(context).size.width,
-              child: TextField(
+              child: UITextFormField(
                 controller: _text_find,
                 onChanged: (text){
                   setState(() {
@@ -73,13 +73,7 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
                     });
                   });
                 },
-                style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      borderSide: BorderSide(color: mPrimaryColor)),
-                  hintText: "Nhập từ khóa tìm kiếm",
-                ),
+                hint: "Nhập từ khóa tìm kiếm",
               ),
             ),
             ListView.builder(
@@ -91,10 +85,6 @@ class _NotInterviewedViewState extends State<NotInterviewedView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      //print('Index $index');
-                      /*if (_sPrefAppModel.interviewStatus == 1) {
-                        notInterviewedViewModel.notInterviewed(index);
-                      }*/
                       notInterviewedViewModel.notInterviewed(listBangKeCs[index]);
                     },
                     child: Padding(
