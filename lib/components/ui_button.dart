@@ -85,17 +85,17 @@ class Body extends State<UIGPSButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: GestureDetector(
         onTap: () {
           checkGps(context);
         },
         child: SizedBox(
-          width: 40,
-          height: 40,
+          width: 25,
+          height: 25,
           child: Image.asset(
             UIAssets.icGPS,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
       ),
@@ -171,7 +171,7 @@ class Body extends State<UIGPSButton> {
                 text:'Cơ sở này đã có GPS!',
                 textAlign: TextAlign.center,
                 textStyle: TextStyle(fontSize: fontLarge, color: mDividerColor,fontWeight: FontWeight.w600),),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               UIText(
                 text: "Kinh độ: $longitude",
                 textAlign: TextAlign.center,
@@ -236,17 +236,17 @@ class BodyUIEXITButton extends State<UIEXITButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: GestureDetector(
         onTap: () {
           _showNotificationDialog(context);
         },
         child: SizedBox(
-          width: 40,
-          height: 40,
+          width: 25,
+          height: 25,
           child: Image.asset(
             UIAssets.icExit,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
       ),
@@ -332,12 +332,27 @@ class UIBackButton extends StatelessWidget {
         onPressed: ontap,
         textColor: Colors.white,
         padding: const EdgeInsets.all(0),
-        child: const UIText(
-          text: "Trở lại",
-          textAlign: TextAlign.center,
-          textColor: mPrimaryColor,
-          textFontSize: fontLarge,
-          isBold: true,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            Icon(
+              Icons.navigate_before,
+              color: mPrimaryColor,
+              size: 25,
+            ),
+            UIText(
+              text: UIDescribes.pre,
+              textAlign: TextAlign.center,
+              textColor: mPrimaryColor,
+              textFontSize: fontMedium,
+              isBold: true,
+            ),
+            Icon(
+              Icons.navigate_before,
+              color: Colors.transparent,
+              size: 25,
+            ),
+          ],
         ),
       ),
     );
@@ -373,12 +388,27 @@ class UINextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(5.0)),
         textColor: Colors.white,
         padding: const EdgeInsets.all(0),
-        child: const UIText(
-          text: "Tiếp tục",
-          textAlign: TextAlign.center,
-          textColor: Colors.white,
-          textFontSize: fontLarge,
-          isBold: true,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            Icon(
+              Icons.navigate_next,
+              color: Colors.transparent,
+              size: 25,
+            ),
+            UIText(
+              text: UIDescribes.next,
+              textAlign: TextAlign.center,
+              textColor: Colors.white,
+              textFontSize: fontMedium,
+              isBold: true,
+            ),
+            Icon(
+              Icons.navigate_next,
+              color: Colors.white,
+              size: 25,
+            ),
+          ],
         ),
       ),
     );

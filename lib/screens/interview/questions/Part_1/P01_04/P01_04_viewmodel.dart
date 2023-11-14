@@ -58,7 +58,8 @@ class P01_04ViewModel extends BaseViewModel {
   String procedureMember(thongTinThanhVienModel thongTinTV) {
     String stopQuestion = "P01";
     if (BaseLogic.getInstance().procedureMember(thongTinTV)) {
-      stopQuestion = BaseLogic.getInstance().mQuestion;
+      print("object: ${BaseLogic.getInstance().mQuestion}");
+      return BaseLogic.getInstance().mQuestion;
     }
     return stopQuestion;
   }

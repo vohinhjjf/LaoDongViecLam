@@ -170,44 +170,48 @@ class _P23ViewState extends State<P23View> {
                 ),
                 //Button
                 const SizedBox(
-                  height: 20,
+                  height: 90,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: () {
-                      p23ViewModel.P23Back();
-                    }),
-                    UINextButton(ontap: () {
-                      if (p23 == 0) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(
-                                  waring:
-                                      'P23-Lý do tạm nghỉ việc bị bỏ trống!',
-                                ));
-                      } else if (thanhvien.c02 == 1 && p23 == 6) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(
-                                  waring:
-                                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',
-                                ));
-                      } else {
-                        p23ViewModel.P23Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c21: p23,
-                          c21K: _orther.text,
-                        ));
-                      }
-                    }),
-                  ],
-                )
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: () {
+              p23ViewModel.P23Back();
+            }),
+            UINextButton(ontap: () {
+              if (p23 == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(
+                      waring:
+                      'P23-Lý do tạm nghỉ việc bị bỏ trống!',
+                    ));
+              } else if (thanhvien.c02 == 1 && p23 == 6) {
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(
+                      waring:
+                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là nam mà lý do tạm nghỉ là nghỉ thai sản!',
+                    ));
+              } else {
+                p23ViewModel.P23Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c21: p23,
+                  c21K: _orther.text,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

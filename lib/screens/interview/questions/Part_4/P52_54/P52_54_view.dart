@@ -272,75 +272,71 @@ class _P52_54ViewState extends State<P52_54View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p52_54ViewModel.P52_54Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(thanhvien.c45 == 1 && p52 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P52 - Loại hình BHXH nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p53 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P53 - Thời gian làm công việc chính nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p54 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P54 - Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(thanhvien.c38 == 1 && thanhvien.c39 == 2 && (thanhvien.c45 == 1 && p52 == 1)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực hộ NN không có ĐKKD mà có BHXH bắt bắt buộc!',)
-                        );
-                      }
-                      //Notifi
-                      else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
-                          || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
-                          || thanhvien.c38 == 10 || thanhvien.c38 == 12) && p52 == 2 &&
-                          (thanhvien.c44 == 1 || thanhvien.c44 == 2 || thanhvien.c44 == 3)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/nhà nước và có HĐLĐ từ 3 tháng trở lên mà không có BHXH tự nguyện. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c44! >= 5 && p52 == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c39 == 2 && p52 == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c46: p52,
-                                                      c47: p53,
-                                                      c48: p54,
-                                                    ));
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p52_54ViewModel.P52_54Back();
+            }),
+            UINextButton(ontap: (){
+              if(thanhvien.c45 == 1 && p52 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P52 - Loại hình BHXH nhập vào chưa đúng!',)
+                );
+              }
+              else if(p53 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P53 - Thời gian làm công việc chính nhập vào chưa đúng!',)
+                );
+              }
+              else if(p54 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P54 - Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
+                );
+              }
+              else if(thanhvien.c38 == 1 && thanhvien.c39 == 2 && (thanhvien.c45 == 1 && p52 == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm việc trong khu vực hộ NN không có ĐKKD mà có BHXH bắt bắt buộc!',)
+                );
+              }
+              //Notifi
+              else if(thanhvien.c43 == 5 && (thanhvien.c38 == 5 || thanhvien.c38 == 6
+                  || thanhvien.c38 == 7 || thanhvien.c38 == 8 || thanhvien.c38 == 9
+                  || thanhvien.c38 == 10 || thanhvien.c38 == 12) && p52 == 2 &&
+                  (thanhvien.c44 == 1 || thanhvien.c44 == 2 || thanhvien.c44 == 3)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm công hưởng lương trong khu vực doanh nghiệp/nhà nước và có HĐLĐ từ 3 tháng trở lên mà không có BHXH tự nguyện. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c44! >= 5 && p52 == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c39 == 2 && p52 == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
                                             p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -348,30 +344,30 @@ class _P52_54ViewState extends State<P52_54View> {
                                               c47: p53,
                                               c48: p54,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c39 == 2 && p52 == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c46: p52,
-                                            c47: p53,
-                                            c48: p54,
-                                          ));
-                                        },
-                                      )
-                                  );
-                                }
-                                else {
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else {
+                                    p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c46: p52,
+                                      c47: p53,
+                                      c48: p54,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c39 == 2 && p52 == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
                                   p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -379,37 +375,37 @@ class _P52_54ViewState extends State<P52_54View> {
                                     c47: p53,
                                     c48: p54,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if((thanhvien.c44 == 5 || thanhvien.c44 == 6 || thanhvien.c44 == 7) && p52 == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c39 == 2 && p52 == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c46: p52,
-                                            c47: p53,
-                                            c48: p54,
-                                          ));
-                                        },
-                                      )
-                                  );
-                                }
-                                else {
+                                },
+                              )
+                          );
+                        }
+                        else {
+                          p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c46: p52,
+                            c47: p53,
+                            c48: p54,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if((thanhvien.c44 == 5 || thanhvien.c44 == 6 || thanhvien.c44 == 7) && p52 == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà loại HĐLĐ đã ký là ${thanhvien.c44 == 5? "Hợp đồng giao khoán công việc" : (thanhvien.c44 == 6? "Thỏa thuận miệng" : "Không có HĐLĐ")}. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c39 == 2 && p52 == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
                                   p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -417,31 +413,30 @@ class _P52_54ViewState extends State<P52_54View> {
                                     c47: p53,
                                     c48: p54,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c39 == 2 && p52 == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
-                                  idho: thanhvien.idho,
-                                  idtv: thanhvien.idtv,
-                                  c46: p52,
-                                  c47: p53,
-                                  c48: p54,
-                                ));
-                              },
-                            )
-                        );
-                      }
-
-                      else {
+                                },
+                              )
+                          );
+                        }
+                        else {
+                          p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c46: p52,
+                            c47: p53,
+                            c48: p54,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c39 == 2 && p52 == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có BHXH bắt buộc mà không đăng kí kinh doanh. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
                         p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
@@ -449,14 +444,23 @@ class _P52_54ViewState extends State<P52_54View> {
                           c47: p53,
                           c48: p54,
                         ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },
+                    )
+                );
+              }
+
+              else {
+                p52_54ViewModel.P52_54Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c46: p52,
+                  c47: p53,
+                  c48: p54,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

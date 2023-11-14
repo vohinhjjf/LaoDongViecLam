@@ -181,70 +181,74 @@ class _P39_42ViewState extends State<P39_42View> {
                     keyboardType: TextInputType.text,
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p39_42viewModel.P39_42Back(thanhvien);
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (_congviec.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P39 - Mô tả công việc chính quá ngắn!',)
-                            );
-                          }
-                          else if (_chucdanh.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P40 - Chức danh nhập vào quá ngắn!',)
-                            );
-                          }
-                          else if (_tencoso.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P41 - Tên cơ sở nhập vào quá ngắn!',)
-                            );
-                          }
-                          else if (_hoatdong.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P42 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
-                            );
-                          }
-                          else {
-                            p39_42viewModel.P39_42Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c34: _congviec.text,
-                              c35A: _chucdanh.text,
-                              c36: _tencoso.text,
-                              c37A: _hoatdong.text,
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p39_42viewModel.P39_42Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (_congviec.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P39 - Mô tả công việc chính quá ngắn!',)
+                  );
+                }
+                else if (_chucdanh.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P40 - Chức danh nhập vào quá ngắn!',)
+                  );
+                }
+                else if (_tencoso.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P41 - Tên cơ sở nhập vào quá ngắn!',)
+                  );
+                }
+                else if (_hoatdong.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P42 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
+                  );
+                }
+                else {
+                  p39_42viewModel.P39_42Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c34: _congviec.text,
+                    c35A: _chucdanh.text,
+                    c36: _tencoso.text,
+                    c37A: _hoatdong.text,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

@@ -241,14 +241,11 @@ class Body extends State<GPSView> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Container(
-                child: const UIText(
-                  text: "Hoàn thành phỏng vấn hộ",
-                  textAlign: TextAlign.center,
-                  textColor: Colors.black,
-                  textFontSize: fontLarge,
-                    isBold: true,
-                ),
+              const UIText(
+                text: "Hoàn thành phỏng vấn hộ",
+                textAlign: TextAlign.center,
+                textColor: Colors.black,
+                textFontSize: fontLarge,
               ),
               const SizedBox(
                 height: 20.0,
@@ -257,20 +254,28 @@ class Body extends State<GPSView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     MaterialButton(
-                        child: const Text('Kiểm tra lại',
-                            style: TextStyle(
-                                color: mPrimaryColor, fontSize: fontMedium, fontWeight: FontWeight.bold)),
+                        child: const UIText(
+                            text: 'Kiểm tra lại',
+                            textColor: mPrimaryColor,
+                            textFontSize: fontLarge,
+                          textAlign: TextAlign.center,
+                            isBold: true,
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         }),
                     MaterialButton(
-                        child: const Text('Tiếp tục',
-                            style: TextStyle(
-                                color: mPrimaryColor, fontSize: fontMedium, fontWeight: FontWeight.bold)),
+                        child: const UIText(
+                          text: 'Tiếp tục',
+                          textColor: mPrimaryColor,
+                          textFontSize: fontLarge,
+                          textAlign: TextAlign.center,
+                          isBold: true,
+                        ),
                         onPressed: () {
                           gpsViewModel.gPSNext();
                         }),
-                  ]),
+                    ])
             ],
           ),
         )
@@ -297,7 +302,6 @@ class Body extends State<GPSView> {
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
                 textFontSize: fontLarge,
-                isBold: true,
               ),
               UIText(
                 text: "Kinh độ: $longitude",
@@ -348,7 +352,9 @@ class Body extends State<GPSView> {
               const UIText(
                 text:'Cơ sở này đã có GPS!',
                 textAlign: TextAlign.center,
-                textStyle: TextStyle(fontSize: fontLarge, color: mDividerColor,fontWeight: FontWeight.w600),),
+                textFontSize: fontLarge,
+                textColor: mDividerColor,
+              ),
               const SizedBox(height: 10,),
               UIText(
                 text: "Kinh độ: $longitude",
@@ -374,6 +380,7 @@ class Body extends State<GPSView> {
                       child: const UIText(
                         text: 'Đóng',
                         textColor: Colors.red,
+                        textAlign: TextAlign.center,
                         textFontSize: fontLarge,
                         isBold: true,
                       ),
@@ -384,6 +391,7 @@ class Body extends State<GPSView> {
                       child: const  UIText(
                         text: 'Cập nhật',
                         textColor: mPrimaryColor,
+                        textAlign: TextAlign.center,
                         textFontSize: fontLarge,
                         isBold: true,),
                       onPressed: () {
@@ -410,22 +418,25 @@ class Body extends State<GPSView> {
             textAlign: TextAlign.center,
             textColor: Colors.black,
             textFontSize: fontLarge,
-            isBold: true,
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               MaterialButton(
-                  child: Text('Kiểm tra câu $question',
-                      style: const TextStyle(
-                          color: mPrimaryColor, fontSize: fontLarge, fontWeight: FontWeight.bold)),
+                  child: UIText(
+                      text: 'Kiểm tra câu $question',
+                      textColor: mPrimaryColor,
+                      textFontSize: fontLarge,
+                      isBold: true,),
                   onPressed: () {
                     gpsViewModel.gPSCheck(question);
                   }),
               MaterialButton(
-                  child: const Text('Đóng',
-                      style: TextStyle(
-                          color: mPrimaryColor, fontSize: fontLarge, fontWeight: FontWeight.bold)),
+                  child: const UIText(
+                      text: 'Đóng',
+                      textColor: mPrimaryColor,
+                      textFontSize: fontLarge,
+                      isBold: true,),
                   onPressed: () {
                     Navigator.of(context).pop();
                   }),

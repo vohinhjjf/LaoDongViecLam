@@ -125,54 +125,58 @@ class _P79ViewState extends State<P79View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p79ViewModel.P79Back(doisongho);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p79 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if((doisongho.c62_M2 == 1 && p79 == 3) || (doisongho.c62_M2 == 3 && p79 == 1)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thu nhập so tháng trước ${(doisongho.c62_M2 == 1 && p79 == 3) ? "tăng lên":"giảm đi"} mà thu nhập so năm trước lại ${(doisongho.c62_M2 == 1 && p79 == 3) ? "giảm đi":"tăng lên"}. Có đúng không?',
-                              onpress: (){
-                                print(p79);
-                                Navigator.of(context).pop();
-                                p79ViewModel.P79Next(DoiSongHoModel(
-                                    idho: doisongho.idho,
-                                    thangDT: thanhvien.thangDT,
-                                    namDT: thanhvien.namDT,
-                                    c62_M4: p79
-                                ));
-                              },
-                            )
-                        );
-                      }
-                      else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p79ViewModel.P79Back(doisongho);
+            }),
+            UINextButton(ontap: (){
+              if(p79 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
+                );
+              }
+              else if((doisongho.c62_M2 == 1 && p79 == 3) || (doisongho.c62_M2 == 3 && p79 == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thu nhập so tháng trước ${(doisongho.c62_M2 == 1 && p79 == 3) ? "tăng lên":"giảm đi"} mà thu nhập so năm trước lại ${(doisongho.c62_M2 == 1 && p79 == 3) ? "giảm đi":"tăng lên"}. Có đúng không?',
+                      onpress: (){
                         print(p79);
+                        Navigator.of(context).pop();
                         p79ViewModel.P79Next(DoiSongHoModel(
                             idho: doisongho.idho,
                             thangDT: thanhvien.thangDT,
                             namDT: thanhvien.namDT,
                             c62_M4: p79
                         ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },
+                    )
+                );
+              }
+              else {
+                print(p79);
+                p79ViewModel.P79Next(DoiSongHoModel(
+                    idho: doisongho.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M4: p79
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

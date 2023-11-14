@@ -628,49 +628,55 @@ class _P78ViewState extends State<P78View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p78ViewModel.P78Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p78a == 0 || p78b == 0 || p78c == 0 ||
-                              p78d == 0 || p78e == 0 || p78f == 0 ||
-                              p78g == 0 || p78h == 0 || p78i == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P78 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            p78ViewModel.P78Next(DoiSongHoModel(
-                              idho: doisongho.idho,
-                              c62_M3A: p78a,
-                              c62_M3B: p78b,
-                              c62_M3C: p78c,
-                              c62_M3D: p78d,
-                              c62_M3E: p78e,
-                              c62_M3F: p78f,
-                              c62_M3G: p78g,
-                              c62_M3H: p78h,
-                              c62_M3I: p78i,
-                              c62_M3IK: _orther.text,
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p78ViewModel.P78Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p78a == 0 || p78b == 0 || p78c == 0 ||
+                    p78d == 0 || p78e == 0 || p78f == 0 ||
+                    p78g == 0 || p78h == 0 || p78i == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P78 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
+                  );
+                } else {
+                  p78ViewModel.P78Next(DoiSongHoModel(
+                    idho: thanhvien.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M3A: p78a,
+                    c62_M3B: p78b,
+                    c62_M3C: p78c,
+                    c62_M3D: p78d,
+                    c62_M3E: p78e,
+                    c62_M3F: p78f,
+                    c62_M3G: p78g,
+                    c62_M3H: p78h,
+                    c62_M3I: p78i,
+                    c62_M3IK: _orther.text,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

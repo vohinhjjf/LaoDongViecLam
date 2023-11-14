@@ -131,34 +131,38 @@ class _P43ViewState extends State<P43View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p43ViewModel.P43Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p43 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P43 - Loại hình cơ sở nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p43ViewModel.P43Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c38: p43,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p43ViewModel.P43Back();
+            }),
+            UINextButton(ontap: (){
+              if(p43 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P43 - Loại hình cơ sở nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p43ViewModel.P43Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c38: p43,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

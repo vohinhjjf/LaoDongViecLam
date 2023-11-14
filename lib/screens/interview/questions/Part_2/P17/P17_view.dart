@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:getwidget/getwidget.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -147,157 +146,161 @@ class _P17ViewState extends State<P17View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p17ViewModel.P17Back();
-                      }),
-                      UINextButton(ontap: (){
-                        int namHT = DateTime.now().year;
-                        if(_formKey.currentState!.validate()) {
-                          if (int.parse(_nam.text) < 1957 ||
-                              int.parse(_nam.text) > namHT) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có năm tốt nghiệp chưa hợp lý!',
-                                    )
-                            );
-                          }
-                          else if(_nganh.text.length < 5){
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    const UIWarningDialog(
-                                      waring: 'Mô tả quá ngắn!',
-                                    )
-                            );
-                          }
-                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) <
-                              int.parse(thanhvien.c03B!)) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P17C - Năm tốt nghiệp = ${_nam.text}'
-                                          ' trước năm sinh = ${thanhvien.c03B}. Kiểm tra lại!',)
-                            );
-                          }
-                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) <
-                              (namHT - thanhvien.c04!)) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) - (namHT - thanhvien.c04!)}'
-                                          ' > tuổi hiện tại = ${thanhvien.c04}. Kiểm tra lại!',)
-                            );
-                          }
-                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
-                              int.parse(thanhvien.c03B!) < 10) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
-                                          ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Kiểm tra lại!',)
-                            );
-                          }
-                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
-                              (namHT - thanhvien.c04!) < 10) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
-                                          (namHT - thanhvien.c04!)}. Kiểm tra lại!',)
-                            );
-                          }
-                          else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
-                              int.parse(thanhvien.c03B!) > 60) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
-                                          .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
-                                          ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Có đúng không?',
-                                      onpress: () {
-                                        Navigator.of(context).pop();
-                                        if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
-                                            (namHT - thanhvien.c04!) > 10) {
-                                          showDialog(
-                                              context: context,
-                                              builder: (_) =>
-                                                  UINotificationDialog(
-                                                    notification: 'Thành viên ${thanhvien
-                                                        .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
-                                                        (namHT - thanhvien.c04!)}. Có đúng không?',
-                                                    onpress: () {
-                                                      p17ViewModel.P17Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c15A: _nganh.text,
-                                                        c15C: int.parse(_nam.text),
-                                                      ));
-                                                    },)
-                                          );
-                                        }
-                                        else {
-                                          p17ViewModel.P17Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c15A: _nganh.text,
-                                            c15C: int.parse(_nam.text),
-                                          ));
-                                        }
-                                      },)
-                            );
-                          }
-                          else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
-                              (namHT - thanhvien.c04!) > 10) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: 'Thành viên ${thanhvien
-                                          .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
-                                          (namHT - thanhvien.c04!)}. Có đúng không?',
-                                      onpress: () {
-                                        p17ViewModel.P17Next(thongTinThanhVienModel(
-                                          idho: thanhvien.idho,
-                                          idtv: thanhvien.idtv,
-                                          c15A: _nganh.text,
-                                          c15C: int.parse(_nam.text),
-                                        ));
-                                      },)
-                            );
-                          }
-                          else {
-                            p17ViewModel.P17Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c15A: _nganh.text,
-                              c15C: int.parse(_nam.text),
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p17ViewModel.P17Back();
+            }),
+            UINextButton(ontap: (){
+              int namHT = DateTime.now().year;
+              if(_formKey.currentState!.validate()) {
+                if (int.parse(_nam.text) < 1957 ||
+                    int.parse(_nam.text) > namHT) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có năm tốt nghiệp chưa hợp lý!',
+                          )
+                  );
+                }
+                else if(_nganh.text.length < 5){
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                      const UIWarningDialog(
+                        waring: 'Mô tả quá ngắn!',
+                      )
+                  );
+                }
+                else if (thanhvien.c03B != "9998" && int.parse(_nam.text) <
+                    int.parse(thanhvien.c03B!)) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P17C - Năm tốt nghiệp = ${_nam.text}'
+                                ' trước năm sinh = ${thanhvien.c03B}. Kiểm tra lại!',)
+                  );
+                }
+                else if (thanhvien.c03B == "9998" && int.parse(_nam.text) <
+                    (namHT - thanhvien.c04!)) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) - (namHT - thanhvien.c04!)}'
+                                ' > tuổi hiện tại = ${thanhvien.c04}. Kiểm tra lại!',)
+                  );
+                }
+                else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
+                    int.parse(thanhvien.c03B!) < 10) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
+                                ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Kiểm tra lại!',)
+                  );
+                }
+                else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                    (namHT - thanhvien.c04!) < 10) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                (namHT - thanhvien.c04!)}. Kiểm tra lại!',)
+                  );
+                }
+                else if (thanhvien.c03B != "9998" && int.parse(_nam.text) -
+                    int.parse(thanhvien.c03B!) > 60) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: 'Thành viên ${thanhvien
+                                .c00} sinh năm ${thanhvien.c03B}, tốt nghiệp năm = ${_nam.text}'
+                                ' khi tuổi ${int.parse(_nam.text) - int.parse(thanhvien.c03B!)} tuổi. Có đúng không?',
+                            onpress: () {
+                              Navigator.of(context).pop();
+                              if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                                  (namHT - thanhvien.c04!) > 10) {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) =>
+                                        UINotificationDialog(
+                                          notification: 'Thành viên ${thanhvien
+                                              .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                              (namHT - thanhvien.c04!)}. Có đúng không?',
+                                          onpress: () {
+                                            p17ViewModel.P17Next(thongTinThanhVienModel(
+                                              idho: thanhvien.idho,
+                                              idtv: thanhvien.idtv,
+                                              c15A: _nganh.text,
+                                              c15C: int.parse(_nam.text),
+                                            ));
+                                          },)
+                                );
+                              }
+                              else {
+                                p17ViewModel.P17Next(thongTinThanhVienModel(
+                                  idho: thanhvien.idho,
+                                  idtv: thanhvien.idtv,
+                                  c15A: _nganh.text,
+                                  c15C: int.parse(_nam.text),
+                                ));
+                              }
+                            },)
+                  );
+                }
+                else if (thanhvien.c03B == "9998" && int.parse(_nam.text) -
+                    (namHT - thanhvien.c04!) > 10) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: 'Thành viên ${thanhvien
+                                .c00} có tuổi tốt nghiệp tính được = ${int.parse(_nam.text) -
+                                (namHT - thanhvien.c04!)}. Có đúng không?',
+                            onpress: () {
+                              p17ViewModel.P17Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c15A: _nganh.text,
+                                c15C: int.parse(_nam.text),
+                              ));
+                            },)
+                  );
+                }
+                else {
+                  p17ViewModel.P17Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c15A: _nganh.text,
+                    c15C: int.parse(_nam.text),
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

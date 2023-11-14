@@ -177,60 +177,64 @@ class _P76_77ViewState extends State<P76_77View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p76_77ViewModel.P76_77Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p76 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p77 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Đời sống gia đình ${(p76 == 1 && p77 == 3) ? "được cải thiện":"giảm sút"} mà thu nhập ${(p76 == 1 && p77 == 3) ? "giảm sút":"tăng lên"}. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                p76_77ViewModel.P76_77Next(DoiSongHoModel(
-                                  idho: doisongho.idho,
-                                  thangDT: thanhvien.thangDT,
-                                  namDT: thanhvien.namDT,
-                                  c62_M1: p76,
-                                  c62_M2: p77,
-                                ));
-                              },
-                            )
-                        );
-                      }
-                      else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p76_77ViewModel.P76_77Back();
+            }),
+            UINextButton(ontap: (){
+              if(p76 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
+                );
+              }
+              else if(p77 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
+                );
+              }
+              else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Đời sống gia đình ${(p76 == 1 && p77 == 3) ? "được cải thiện":"giảm sút"} mà thu nhập ${(p76 == 1 && p77 == 3) ? "giảm sút":"tăng lên"}. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
                         p76_77ViewModel.P76_77Next(DoiSongHoModel(
-                          idho: doisongho.idho,
+                          idho: thanhvien.idho,
                           thangDT: thanhvien.thangDT,
                           namDT: thanhvien.namDT,
                           c62_M1: p76,
                           c62_M2: p77,
                         ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },
+                    )
+                );
+              }
+              else {
+                p76_77ViewModel.P76_77Next(DoiSongHoModel(
+                  idho: thanhvien.idho,
+                  thangDT: thanhvien.thangDT,
+                  namDT: thanhvien.namDT,
+                  c62_M1: p76,
+                  c62_M2: p77,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

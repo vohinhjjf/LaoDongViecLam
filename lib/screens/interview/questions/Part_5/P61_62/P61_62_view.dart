@@ -174,60 +174,64 @@ class _P61_62ViewState extends State<P61_62View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p61_62ViewModel.P61_62Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p62 == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                const UIWarningDialog(
-                                  waring: 'P62 - Công việc khác nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if (int.parse(_tiencong.text) < 100) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có thu nhập dưới 100 nghìn đồng/tháng. Có đúng không?',
-                                      onpress: () {
-                                        Navigator.of(context).pop();
-                                        p61_62ViewModel.P61_62Next(
-                                            thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c55: int.parse(_tiencong.text),
-                                              c56: p62,
-                                            ));
-                                      },
-                                    )
-                            );
-                          }
-                          else {
-                            p61_62ViewModel.P61_62Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c55: int.parse(_tiencong.text),
-                              c56: p62,
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p61_62ViewModel.P61_62Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p62 == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                      const UIWarningDialog(
+                        waring: 'P62 - Công việc khác nhập vào chưa đúng!',)
+                  );
+                }
+                else if (int.parse(_tiencong.text) < 100) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có thu nhập dưới 100 nghìn đồng/tháng. Có đúng không?',
+                            onpress: () {
+                              Navigator.of(context).pop();
+                              p61_62ViewModel.P61_62Next(
+                                  thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c55: int.parse(_tiencong.text),
+                                    c56: p62,
+                                  ));
+                            },
+                          )
+                  );
+                }
+                else {
+                  p61_62ViewModel.P61_62Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c55: int.parse(_tiencong.text),
+                    c56: p62,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

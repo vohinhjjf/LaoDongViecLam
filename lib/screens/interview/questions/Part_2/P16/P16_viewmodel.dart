@@ -31,14 +31,14 @@ class P16ViewModel extends BaseViewModel {
   }
 
   void P16Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c14A = ${data.c14A}, c14B = ${data.c14B}"
-        ", c14C = ${data.c14C}, c14D = ${data.c14D}, c14E = ${data.c14E}, c14F = ${data.c14F} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c14A = ?, c14B = ?, c14C = ?, c14D = ?, "
+        "c14E = ?, c14F = ? WHERE idho = ? AND idtv = ?",
+        [data.c14A,data.c14B,data.c14C,data.c14D,data.c14E,data.c14F,data.idho,data.idtv]);
     if(data.c14A == 1 || data.c14B == 1 || data.c14C == 1 ||data.c14D == 1 || data.c14E == 1 || data.c14F == 1) {
       NavigationServices.instance.navigateToP17(context);
     } else {
-      await _executeDatabase.update("SET c15A = ${data.c15A.toString()}, c15B = ${data.c15B}, c15C = ${data.c15C} "
-          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+      _executeDatabase.updateC00("SET c15A = ?, c15B = ?, c15C = ? WHERE idho = ? AND idtv = ?",
+          [data.c15A,data.c15B,data.c15C,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP18(context);
     }
   }

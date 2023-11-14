@@ -36,8 +36,9 @@ class P13_14ViewModel extends BaseViewModel {
       NavigationServices.instance.navigateToP10_12(context);
     }
   }
-  void P13_14Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c11 = ${data.c11} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+  void P13_14Next(thongTinThanhVienModel data) {
+    _executeDatabase.updateC00("SET c11 = ?, c12 = ? WHERE idho = ? AND idtv = ?",
+        [data.c11,data.c12,data.idho,data.idtv]);
     NavigationServices.instance.navigateToP15(context);
   }
 }

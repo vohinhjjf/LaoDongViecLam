@@ -35,19 +35,19 @@ class P19ViewModel extends BaseViewModel {
   }
 
   void P19Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c17 = ${data.c17} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+     _executeDatabase.updateC00("SET c17 = ? WHERE idho = ? AND idtv = ?",
+        [data.c17,data.idho,data.idtv]);
     if(data.c17 == 1){
-      await _executeDatabase.update("SET c18 = ${data.c18}, c19 = ${data.c19}, "
-          "c20 = ${data.c20}, c21 = ${data.c21}, c21K = ${data.c21K.toString()}, "
-          "c22 = ${data.c22}, c23 = ${data.c23}, c24 = ${data.c24}, c25 = ${data.c25}, "
-          "c26 = ${data.c26}, c27 = ${data.c27}, c28 = ${data.c28}, c29 = ${data.c29}, "
-          "c30 = ${data.c30}, c30_A = ${data.c30_A}, c30_B = ${data.c30_B}, "
-          "c30_C = ${data.c30_C}, c30_D = ${data.c30_D}, c30_E = ${data.c30_E}, "
-          "c30_F = ${data.c30_F}, c30_G = ${data.c30_G}, c30_H = ${data.c30_H}, "
-          "c30_I = ${data.c30_I}, c30_IK = ${data.c30_IK.toString()}, c30A = ${data.c30A}, "
-          "c31= ${data.c31}, c31K = ${data.c31K.toString()}, c32 = ${data.c32}, "
-          "c33 = ${data.c33}, c33A = ${data.c33A}, c33AK = ${data.c33AK.toString()} "
-          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+       _executeDatabase.updateC00("SET c18 = ?, c19 = ?, "
+          "c20 = ?, c21 = ?, c21K = ?, c22 = ?, c23 = ?, c24 = ?, c25 = ?, "
+          "c26 = ?, c27 = ?, c28 = ?, c29 = ?, c30 = ?, c30_A = ?, c30_B = ?, "
+          "c30_C = ?, c30_D = ?, c30_E = ?, c30_F = ?, c30_G = ?, c30_H = ?, "
+          "c30_I = ?, c30_IK = ?, c30A = ?, c31= ?, c31K = ?, c32 = ?, "
+          "c33 = ?, c33A = ?, c33AK = ? WHERE idho = ? AND idtv = ?",
+          [data.c18,data.c19,data.c20,data.c21,data.c21K,data.c22,data.c23,data.c24,
+            data.c25,data.c26,data.c27,data.c28,data.c29,data.c30,data.c30_A,data.c30_B,
+            data.c30_C,data.c30_D,data.c30_E,data.c30_F,data.c30_G,data.c30_H,data.c30_I,data.c30_IK,
+            data.c30A,data.c31,data.c31K,data.c32,data.c33,data.c33A,data.c33AK,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP39_42(context);
     }else {
       NavigationServices.instance.navigateToP20_22(context);

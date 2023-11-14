@@ -39,6 +39,8 @@ class P18ViewModel extends BaseViewModel {
   void P18Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c16A = ${data.c16A}, c16B = ${data.c16B}, c16C = ${data.c16C} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c16A = ?, c16B = ?, c16C = ? WHERE idho = ? AND idtv = ?",
+        [data.c16A,data.c16B,data.c16C,data.idho,data.idtv]);
     NavigationServices.instance.navigateToP19(context);
   }
 }

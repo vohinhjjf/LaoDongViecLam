@@ -167,7 +167,7 @@ class _Q2ViewState extends State<Q2View> {
                                         Navigator.of(context).pop();
                                         setState(() {
                                           list_q2.add(thongTinThanhVienNKTTModel(
-                                              idtv: list_q2.length == 0
+                                              idtv: list_q2.isEmpty
                                                   ? list.last.idtv! + 1
                                                   : list_q2.last.idtv! + 1,
                                               thangDT: int.parse(month),
@@ -184,7 +184,7 @@ class _Q2ViewState extends State<Q2View> {
                             else {
                               setState(() {
                                 list_q2.add(thongTinThanhVienNKTTModel(
-                                    idtv: list_q2.length == 0
+                                    idtv: list_q2.isEmpty
                                         ? list.last.idtv! + 1
                                         : list_q2.last.idtv! + 1,
                                     thangDT: int.parse(month),
@@ -233,7 +233,7 @@ class _Q2ViewState extends State<Q2View> {
                                       child: UIText(
                                         text: "${index+1}. ${list_q2[index].q1_New}",
                                         textColor: Colors.black,
-                                        textFontSize: 18,
+                                        textFontSize: fontMedium,
                                         maxLines: 10,
                                       ),
                                     ),
@@ -243,7 +243,7 @@ class _Q2ViewState extends State<Q2View> {
                                         icon: const Icon(
                                           Icons.dangerous,
                                           color: Colors.redAccent,
-                                          size: fontGreater,
+                                          size: fontLarge,
                                         ),
                                         onPressed: () => _showNotificationDialog(
                                             "Có chắc muốn xóa ${list_q2[index].q1_New}?",
@@ -267,52 +267,56 @@ class _Q2ViewState extends State<Q2View> {
                       ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q2viewModel.Q2Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(groupValue == 0){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q2 nhập vào chưa đúng!',)
-                          );
-                        }
-                        else if(groupValue == 2) {
-                          if(list_q2.isNotEmpty){
-                            for(var item in list_q2){
-                              q2viewModel.deleteNTKK(item.idtv!);
-                            }
-                          }
-                          q2viewModel.Q2Next(groupValue);
-                        }
-                        else {
-                          if(list_q2.isEmpty){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q2-Họ tên thành viên nhập vào chưa đúng!',)
-                            );
-                          }
-                          else{
-                            print(list_q2.map((e) => e.toJson()).toList());
-                            _showNotificationDialog("Hộ còn ai nữa không?",(){
-                              Navigator.of(context).pop();
-                            },() {
-                              print("Next");
-                              q2viewModel.addListNTKK(list_q2);
-                              q2viewModel.Q2Next(groupValue);
-                            },);
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q2viewModel.Q2Back();
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q2 nhập vào chưa đúng!',)
+                );
+              }
+              else if(groupValue == 2) {
+                if(list_q2.isNotEmpty){
+                  for(var item in list_q2){
+                    q2viewModel.deleteNTKK(item.idtv!);
+                  }
+                }
+                q2viewModel.Q2Next(groupValue);
+              }
+              else {
+                if(list_q2.isEmpty){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Q2-Họ tên thành viên nhập vào chưa đúng!',)
+                  );
+                }
+                else{
+                  print(list_q2.map((e) => e.toJson()).toList());
+                  _showNotificationDialog("Hộ còn ai nữa không?",(){
+                    Navigator.of(context).pop();
+                  },() {
+                    print("Next");
+                    q2viewModel.addListNTKK(list_q2);
+                    q2viewModel.Q2Next(groupValue);
+                  },);
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
@@ -338,7 +342,7 @@ class _Q2ViewState extends State<Q2View> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
-            isBold: false,
+            textAlign: TextAlign.center,
           ),
           content: Container(
             height: 60,
@@ -356,7 +360,9 @@ class _Q2ViewState extends State<Q2View> {
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontLarge
+                        textAlign: TextAlign.center,
+                        textFontSize: fontLarge,
+                        isBold: true,
                     )
                 ),
                 MaterialButton(

@@ -620,51 +620,55 @@ class _P33ViewState extends State<P33View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p33ViewModel.P33Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p33a == 0 || p33b == 0 || p33c == 0 ||
-                              p33d == 0 ||
-                              p33e == 0 || p33f == 0 || p33g == 0 || p33h ==
-                              0 || p33i == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: 'Thành viên ${thanhvien
-                                          .c00} có P33 - Cách tìm việc nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            p33ViewModel.P33Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c30_A: p33a,
-                              c30_B: p33b,
-                              c30_C: p33c,
-                              c30_D: p33d,
-                              c30_E: p33e,
-                              c30_F: p33f,
-                              c30_G: p33g,
-                              c30_H: p33h,
-                              c30_I: p33i,
-                              c30_IK: _orther.text,
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p33ViewModel.P33Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p33a == 0 || p33b == 0 || p33c == 0 ||
+                    p33d == 0 ||
+                    p33e == 0 || p33f == 0 || p33g == 0 || p33h ==
+                    0 || p33i == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} có P33 - Cách tìm việc nhập vào chưa đúng!',)
+                  );
+                } else {
+                  p33ViewModel.P33Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c30_A: p33a,
+                    c30_B: p33b,
+                    c30_C: p33c,
+                    c30_D: p33d,
+                    c30_E: p33e,
+                    c30_F: p33f,
+                    c30_G: p33g,
+                    c30_H: p33h,
+                    c30_I: p33i,
+                    c30_IK: _orther.text,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

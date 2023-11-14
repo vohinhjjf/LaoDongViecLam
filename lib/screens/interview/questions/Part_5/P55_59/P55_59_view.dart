@@ -205,105 +205,109 @@ class _P55_59ViewState extends State<P55_59View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p55_59viewModel.P55_59Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (_congviec.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
-                            );
-                          }
-                          else if (_chucdanh.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P56 - Chức danh nhập vào quá ngắn!',)
-                            );
-                          }
-                          else if (_tencoso.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
-                            );
-                          }
-                          else if (_hoatdong.text.length < 5) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
-                            );
-                          }
-                          else if (int.parse(_gio.text) > 84) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
-                                          .text} quá lớn!',)
-                            );
-                          }
-                          else if (int.parse(_gio.text) >= 64) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có Số giờ thực tế cho công việc thứ hai = ${_gio
-                                          .text} có đúng không?',
-                                      onpress: () {
-                                        Navigator.of(context).pop();
-                                        p55_59viewModel.P55_59Next(
-                                            thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c49: _congviec.text,
-                                              c50A: _chucdanh.text,
-                                              c51: _tencoso.text,
-                                              c52A: _hoatdong.text,
-                                              c53: int.parse(_gio.text),
-                                            ));
-                                      },
-                                    )
-                            );
-                          }
-                          else {
-                            p55_59viewModel.P55_59Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c49: _congviec.text,
-                              c50A: _chucdanh.text,
-                              c51: _tencoso.text,
-                              c52A: _hoatdong.text,
-                              c53: int.parse(_gio.text),
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p55_59viewModel.P55_59Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (_congviec.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
+                  );
+                }
+                else if (_chucdanh.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P56 - Chức danh nhập vào quá ngắn!',)
+                  );
+                }
+                else if (_tencoso.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
+                  );
+                }
+                else if (_hoatdong.text.length < 5) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
+                  );
+                }
+                else if (int.parse(_gio.text) > 84) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
+                                .text} quá lớn!',)
+                  );
+                }
+                else if (int.parse(_gio.text) >= 64) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có Số giờ thực tế cho công việc thứ hai = ${_gio
+                                .text} có đúng không?',
+                            onpress: () {
+                              Navigator.of(context).pop();
+                              p55_59viewModel.P55_59Next(
+                                  thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c49: _congviec.text,
+                                    c50A: _chucdanh.text,
+                                    c51: _tencoso.text,
+                                    c52A: _hoatdong.text,
+                                    c53: int.parse(_gio.text),
+                                  ));
+                            },
+                          )
+                  );
+                }
+                else {
+                  p55_59viewModel.P55_59Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c49: _congviec.text,
+                    c50A: _chucdanh.text,
+                    c51: _tencoso.text,
+                    c52A: _hoatdong.text,
+                    c53: int.parse(_gio.text),
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

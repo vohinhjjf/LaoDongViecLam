@@ -173,48 +173,52 @@ class _P35ViewState extends State<P35View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p35ViewModel.P35Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p35 == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                const UIWarningDialog(
-                                  waring: 'P35 - Lý do không tìm việc nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if (p35 == 9 && thanhvien.c30 == 2) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                const UIWarningDialog(
-                                  waring: 'P35 - Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
-                            );
-                          }
-                          else {
-                            p35ViewModel.P35Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c31: p35,
-                              c31K: _orther.text,
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p35ViewModel.P35Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p35 == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                      const UIWarningDialog(
+                        waring: 'P35 - Lý do không tìm việc nhập vào chưa đúng!',)
+                  );
+                }
+                else if (p35 == 9 && thanhvien.c30 == 2) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                      const UIWarningDialog(
+                        waring: 'P35 - Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
+                  );
+                }
+                else {
+                  p35ViewModel.P35Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c31: p35,
+                    c31K: _orther.text,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

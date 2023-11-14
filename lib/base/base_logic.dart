@@ -84,11 +84,10 @@ class BaseLogic {
       return false;
     }
 
-    if (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) {
+    if (thongTinTV.c04 != null && thongTinTV.c04! >= 15) {
       return checkC05(thongTinTV);
     } else {
-      mQuestion = UIDescribes.QUESTION_P04;
-      return true;
+      return checkKT9(thongTinTV);
     }
     //       return checkKT1(memberDTO);
   }

@@ -173,11 +173,11 @@ class _Q3ViewState extends State<Q3View> {
                             if(item.q3B_New == null && item.q3C_New == null
                                 && item.q3D_New == null) {
                               return ListTile(
-                                contentPadding: EdgeInsets.only(left: 15),
+                                contentPadding: const EdgeInsets.only(left: 15),
                                 title: UIText(
                                   text: item.q1_New!,
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 leading: GFRadio(
@@ -305,11 +305,11 @@ class _Q3ViewState extends State<Q3View> {
                             if(item.q3A_New == null && item.q3C_New == null
                                 && item.q3D_New == null) {
                               return ListTile(
-                                contentPadding: EdgeInsets.only(left: 15),
+                                contentPadding: const EdgeInsets.only(left: 15),
                                 title: UIText(
                                   text: item.q1_New!,
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 leading: GFRadio(
@@ -437,11 +437,11 @@ class _Q3ViewState extends State<Q3View> {
                             if(item.q3A_New == null && item.q3B_New == null
                                 && item.q3D_New == null) {
                               return ListTile(
-                                contentPadding: EdgeInsets.only(left: 15),
+                                contentPadding: const EdgeInsets.only(left: 15),
                                 title: UIText(
                                   text: item.q1_New!,
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 leading: GFRadio(
@@ -569,11 +569,11 @@ class _Q3ViewState extends State<Q3View> {
                             if(item.q3A_New == null && item.q3C_New == null
                                 && item.q3B_New == null) {
                               return ListTile(
-                                contentPadding: EdgeInsets.only(left: 15),
+                                contentPadding: const EdgeInsets.only(left: 15),
                                 title: UIText(
                                   text: item.q1_New!,
                                   textColor: Colors.black,
-                                  textFontSize: fontLarge,
+                                  textFontSize: fontMedium,
                                   textAlign: TextAlign.start,
                                 ),
                                 leading: GFRadio(
@@ -607,71 +607,75 @@ class _Q3ViewState extends State<Q3View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q3viewModel.Q3Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(q3_a == 0) {
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa được chọn!',)
-                          );
-                        }
-                        else if(q3_b == 0) {
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa được chọn!',)
-                          );
-                        }
-                        else if(q3_c == 0) {
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa được chọn!',)
-                          );
-                        }
-                        else if(q3_d == 0) {
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa được chọn!',)
-                          );
-                        }
-                        else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3A chưa chọn thành viên!',)
-                          );
-                        }
-                        else if(q3_b == 1 && !list.any((e) => e.q3B_New == 1)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3B chưa chọn thành viên!',)
-                          );
-                        }
-                        else if(q3_c == 1 && !list.any((e) => e.q3C_New == 1)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3C chưa chọn thành viên!',)
-                          );
-                        }
-                        else if(q3_d == 1 && !list.any((e) => e.q3D_New == 1)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q3D chưa chọn thành viên!',)
-                          );
-                        }
-                        else {
-                          q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q3viewModel.Q3Back();
+            }),
+            UINextButton(ontap: (){
+              if(q3_a == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3A chưa được chọn!',)
+                );
+              }
+              else if(q3_b == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3B chưa được chọn!',)
+                );
+              }
+              else if(q3_c == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3C chưa được chọn!',)
+                );
+              }
+              else if(q3_d == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3D chưa được chọn!',)
+                );
+              }
+              else if(q3_a == 1 && !list.any((e) => e.q3A_New == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3A chưa chọn thành viên!',)
+                );
+              }
+              else if(q3_b == 1 && !list.any((e) => e.q3B_New == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3B chưa chọn thành viên!',)
+                );
+              }
+              else if(q3_c == 1 && !list.any((e) => e.q3C_New == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3C chưa chọn thành viên!',)
+                );
+              }
+              else if(q3_d == 1 && !list.any((e) => e.q3D_New == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q3D chưa chọn thành viên!',)
+                );
+              }
+              else {
+                q3viewModel.Q3Next(list, q3_a, q3_b, q3_c, q3_d);
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

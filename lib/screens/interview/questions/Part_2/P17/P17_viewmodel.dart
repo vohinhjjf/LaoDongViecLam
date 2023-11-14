@@ -31,7 +31,7 @@ class P17ViewModel extends BaseViewModel {
   }
 
   void P17Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.updateC00("SET c15A = ?, c15C = ?, "
+    _executeDatabase.updateC00("SET c15A = ?, c15C = ?, "
         "c16A = ?, c16B = ?, c16C = ? WHERE idho = ? AND idtv = ?",
         [data.c15A,data.c15C,data.c16A,data.c16B,data.c16C,data.idho,data.idtv]);
     NavigationServices.instance.navigateToP19(context);

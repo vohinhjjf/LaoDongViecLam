@@ -137,33 +137,37 @@ class _P19ViewState extends State<P19View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p19ViewModel.P19Back(thanhvien);
-                    }),
-                    UINextButton(ontap: (){
-                      if(groupValue == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P19-Làm việc 7 ngày qua nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p19ViewModel.P19Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c17: groupValue,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p19ViewModel.P19Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P19-Làm việc 7 ngày qua nhập vào chưa đúng!',)
+                );
+              }else {
+                p19ViewModel.P19Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c17: groupValue,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

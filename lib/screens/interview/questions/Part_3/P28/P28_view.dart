@@ -122,33 +122,37 @@ class _P28ViewState extends State<P28View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p28ViewModel.P28Back(thanhvien.c24);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p28 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p28ViewModel.P28Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c26: p28,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p28ViewModel.P28Back(thanhvien.c24);
+            }),
+            UINextButton(ontap: (){
+              if(p28 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
+                );
+              }else {
+                p28ViewModel.P28Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c26: p28,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

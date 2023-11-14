@@ -170,53 +170,57 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                       ],
                     ),
                     //Button
-                    const SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        UIBackButton(ontap: (){
-                          informationProviderviewModel.InformationProviderBack();
-                        }),
-                        UINextButton(ontap: (){
-                          print(groupValue);
-                          if(_formKey.currentState!.validate()){
-                            if(groupValue == 0){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => const UIWarningDialog(waring: 'Người cung cấp thông tin nhập vào chưa đúng!')
-                              );
-                            }
-                            else if (_text_phone.text.isNotEmpty && _text_phone.text.length < 10){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => const UIWarningDialog(waring: 'Số điện thoại nhập vào phải có 10 ký số (nếu là di động), 11 hoặc 12 ký số (nếu là cố định)'));
-                            } else if(_text_phone.text.isNotEmpty &&  _text_phone.text.substring(0,1) != '0'){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => const UIWarningDialog(waring: 'Số điện thoại phải bắt đầu là 0'));
-                            }
-                            else if(groupValue == list_map.last.values.single && _text_name.text.length < 5){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UINotificationDialog(
-                                      notification: 'Họ tên người cung cấp thông tin nhỏ hơn 5 ký tự có đúng không?',
-                                      onpress: (){
-                                        informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
-                                      }
-                                  )
-                              );
-                            }
-                            else {
-                              informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
-                            }
-                          }
-                        }),
-                      ],
-                    )
+                    const SizedBox(height: 90,),
                   ]),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              informationProviderviewModel.InformationProviderBack();
+            }),
+            UINextButton(ontap: (){
+              print(groupValue);
+              if(_formKey.currentState!.validate()){
+                if(groupValue == 0){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Người cung cấp thông tin nhập vào chưa đúng!')
+                  );
+                }
+                else if (_text_phone.text.isNotEmpty && _text_phone.text.length < 10){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Số điện thoại nhập vào phải có 10 ký số (nếu là di động), 11 hoặc 12 ký số (nếu là cố định)'));
+                } else if(_text_phone.text.isNotEmpty &&  _text_phone.text.substring(0,1) != '0'){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Số điện thoại phải bắt đầu là 0'));
+                }
+                else if(groupValue == list_map.last.values.single && _text_name.text.length < 5){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                          notification: 'Họ tên người cung cấp thông tin nhỏ hơn 5 ký tự có đúng không?',
+                          onpress: (){
+                            informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
+                          }
+                      )
+                  );
+                }
+                else {
+                  informationProviderviewModel.InformationProviderNext(_text_phone.text, groupValue.toString());
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: const DrawerNavigation(),
     );

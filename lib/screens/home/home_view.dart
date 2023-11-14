@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _cardWidget(UIDescribes.retrieve, UIAssets.icReload,onTap: () {
-
+                  _showDialog();
                 }),
                 _cardWidget(UIDescribes.programUpdate, UIAssets.icUpdate,onTap: () {
                   print(UIDescribes.programUpdate);
@@ -168,7 +168,6 @@ class _HomeViewState extends State<HomeView> {
                 textColor: Colors.black,
                 textAlign: TextAlign.center,
                 textFontSize: fontLarge,
-                isBold: true,
               ),
               content: const Padding(
                 padding: EdgeInsets.only(top: 10),
@@ -179,7 +178,7 @@ class _HomeViewState extends State<HomeView> {
                       "BỘ DỮ LIỆU trước khi chọn đồng ý",
                   textColor: Colors.black,
                   textAlign: TextAlign.center,
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   //isBold: true,
                 ),
               ),
@@ -193,7 +192,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     child: const UIText(
                       text: 'Kiểm tra lại',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mCloseColor,
                       isBold: true,
@@ -208,7 +207,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   child: const UIText(
                     text: 'Đồng ý',
-                    textFontSize: fontMedium,
+                    textFontSize: fontLarge,
                     textAlign: TextAlign.center,
                     textColor: mPrimaryColor,
                     isBold: true,

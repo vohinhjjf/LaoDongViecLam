@@ -128,34 +128,38 @@ class _P47ViewState extends State<P47View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p47ViewModel.P47Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p47 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P47 - Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV chính nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p47ViewModel.P47Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c41: p47,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p47ViewModel.P47Back();
+            }),
+            UINextButton(ontap: (){
+              if(p47 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P47 - Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV chính nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p47ViewModel.P47Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c41: p47,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

@@ -29,6 +29,7 @@ class P50_51ViewModel extends BaseViewModel {
   void P50_51Back() async {
     NavigationServices.instance.navigateToP48_49(context);
   }
+
   void P50_51Next(thongTinThanhVienModel data) async {
     _executeDatabase.update("SET c44 = ${data.c44}, c45 = ${data.c45} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");

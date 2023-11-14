@@ -63,7 +63,7 @@ class NotInterviewedViewModel extends BaseViewModel {
   }
 
   void notInterviewed(BangKeCsModel bangKeCsModel) async {
-    await _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
+    _sPrefAppModel.setIdHo(bangKeCsModel.idho!);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

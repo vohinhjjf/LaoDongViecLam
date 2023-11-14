@@ -202,40 +202,44 @@ class _P36_37ViewState extends State<P36_37View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p36_37ViewModel.P36_37Back(thanhvien);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p36 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
-                        );
-                      } else if(p36 == 1 && p37 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c32: p36,
-                          c33: p37,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p36_37ViewModel.P36_37Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(p36 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                );
+              } else if(p36 == 1 && p37 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p36_37ViewModel.P36_37Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c32: p36,
+                  c33: p37,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

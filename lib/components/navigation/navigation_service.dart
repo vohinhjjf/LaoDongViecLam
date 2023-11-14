@@ -130,7 +130,7 @@ class NavigationServices {
       case RouteConstants.interviewArea:
         return CustomPageRoute(AreaView());
       case RouteConstants.interviewStatusRoute:
-        return CustomPageRoute(const InterviewStatusView());
+        return CustomPageRoute(InterviewStatusView());
       case RouteConstants.notInterviewedRoute:
         return CustomPageRoute(const NotInterviewedView());
       case RouteConstants.operatingStatusRoute:

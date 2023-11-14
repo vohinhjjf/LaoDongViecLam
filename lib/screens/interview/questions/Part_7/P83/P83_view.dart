@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -466,61 +465,65 @@ class _P83ViewState extends State<P83View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p83ViewModel.P83Back(doisongho);
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p83a == 0 || p83b == 0 || p83c == 0 ||
-                              p83d == 0 || p83e == 0 || p83f == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            if(p83f == 1) {
-                              p83ViewModel.P83Next(DoiSongHoModel(
-                                idho: thanhvien.idho,
-                                thangDT: thanhvien.thangDT,
-                                namDT: thanhvien.namDT,
-                                c62_M8A: p83a,
-                                c62_M8B: p83b,
-                                c62_M8C: p83c,
-                                c62_M8D: p83d,
-                                c62_M8E: p83e,
-                                c62_M8F: p83f,
-                                c62_M8FK: _orther.text,
-                              ));
-                            } else {
-                              p83ViewModel.P83Next(DoiSongHoModel(
-                                idho: thanhvien.idho,
-                                thangDT: thanhvien.thangDT,
-                                namDT: thanhvien.namDT,
-                                c62_M8A: p83a,
-                                c62_M8B: p83b,
-                                c62_M8C: p83c,
-                                c62_M8D: p83d,
-                                c62_M8E: p83e,
-                                c62_M8F: p83f,
-                              ));
-                            }
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p83ViewModel.P83Back(doisongho);
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p83a == 0 || p83b == 0 || p83c == 0 ||
+                    p83d == 0 || p83e == 0 || p83f == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
+                  );
+                } else {
+                  if(p83f == 1) {
+                    p83ViewModel.P83Next(DoiSongHoModel(
+                      idho: thanhvien.idho,
+                      thangDT: thanhvien.thangDT,
+                      namDT: thanhvien.namDT,
+                      c62_M8A: p83a,
+                      c62_M8B: p83b,
+                      c62_M8C: p83c,
+                      c62_M8D: p83d,
+                      c62_M8E: p83e,
+                      c62_M8F: p83f,
+                      c62_M8FK: _orther.text,
+                    ));
+                  } else {
+                    p83ViewModel.P83Next(DoiSongHoModel(
+                      idho: thanhvien.idho,
+                      thangDT: thanhvien.thangDT,
+                      namDT: thanhvien.namDT,
+                      c62_M8A: p83a,
+                      c62_M8B: p83b,
+                      c62_M8C: p83c,
+                      c62_M8D: p83d,
+                      c62_M8E: p83e,
+                      c62_M8F: p83f,
+                    ));
+                  }
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

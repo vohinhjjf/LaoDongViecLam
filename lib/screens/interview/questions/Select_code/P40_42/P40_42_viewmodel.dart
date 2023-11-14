@@ -142,8 +142,8 @@ class P40_42ViewModel extends BaseViewModel {
         list.add(select_nghe[i]);
       }
     }
-    if(select == ""){
-      select_nghe = select_nghe;
+    if(select == "" && linh_vuc == ' '){
+      select_nghe = list_nghe;
     } else{
       select_nghe = list;
     }
@@ -152,7 +152,7 @@ class P40_42ViewModel extends BaseViewModel {
 
   List queryListNganh(String select, String linh_vuc, List list_nganh){
     List select_nganh = [], list = [];
-    for(int i =0; i < list_nganh.length; i++){
+    for(int i = 0; i < list_nganh.length; i++){
       if(list_nganh[i]["MaC1"] == linh_vuc){
         select_nganh.add(list_nganh[i]);
       }
@@ -251,16 +251,43 @@ class P40_42ViewModel extends BaseViewModel {
         list.add(select_nganh[i]);
       }
     }
-    if(select == "" || select == "0"){
+    if(select == "" && linh_vuc == "0"){
+      select_nganh = list_nganh;
+    }
+    else if(select == ""){
       select_nganh = select_nganh;
-    } else{
+    }
+    else {
       select_nganh = list;
     }
     return select_nganh;
   }
 
-  void P40_42Back() async {
-    NavigationServices.instance.navigateToP17B(context);
+  void P40_42Back(thongTinThanhVienModel data) async {
+    if(data.c15A != null) {
+      NavigationServices.instance.navigateToP17B(context);
+    } else {
+      String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+      await _executeDatabase.getListTTTV(idho).then((value) async {
+        if(value.first.idtv == thanhvien.idtv){
+          NavigationServices.instance.navigateToInformationProvider(context);
+        }
+        else {
+          print("object 5");
+          value.removeRange(value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv), value.length);
+          int index = 0;
+          for (int i = value.length - 1; i < value.length; i--) {
+            if (!checkSelectCode(value[i])) {
+              index ++;
+              break;
+            };
+          }
+          if (index == 0) {
+            NavigationServices.instance.navigateToInformationProvider(context);
+          }
+        }
+      });
+    }
   }
 
   void P40_42Next(thongTinThanhVienModel data) async {
@@ -274,7 +301,7 @@ class P40_42ViewModel extends BaseViewModel {
     }
     else {
       await _executeDatabase.getListTTTV(idho).then((value) async {
-        value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv));
+        value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv) + 1);
         int index = 0;
         for (int i = 0; i < value.length; i++) {
           if (!checkSelectCode(value[i])) {
@@ -282,6 +309,7 @@ class P40_42ViewModel extends BaseViewModel {
             break;
           };
         }
+        print("index $index");
         if (index == 0) {
           await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
             if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){

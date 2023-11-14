@@ -298,456 +298,49 @@ class _P70_75ViewState extends State<P70_75View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p70_75viewModel.P70_75Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if(thanhvien.c63 != 0 && p70 == 0){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
-                            );
-                          }
-                          else if((thanhvien.c59 ?? 0) + int.parse(_dondep.text)
-                                + int.parse(_sanxuat.text) + int.parse(_suachua.text)
-                              + int.parse(_giupdo.text) + int.parse(_chamsoc.text) > 140){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Tổng thu nhập tất cả các công việc và công việc không được > 140 giờ/tuần!',)
-                            );
-                          }
-                          else if (int.parse(_dondep.text) >= 70 ||
-                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_dondep.text) >= 90)){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                      'dành thời gian dọn dẹp nhà cửa, giặt quần áo, nấu ăn, chế biến dồ ăn uống '
-                                      'của hộ, đi mua đồ lương thực, thực phẩm cho hộ trong 1 tuần quá nhiều. Có đúng không?',
-                                  onpress: (){
-                                    Navigator.of(context).pop();
-                                    if (int.parse(_sanxuat.text) >= 70 ||
-                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_sanxuat.text) >= 90)){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                "có thời gian sản xuất sản phẩm cho gia đình sử dụng "
-                                                "như đóng giường tủ bàn ghế, làm gốm, may quần áo, "
-                                                "dệt thảm, sửa chữa các đồ dùng bị hỏng của gia đình, "
-                                                "sơn lại tường,…. Có đúng không?",
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if (int.parse(_suachua.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_suachua.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian tự xây sửa, cơi nới, mở rộng "
-                                                          "nhà cửa hoặc các công trình xây dựng của hộ. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        if (int.parse(_giupdo.text) >= 70 ||
-                                                            (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (_) => UINotificationDialog(
-                                                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                                    "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
-                                                                    "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
-                                                                onpress: (){
-                                                                  Navigator.of(context).pop();
-                                                                  if (int.parse(_chamsoc.text) >= 70 ||
-                                                                      (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                                    showDialog(
-                                                                        context: context,
-                                                                        builder: (_) => UINotificationDialog(
-                                                                          notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                                              "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                                          onpress: (){
-                                                                            Navigator.of(context).pop();
-                                                                            p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                                              idho: thanhvien.idho,
-                                                                              idtv: thanhvien.idtv,
-                                                                              thangDT: thanhvien.thangDT,
-                                                                              namDT: thanhvien.namDT,
-                                                                              c64: p70,
-                                                                              c65: int.parse(_dondep.text),
-                                                                              c66: int.parse(_sanxuat.text),
-                                                                              c67: int.parse(_suachua.text),
-                                                                              c68: int.parse(_giupdo.text),
-                                                                              c69: int.parse(_chamsoc.text),
-                                                                            ));
-                                                                          },
-                                                                        )
-                                                                    );
-                                                                  }
-                                                                  else {
-                                                                    p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                                      idho: thanhvien.idho,
-                                                                      idtv: thanhvien.idtv,
-                                                                      thangDT: thanhvien.thangDT,
-                                                                      namDT: thanhvien.namDT,
-                                                                      c64: p70,
-                                                                      c65: int.parse(_dondep.text),
-                                                                      c66: int.parse(_sanxuat.text),
-                                                                      c67: int.parse(_suachua.text),
-                                                                      c68: int.parse(_giupdo.text),
-                                                                      c69: int.parse(_chamsoc.text),
-                                                                    ));
-                                                                  }
-                                                                },
-                                                              )
-                                                          );
-                                                        }
-                                                        else if (int.parse(_chamsoc.text) >= 70 ||
-                                                            (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (_) => UINotificationDialog(
-                                                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                                    "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                                onpress: (){
-                                                                  Navigator.of(context).pop();
-                                                                  p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    thangDT: thanhvien.thangDT,
-                                                                    namDT: thanhvien.namDT,
-                                                                    c64: p70,
-                                                                    c65: int.parse(_dondep.text),
-                                                                    c66: int.parse(_sanxuat.text),
-                                                                    c67: int.parse(_suachua.text),
-                                                                    c68: int.parse(_giupdo.text),
-                                                                    c69: int.parse(_chamsoc.text),
-                                                                  ));
-                                                                },
-                                                              )
-                                                          );
-                                                        }
-                                                        else {
-                                                          p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                            idho: thanhvien.idho,
-                                                            idtv: thanhvien.idtv,
-                                                            thangDT: thanhvien.thangDT,
-                                                            namDT: thanhvien.namDT,
-                                                            c64: p70,
-                                                            c65: int.parse(_dondep.text),
-                                                            c66: int.parse(_sanxuat.text),
-                                                            c67: int.parse(_suachua.text),
-                                                            c68: int.parse(_giupdo.text),
-                                                            c69: int.parse(_chamsoc.text),
-                                                          ));
-                                                        }
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else if (int.parse(_giupdo.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
-                                                          "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        if (int.parse(_chamsoc.text) >= 70 ||
-                                                            (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (_) => UINotificationDialog(
-                                                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                                    "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                                onpress: (){
-                                                                  Navigator.of(context).pop();
-                                                                  p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    thangDT: thanhvien.thangDT,
-                                                                    namDT: thanhvien.namDT,
-                                                                    c64: p70,
-                                                                    c65: int.parse(_dondep.text),
-                                                                    c66: int.parse(_sanxuat.text),
-                                                                    c67: int.parse(_suachua.text),
-                                                                    c68: int.parse(_giupdo.text),
-                                                                    c69: int.parse(_chamsoc.text),
-                                                                  ));
-                                                                },
-                                                              )
-                                                          );
-                                                        }
-                                                        else {
-                                                          p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                            idho: thanhvien.idho,
-                                                            idtv: thanhvien.idtv,
-                                                            thangDT: thanhvien.thangDT,
-                                                            namDT: thanhvien.namDT,
-                                                            c64: p70,
-                                                            c65: int.parse(_dondep.text),
-                                                            c66: int.parse(_sanxuat.text),
-                                                            c67: int.parse(_suachua.text),
-                                                            c68: int.parse(_giupdo.text),
-                                                            c69: int.parse(_chamsoc.text),
-                                                          ));
-                                                        }
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else if (int.parse(_chamsoc.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          thangDT: thanhvien.thangDT,
-                                                          namDT: thanhvien.namDT,
-                                                          c64: p70,
-                                                          c65: int.parse(_dondep.text),
-                                                          c66: int.parse(_sanxuat.text),
-                                                          c67: int.parse(_suachua.text),
-                                                          c68: int.parse(_giupdo.text),
-                                                          c69: int.parse(_chamsoc.text),
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  thangDT: thanhvien.thangDT,
-                                                  namDT: thanhvien.namDT,
-                                                  c64: p70,
-                                                  c65: int.parse(_dondep.text),
-                                                  c66: int.parse(_sanxuat.text),
-                                                  c67: int.parse(_suachua.text),
-                                                  c68: int.parse(_giupdo.text),
-                                                  c69: int.parse(_chamsoc.text),
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if (int.parse(_suachua.text) >= 70 ||
-                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_suachua.text) >= 90)){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                "dành thời gian tự xây sửa, cơi nới, mở rộng "
-                                                "nhà cửa hoặc các công trình xây dựng của hộ. Có đúng không?",
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if (int.parse(_giupdo.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
-                                                          "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        if (int.parse(_chamsoc.text) >= 70 ||
-                                                            (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (_) => UINotificationDialog(
-                                                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                                    "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                                onpress: (){
-                                                                  Navigator.of(context).pop();
-                                                                  p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    thangDT: thanhvien.thangDT,
-                                                                    namDT: thanhvien.namDT,
-                                                                    c64: p70,
-                                                                    c65: int.parse(_dondep.text),
-                                                                    c66: int.parse(_sanxuat.text),
-                                                                    c67: int.parse(_suachua.text),
-                                                                    c68: int.parse(_giupdo.text),
-                                                                    c69: int.parse(_chamsoc.text),
-                                                                  ));
-                                                                },
-                                                              )
-                                                          );
-                                                        }
-                                                        else {
-                                                          p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                            idho: thanhvien.idho,
-                                                            idtv: thanhvien.idtv,
-                                                            thangDT: thanhvien.thangDT,
-                                                            namDT: thanhvien.namDT,
-                                                            c64: p70,
-                                                            c65: int.parse(_dondep.text),
-                                                            c66: int.parse(_sanxuat.text),
-                                                            c67: int.parse(_suachua.text),
-                                                            c68: int.parse(_giupdo.text),
-                                                            c69: int.parse(_chamsoc.text),
-                                                          ));
-                                                        }
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else if (int.parse(_chamsoc.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          thangDT: thanhvien.thangDT,
-                                                          namDT: thanhvien.namDT,
-                                                          c64: p70,
-                                                          c65: int.parse(_dondep.text),
-                                                          c66: int.parse(_sanxuat.text),
-                                                          c67: int.parse(_suachua.text),
-                                                          c68: int.parse(_giupdo.text),
-                                                          c69: int.parse(_chamsoc.text),
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  thangDT: thanhvien.thangDT,
-                                                  namDT: thanhvien.namDT,
-                                                  c64: p70,
-                                                  c65: int.parse(_dondep.text),
-                                                  c66: int.parse(_sanxuat.text),
-                                                  c67: int.parse(_suachua.text),
-                                                  c68: int.parse(_giupdo.text),
-                                                  c69: int.parse(_chamsoc.text),
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if (int.parse(_giupdo.text) >= 70 ||
-                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
-                                                "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              if (int.parse(_chamsoc.text) >= 70 ||
-                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (_) => UINotificationDialog(
-                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                          "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                                      onpress: (){
-                                                        Navigator.of(context).pop();
-                                                        p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          thangDT: thanhvien.thangDT,
-                                                          namDT: thanhvien.namDT,
-                                                          c64: p70,
-                                                          c65: int.parse(_dondep.text),
-                                                          c66: int.parse(_sanxuat.text),
-                                                          c67: int.parse(_suachua.text),
-                                                          c68: int.parse(_giupdo.text),
-                                                          c69: int.parse(_chamsoc.text),
-                                                        ));
-                                                      },
-                                                    )
-                                                );
-                                              }
-                                              else {
-                                                p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                  idho: thanhvien.idho,
-                                                  idtv: thanhvien.idtv,
-                                                  thangDT: thanhvien.thangDT,
-                                                  namDT: thanhvien.namDT,
-                                                  c64: p70,
-                                                  c65: int.parse(_dondep.text),
-                                                  c66: int.parse(_sanxuat.text),
-                                                  c67: int.parse(_suachua.text),
-                                                  c68: int.parse(_giupdo.text),
-                                                  c69: int.parse(_chamsoc.text),
-                                                ));
-                                              }
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else if (int.parse(_chamsoc.text) >= 70 ||
-                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) => UINotificationDialog(
-                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
-                                                "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
-                                            onpress: (){
-                                              Navigator.of(context).pop();
-                                              p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                thangDT: thanhvien.thangDT,
-                                                namDT: thanhvien.namDT,
-                                                c64: p70,
-                                                c65: int.parse(_dondep.text),
-                                                c66: int.parse(_sanxuat.text),
-                                                c67: int.parse(_suachua.text),
-                                                c68: int.parse(_giupdo.text),
-                                                c69: int.parse(_chamsoc.text),
-                                              ));
-                                            },
-                                          )
-                                      );
-                                    }
-                                    else {
-                                      p70_75viewModel.P70_75Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        thangDT: thanhvien.thangDT,
-                                        namDT: thanhvien.namDT,
-                                        c64: p70,
-                                        c65: int.parse(_dondep.text),
-                                        c66: int.parse(_sanxuat.text),
-                                        c67: int.parse(_suachua.text),
-                                        c68: int.parse(_giupdo.text),
-                                        c69: int.parse(_chamsoc.text),
-                                      ));
-                                    }
-                                  },
-                                )
-                            );
-                          }
-                          else if (int.parse(_sanxuat.text) >= 70 ||
+                  const SizedBox(height: 90,),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p70_75viewModel.P70_75Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if(thanhvien.c63 != 0 && p70 == 0){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
+                  );
+                }
+                else if((thanhvien.c59 ?? 0) + int.parse(_dondep.text)
+                    + int.parse(_sanxuat.text) + int.parse(_suachua.text)
+                    + int.parse(_giupdo.text) + int.parse(_chamsoc.text) > 140){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Tổng thu nhập tất cả các công việc và công việc không được > 140 giờ/tuần!',)
+                  );
+                }
+                else if (int.parse(_dondep.text) >= 70 ||
+                    (thanhvien.c59 != null && thanhvien.c59! + int.parse(_dondep.text) >= 90)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                            'dành thời gian dọn dẹp nhà cửa, giặt quần áo, nấu ăn, chế biến dồ ăn uống '
+                            'của hộ, đi mua đồ lương thực, thực phẩm cho hộ trong 1 tuần quá nhiều. Có đúng không?',
+                        onpress: (){
+                          Navigator.of(context).pop();
+                          if (int.parse(_sanxuat.text) >= 70 ||
                               (thanhvien.c59 != null && thanhvien.c59! + int.parse(_sanxuat.text) >= 90)){
                             showDialog(
                                 context: context,
@@ -1159,15 +752,426 @@ class _P70_75ViewState extends State<P70_75View> {
                               c69: int.parse(_chamsoc.text),
                             ));
                           }
-                        }
-                      }),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
+                        },
+                      )
+                  );
+                }
+                else if (int.parse(_sanxuat.text) >= 70 ||
+                    (thanhvien.c59 != null && thanhvien.c59! + int.parse(_sanxuat.text) >= 90)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                            "có thời gian sản xuất sản phẩm cho gia đình sử dụng "
+                            "như đóng giường tủ bàn ghế, làm gốm, may quần áo, "
+                            "dệt thảm, sửa chữa các đồ dùng bị hỏng của gia đình, "
+                            "sơn lại tường,…. Có đúng không?",
+                        onpress: (){
+                          Navigator.of(context).pop();
+                          if (int.parse(_suachua.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_suachua.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian tự xây sửa, cơi nới, mở rộng "
+                                      "nhà cửa hoặc các công trình xây dựng của hộ. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if (int.parse(_giupdo.text) >= 70 ||
+                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
+                                                "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              if (int.parse(_chamsoc.text) >= 70 ||
+                                                  (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) => UINotificationDialog(
+                                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                          "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                                      onpress: (){
+                                                        Navigator.of(context).pop();
+                                                        p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          thangDT: thanhvien.thangDT,
+                                                          namDT: thanhvien.namDT,
+                                                          c64: p70,
+                                                          c65: int.parse(_dondep.text),
+                                                          c66: int.parse(_sanxuat.text),
+                                                          c67: int.parse(_suachua.text),
+                                                          c68: int.parse(_giupdo.text),
+                                                          c69: int.parse(_chamsoc.text),
+                                                        ));
+                                                      },
+                                                    )
+                                                );
+                                              }
+                                              else {
+                                                p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  thangDT: thanhvien.thangDT,
+                                                  namDT: thanhvien.namDT,
+                                                  c64: p70,
+                                                  c65: int.parse(_dondep.text),
+                                                  c66: int.parse(_sanxuat.text),
+                                                  c67: int.parse(_suachua.text),
+                                                  c68: int.parse(_giupdo.text),
+                                                  c69: int.parse(_chamsoc.text),
+                                                ));
+                                              }
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else if (int.parse(_chamsoc.text) >= 70 ||
+                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                thangDT: thanhvien.thangDT,
+                                                namDT: thanhvien.namDT,
+                                                c64: p70,
+                                                c65: int.parse(_dondep.text),
+                                                c66: int.parse(_sanxuat.text),
+                                                c67: int.parse(_suachua.text),
+                                                c68: int.parse(_giupdo.text),
+                                                c69: int.parse(_chamsoc.text),
+                                              ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        thangDT: thanhvien.thangDT,
+                                        namDT: thanhvien.namDT,
+                                        c64: p70,
+                                        c65: int.parse(_dondep.text),
+                                        c66: int.parse(_sanxuat.text),
+                                        c67: int.parse(_suachua.text),
+                                        c68: int.parse(_giupdo.text),
+                                        c69: int.parse(_chamsoc.text),
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (int.parse(_giupdo.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
+                                      "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if (int.parse(_chamsoc.text) >= 70 ||
+                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                thangDT: thanhvien.thangDT,
+                                                namDT: thanhvien.namDT,
+                                                c64: p70,
+                                                c65: int.parse(_dondep.text),
+                                                c66: int.parse(_sanxuat.text),
+                                                c67: int.parse(_suachua.text),
+                                                c68: int.parse(_giupdo.text),
+                                                c69: int.parse(_chamsoc.text),
+                                              ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        thangDT: thanhvien.thangDT,
+                                        namDT: thanhvien.namDT,
+                                        c64: p70,
+                                        c65: int.parse(_dondep.text),
+                                        c66: int.parse(_sanxuat.text),
+                                        c67: int.parse(_suachua.text),
+                                        c68: int.parse(_giupdo.text),
+                                        c69: int.parse(_chamsoc.text),
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (int.parse(_chamsoc.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      thangDT: thanhvien.thangDT,
+                                      namDT: thanhvien.namDT,
+                                      c64: p70,
+                                      c65: int.parse(_dondep.text),
+                                      c66: int.parse(_sanxuat.text),
+                                      c67: int.parse(_suachua.text),
+                                      c68: int.parse(_giupdo.text),
+                                      c69: int.parse(_chamsoc.text),
+                                    ));
+                                  },
+                                )
+                            );
+                          }
+                          else {
+                            p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
+                              c64: p70,
+                              c65: int.parse(_dondep.text),
+                              c66: int.parse(_sanxuat.text),
+                              c67: int.parse(_suachua.text),
+                              c68: int.parse(_giupdo.text),
+                              c69: int.parse(_chamsoc.text),
+                            ));
+                          }
+                        },
+                      )
+                  );
+                }
+                else if (int.parse(_suachua.text) >= 70 ||
+                    (thanhvien.c59 != null && thanhvien.c59! + int.parse(_suachua.text) >= 90)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                            "dành thời gian tự xây sửa, cơi nới, mở rộng "
+                            "nhà cửa hoặc các công trình xây dựng của hộ. Có đúng không?",
+                        onpress: (){
+                          Navigator.of(context).pop();
+                          if (int.parse(_giupdo.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
+                                      "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    if (int.parse(_chamsoc.text) >= 70 ||
+                                        (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => UINotificationDialog(
+                                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                                "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                            onpress: (){
+                                              Navigator.of(context).pop();
+                                              p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                thangDT: thanhvien.thangDT,
+                                                namDT: thanhvien.namDT,
+                                                c64: p70,
+                                                c65: int.parse(_dondep.text),
+                                                c66: int.parse(_sanxuat.text),
+                                                c67: int.parse(_suachua.text),
+                                                c68: int.parse(_giupdo.text),
+                                                c69: int.parse(_chamsoc.text),
+                                              ));
+                                            },
+                                          )
+                                      );
+                                    }
+                                    else {
+                                      p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        thangDT: thanhvien.thangDT,
+                                        namDT: thanhvien.namDT,
+                                        c64: p70,
+                                        c65: int.parse(_dondep.text),
+                                        c66: int.parse(_sanxuat.text),
+                                        c67: int.parse(_suachua.text),
+                                        c68: int.parse(_giupdo.text),
+                                        c69: int.parse(_chamsoc.text),
+                                      ));
+                                    }
+                                  },
+                                )
+                            );
+                          }
+                          else if (int.parse(_chamsoc.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      thangDT: thanhvien.thangDT,
+                                      namDT: thanhvien.namDT,
+                                      c64: p70,
+                                      c65: int.parse(_dondep.text),
+                                      c66: int.parse(_sanxuat.text),
+                                      c67: int.parse(_suachua.text),
+                                      c68: int.parse(_giupdo.text),
+                                      c69: int.parse(_chamsoc.text),
+                                    ));
+                                  },
+                                )
+                            );
+                          }
+                          else {
+                            p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
+                              c64: p70,
+                              c65: int.parse(_dondep.text),
+                              c66: int.parse(_sanxuat.text),
+                              c67: int.parse(_suachua.text),
+                              c68: int.parse(_giupdo.text),
+                              c69: int.parse(_chamsoc.text),
+                            ));
+                          }
+                        },
+                      )
+                  );
+                }
+                else if (int.parse(_giupdo.text) >= 70 ||
+                    (thanhvien.c59 != null && thanhvien.c59! + int.parse(_giupdo.text) >= 90)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                            "dành thời gian chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
+                            "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu. Có đúng không?",
+                        onpress: (){
+                          Navigator.of(context).pop();
+                          if (int.parse(_chamsoc.text) >= 70 ||
+                              (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                            showDialog(
+                                context: context,
+                                builder: (_) => UINotificationDialog(
+                                  notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                                      "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                                  onpress: (){
+                                    Navigator.of(context).pop();
+                                    p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      thangDT: thanhvien.thangDT,
+                                      namDT: thanhvien.namDT,
+                                      c64: p70,
+                                      c65: int.parse(_dondep.text),
+                                      c66: int.parse(_sanxuat.text),
+                                      c67: int.parse(_suachua.text),
+                                      c68: int.parse(_giupdo.text),
+                                      c69: int.parse(_chamsoc.text),
+                                    ));
+                                  },
+                                )
+                            );
+                          }
+                          else {
+                            p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              thangDT: thanhvien.thangDT,
+                              namDT: thanhvien.namDT,
+                              c64: p70,
+                              c65: int.parse(_dondep.text),
+                              c66: int.parse(_sanxuat.text),
+                              c67: int.parse(_suachua.text),
+                              c68: int.parse(_giupdo.text),
+                              c69: int.parse(_chamsoc.text),
+                            ));
+                          }
+                        },
+                      )
+                  );
+                }
+                else if (int.parse(_chamsoc.text) >= 70 ||
+                    (thanhvien.c59 != null && thanhvien.c59! + int.parse(_chamsoc.text) >= 90)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} '
+                            "dành thời gian chăm sóc trẻ em dưới 18 tuổi của hộ. Có đúng không?",
+                        onpress: (){
+                          Navigator.of(context).pop();
+                          p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            thangDT: thanhvien.thangDT,
+                            namDT: thanhvien.namDT,
+                            c64: p70,
+                            c65: int.parse(_dondep.text),
+                            c66: int.parse(_sanxuat.text),
+                            c67: int.parse(_suachua.text),
+                            c68: int.parse(_giupdo.text),
+                            c69: int.parse(_chamsoc.text),
+                          ));
+                        },
+                      )
+                  );
+                }
+                else {
+                  p70_75viewModel.P70_75Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c64: p70,
+                    c65: int.parse(_dondep.text),
+                    c66: int.parse(_sanxuat.text),
+                    c67: int.parse(_suachua.text),
+                    c68: int.parse(_giupdo.text),
+                    c69: int.parse(_chamsoc.text),
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

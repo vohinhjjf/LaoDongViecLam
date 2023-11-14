@@ -421,130 +421,124 @@ class _P16ViewState extends State<P16View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p16ViewModel.P16Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p16a == 0 || p16b == 0 || (check && (p16c == 0 ||p16d == 0 || p16e == 0 || p16f == 0))){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P16-Trình độ CMKT bị bỏ trống!',)
-                        );
-                      }
-                      else if(p16c == 1 && thanhvien.c04! < 18){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 18 tuổi mà đã tốt nghiệp cao đẳng!',)
-                        );
-                      }
-                      else if(p16d == 1 && thanhvien.c04! < 20){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 20 tuổi mà đã tốt nghiệp đại học!',)
-                        );
-                      }
-                      else if(p16e == 1 && thanhvien.c04! < 21){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 21 tuổi mà đã tốt nghiệp thạc sỹ!',)
-                        );
-                      }
-                      else if(p16f == 1 && thanhvien.c04! < 22){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 22 tuổi mà đã tốt nghiệp tiến sỹ!',)
-                        );
-                      }
-                      else if(p16d == 1 && thanhvien.c13! <= 4){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Đại học!',)
-                        );
-                      }
-                      else if(p16e == 1 && thanhvien.c13! <= 4){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Thạc sỹ!',)
-                        );
-                      }
-                      else if(p16f == 1 && thanhvien.c13! <= 4){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Tiến sỹ!',)
-                        );
-                      }
-                      else if(p16d == 2 && p16f == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chưa tốt nghiệp đại học mà trình độ chuyên môn kỹ thuật là Tiến sỹ!',)
-                        );
-                      }
-                      else if(p16d == 2 && p16e == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chưa tốt nghiệp đại học mà trình độ chuyên môn kỹ thuật là Thạc sỹ!',)
-                        );
-                      }
-                      //Notifi
-                      else if((thanhvien.c04 == 20 || thanhvien.c04 == 21) && p16e == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp thạc sỹ. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if((thanhvien.c04! > 20 && thanhvien.c04! < 24) && p16f == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp tiến sỹ. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! < 15 && p16b == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c04! <= 20 && p16d == 1){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                                            onpress: (){
-                                                              Navigator.of(context).pop();
-                                                              if(thanhvien.c04! <= 18 && p16c == 1){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                                      onpress: (){
-                                                                        Navigator.of(context).pop();
-                                                                        if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                          showDialog(
-                                                                              context: context,
-                                                                              builder: (_) => UINotificationDialog(
-                                                                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                                onpress: () {
-                                                                                  p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                                    idho: thanhvien.idho,
-                                                                                    idtv: thanhvien.idtv,
-                                                                                    c14A: p16a,
-                                                                                    c14B: p16b,
-                                                                                    c14C: p16c,
-                                                                                    c14D: p16d,
-                                                                                    c14E: p16e,
-                                                                                    c14F: p16f,
-                                                                                  ));
-                                                                                },)
-                                                                          );
-                                                                        }
-                                                                        else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p16ViewModel.P16Back();
+            }),
+            UINextButton(ontap: (){
+              if(p16a == 0 || p16b == 0 || (check && (p16c == 0 ||p16d == 0 || p16e == 0 || p16f == 0))){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P16-Trình độ CMKT bị bỏ trống!',)
+                );
+              }
+              else if(p16c == 1 && thanhvien.c04! < 18){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 18 tuổi mà đã tốt nghiệp cao đẳng!',)
+                );
+              }
+              else if(p16d == 1 && thanhvien.c04! < 20){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 20 tuổi mà đã tốt nghiệp đại học!',)
+                );
+              }
+              else if(p16e == 1 && thanhvien.c04! < 21){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 21 tuổi mà đã tốt nghiệp thạc sỹ!',)
+                );
+              }
+              else if(p16f == 1 && thanhvien.c04! < 22){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} dưới 22 tuổi mà đã tốt nghiệp tiến sỹ!',)
+                );
+              }
+              else if(p16d == 1 && thanhvien.c13! <= 4){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Đại học!',)
+                );
+              }
+              else if(p16e == 1 && thanhvien.c13! <= 4){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Thạc sỹ!',)
+                );
+              }
+              else if(p16f == 1 && thanhvien.c13! <= 4){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất chưa tốt nghiệp Trung học phổ thông mà trình độ chuyên môn kỹ thuật là Tiến sỹ!',)
+                );
+              }
+              else if(p16d == 2 && p16f == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chưa tốt nghiệp đại học mà trình độ chuyên môn kỹ thuật là Tiến sỹ!',)
+                );
+              }
+              else if(p16d == 2 && p16e == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chưa tốt nghiệp đại học mà trình độ chuyên môn kỹ thuật là Thạc sỹ!',)
+                );
+              }
+              //Notifi
+              else if((thanhvien.c04 == 20 || thanhvien.c04 == 21) && p16e == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp thạc sỹ. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if((thanhvien.c04! > 20 && thanhvien.c04! < 24) && p16f == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp tiến sỹ. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! < 15 && p16b == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c04! <= 20 && p16d == 1){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(thanhvien.c04! <= 18 && p16c == 1){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                                              onpress: (){
+                                                                Navigator.of(context).pop();
+                                                                if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                                  showDialog(
+                                                                      context: context,
+                                                                      builder: (_) => UINotificationDialog(
+                                                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                                        onpress: () {
                                                                           p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                             idho: thanhvien.idho,
                                                                             idtv: thanhvien.idtv,
@@ -555,31 +549,31 @@ class _P16ViewState extends State<P16View> {
                                                                             c14E: p16e,
                                                                             c14F: p16f,
                                                                           ));
-                                                                        }
-                                                                      },
-                                                                    )
-                                                                );
-                                                              }
-                                                              else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                      onpress: () {
-                                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                          idho: thanhvien.idho,
-                                                                          idtv: thanhvien.idtv,
-                                                                          c14A: p16a,
-                                                                          c14B: p16b,
-                                                                          c14C: p16c,
-                                                                          c14D: p16d,
-                                                                          c14E: p16e,
-                                                                          c14F: p16f,
-                                                                        ));
-                                                                      },)
-                                                                );
-                                                              }
-                                                              else {
+                                                                        },)
+                                                                  );
+                                                                }
+                                                                else {
+                                                                  p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                                    idho: thanhvien.idho,
+                                                                    idtv: thanhvien.idtv,
+                                                                    c14A: p16a,
+                                                                    c14B: p16b,
+                                                                    c14C: p16c,
+                                                                    c14D: p16d,
+                                                                    c14E: p16e,
+                                                                    c14F: p16f,
+                                                                  ));
+                                                                }
+                                                              },
+                                                            )
+                                                        );
+                                                      }
+                                                      else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                              onpress: () {
                                                                 p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                   idho: thanhvien.idho,
                                                                   idtv: thanhvien.idtv,
@@ -590,38 +584,38 @@ class _P16ViewState extends State<P16View> {
                                                                   c14E: p16e,
                                                                   c14F: p16f,
                                                                 ));
-                                                              }
-                                                            },
-                                                          )
-                                                      );
-                                                    }
-                                                    else if(thanhvien.c04! <= 18 && p16c == 1){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                            onpress: (){
-                                                              Navigator.of(context).pop();
-                                                              if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                      onpress: () {
-                                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                          idho: thanhvien.idho,
-                                                                          idtv: thanhvien.idtv,
-                                                                          c14A: p16a,
-                                                                          c14B: p16b,
-                                                                          c14C: p16c,
-                                                                          c14D: p16d,
-                                                                          c14E: p16e,
-                                                                          c14F: p16f,
-                                                                        ));
-                                                                      },)
-                                                                );
-                                                              }
-                                                              else {
+                                                              },)
+                                                        );
+                                                      }
+                                                      else {
+                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c14A: p16a,
+                                                          c14B: p16b,
+                                                          c14C: p16c,
+                                                          c14D: p16d,
+                                                          c14E: p16e,
+                                                          c14F: p16f,
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(thanhvien.c04! <= 18 && p16c == 1){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                              onpress: () {
                                                                 p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                   idho: thanhvien.idho,
                                                                   idtv: thanhvien.idtv,
@@ -632,31 +626,31 @@ class _P16ViewState extends State<P16View> {
                                                                   c14E: p16e,
                                                                   c14F: p16f,
                                                                 ));
-                                                              }
-                                                            },
-                                                          )
-                                                      );
-                                                    }
-                                                    else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                              },)
+                                                        );
+                                                      }
+                                                      else {
+                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c14A: p16a,
+                                                          c14B: p16b,
+                                                          c14C: p16c,
+                                                          c14D: p16d,
+                                                          c14E: p16e,
+                                                          c14F: p16f,
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -667,45 +661,45 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c04! <= 20 && p16d == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c04! <= 18 && p16c == 1){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                            onpress: (){
-                                                              Navigator.of(context).pop();
-                                                              if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                      onpress: () {
-                                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                          idho: thanhvien.idho,
-                                                                          idtv: thanhvien.idtv,
-                                                                          c14A: p16a,
-                                                                          c14B: p16b,
-                                                                          c14C: p16c,
-                                                                          c14D: p16d,
-                                                                          c14E: p16e,
-                                                                          c14F: p16f,
-                                                                        ));
-                                                                      },)
-                                                                );
-                                                              }
-                                                              else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c04! <= 20 && p16d == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c04! <= 18 && p16c == 1){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                              onpress: () {
                                                                 p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                   idho: thanhvien.idho,
                                                                   idtv: thanhvien.idtv,
@@ -716,31 +710,31 @@ class _P16ViewState extends State<P16View> {
                                                                   c14E: p16e,
                                                                   c14F: p16f,
                                                                 ));
-                                                              }
-                                                            },
-                                                          )
-                                                      );
-                                                    }
-                                                    else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                              },)
+                                                        );
+                                                      }
+                                                      else {
+                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c14A: p16a,
+                                                          c14B: p16b,
+                                                          c14C: p16c,
+                                                          c14D: p16d,
+                                                          c14E: p16e,
+                                                          c14F: p16f,
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -751,38 +745,38 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -793,31 +787,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -828,52 +822,52 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! < 15 && p16b == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! <= 20 && p16d == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c04! <= 18 && p16c == 1){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                            onpress: (){
-                                                              Navigator.of(context).pop();
-                                                              if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                      onpress: () {
-                                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                          idho: thanhvien.idho,
-                                                                          idtv: thanhvien.idtv,
-                                                                          c14A: p16a,
-                                                                          c14B: p16b,
-                                                                          c14C: p16c,
-                                                                          c14D: p16d,
-                                                                          c14E: p16e,
-                                                                          c14F: p16f,
-                                                                        ));
-                                                                      },)
-                                                                );
-                                                              }
-                                                              else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! < 15 && p16b == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! <= 20 && p16d == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c04! <= 18 && p16c == 1){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                              onpress: () {
                                                                 p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                   idho: thanhvien.idho,
                                                                   idtv: thanhvien.idtv,
@@ -884,31 +878,31 @@ class _P16ViewState extends State<P16View> {
                                                                   c14E: p16e,
                                                                   c14F: p16f,
                                                                 ));
-                                                              }
-                                                            },
-                                                          )
-                                                      );
-                                                    }
-                                                    else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                              },)
+                                                        );
+                                                      }
+                                                      else {
+                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c14A: p16a,
+                                                          c14B: p16b,
+                                                          c14C: p16c,
+                                                          c14D: p16d,
+                                                          c14E: p16e,
+                                                          c14F: p16f,
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -919,38 +913,38 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -961,31 +955,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -996,45 +990,45 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! <= 20 && p16d == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! <= 20 && p16d == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -1045,31 +1039,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1080,38 +1074,38 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! <= 18 && p16c == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! <= 18 && p16c == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1122,31 +1116,31 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                        onpress: () {
-                                          p16ViewModel.P16Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c14A: p16a,
-                                            c14B: p16b,
-                                            c14C: p16c,
-                                            c14D: p16d,
-                                            c14E: p16e,
-                                            c14F: p16f,
-                                          ));
-                                        },)
-                                  );
-                                }
-                                else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                onpress: () {
                                   p16ViewModel.P16Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -1157,59 +1151,59 @@ class _P16ViewState extends State<P16View> {
                                     c14E: p16e,
                                     c14F: p16f,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if((thanhvien.c04! > 20 && thanhvien.c04! < 24) && p16f == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp tiến sỹ. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c04! < 15 && p16b == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! <= 20 && p16d == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c04! <= 18 && p16c == 1){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                            onpress: (){
-                                                              Navigator.of(context).pop();
-                                                              if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) => UINotificationDialog(
-                                                                      notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                                      onpress: () {
-                                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                          idho: thanhvien.idho,
-                                                                          idtv: thanhvien.idtv,
-                                                                          c14A: p16a,
-                                                                          c14B: p16b,
-                                                                          c14C: p16c,
-                                                                          c14D: p16d,
-                                                                          c14E: p16e,
-                                                                          c14F: p16f,
-                                                                        ));
-                                                                      },)
-                                                                );
-                                                              }
-                                                              else {
+                                },)
+                          );
+                        }
+                        else {
+                          p16ViewModel.P16Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c14A: p16a,
+                            c14B: p16b,
+                            c14C: p16c,
+                            c14D: p16d,
+                            c14E: p16e,
+                            c14F: p16f,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if((thanhvien.c04! > 20 && thanhvien.c04! < 24) && p16f == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp tiến sỹ. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c04! < 15 && p16b == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! <= 20 && p16d == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c04! <= 18 && p16c == 1){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                                    onpress: (){
+                                                      Navigator.of(context).pop();
+                                                      if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) => UINotificationDialog(
+                                                              notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                              onpress: () {
                                                                 p16ViewModel.P16Next(thongTinThanhVienModel(
                                                                   idho: thanhvien.idho,
                                                                   idtv: thanhvien.idtv,
@@ -1220,31 +1214,31 @@ class _P16ViewState extends State<P16View> {
                                                                   c14E: p16e,
                                                                   c14F: p16f,
                                                                 ));
-                                                              }
-                                                            },
-                                                          )
-                                                      );
-                                                    }
-                                                    else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                              },)
+                                                        );
+                                                      }
+                                                      else {
+                                                        p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c14A: p16a,
+                                                          c14B: p16b,
+                                                          c14C: p16c,
+                                                          c14D: p16d,
+                                                          c14E: p16e,
+                                                          c14F: p16f,
+                                                        ));
+                                                      }
+                                                    },
+                                                  )
+                                              );
+                                            }
+                                            else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -1255,38 +1249,38 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -1297,31 +1291,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1332,45 +1326,45 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! <= 20 && p16d == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! <= 20 && p16d == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -1381,31 +1375,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1416,38 +1410,38 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! <= 18 && p16c == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! <= 18 && p16c == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1458,31 +1452,31 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                        onpress: () {
-                                          p16ViewModel.P16Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c14A: p16a,
-                                            c14B: p16b,
-                                            c14C: p16c,
-                                            c14D: p16d,
-                                            c14E: p16e,
-                                            c14F: p16f,
-                                          ));
-                                        },)
-                                  );
-                                }
-                                else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                onpress: () {
                                   p16ViewModel.P16Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -1493,52 +1487,52 @@ class _P16ViewState extends State<P16View> {
                                     c14E: p16e,
                                     c14F: p16f,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c04! < 15 && p16b == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c04! <= 20 && p16d == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c04! <= 18 && p16c == 1){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                            onpress: () {
-                                                              p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                                idho: thanhvien.idho,
-                                                                idtv: thanhvien.idtv,
-                                                                c14A: p16a,
-                                                                c14B: p16b,
-                                                                c14C: p16c,
-                                                                c14D: p16d,
-                                                                c14E: p16e,
-                                                                c14F: p16f,
-                                                              ));
-                                                            },)
-                                                      );
-                                                    }
-                                                    else {
+                                },)
+                          );
+                        }
+                        else {
+                          p16ViewModel.P16Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c14A: p16a,
+                            c14B: p16b,
+                            c14C: p16c,
+                            c14D: p16d,
+                            c14E: p16e,
+                            c14F: p16f,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c04! < 15 && p16b == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi < 15 mà đã tốt nghiệp trung cấp. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c04! <= 20 && p16d == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c04! <= 18 && p16c == 1){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                                    onpress: () {
                                                       p16ViewModel.P16Next(thongTinThanhVienModel(
                                                         idho: thanhvien.idho,
                                                         idtv: thanhvien.idtv,
@@ -1549,31 +1543,31 @@ class _P16ViewState extends State<P16View> {
                                                         c14E: p16e,
                                                         c14F: p16f,
                                                       ));
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                                    },)
+                                              );
+                                            }
+                                            else {
+                                              p16ViewModel.P16Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c14A: p16a,
+                                                c14B: p16b,
+                                                c14C: p16c,
+                                                c14D: p16d,
+                                                c14E: p16e,
+                                                c14F: p16f,
+                                              ));
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1584,38 +1578,38 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c04! <= 18 && p16c == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c04! <= 18 && p16c == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1626,31 +1620,31 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                        onpress: () {
-                                          p16ViewModel.P16Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c14A: p16a,
-                                            c14B: p16b,
-                                            c14C: p16c,
-                                            c14D: p16d,
-                                            c14E: p16e,
-                                            c14F: p16f,
-                                          ));
-                                        },)
-                                  );
-                                }
-                                else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                onpress: () {
                                   p16ViewModel.P16Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -1661,45 +1655,45 @@ class _P16ViewState extends State<P16View> {
                                     c14E: p16e,
                                     c14F: p16f,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c04! <= 20 && p16d == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c04! <= 18 && p16c == 1){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                                  onpress: () {
-                                                    p16ViewModel.P16Next(thongTinThanhVienModel(
-                                                      idho: thanhvien.idho,
-                                                      idtv: thanhvien.idtv,
-                                                      c14A: p16a,
-                                                      c14B: p16b,
-                                                      c14C: p16c,
-                                                      c14D: p16d,
-                                                      c14E: p16e,
-                                                      c14F: p16f,
-                                                    ));
-                                                  },)
-                                            );
-                                          }
-                                          else {
+                                },)
+                          );
+                        }
+                        else {
+                          p16ViewModel.P16Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c14A: p16a,
+                            c14B: p16b,
+                            c14C: p16c,
+                            c14D: p16d,
+                            c14E: p16e,
+                            c14F: p16f,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c04! <= 20 && p16d == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Đại học. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c04! <= 18 && p16c == 1){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                          onpress: () {
                                             p16ViewModel.P16Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
@@ -1710,31 +1704,31 @@ class _P16ViewState extends State<P16View> {
                                               c14E: p16e,
                                               c14F: p16f,
                                             ));
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                        onpress: () {
-                                          p16ViewModel.P16Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c14A: p16a,
-                                            c14B: p16b,
-                                            c14C: p16c,
-                                            c14D: p16d,
-                                            c14E: p16e,
-                                            c14F: p16f,
-                                          ));
-                                        },)
-                                  );
-                                }
-                                else {
+                                          },)
+                                    );
+                                  }
+                                  else {
+                                    p16ViewModel.P16Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c14A: p16a,
+                                      c14B: p16b,
+                                      c14C: p16c,
+                                      c14D: p16d,
+                                      c14E: p16e,
+                                      c14F: p16f,
+                                    ));
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                onpress: () {
                                   p16ViewModel.P16Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -1745,38 +1739,38 @@ class _P16ViewState extends State<P16View> {
                                     c14E: p16e,
                                     c14F: p16f,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c04! <= 18 && p16c == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                                        onpress: () {
-                                          p16ViewModel.P16Next(thongTinThanhVienModel(
-                                            idho: thanhvien.idho,
-                                            idtv: thanhvien.idtv,
-                                            c14A: p16a,
-                                            c14B: p16b,
-                                            c14C: p16c,
-                                            c14D: p16d,
-                                            c14E: p16e,
-                                            c14F: p16f,
-                                          ));
-                                        },)
-                                  );
-                                }
-                                else {
+                                },)
+                          );
+                        }
+                        else {
+                          p16ViewModel.P16Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c14A: p16a,
+                            c14B: p16b,
+                            c14C: p16c,
+                            c14D: p16d,
+                            c14E: p16e,
+                            c14F: p16f,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c04! <= 18 && p16c == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi là ${thanhvien.c04} mà đã tốt nghiệp Cao đẳng. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                                onpress: () {
                                   p16ViewModel.P16Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
@@ -1787,31 +1781,31 @@ class _P16ViewState extends State<P16View> {
                                     c14E: p16e,
                                     c14F: p16f,
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
-                              onpress: () {
-                                p16ViewModel.P16Next(thongTinThanhVienModel(
-                                  idho: thanhvien.idho,
-                                  idtv: thanhvien.idtv,
-                                  c14A: p16a,
-                                  c14B: p16b,
-                                  c14C: p16c,
-                                  c14D: p16d,
-                                  c14E: p16e,
-                                  c14F: p16f,
-                                ));
-                              },)
-                        );
-                      }
-                      else {
+                                },)
+                          );
+                        }
+                        else {
+                          p16ViewModel.P16Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c14A: p16a,
+                            c14B: p16b,
+                            c14C: p16c,
+                            c14D: p16d,
+                            c14E: p16e,
+                            c14F: p16f,
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c13! <= 3 && (p16b == 1 || p16c == 1 || p16d == 1 || p16e == 1 || p16f == 1)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} trình độ cao nhất dưới Trung học cơ sở mà trình độ chuyên môn kỹ thuật từ trung cấp trở lên!',
+                      onpress: () {
                         p16ViewModel.P16Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
@@ -1822,14 +1816,24 @@ class _P16ViewState extends State<P16View> {
                           c14E: p16e,
                           c14F: p16f,
                         ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },)
+                );
+              }
+              else {
+                p16ViewModel.P16Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c14A: p16a,
+                  c14B: p16b,
+                  c14C: p16c,
+                  c14D: p16d,
+                  c14E: p16e,
+                  c14F: p16f,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

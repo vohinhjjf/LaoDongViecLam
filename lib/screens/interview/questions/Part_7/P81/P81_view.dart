@@ -125,35 +125,39 @@ class _P81ViewState extends State<P81View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p81ViewModel.P81Back(doisongho);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p81 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P81 - Chi tiêu cho các mặt hàng nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p81ViewModel.P81Next(DoiSongHoModel(
-                            idho: thanhvien.idho,
-                            thangDT: thanhvien.thangDT,
-                            namDT: thanhvien.namDT,
-                            c62_M6: p81
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p81ViewModel.P81Back(doisongho);
+            }),
+            UINextButton(ontap: (){
+              if(p81 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P81 - Chi tiêu cho các mặt hàng nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p81ViewModel.P81Next(DoiSongHoModel(
+                    idho: thanhvien.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M6: p81
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

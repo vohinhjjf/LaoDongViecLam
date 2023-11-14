@@ -223,107 +223,68 @@ class _P13_14ViewState extends State<P13_14View> {
                       ],
                     )),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p13_14ViewModel.P13_14Back(thanhvien.c09);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p13 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P13-Tình trạng đi học nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if (p14 == 0 && tuoi >= 15 && tuoi <= 24 && p13 == 2) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(
-                              waring:
-                              'P14-Tình trạng học đào tạo nghề nhập vào chưa đúng!',
-                            ));
-                      }
-                      else if(thongtinho.ttnt == 1 && (thanhvien.c04 == 16 || thanhvien.c04 == 17) && p13 == 2){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} ở khu vực thành thị: '
-                                  'Tuổi tròn ${thanhvien.c04} mà hiện không đi học (P13 = 2). Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(p13 == 2 && (tuoi >= 15 && tuoi < 18)){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} có '
-                                            'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification: 'Thành viên ${thanhvien.c00} chuyển '
-                                                      'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
-                                                  onpress: (){
-                                                    Navigator.of(context).pop();
-                                                    if(p14 == 1 && tuoi > 60){
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification:
-                                                            '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                                            onpress: () {
-                                                              Navigator.of(context).pop();
-                                                              if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    c11: p13,
-                                                                    c12: p14
-                                                                ));
-                                                              }
-                                                              else {
-                                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                                  idho: thanhvien.idho,
-                                                                  idtv: thanhvien.idtv,
-                                                                  c11: p13,
-                                                                ));
-                                                              }
-                                                            },
-                                                          ));
-                                                    }
-                                                    else if (thanhvien.c10M == 6 && p14 == 2) {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (_) => UINotificationDialog(
-                                                            notification:
-                                                            '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                                                'ở mới để đi học mà hiện không theo học đào '
-                                                                'tạo nghề. Có đúng không?',
-                                                            onpress: () {
-                                                              Navigator.of(context).pop();
-                                                              if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                                    idho: thanhvien.idho,
-                                                                    idtv: thanhvien.idtv,
-                                                                    c11: p13,
-                                                                    c12: p14
-                                                                ));
-                                                              }
-                                                              else {
-                                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                                  idho: thanhvien.idho,
-                                                                  idtv: thanhvien.idtv,
-                                                                  c11: p13,
-                                                                ));
-                                                              }
-                                                            },
-                                                          ));
-                                                    }
-                                                    else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p13_14ViewModel.P13_14Back(thanhvien.c09);
+            }),
+            UINextButton(ontap: (){
+              if(p13 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P13-Tình trạng đi học nhập vào chưa đúng!',)
+                );
+              }
+              else if (p14 == 0 && tuoi >= 15 && tuoi <= 24 && p13 == 2) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(
+                      waring:
+                      'P14-Tình trạng học đào tạo nghề nhập vào chưa đúng!',
+                    ));
+              }
+              else if(thongtinho.ttnt == 1 && (thanhvien.c04 == 16 || thanhvien.c04 == 17) && p13 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thành viên ${thanhvien.c00} ở khu vực thành thị: '
+                          'Tuổi tròn ${thanhvien.c04} mà hiện không đi học (P13 = 2). Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(p13 == 2 && (tuoi >= 15 && tuoi < 18)){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Thành viên ${thanhvien.c00} có '
+                                    'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                              'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(p14 == 1 && tuoi > 60){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification:
+                                                    '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                                    onpress: () {
+                                                      Navigator.of(context).pop();
                                                       if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                                         p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                             idho: thanhvien.idho,
@@ -339,66 +300,66 @@ class _P13_14ViewState extends State<P13_14View> {
                                                           c11: p13,
                                                         ));
                                                       }
-                                                    }
-                                                  },
-                                                )
-                                            );
-                                          }
-                                          else if(p14 == 1 && tuoi > 60){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                    },
+                                                  ));
+                                            }
+                                            else if (thanhvien.c10M == 6 && p14 == 2) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) => UINotificationDialog(
+                                                    notification:
+                                                    '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                                        'ở mới để đi học mà hiện không theo học đào '
+                                                        'tạo nghề. Có đúng không?',
+                                                    onpress: () {
+                                                      Navigator.of(context).pop();
+                                                      if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                                        p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                            idho: thanhvien.idho,
+                                                            idtv: thanhvien.idtv,
+                                                            c11: p13,
+                                                            c12: p14
+                                                        ));
+                                                      }
+                                                      else {
+                                                        p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                           idho: thanhvien.idho,
                                                           idtv: thanhvien.idtv,
                                                           c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
+                                                        ));
+                                                      }
+                                                    },
+                                                  ));
+                                            }
+                                            else {
+                                              if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                    idho: thanhvien.idho,
+                                                    idtv: thanhvien.idtv,
+                                                    c11: p13,
+                                                    c12: p14
                                                 ));
-                                          }
-                                          else if (thanhvien.c10M == 6 && p14 == 2) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                                      'ở mới để đi học mà hiện không theo học đào '
-                                                      'tạo nghề. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
+                                              }
+                                              else {
+                                                p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c11: p13,
                                                 ));
-                                          }
-                                          else {
+                                              }
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(p14 == 1 && tuoi > 60){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
                                             if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                               p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                   idho: thanhvien.idho,
@@ -414,74 +375,19 @@ class _P13_14ViewState extends State<P13_14View> {
                                                 c11: p13,
                                               ));
                                             }
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
-                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(p14 == 1 && tuoi > 60){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else if (thanhvien.c10M == 6 && p14 == 2) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                                      'ở mới để đi học mà hiện không theo học đào '
-                                                      'tạo nghề. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else {
+                                          },
+                                        ));
+                                  }
+                                  else if (thanhvien.c10M == 6 && p14 == 2) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                              'ở mới để đi học mà hiện không theo học đào '
+                                              'tạo nghề. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
                                             if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                               p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                   idho: thanhvien.idho,
@@ -497,157 +403,46 @@ class _P13_14ViewState extends State<P13_14View> {
                                                 c11: p13,
                                               ));
                                             }
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(p14 == 1 && tuoi > 60){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
+                                          },
+                                        ));
+                                  }
+                                  else {
+                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c11: p13,
+                                          c12: p14
                                       ));
-                                }
-                                else if (thanhvien.c10M == 6 && p14 == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                            'ở mới để đi học mà hiện không theo học đào '
-                                            'tạo nghề. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else {
-                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                    }
+                                    else {
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                         idho: thanhvien.idho,
                                         idtv: thanhvien.idtv,
                                         c11: p13,
-                                        c12: p14
-                                    ));
+                                      ));
+                                    }
                                   }
-                                  else {
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c11: p13,
-                                    ));
-                                  }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(p13 == 2 && (tuoi >= 15 && tuoi < 18)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có '
-                                  'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
-                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(p14 == 1 && tuoi > 60){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else if (thanhvien.c10M == 6 && p14 == 2) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                                      'ở mới để đi học mà hiện không theo học đào '
-                                                      'tạo nghề. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else {
+                                },
+                              )
+                          );
+                        }
+                        else if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                    'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(p14 == 1 && tuoi > 60){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
                                             if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                               p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                   idho: thanhvien.idho,
@@ -663,157 +458,19 @@ class _P13_14ViewState extends State<P13_14View> {
                                                 c11: p13,
                                               ));
                                             }
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(p14 == 1 && tuoi > 60){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else if (thanhvien.c10M == 6 && p14 == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                            'ở mới để đi học mà hiện không theo học đào '
-                                            'tạo nghề. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else {
-                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c11: p13,
-                                        c12: p14
-                                    ));
+                                          },
+                                        ));
                                   }
-                                  else {
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c11: p13,
-                                    ));
-                                  }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(p13 == 2 && (tuoi >= 5 && tuoi <= 15)){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
-                                  'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification: 'Thành viên ${thanhvien.c00} chuyển '
-                                            'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          if(p14 == 1 && tuoi > 60){
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else if (thanhvien.c10M == 6 && p14 == 2) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) => UINotificationDialog(
-                                                  notification:
-                                                  '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                                      'ở mới để đi học mà hiện không theo học đào '
-                                                      'tạo nghề. Có đúng không?',
-                                                  onpress: () {
-                                                    Navigator.of(context).pop();
-                                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                          idho: thanhvien.idho,
-                                                          idtv: thanhvien.idtv,
-                                                          c11: p13,
-                                                          c12: p14
-                                                      ));
-                                                    }
-                                                    else {
-                                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c11: p13,
-                                                      ));
-                                                    }
-                                                  },
-                                                ));
-                                          }
-                                          else {
+                                  else if (thanhvien.c10M == 6 && p14 == 2) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                              'ở mới để đi học mà hiện không theo học đào '
+                                              'tạo nghề. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
                                             if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                               p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                                   idho: thanhvien.idho,
@@ -829,66 +486,38 @@ class _P13_14ViewState extends State<P13_14View> {
                                                 c11: p13,
                                               ));
                                             }
-                                          }
-                                        },
-                                      )
-                                  );
-                                }
-                                else if(p14 == 1 && tuoi > 60){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
+                                          },
+                                        ));
+                                  }
+                                  else {
+                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c11: p13,
+                                          c12: p14
                                       ));
-                                }
-                                else if (thanhvien.c10M == 6 && p14 == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                            'ở mới để đi học mà hiện không theo học đào '
-                                            'tạo nghề. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
+                                    }
+                                    else {
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
                                       ));
-                                }
-                                else {
+                                    }
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(p14 == 1 && tuoi > 60){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
                                   if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                     p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                         idho: thanhvien.idho,
@@ -904,74 +533,19 @@ class _P13_14ViewState extends State<P13_14View> {
                                       c11: p13,
                                     ));
                                   }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(p13 == 1 && tuoi >= 60){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} có '
-                                  'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(p14 == 1 && tuoi > 60){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else if (thanhvien.c10M == 6 && p14 == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                            'ở mới để đi học mà hiện không theo học đào '
-                                            'tạo nghề. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else {
+                                },
+                              ));
+                        }
+                        else if (thanhvien.c10M == 6 && p14 == 2) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                    'ở mới để đi học mà hiện không theo học đào '
+                                    'tạo nghề. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
                                   if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                                     p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                         idho: thanhvien.idho,
@@ -987,157 +561,544 @@ class _P13_14ViewState extends State<P13_14View> {
                                       c11: p13,
                                     ));
                                   }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification: 'Thành viên ${thanhvien.c00} chuyển '
-                                  'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(p14 == 1 && tuoi > 60){
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else if (thanhvien.c10M == 6 && p14 == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => UINotificationDialog(
-                                        notification:
-                                        '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                            'ở mới để đi học mà hiện không theo học đào '
-                                            'tạo nghề. Có đúng không?',
-                                        onpress: () {
-                                          Navigator.of(context).pop();
-                                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c11: p13,
-                                                c12: p14
-                                            ));
-                                          }
-                                          else {
-                                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c11: p13,
-                                            ));
-                                          }
-                                        },
-                                      ));
-                                }
-                                else {
-                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                        idho: thanhvien.idho,
-                                        idtv: thanhvien.idtv,
-                                        c11: p13,
-                                        c12: p14
-                                    ));
-                                  }
-                                  else {
-                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c11: p13,
-                                    ));
-                                  }
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(p14 == 1 && tuoi > 60){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification:
-                              '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
-                              onpress: () {
-                                Navigator.of(context).pop();
-                                if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c11: p13,
-                                      c12: p14
-                                  ));
-                                }
-                                else {
-                                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c11: p13,
-                                  ));
-                                }
-                              },
+                                },
+                              ));
+                        }
+                        else {
+                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c11: p13,
+                                c12: p14
                             ));
-                      }
-                      else if (thanhvien.c10M == 6 && p14 == 2) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => UINotificationDialog(
-                              notification:
-                              '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
-                                  'ở mới để đi học mà hiện không theo học đào '
-                                  'tạo nghề. Có đúng không?',
-                              onpress: () {
-                                Navigator.of(context).pop();
-                                if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
-                                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                          }
+                          else {
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p13 == 2 && (tuoi >= 15 && tuoi < 18)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thành viên ${thanhvien.c00} có '
+                          'tuổi = ${thanhvien.c04} đang trong độ tuổi đi học phổ thông mà hiện không đi học (P13 = 2). Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                    'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(p14 == 1 && tuoi > 60){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
+                                            if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c11: p13,
+                                                  c12: p14
+                                              ));
+                                            }
+                                            else {
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c11: p13,
+                                              ));
+                                            }
+                                          },
+                                        ));
+                                  }
+                                  else if (thanhvien.c10M == 6 && p14 == 2) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                              'ở mới để đi học mà hiện không theo học đào '
+                                              'tạo nghề. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
+                                            if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c11: p13,
+                                                  c12: p14
+                                              ));
+                                            }
+                                            else {
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c11: p13,
+                                              ));
+                                            }
+                                          },
+                                        ));
+                                  }
+                                  else {
+                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c11: p13,
+                                          c12: p14
+                                      ));
+                                    }
+                                    else {
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                      ));
+                                    }
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(p14 == 1 && tuoi > 60){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                                       idho: thanhvien.idho,
                                       idtv: thanhvien.idtv,
                                       c11: p13,
-                                      c12: p14
-                                  ));
-                                }
-                                else {
-                                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c11: p13,
-                                  ));
-                                }
-                              },
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else if (thanhvien.c10M == 6 && p14 == 2) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                    'ở mới để đi học mà hiện không theo học đào '
+                                    'tạo nghề. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else {
+                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c11: p13,
+                                c12: p14
                             ));
-                      }
-                      else {
+                          }
+                          else {
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p13 == 2 && (tuoi >= 5 && tuoi <= 15)){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thành viên ${thanhvien.c00} có tuổi = ${thanhvien.c04} '
+                          'đang trong độ tuổi đi học mà hiện không đi học (P13 = 2). Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: 'Thành viên ${thanhvien.c00} chuyển '
+                                    'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(p14 == 1 && tuoi > 60){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
+                                            if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c11: p13,
+                                                  c12: p14
+                                              ));
+                                            }
+                                            else {
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c11: p13,
+                                              ));
+                                            }
+                                          },
+                                        ));
+                                  }
+                                  else if (thanhvien.c10M == 6 && p14 == 2) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification:
+                                          '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                              'ở mới để đi học mà hiện không theo học đào '
+                                              'tạo nghề. Có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context).pop();
+                                            if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c11: p13,
+                                                  c12: p14
+                                              ));
+                                            }
+                                            else {
+                                              p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c11: p13,
+                                              ));
+                                            }
+                                          },
+                                        ));
+                                  }
+                                  else {
+                                    if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                          idho: thanhvien.idho,
+                                          idtv: thanhvien.idtv,
+                                          c11: p13,
+                                          c12: p14
+                                      ));
+                                    }
+                                    else {
+                                      p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                      ));
+                                    }
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(p14 == 1 && tuoi > 60){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else if (thanhvien.c10M == 6 && p14 == 2) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                    'ở mới để đi học mà hiện không theo học đào '
+                                    'tạo nghề. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else {
+                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c11: p13,
+                                c12: p14
+                            ));
+                          }
+                          else {
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p13 == 1 && tuoi >= 60){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thành viên ${thanhvien.c00} có '
+                          'tuổi = ${thanhvien.c04} mà đang đi học (P13 = 2). Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(p14 == 1 && tuoi > 60){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else if (thanhvien.c10M == 6 && p14 == 2) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                    'ở mới để đi học mà hiện không theo học đào '
+                                    'tạo nghề. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else {
+                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c11: p13,
+                                c12: p14
+                            ));
+                          }
+                          else {
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p13 == 2 && thanhvien.c10M != null && thanhvien.c10M == 6){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: 'Thành viên ${thanhvien.c00} chuyển '
+                          'đến nơi ở mới để đi học mà hiện (P13 = 2). Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(p14 == 1 && tuoi > 60){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else if (thanhvien.c10M == 6 && p14 == 2) {
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification:
+                                '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                                    'ở mới để đi học mà hiện không theo học đào '
+                                    'tạo nghề. Có đúng không?',
+                                onpress: () {
+                                  Navigator.of(context).pop();
+                                  if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c11: p13,
+                                        c12: p14
+                                    ));
+                                  }
+                                  else {
+                                    p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c11: p13,
+                                    ));
+                                  }
+                                },
+                              ));
+                        }
+                        else {
+                          if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                                idho: thanhvien.idho,
+                                idtv: thanhvien.idtv,
+                                c11: p13,
+                                c12: p14
+                            ));
+                          }
+                          else {
+                            p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p14 == 1 && tuoi > 60){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification:
+                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có tuổi = ${thanhvien.c04} mà P14 = Đang đi học. Có đúng không?',
+                      onpress: () {
+                        Navigator.of(context).pop();
                         if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
                           p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c11: p13,
-                            c12: p14
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                              c12: p14
                           ));
-                        } 
+                        }
                         else {
                           p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
@@ -1145,14 +1106,57 @@ class _P13_14ViewState extends State<P13_14View> {
                             c11: p13,
                           ));
                         }
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },
+                    ));
+              }
+              else if (thanhvien.c10M == 6 && p14 == 2) {
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification:
+                      '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} chuyển đến nơi '
+                          'ở mới để đi học mà hiện không theo học đào '
+                          'tạo nghề. Có đúng không?',
+                      onpress: () {
+                        Navigator.of(context).pop();
+                        if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                          p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c11: p13,
+                              c12: p14
+                          ));
+                        }
+                        else {
+                          p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c11: p13,
+                          ));
+                        }
+                      },
+                    ));
+              }
+              else {
+                if(tuoi >= 15 && tuoi <= 24 && p13 == 2){
+                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                      idho: thanhvien.idho,
+                      idtv: thanhvien.idtv,
+                      c11: p13,
+                      c12: p14
+                  ));
+                }
+                else {
+                  p13_14ViewModel.P13_14Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c11: p13,
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

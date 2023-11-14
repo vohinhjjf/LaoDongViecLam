@@ -6,10 +6,9 @@ import '../../../../components/uis.dart';
 import 'interview_status_viewmodel.dart';
 
 class InterviewStatusView extends StatefulWidget {
-  const InterviewStatusView({super.key});
 
   @override
-  State<InterviewStatusView> createState() => _InterviewStatusViewState();
+  _InterviewStatusViewState createState() => _InterviewStatusViewState();
 }
 
 class _InterviewStatusViewState extends State<InterviewStatusView> {
@@ -19,9 +18,17 @@ class _InterviewStatusViewState extends State<InterviewStatusView> {
   @override
   void initState() {
     super.initState();
-    interviewStatusViewModel = context.read();
-    interviewStatusViewModel.onInit(context);
-    dtv = interviewStatusViewModel.userName;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      interviewStatusViewModel = context.read();
+      interviewStatusViewModel.onInit(context);
+      Future.delayed(
+          const Duration(milliseconds: 100),
+              () => {
+            setState(() {
+              dtv = interviewStatusViewModel.userName;
+            })
+          });
+    });
   }
 
   @override

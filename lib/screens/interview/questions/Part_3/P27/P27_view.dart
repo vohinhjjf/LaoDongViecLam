@@ -129,33 +129,37 @@ class _P27ViewState extends State<P27View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p27ViewModel.P27Back(thanhvien);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p27 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27 - Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p27ViewModel.P27Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c25: p27,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p27ViewModel.P27Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(p27 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27 - Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
+                );
+              }else {
+                p27ViewModel.P27Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c25: p27,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

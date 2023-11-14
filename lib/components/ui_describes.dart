@@ -51,7 +51,7 @@ class UIDescribes {
   static const interviewList = 'Danh sách phỏng vấn';
   static const unInterviewedList = 'Danh sách chưa phỏng vấn';
   static const interviewedList = 'Ds hoàn thành phỏng vấn';
-  static const notInterviewed = 'Danh sách hộ chưa phỏng vấn';
+  static const notInterviewed = 'Danh sách hộ chưa phỏng vấn 1';
   static const completeInterviewed = 'Danh sách hộ đã phỏng vấn';
   static const preventive = 'Danh sách hộ dự phòng';
   static const householdReplace = 'Danh sách cần được thay hộ';
@@ -79,7 +79,7 @@ class UIDescribes {
 
   //question
   static const next = 'Tiếp tục';
-  static const pre = 'Quay lại';
+  static const pre = 'Trở lại';
 
   //HouseHold
   static const month = 'Tháng điều tra';

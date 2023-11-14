@@ -185,63 +185,67 @@ class _P08_09ViewState extends State<P08_09View> {
                 ),
                 //Button
                 const SizedBox(
-                  height: 20,
+                  height: 90,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: () {
-                      p08_09ViewModel.P08_09Back();
-                    }),
-                    UINextButton(ontap: () {
-                      if (p08 == 0) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(
-                                  waring:
-                                      'Thành viên ${thanhvien.c00} có P08-Tình trạng hôn nhân nhập vào chưa đúng!',
-                                ));
-                      } else if (p09 == 0) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(
-                                  waring:
-                                      'Thời gian thường trú nhập vào chưa đúng!',
-                                ));
-                      } else if (thanhvien.c01 == 2 &&
-                          (p08 == 1 || p08 == 3 || p08 == 4)) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(
-                                  waring: 'Thành '
-                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
-                                      'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
-                                      'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
-                                ));
-                      } else if (thanhvien.c01 == 5 && p08 == 1) {
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(
-                                  waring: 'Thành '
-                                      'viên ${thanhvien.c00} có P01-Quan hệ với '
-                                      'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
-                                      'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
-                                ));
-                      } else {
-                        p08_09ViewModel.P08_09Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c07: p08,
-                          c08: p09,
-                        ));
-                      }
-                    }),
-                  ],
-                )
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: () {
+              p08_09ViewModel.P08_09Back();
+            }),
+            UINextButton(ontap: () {
+              if (p08 == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(
+                      waring:
+                      'Thành viên ${thanhvien.c00} có P08-Tình trạng hôn nhân nhập vào chưa đúng!',
+                    ));
+              } else if (p09 == 0) {
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(
+                      waring:
+                      'Thời gian thường trú nhập vào chưa đúng!',
+                    ));
+              } else if (thanhvien.c01 == 2 &&
+                  (p08 == 1 || p08 == 3 || p08 == 4)) {
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(
+                      waring: 'Thành '
+                          'viên ${thanhvien.c00} có P01-Quan hệ với '
+                          'chủ hộ là vợ/chồng mà tình trạng hôn nhân '
+                          'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
+                    ));
+              } else if (thanhvien.c01 == 5 && p08 == 1) {
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(
+                      waring: 'Thành '
+                          'viên ${thanhvien.c00} có P01-Quan hệ với '
+                          'chủ hộ là bố/mẹ mà tình trạng hôn nhân '
+                          'là ${_honnhan[p08 - 1]}. Kiểm tra lại!',
+                    ));
+              } else {
+                p08_09ViewModel.P08_09Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c07: p08,
+                  c08: p09,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

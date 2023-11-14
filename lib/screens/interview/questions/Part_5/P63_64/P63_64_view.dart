@@ -122,124 +122,128 @@ class _P63_64ViewState extends State<P63_64View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p63_64ViewModel.P63_64Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (int.parse(_gio.text) > 84) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(
-                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                      .c00} có P63 - Số giờ cho công việc khác = ${_gio
-                                      .text} quá lớn!',)
-                            );
-                          }
-                          else if (int.parse(_tiencong.text) > 900000) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => UIWarningDialog(
-                                  waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                      .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
-                                      .text} quá lớn!',)
-                            );
-                          }
-                          else if (int.parse(_gio.text) >= 64) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có Số giờ cho công việc khác = ${_gio
-                                          .text} có đúng không?',
-                                      onpress: () {
-                                        Navigator.of(context).pop();
-                                        if (int.parse(_tiencong.text) >=
-                                            400000) {
-                                          showDialog(
-                                              context: context,
-                                              builder: (_) =>
-                                                  UINotificationDialog(
-                                                    notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                                        .c00} có Thu nhập của công việc khác = ${_gio
-                                                        .text} có đúng không?',
-                                                    onpress: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      p63_64ViewModel
-                                                          .P63_64Next(
-                                                          thongTinThanhVienModel(
-                                                            idho: thanhvien
-                                                                .idho,
-                                                            idtv: thanhvien
-                                                                .idtv,
-                                                            c57: int.parse(
-                                                                _gio.text),
-                                                            c58: int.parse(
-                                                                _tiencong
-                                                                    .text),
-                                                          ));
-                                                    },
-                                                  )
-                                          );
-                                        }
-                                        else {
-                                          p63_64ViewModel.P63_64Next(
-                                              thongTinThanhVienModel(
-                                                idho: thanhvien.idho,
-                                                idtv: thanhvien.idtv,
-                                                c57: int.parse(_gio.text),
-                                                c58: int.parse(
-                                                    _tiencong.text),
-                                              ));
-                                        }
-                                      },
-                                    )
-                            );
-                          }
-                          else if (int.parse(_tiencong.text) >= 400000) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UINotificationDialog(
-                                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có Thu nhập của công việc khác = ${_gio
-                                          .text} có đúng không?',
-                                      onpress: () {
-                                        Navigator.of(context).pop();
-                                        p63_64ViewModel.P63_64Next(
-                                            thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c57: int.parse(_gio.text),
-                                              c58: int.parse(_tiencong.text),
-                                            ));
-                                      },
-                                    )
-                            );
-                          }
-                          else {
-                            p63_64ViewModel.P63_64Next(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c57: int.parse(_gio.text),
-                              c58: int.parse(_tiencong.text),
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p63_64ViewModel.P63_64Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (int.parse(_gio.text) > 84) {
+                  showDialog(
+                      context: context,
+                      builder: (_) => UIWarningDialog(
+                        waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                            .c00} có P63 - Số giờ cho công việc khác = ${_gio
+                            .text} quá lớn!',)
+                  );
+                }
+                else if (int.parse(_tiencong.text) > 900000) {
+                  showDialog(
+                      context: context,
+                      builder: (_) => UIWarningDialog(
+                        waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                            .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
+                            .text} quá lớn!',)
+                  );
+                }
+                else if (int.parse(_gio.text) >= 64) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có Số giờ cho công việc khác = ${_gio
+                                .text} có đúng không?',
+                            onpress: () {
+                              Navigator.of(context).pop();
+                              if (int.parse(_tiencong.text) >=
+                                  400000) {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) =>
+                                        UINotificationDialog(
+                                          notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                              .c00} có Thu nhập của công việc khác = ${_gio
+                                              .text} có đúng không?',
+                                          onpress: () {
+                                            Navigator.of(context)
+                                                .pop();
+                                            p63_64ViewModel
+                                                .P63_64Next(
+                                                thongTinThanhVienModel(
+                                                  idho: thanhvien
+                                                      .idho,
+                                                  idtv: thanhvien
+                                                      .idtv,
+                                                  c57: int.parse(
+                                                      _gio.text),
+                                                  c58: int.parse(
+                                                      _tiencong
+                                                          .text),
+                                                ));
+                                          },
+                                        )
+                                );
+                              }
+                              else {
+                                p63_64ViewModel.P63_64Next(
+                                    thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c57: int.parse(_gio.text),
+                                      c58: int.parse(
+                                          _tiencong.text),
+                                    ));
+                              }
+                            },
+                          )
+                  );
+                }
+                else if (int.parse(_tiencong.text) >= 400000) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UINotificationDialog(
+                            notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có Thu nhập của công việc khác = ${_gio
+                                .text} có đúng không?',
+                            onpress: () {
+                              Navigator.of(context).pop();
+                              p63_64ViewModel.P63_64Next(
+                                  thongTinThanhVienModel(
+                                    idho: thanhvien.idho,
+                                    idtv: thanhvien.idtv,
+                                    c57: int.parse(_gio.text),
+                                    c58: int.parse(_tiencong.text),
+                                  ));
+                            },
+                          )
+                  );
+                }
+                else {
+                  p63_64ViewModel.P63_64Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c57: int.parse(_gio.text),
+                    c58: int.parse(_tiencong.text),
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

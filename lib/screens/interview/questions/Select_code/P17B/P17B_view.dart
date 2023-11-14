@@ -132,35 +132,39 @@ class _P17BViewState extends State<P17BView> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p17BviewModel.P17BBack(thanhvien);
-                      }),
-                      UINextButton(ontap: (){
-                        if (_madaotao.text == "") {
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                                  UIWarningDialog(
-                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                        .c00} có P17B - Mã ngành đào tạo nhập vào chưa đúng!',)
-                          );
-                        } else {
-                          p17BviewModel.P17BNext(thongTinThanhVienModel(
-                              idho: thanhvien.idho,
-                              idtv: thanhvien.idtv,
-                              c15B: _madaotao.text
-                          ));
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p17BviewModel.P17BBack(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if (_madaotao.text == "") {
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                        UIWarningDialog(
+                          waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                              .c00} có P17B - Mã ngành đào tạo nhập vào chưa đúng!',)
+                );
+              } else {
+                p17BviewModel.P17BNext(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c15B: _madaotao.text
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: const DrawerNavigation(),
     );

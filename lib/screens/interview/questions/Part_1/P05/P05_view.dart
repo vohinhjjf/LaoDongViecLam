@@ -149,86 +149,90 @@ class _P05ViewState extends State<P05View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p05viewModel.P05Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(groupValue == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P05-Có con dưới 3 tuổi nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){
-                        showDialog(
-                            context: context,
-                            builder: (_) =>  UINotificationDialog(
-                              notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                if(thanhvien.c01! >= 3 && groupValue == 1){
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p05viewModel.P05Back();
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P05-Có con dưới 3 tuổi nhập vào chưa đúng!',)
+                );
+              }
+              else if(groupValue == 1 && thanhvien.c01 == 1 && (thanhvien.c04! < 18 || thanhvien.c04! > 65)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>  UINotificationDialog(
+                      notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c01! >= 3 && groupValue == 1){
+                          Navigator.of(context).pop();
+                          showDialog(
+                              context: context,
+                              builder: (_) =>  UINotificationDialog(
+                                notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                                    'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                                onpress: (){
                                   Navigator.of(context).pop();
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) =>  UINotificationDialog(
-                                        notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
-                                            'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
-                                        onpress: (){
-                                          Navigator.of(context).pop();
-                                          p05viewModel.P05Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c04A: groupValue
-                                          ));
-                                        },
-                                      )
-                                  );
-                                }else {
                                   p05viewModel.P05Next(thongTinThanhVienModel(
                                       idho: thanhvien.idho,
                                       idtv: thanhvien.idtv,
                                       c04A: groupValue
                                   ));
-                                }
-                              },
-                            )
-                        );
-                      }
-                      else if(thanhvien.c01! >= 3 && groupValue == 1){
-                        showDialog(
-                            context: context,
-                            builder: (_) =>  UINotificationDialog(
-                              notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
-                                  'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
-                              onpress: (){
-                                Navigator.of(context).pop();
-                                p05viewModel.P05Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c04A: groupValue
-                                ));
-                              },
-                            )
-                        );
-                      }
-                      else {
+                                },
+                              )
+                          );
+                        }else {
+                          p05viewModel.P05Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c04A: groupValue
+                          ));
+                        }
+                      },
+                    )
+                );
+              }
+              else if(thanhvien.c01! >= 3 && groupValue == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) =>  UINotificationDialog(
+                      notification: 'Mối quan hệ chủ hộ là ${moiquanhe()} '
+                          'mà có con dưới 3 tuổi sống cùng hộ. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
                         p05viewModel.P05Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
                             c04A: groupValue
                         ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                      },
+                    )
+                );
+              }
+              else {
+                p05viewModel.P05Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c04A: groupValue
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

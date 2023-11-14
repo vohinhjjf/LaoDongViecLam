@@ -146,184 +146,189 @@ class _Q5ViewState extends State<Q5View> {
                     child: const UIText(
                       text: UIDescribes.personName,
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                       isBold: false,
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Visibility(
                     visible: groupValue == 1,
-                    child: UITextFormField(
-                      controller: _text_name,
-                      onFieldSubmitted: (value){
-                        if(value != "") {
-                          if(value.length < 5){
-                            showDialog(
-                                context: context,
-                                builder: (_) => UINotificationDialog(
-                                    notification: 'Q5-Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
-                                    onpress: (){
-                                      Navigator.of(context).pop();
-                                      q5viewModel.addNTKK(thongTinThanhVienNKTTModel(
-                                          idtv: list.last.idtv! + 1,
-                                          thangDT: int.parse(month),
-                                          namDT: DateTime.now().year,
-                                          q1_New: value,
-                                          q5_New: 1
-                                      ));
-                                      setState(() {
-                                        list_q5.add(thongTinThanhVienNKTTModel(
+                    child: Column(
+                    children: [
+                      UITextFormField(
+                        controller: _text_name,
+                        onFieldSubmitted: (value){
+                          if(value != "") {
+                            if(value.length < 5){
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => UINotificationDialog(
+                                      notification: 'Q5-Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                                      onpress: (){
+                                        Navigator.of(context).pop();
+                                        q5viewModel.addNTKK(thongTinThanhVienNKTTModel(
                                             idtv: list.last.idtv! + 1,
                                             thangDT: int.parse(month),
                                             namDT: DateTime.now().year,
                                             q1_New: value,
                                             q5_New: 1
                                         ));
-                                        _text_name.text = "";
-                                      });
-                                    }
-                                )
-                            );
-                          }
-                          else {
-                            q5viewModel.addNTKK(thongTinThanhVienNKTTModel(
-                                idtv: list.last.idtv! + 1,
-                                thangDT: int.parse(month),
-                                namDT: DateTime.now().year,
-                                q1_New: value,
-                                q5_New: 1
-                            ));
-                            setState(() {
-                              list_q5.add(thongTinThanhVienNKTTModel(
+                                        setState(() {
+                                          list_q5.add(thongTinThanhVienNKTTModel(
+                                              idtv: list.last.idtv! + 1,
+                                              thangDT: int.parse(month),
+                                              namDT: DateTime.now().year,
+                                              q1_New: value,
+                                              q5_New: 1
+                                          ));
+                                          _text_name.text = "";
+                                        });
+                                      }
+                                  )
+                              );
+                            }
+                            else {
+                              q5viewModel.addNTKK(thongTinThanhVienNKTTModel(
                                   idtv: list.last.idtv! + 1,
                                   thangDT: int.parse(month),
                                   namDT: DateTime.now().year,
                                   q1_New: value,
                                   q5_New: 1
                               ));
-                              _text_name.text = "";
-                            });
-                          }
-                        }
-                      },
-                      textCapitalization: TextCapitalization.words,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(
-                            '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
-                        FilteringTextInputFormatter.deny(RegExp('[×÷]')),
-                      ],
-                      keyboardType: TextInputType.text,
-                      hint: "Nhập họ và tên",
-                    ),
-                  ),
-                  // const SizedBox(height: 10,),
-                  Visibility(
-                    visible: groupValue == 1,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: list_q5.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
-                          elevation: 10,
-                          shadowColor: Colors.black,
-                          color: Colors.white,
-                          child: InkWell(
-                            onTap: () {
-
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width - 212.w,
-                                    child: Text(
-                                      "${index+1}. ${list_q5[index].q1_New}",
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal
-                                      ),
-                                      maxLines: 10,
-                                    ),
-                                  ),
-                                  IconButton(
-                                      padding: EdgeInsets.zero,
-                                      alignment: Alignment.centerRight,
-                                      icon: const Icon(
-                                        Icons.dangerous,
-                                        color: Colors.redAccent,
-                                        size: fontGreater,
-                                      ),
-                                      onPressed: () => _showNotificationDialog(
-                                          "Có chắc muốn xóa ${list_q5[index].q1_New}?",
-                                              (){
-                                            q5viewModel.deleteNTKK(list_q5[index].idtv!);
-                                            setState(() {
-                                              list_q5.removeAt(index);
-                                            });
-                                            Navigator.of(context).pop();
-                                          }, (){
-                                        Navigator.of(context).pop();
-                                      }
-                                      )
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q5viewModel.Q5Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(groupValue == 0){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UIWarningDialog(waring: 'Q5 nhập vào chưa đúng!',)
-                          );
-                        }
-                        else if(groupValue == 2) {
-                          if(list_q5.isNotEmpty){
-                            for(var item in list_q5){
-                              q5viewModel.deleteNTKK(item.idtv!);
+                              setState(() {
+                                list_q5.add(thongTinThanhVienNKTTModel(
+                                    idtv: list.last.idtv! + 1,
+                                    thangDT: int.parse(month),
+                                    namDT: DateTime.now().year,
+                                    q1_New: value,
+                                    q5_New: 1
+                                ));
+                                _text_name.text = "";
+                              });
                             }
                           }
-                          q5viewModel.Q5Next(groupValue);
-                        }
-                        else {
-                          if(list_q5.isEmpty){
-                            showDialog(
-                                context: context,
-                                builder: (_) => const UIWarningDialog(waring: 'Q5-Họ tên thành viên nhập vào chưa đúng!',)
-                            );
-                          }
-                          else{
-                            _showNotificationDialog("Hộ còn ai nữa không?",(){
-                              Navigator.of(context).pop();
-                            },() {
-                              print("Next");
-                              q5viewModel.Q5Next(groupValue);
-                            },);
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                        },
+                        textCapitalization: TextCapitalization.words,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(
+                              '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                          FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                        ],
+                        keyboardType: TextInputType.text,
+                        hint: "Nhập họ và tên",
+                      ),
+                      const SizedBox(height: 10,),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: list_q5.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
+                            elevation: 10,
+                            shadowColor: Colors.black,
+                            color: Colors.white,
+                            child: InkWell(
+                              onTap: () {
+
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width - 212.w,
+                                      child: Text(
+                                        "${index+1}. ${list_q5[index].q1_New}",
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.normal
+                                        ),
+                                        maxLines: 10,
+                                      ),
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        alignment: Alignment.centerRight,
+                                        icon: const Icon(
+                                          Icons.dangerous,
+                                          color: Colors.redAccent,
+                                          size: fontGreater,
+                                        ),
+                                        onPressed: () => _showNotificationDialog(
+                                            "Có chắc muốn xóa ${list_q5[index].q1_New}?",
+                                                (){
+                                              q5viewModel.deleteNTKK(list_q5[index].idtv!);
+                                              setState(() {
+                                                list_q5.removeAt(index);
+                                              });
+                                              Navigator.of(context).pop();
+                                            }, (){
+                                          Navigator.of(context).pop();
+                                        }
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      ],
+                    )
+                  ),
+                  //Button
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q5viewModel.Q5Back();
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q5 nhập vào chưa đúng!',)
+                );
+              }
+              else if(groupValue == 2) {
+                if(list_q5.isNotEmpty){
+                  for(var item in list_q5){
+                    q5viewModel.deleteNTKK(item.idtv!);
+                  }
+                }
+                q5viewModel.Q5Next(groupValue);
+              }
+              else {
+                if(list_q5.isEmpty){
+                  showDialog(
+                      context: context,
+                      builder: (_) => const UIWarningDialog(waring: 'Q5-Họ tên thành viên nhập vào chưa đúng!',)
+                  );
+                }
+                else{
+                  _showNotificationDialog("Hộ còn ai nữa không?",(){
+                    Navigator.of(context).pop();
+                  },() {
+                    print("Next");
+                    q5viewModel.Q5Next(groupValue);
+                  },);
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
@@ -349,7 +354,7 @@ class _Q5ViewState extends State<Q5View> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
-            isBold: false,
+            textAlign: TextAlign.center,
           ),
           content: Container(
             height: 60,
@@ -363,12 +368,14 @@ class _Q5ViewState extends State<Q5View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed:  onpress1,
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontLarge
-                    ),
-                    onPressed:  onpress1
+                        textFontSize: fontLarge,
+                      textAlign: TextAlign.center,
+                      isBold: true,
+                    )
                 ),
                 MaterialButton(
                     height: 60,
@@ -376,14 +383,14 @@ class _Q5ViewState extends State<Q5View> {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed: onpress2,
                     child: const UIText(
                       text: 'Không',
                       textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
-                    ),
-                    onPressed: onpress2
+                    )
                 )
               ],
             ),

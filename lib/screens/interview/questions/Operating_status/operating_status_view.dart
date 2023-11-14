@@ -216,50 +216,66 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       });
                     },
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width/2.2,
-                    alignment: Alignment.center,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        gradient: const LinearGradient(colors: [
-                          mPrimaryColor,
-                          Color(0xFF64B5F6),
-                          mPrimaryColor,
-                        ])),
-                    child: MaterialButton(
-                      onPressed: () {
-                        if(groupValue == 0){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Tình trạng hoạt động của hộ nhập vào chưa đúng!')
-                          );
-                        }
-                        else {
-                          operatingStatusViewModel.operatingStatus(bangkeho,
-                              groupValue);
-                        }
-                      },
-                      minWidth: MediaQuery.of(context).size.width/2.5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(0),
-                      child: const UIText(
-                        text: UIDescribes.next,
-                        textAlign: TextAlign.center,
-                        textColor: Colors.white,
-                        textFontSize: fontLarge,
-                        isBold: true,
-                      ),
-                    ),
-                  ),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          height: 50.0,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              gradient: const LinearGradient(colors: [
+                mPrimaryColor,
+                Color(0xFF64B5F6),
+                mPrimaryColor,
+              ])),
+          child: MaterialButton(
+            onPressed: () {
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Tình trạng hoạt động của hộ nhập vào chưa đúng!')
+                );
+              }
+              else {
+                operatingStatusViewModel.operatingStatus(bangkeho,
+                    groupValue);
+              }
+            },
+            minWidth: MediaQuery.of(context).size.width/2.5,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)),
+            textColor: Colors.white,
+            padding: const EdgeInsets.all(0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Icon(
+                  Icons.navigate_next,
+                  color: Colors.transparent,
+                  size: 25,
+                ),
+                UIText(
+                  text: UIDescribes.next,
+                  textAlign: TextAlign.center,
+                  textColor: Colors.white,
+                  textFontSize: fontMedium,
+                  isBold: true,
+                ),
+                Icon(
+                  Icons.navigate_next,
+                  color: Colors.white,
+                  size: 25,
+                ),
+              ],
+            )
+          ),
+        ),
       ),
     );
   }

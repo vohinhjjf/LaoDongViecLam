@@ -159,35 +159,39 @@ class _P38ViewState extends State<P38View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p38ViewModel.P38Back(thanhvien);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p38 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P38 - Lý do không làm việc nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p38ViewModel.P38Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c33A: p38,
-                          c33AK: _orther.text,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p38ViewModel.P38Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(p38 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P38 - Lý do không làm việc nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p38ViewModel.P38Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c33A: p38,
+                  c33AK: _orther.text,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

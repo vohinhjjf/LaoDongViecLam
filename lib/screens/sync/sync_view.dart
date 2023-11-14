@@ -43,7 +43,6 @@ class Body extends State<SyncView>{
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
           textFontSize: fontLarge,
-          isBold: true,
         ),
 
         shape: const UnderlineInputBorder(
@@ -67,18 +66,11 @@ class Body extends State<SyncView>{
                       text: 'Có ${snapshot.data!.length} cơ sở cần đồng bộ',
                       textFontSize: fontLarge,
                       textColor: mCompleteColor,
-                      isBold: true,
                     );
                   }
                   return Container();
                 }
             ),
-            /*UIText(
-              text: '0 cơ sở cần đồng bộ',
-              textFontSize: fontLarge,
-              textColor: mCompleteColor,
-              isBold: true,
-            ),*/
             const SizedBox(height: 5,),
             const UIText(
               text: 'Gửi tệp dữ liệu: không',
@@ -150,6 +142,7 @@ class Body extends State<SyncView>{
       ),
     );
   }
+
   _showMaterialDialog(String value) {
     showDialog(
         context: context,
@@ -165,18 +158,15 @@ class Body extends State<SyncView>{
             height: 130,
             image: AssetImage("assets/images/notification.gif"),
           ),
-          content: Container(
+          content: SizedBox(
             height: 120,
             child: Column(
               children: <Widget>[
-                Container(
-                  child:  UIText(
-                    text: "Đồng bộ thành công $value hộ",
-                    textAlign: TextAlign.center,
-                    textColor: Colors.black,
-                    textFontSize: fontLarge,
-                    isBold: true,
-                  ),
+                UIText(
+                  text: "Đồng bộ thành công $value hộ",
+                  textAlign: TextAlign.center,
+                  textColor: Colors.black,
+                  textFontSize: fontLarge,
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -187,6 +177,7 @@ class Body extends State<SyncView>{
                         text: 'Đóng',
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
+                        textAlign: TextAlign.center,
                     ),
                     onPressed: () {
                       setState(() {
@@ -272,7 +263,7 @@ class Body extends State<SyncView>{
                   color: Colors.grey),
             ],
           ),
-          content: Container(
+          content: SizedBox(
             height: 20,
             child: Container(
               alignment: Alignment.center,

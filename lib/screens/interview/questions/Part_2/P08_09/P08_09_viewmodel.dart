@@ -31,8 +31,12 @@ class P08_09ViewModel extends BaseViewModel {
   }
 
   void P08_09Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c07 = ${data.c07}, c08 = ${data.c08} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c07 = ?, c08 = ? WHERE idho = ? AND idtv = ?",
+        [data.c07, data.c08,data.idho,data.idtv]);
     if(data.c08 == 5){
+      _executeDatabase.updateC00("SET c09 = ?, c09A = ?, c09B = ?, "
+          "c10 = ?, c10M = ?, c10_MK = ? WHERE idho = ? AND idtv = ?",
+          [data.c09,data.c09A,data.c09B,data.c10,data.c10M,data.c10_MK,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP13_14(context);
     }else {
       NavigationServices.instance.navigateToP10_12(context);

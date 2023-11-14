@@ -25,7 +25,7 @@ class _AreaViewState extends State<AreaView>{
       areaViewModel = context.read();
       areaViewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 300),
+          const Duration(milliseconds: 100),
               () => {
             setState(() {
               list_area = areaViewModel.list_area;
@@ -122,8 +122,8 @@ class _AreaViewState extends State<AreaView>{
               Colors.limeAccent,
             ])
         ),
-        child: Text(_dtv,
-          style: const TextStyle(fontSize: fontMedium, fontWeight: FontWeight.bold, color: mPrimaryColor),),
+        child: UIText( text: _dtv,
+          textFontSize: fontMedium, isBold: true, textColor: mPrimaryColor,),
       ),
     );
   }

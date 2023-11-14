@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -193,298 +191,302 @@ class _P56_58ViewState extends State<P56_58View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p56_58viewModel.P56_58Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if (_machucdanh.text == "") {
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                                  UIWarningDialog(
-                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                        .c00} có P40B - Mã nghề nhập vào chưa đúng!',)
-                          );
-                        }
-                        else if (_mahoatdong.text == "") {
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                                  UIWarningDialog(
-                                    waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                        .c00} có P42B - Mã ngành nhập vào chưa đúng!',)
-                          );
-                        }
-                        else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 3642
-                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là Nhà chuyên môn bậc cao mà không có trình độ CMKT!',)
-                          );
-                        }
-                        else if(((int.parse(_machucdanh.text) >= 3111 && int.parse(_machucdanh.text) <= 3315)
-                            || (int.parse(_machucdanh.text) >= 3342 && int.parse(_machucdanh.text) <= 3359)
-                            || (int.parse(_machucdanh.text) >= 3511 && int.parse(_machucdanh.text) <= 3620))
-                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là Nhà chuyên môn bậc trung mà không có trình độ CMKT!',)
-                          );
-                        }
-                        else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 2659
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là Nhà chuyên môn bậc cao mà trình độ thấp hơn đại học!',)
-                          );
-                        }
-                        else if((int.parse(_machucdanh.text) == 8322
-                            || int.parse(_machucdanh.text) == 8331
-                            || int.parse(_machucdanh.text) == 8332)
-                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là lái xe ô tô mà không có trình độ CMKT!',)
-                          );
-                        }
-                        else if(int.parse(_machucdanh.text) >= 6310 && int.parse(_machucdanh.text) <= 6340
-                            && (thanhvien.c26 == 1 || thanhvien.c26 == 2)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là Lao động tự cung tự cấp trong nông nghiệp, lâm nghiệp và thủy sản mà mục đích chủ yếu của sản phẩm sản xuất ra để bán!',)
-                          );
-                        }
-                        else if(int.parse(_machucdanh.text) >= 1111 && int.parse(_machucdanh.text) <= 1526
-                            && (int.parse(_mahoatdong.text) < 8411 || int.parse(_mahoatdong.text) > 8430)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Lãnh đạo trong các cấp các ngành có mã ngành không thuộc ngành quản lý NN!',)
-                          );
-                        }
-                        else if(((int.parse(_machucdanh.text) >= 2311 && int.parse(_machucdanh.text) <= 2342)
-                            || (int.parse(_machucdanh.text) >= 3610 && int.parse(_machucdanh.text) <= 3630))
-                            && (int.parse(_mahoatdong.text) < 8511 || int.parse(_mahoatdong.text) > 8560)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Giáo viên các cấp mà không thuộc ngành giá dục đào tạo!',)
-                          );
-                        }
-                        else if(int.parse(_machucdanh.text) >= 2211 && int.parse(_machucdanh.text) <= 2261
-                            && (int.parse(_mahoatdong.text) < 8610 || int.parse(_mahoatdong.text) > 8699)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là y tá, bác sỹ mà có ngành khác hoạt động y tế!',)
-                          );
-                        }
-                        //43
-                        else if(int.parse(_mahoatdong.text) >= 510 && thanhvien.c38 == 1){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Lao động không thuộc ngành Nông, Lâm nghiệp và Thủy sản (C42B >=510) mà loại hình kình tế thuộc hộ NLNTS (C43 = 1)!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) < 510 && thanhvien.c38 == 3){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Lao động không thuộc ngành Nông, Lâm nghiệp và Thủy sản (C42B < 510) mà loại hình kình tế lại thuộc hộ SXKD (C43 = 3)!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) == 9700 && thanhvien.c38 != 3){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Người giúp việc trong các hộ gia đình mà loại hình là hộ sản xuất kinh doanh (C43 = 3)!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) == 8491 && int.parse(_mahoatdong.text) <= 8430
-                            && thanhvien.c38 != 10 && thanhvien.c38 != 11 && thanhvien.c38 != 5){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Ngành thuộc hoạt động đảng cộng sản, tổ chức chính trị-xã hội, '
-                                    'quản lý nhà nước an ninh quốc phòng, bảo đảm xã hội bắt buộc mà loại '
-                                    'hình không thuộc cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 0111 && int.parse(_mahoatdong.text) <= 0310
-                            && int.parse(_mahoatdong.text) != 0220 && thanhvien.c38! >= 1 && thanhvien.c38! <= 4){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Ngành thuộc hoạt động đảng cộng sản, tổ chức chính trị-xã hội, '
-                                    'quản lý nhà nước an ninh quốc phòng, bảo đảm xã hội bắt buộc mà loại '
-                                    'hình không thuộc cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
-                          );
-                        }
-                        else if((int.parse(_mahoatdong.text) >= 6430 && int.parse(_mahoatdong.text) <= 6499)
-                            || ((int.parse(_mahoatdong.text) >= 6511 && int.parse(_mahoatdong.text) <= 6512))
-                                && (thanhvien.c38 == 1 || thanhvien.c38 == 2 || thanhvien.c38 != 3
-                                    || thanhvien.c38 == 10 || thanhvien.c38 == 11)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Ngành thuộc hoạt động trung gian tiền tệ, cho thuê tài chính, ngân hàng và bảo hiểm... mà loại '
-                                    'hình NLTS, cá nhân làm tự do, cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 510 && int.parse(_mahoatdong.text) <= 3320
-                            && int.parse(_mahoatdong.text) != 1811 && (thanhvien.c38 == 9 || thanhvien.c38 == 8)){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Đơn vị sự nghiệp ngoài nhà nước hoặc đơn vị sự nghiệp NN mà '
-                                    'mã ngành thuộc khai khoáng hoặc chế biến, chế tạo!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) > 510 && int.parse(_mahoatdong.text) < 3320
-                            && thanhvien.c38! >= 11 && thanhvien.c38! == 13){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Tổ chức nhà nước/tổ chức khác mà mã ngành thuộc khai khoáng hoặc chế biến, chế tạo!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) > 0 && int.parse(_mahoatdong.text) < 510
-                            && thanhvien.c38 == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Khu vực hộ SXKD mà mã ngành thuộc ngành NLTS < 510!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 510 && thanhvien.c38 == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Hộ NLNTS có mã ngành > 510!',)
-                          );
-                        }
-                        else if(int.parse(_mahoatdong.text) == 9700 && thanhvien.c43 == 3 && thanhvien.c38 == 3){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Cá nhân làm tự do (c43 = 3) có mã ngành là giúp việc gia đình (C42b = 9700) mà vị thế là lao động gia đình (C49 = 3)!',)
-                          );
-                        }
-                        //c52
-                        else if((int.parse(_machucdanh.text) == 0110 || int.parse(_machucdanh.text) == 0120
-                            ||int.parse(_machucdanh.text) == 0210 || int.parse(_machucdanh.text) == 0220
-                            || int.parse(_machucdanh.text) == 0310) && thanhvien.c46 == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) =>
-                              const UIWarningDialog(
-                                waring: 'Nghề là lãnh đạo các ngành các cấp hoặc lực lượng cũ trang mà đóng BHXH tự nguyện!',)
-                          );
-                        }
-                        //Notifi
-                        else if((int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6224)
-                            && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
-                            && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
-                            && thanhvien.c16B == 2 && thanhvien.c16C == 2){
-                          condition_1();
-                        }
-                        else if(int.parse(_machucdanh.text) >= 0110 && int.parse(_machucdanh.text) <= 0310
-                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          condition_2();
-                        }
-                        else if(((int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 8209)
-                            || (int.parse(_machucdanh.text) >= 8311 && int.parse(_machucdanh.text) <= 8350))
-                            && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
-                            && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
-                            && thanhvien.c16B == 2 && thanhvien.c16C == 2){
-                          condition_3();
-                        }
-                        else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
-                            && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
-                            && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
-                          condition_4();
-                        }
-                        else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
-                            || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
-                            || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
-                            || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
-                            || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
-                            || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
-                            || (int.parse(_machucdanh.text) >= 7511))
-                            && (int.parse(_mahoatdong.text) >= 8411 && int.parse(_mahoatdong.text) <= 8430)){
-                          condition_5();
-                        }
-                        else if(((int.parse(_machucdanh.text) >= 1710 && int.parse(_machucdanh.text) <= 1749)
-                            && (thanhvien.c04! >= 15 && thanhvien.c04! <= 56) && thanhvien.c02 == 2)
-                            || ((thanhvien.c04! >= 15 && thanhvien.c04! <= 60) && thanhvien.c02 == 1)
-                                && thanhvien.c43 == 5 && (thanhvien.c45 == 2 || thanhvien.c46 == 2)){
-                          condition_6();
-                        }
-                        else if((int.parse(_machucdanh.text) >= 1011 && int.parse(_machucdanh.text) <= 1527)
-                            && (thanhvien.c45 == 2 || thanhvien.c46 == 2)){
-                          condition_7();
-                        }
-                        else if(((int.parse(_mahoatdong.text) >= 8511 && int.parse(_mahoatdong.text) <= 8560)
-                            || (int.parse(_mahoatdong.text) >= 8411 && int.parse(_mahoatdong.text) <= 8430)) &&  thanhvien.c41! >= 5){
-                          condition_8();
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 9111 && int.parse(_mahoatdong.text) <= 9629
-                            && thanhvien.c42! >= 30000){
-                          condition_9();
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 0110 && int.parse(_mahoatdong.text) <= 0320
-                            && thanhvien.c42! >= 50000){
-                          condition_10();
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 1011 && int.parse(_mahoatdong.text) <= 1527
-                            && thanhvien.c42! >= 30000){
-                          condition_11();
-                        }
-                        else if(int.parse(_mahoatdong.text) >= 3111 && thanhvien.c42! >= 30000 && thanhvien.c43 == 5){
-                          condition_12();
-                        }
-                        else {
-                          condition_13();
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p56_58viewModel.P56_58Back();
+            }),
+            UINextButton(ontap: (){
+              if (_machucdanh.text == "") {
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                        UIWarningDialog(
+                          waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                              .c00} có P40B - Mã nghề nhập vào chưa đúng!',)
+                );
+              }
+              else if (_mahoatdong.text == "") {
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                        UIWarningDialog(
+                          waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                              .c00} có P42B - Mã ngành nhập vào chưa đúng!',)
+                );
+              }
+              else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 3642
+                  && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là Nhà chuyên môn bậc cao mà không có trình độ CMKT!',)
+                );
+              }
+              else if(((int.parse(_machucdanh.text) >= 3111 && int.parse(_machucdanh.text) <= 3315)
+                  || (int.parse(_machucdanh.text) >= 3342 && int.parse(_machucdanh.text) <= 3359)
+                  || (int.parse(_machucdanh.text) >= 3511 && int.parse(_machucdanh.text) <= 3620))
+                  && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là Nhà chuyên môn bậc trung mà không có trình độ CMKT!',)
+                );
+              }
+              else if(int.parse(_machucdanh.text) >= 2111 && int.parse(_machucdanh.text) <= 2659
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là Nhà chuyên môn bậc cao mà trình độ thấp hơn đại học!',)
+                );
+              }
+              else if((int.parse(_machucdanh.text) == 8322
+                  || int.parse(_machucdanh.text) == 8331
+                  || int.parse(_machucdanh.text) == 8332)
+                  && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là lái xe ô tô mà không có trình độ CMKT!',)
+                );
+              }
+              else if(int.parse(_machucdanh.text) >= 6310 && int.parse(_machucdanh.text) <= 6340
+                  && (thanhvien.c26 == 1 || thanhvien.c26 == 2)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là Lao động tự cung tự cấp trong nông nghiệp, lâm nghiệp và thủy sản mà mục đích chủ yếu của sản phẩm sản xuất ra để bán!',)
+                );
+              }
+              else if(int.parse(_machucdanh.text) >= 1111 && int.parse(_machucdanh.text) <= 1526
+                  && (int.parse(_mahoatdong.text) < 8411 || int.parse(_mahoatdong.text) > 8430)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Lãnh đạo trong các cấp các ngành có mã ngành không thuộc ngành quản lý NN!',)
+                );
+              }
+              else if(((int.parse(_machucdanh.text) >= 2311 && int.parse(_machucdanh.text) <= 2342)
+                  || (int.parse(_machucdanh.text) >= 3610 && int.parse(_machucdanh.text) <= 3630))
+                  && (int.parse(_mahoatdong.text) < 8511 || int.parse(_mahoatdong.text) > 8560)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Giáo viên các cấp mà không thuộc ngành giá dục đào tạo!',)
+                );
+              }
+              else if(int.parse(_machucdanh.text) >= 2211 && int.parse(_machucdanh.text) <= 2261
+                  && (int.parse(_mahoatdong.text) < 8610 || int.parse(_mahoatdong.text) > 8699)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là y tá, bác sỹ mà có ngành khác hoạt động y tế!',)
+                );
+              }
+              //43
+              else if(int.parse(_mahoatdong.text) >= 510 && thanhvien.c38 == 1){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Lao động không thuộc ngành Nông, Lâm nghiệp và Thủy sản (C42B >=510) mà loại hình kình tế thuộc hộ NLNTS (C43 = 1)!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) < 510 && thanhvien.c38 == 3){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Lao động không thuộc ngành Nông, Lâm nghiệp và Thủy sản (C42B < 510) mà loại hình kình tế lại thuộc hộ SXKD (C43 = 3)!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) == 9700 && thanhvien.c38 != 3){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Người giúp việc trong các hộ gia đình mà loại hình là hộ sản xuất kinh doanh (C43 = 3)!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) == 8491 && int.parse(_mahoatdong.text) <= 8430
+                  && thanhvien.c38 != 10 && thanhvien.c38 != 11 && thanhvien.c38 != 5){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Ngành thuộc hoạt động đảng cộng sản, tổ chức chính trị-xã hội, '
+                          'quản lý nhà nước an ninh quốc phòng, bảo đảm xã hội bắt buộc mà loại '
+                          'hình không thuộc cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) >= 0111 && int.parse(_mahoatdong.text) <= 0310
+                  && int.parse(_mahoatdong.text) != 0220 && thanhvien.c38! >= 1 && thanhvien.c38! <= 4){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Ngành thuộc hoạt động đảng cộng sản, tổ chức chính trị-xã hội, '
+                          'quản lý nhà nước an ninh quốc phòng, bảo đảm xã hội bắt buộc mà loại '
+                          'hình không thuộc cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
+                );
+              }
+              else if((int.parse(_mahoatdong.text) >= 6430 && int.parse(_mahoatdong.text) <= 6499)
+                  || ((int.parse(_mahoatdong.text) >= 6511 && int.parse(_mahoatdong.text) <= 6512))
+                      && (thanhvien.c38 == 1 || thanhvien.c38 == 2 || thanhvien.c38 != 3
+                          || thanhvien.c38 == 10 || thanhvien.c38 == 11)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Ngành thuộc hoạt động trung gian tiền tệ, cho thuê tài chính, ngân hàng và bảo hiểm... mà loại '
+                          'hình NLTS, cá nhân làm tự do, cơ quan hành pháp/tư pháp/lập pháp hoặc tổ chức chính trị-xã hội!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) >= 510 && int.parse(_mahoatdong.text) <= 3320
+                  && int.parse(_mahoatdong.text) != 1811 && (thanhvien.c38 == 9 || thanhvien.c38 == 8)){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Đơn vị sự nghiệp ngoài nhà nước hoặc đơn vị sự nghiệp NN mà '
+                          'mã ngành thuộc khai khoáng hoặc chế biến, chế tạo!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) > 510 && int.parse(_mahoatdong.text) < 3320
+                  && thanhvien.c38! >= 11 && thanhvien.c38! == 13){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Tổ chức nhà nước/tổ chức khác mà mã ngành thuộc khai khoáng hoặc chế biến, chế tạo!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) > 0 && int.parse(_mahoatdong.text) < 510
+                  && thanhvien.c38 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Khu vực hộ SXKD mà mã ngành thuộc ngành NLTS < 510!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) >= 510 && thanhvien.c38 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Hộ NLNTS có mã ngành > 510!',)
+                );
+              }
+              else if(int.parse(_mahoatdong.text) == 9700 && thanhvien.c43 == 3 && thanhvien.c38 == 3){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Cá nhân làm tự do (c43 = 3) có mã ngành là giúp việc gia đình (C42b = 9700) mà vị thế là lao động gia đình (C49 = 3)!',)
+                );
+              }
+              //c52
+              else if((int.parse(_machucdanh.text) == 0110 || int.parse(_machucdanh.text) == 0120
+                  ||int.parse(_machucdanh.text) == 0210 || int.parse(_machucdanh.text) == 0220
+                  || int.parse(_machucdanh.text) == 0310) && thanhvien.c46 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) =>
+                    const UIWarningDialog(
+                      waring: 'Nghề là lãnh đạo các ngành các cấp hoặc lực lượng cũ trang mà đóng BHXH tự nguyện!',)
+                );
+              }
+              //Notifi
+              else if((int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6224)
+                  && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                  && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                  && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                condition_1();
+              }
+              else if(int.parse(_machucdanh.text) >= 0110 && int.parse(_machucdanh.text) <= 0310
+                  && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                condition_2();
+              }
+              else if(((int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 8209)
+                  || (int.parse(_machucdanh.text) >= 8311 && int.parse(_machucdanh.text) <= 8350))
+                  && thanhvien.c14B == 2 && thanhvien.c14C == 2 && thanhvien.c14D == 2
+                  && thanhvien.c14E == 2 && thanhvien.c14F == 2 && thanhvien.c16A == 2
+                  && thanhvien.c16B == 2 && thanhvien.c16C == 2){
+                condition_3();
+              }
+              else if(int.parse(_machucdanh.text) >= 111 && int.parse(_machucdanh.text) <= 1710
+                  && thanhvien.c14A == 2 && thanhvien.c14B == 2 && thanhvien.c14C == 2
+                  && thanhvien.c14D == 2 && thanhvien.c14E == 2 && thanhvien.c14F == 2){
+                condition_4();
+              }
+              else if(((int.parse(_machucdanh.text) >= 5111 && int.parse(_machucdanh.text) <= 5113)
+                  || (int.parse(_machucdanh.text) >= 5131 && int.parse(_machucdanh.text) <= 5249)
+                  || (int.parse(_machucdanh.text) >= 5161 && int.parse(_machucdanh.text) <= 5162)
+                  || (int.parse(_machucdanh.text) >= 6111 && int.parse(_machucdanh.text) <= 6340)
+                  || (int.parse(_machucdanh.text) >= 7111 && int.parse(_machucdanh.text) <= 7132)
+                  || (int.parse(_machucdanh.text) >= 7211 && int.parse(_machucdanh.text) <= 7319)
+                  || (int.parse(_machucdanh.text) >= 7511))
+                  && (int.parse(_mahoatdong.text) >= 8411 && int.parse(_mahoatdong.text) <= 8430)){
+                condition_5();
+              }
+              else if(((int.parse(_machucdanh.text) >= 1710 && int.parse(_machucdanh.text) <= 1749)
+                  && (thanhvien.c04! >= 15 && thanhvien.c04! <= 56) && thanhvien.c02 == 2)
+                  || ((thanhvien.c04! >= 15 && thanhvien.c04! <= 60) && thanhvien.c02 == 1)
+                      && thanhvien.c43 == 5 && (thanhvien.c45 == 2 || thanhvien.c46 == 2)){
+                condition_6();
+              }
+              else if((int.parse(_machucdanh.text) >= 1011 && int.parse(_machucdanh.text) <= 1527)
+                  && (thanhvien.c45 == 2 || thanhvien.c46 == 2)){
+                condition_7();
+              }
+              else if(((int.parse(_mahoatdong.text) >= 8511 && int.parse(_mahoatdong.text) <= 8560)
+                  || (int.parse(_mahoatdong.text) >= 8411 && int.parse(_mahoatdong.text) <= 8430)) &&  thanhvien.c41! >= 5){
+                condition_8();
+              }
+              else if(int.parse(_mahoatdong.text) >= 9111 && int.parse(_mahoatdong.text) <= 9629
+                  && thanhvien.c42! >= 30000){
+                condition_9();
+              }
+              else if(int.parse(_mahoatdong.text) >= 0110 && int.parse(_mahoatdong.text) <= 0320
+                  && thanhvien.c42! >= 50000){
+                condition_10();
+              }
+              else if(int.parse(_mahoatdong.text) >= 1011 && int.parse(_mahoatdong.text) <= 1527
+                  && thanhvien.c42! >= 30000){
+                condition_11();
+              }
+              else if(int.parse(_mahoatdong.text) >= 3111 && thanhvien.c42! >= 30000 && thanhvien.c43 == 5){
+                condition_12();
+              }
+              else {
+                condition_13();
+              }
+            }),
+          ],
+        ),
       ),
       drawer: const DrawerNavigation(),
     );

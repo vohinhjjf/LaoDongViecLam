@@ -293,68 +293,47 @@ class _P20_22ViewState extends State<P20_22View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p20_22ViewModel.P20_22Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p20 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P20-Tham gia việc sản xuất kinh doanh từ 1 giờ trở lên nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p20 == 2 && p21 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P21-Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p20 == 2 && p21 == 2 && p22 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P22-Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p22 == 2){
-                        if(thanhvien.c02 == 1 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 60)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UINotificationDialog(
-                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
-                                onpress: (){
-                                  p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c18: p20,
-                                    c19: p20 == 2 ? p21 : null,
-                                    c20: p20 == 2 && p21 == 2 ? p22 : null,
-                                  ));
-                                },
-                              )
-                          );
-                        }
-                        else if(thanhvien.c02 == 2 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 55)){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UINotificationDialog(
-                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
-                                onpress: (){
-                                  p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c18: p20,
-                                    c19: p20 == 2 ? p21 : null,
-                                    c20: p20 == 2 && p21 == 2 ? p22 : null,
-                                  ));
-                                },
-                              )
-                          );
-                        }
-                        else {
+                const SizedBox(height: 90,),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p20_22ViewModel.P20_22Back();
+            }),
+            UINextButton(ontap: (){
+              if(p20 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P20-Tham gia việc sản xuất kinh doanh từ 1 giờ trở lên nhập vào chưa đúng!',)
+                );
+              }
+              else if(p20 == 2 && p21 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P21-Giúp thành viên của hộ gia đình trong công việc nhập vào chưa đúng!',)
+                );
+              }
+              else if(p20 == 2 && p21 == 2 && p22 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P22-Không làm việc trong 7 ngày qua, việc vẫn trả được lương, trả công nhập vào chưa đúng!',)
+                );
+              }
+              else if(p22 == 2){
+                if(thanhvien.c02 == 1 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 60)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                        onpress: (){
                           p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
@@ -362,24 +341,49 @@ class _P20_22ViewState extends State<P20_22View> {
                             c19: p20 == 2 ? p21 : null,
                             c20: p20 == 2 && p21 == 2 ? p22 : null,
                           ));
-                        }
-                      }
-                      else {
-                        p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c18: p20,
-                          c19: p20 == 2 ? p21 : null,
-                          c20: p20 == 2 && p21 == 2 ? p22 : null,
-                        ));
-                      }
-                    }),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+                        },
+                      )
+                  );
+                }
+                else if(thanhvien.c02 == 2 && (thanhvien.c04! >= 22 && thanhvien.c04! <= 55)){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                        onpress: (){
+                          p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c18: p20,
+                            c19: p20 == 2 ? p21 : null,
+                            c20: p20 == 2 && p21 == 2 ? p22 : null,
+                          ));
+                        },
+                      )
+                  );
+                }
+                else {
+                  p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c18: p20,
+                    c19: p20 == 2 ? p21 : null,
+                    c20: p20 == 2 && p21 == 2 ? p22 : null,
+                  ));
+                }
+              }
+              else {
+                p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c18: p20,
+                  c19: p20 == 2 ? p21 : null,
+                  c20: p20 == 2 && p21 == 2 ? p22 : null,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

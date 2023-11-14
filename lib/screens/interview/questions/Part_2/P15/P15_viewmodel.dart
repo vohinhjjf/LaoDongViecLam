@@ -31,13 +31,12 @@ class P15ViewModel extends BaseViewModel {
   }
 
   void P15Next(thongTinThanhVienModel data) async {
-    await _executeDatabase.update("SET c13 = ${data.c13} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c13 = ? WHERE idho = ? AND idtv = ?",
+        [data.c13,data.idho,data.idtv]);
     if(data.c13 == 1){
-      await _executeDatabase.update("SET c14A = ${data.c14A}, c14B = ${data.c14B}"
-          ", c14C = ${data.c14C}, c14D = ${data.c14D}, c14E = ${data.c14E}, "
-          "c14F = ${data.c14F}, c15A = '', c15C = '' "
-          "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+      _executeDatabase.updateC00("SET c14A = ?, c14B = ?, c14C = ?, c14D = ?, "
+          "c14E = ?, c14F = ?, c15A = ?, c15C = ? WHERE idho = ? AND idtv = ?",
+          [data.c14A,data.c14B,data.c14C,data.c14D,data.c14E,data.c14F,data.c15A,data.c15C,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP18(context);
     }else {
       NavigationServices.instance.navigateToP16(context);

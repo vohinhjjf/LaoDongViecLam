@@ -158,96 +158,100 @@ class _Q4ViewState extends State<Q4View> {
                     });
                   }, _text_q4_f, 6, list_q4_f),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q4viewModel.Q4Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(q4_a == 0 || q4_b == 0 || q4_c == 0 || q4_d == 0 ||
-                            q4_e == 0 || q4_f == 0){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4 nhập vào chưa đúng!',)
-                          );
-                        }
-                        else if (q4_a == 1 && list_q4_a.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4A-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else if(q4_b == 1 && list_q4_b.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4B-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else if(q4_c == 1 && list_q4_c.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4C-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else if(q4_d == 1 && list_q4_d.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4D-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else if(q4_e == 1 && list_q4_e.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4E-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else if(q4_f == 1 && list_q4_f.isEmpty){
-                          showDialog(
-                              context: context,
-                              builder: (_) => const UIWarningDialog(waring: 'Q4F-Chưa nhập họ tên thành viên.',)
-                          );
-                        }
-                        else {
-                          if(q4_a == 2){
-                            for(var item in list_q4_a){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          if(q4_b == 2){
-                            for(var item in list_q4_b){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          if(q4_c == 2){
-                            for(var item in list_q4_c){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          if(q4_d == 2){
-                            for(var item in list_q4_d){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          if(q4_e == 2){
-                            for(var item in list_q4_e){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          if(q4_f == 2){
-                            for(var item in list_q4_f){
-                              q4viewModel.deleteNTKK(item.idtv!);
-                            };
-                          }
-                          q4viewModel.Q4Next(q4_a, q4_b, q4_c, q4_d, q4_e, q4_f);
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q4viewModel.Q4Back();
+            }),
+            UINextButton(ontap: (){
+              if(q4_a == 0 || q4_b == 0 || q4_c == 0 || q4_d == 0 ||
+                  q4_e == 0 || q4_f == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4 nhập vào chưa đúng!',)
+                );
+              }
+              else if (q4_a == 1 && list_q4_a.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4A-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else if(q4_b == 1 && list_q4_b.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4B-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else if(q4_c == 1 && list_q4_c.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4C-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else if(q4_d == 1 && list_q4_d.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4D-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else if(q4_e == 1 && list_q4_e.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4E-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else if(q4_f == 1 && list_q4_f.isEmpty){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Q4F-Chưa nhập họ tên thành viên.',)
+                );
+              }
+              else {
+                if(q4_a == 2){
+                  for(var item in list_q4_a){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                if(q4_b == 2){
+                  for(var item in list_q4_b){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                if(q4_c == 2){
+                  for(var item in list_q4_c){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                if(q4_d == 2){
+                  for(var item in list_q4_d){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                if(q4_e == 2){
+                  for(var item in list_q4_e){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                if(q4_f == 2){
+                  for(var item in list_q4_f){
+                    q4viewModel.deleteNTKK(item.idtv!);
+                  };
+                }
+                q4viewModel.Q4Next(q4_a, q4_b, q4_c, q4_d, q4_e, q4_f);
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
@@ -332,122 +336,123 @@ class _Q4ViewState extends State<Q4View> {
         const SizedBox(height: 10,),
         Visibility(
           visible: groupValue == 1,
-          child: UITextFormField(
-            controller: _text_name,
-            onFieldSubmitted: (value){
-              if(value != "") {
-                if(value.length < 5){
-                  showDialog(
-                      context: context,
-                      builder: (_) => UINotificationDialog(
-                          notification: 'Q4${title.substring(0,1)} Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
-                          onpress: (){
-                            Navigator.of(context).pop();
-                            q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
-                            setState(() {
-                              list.add(thongTinThanhVienNKTTModel(
-                                  idtv: list.last.idtv! + 1,
-                                  thangDT: int.parse(month),
-                                  namDT: DateTime.now().year,
-                                  q1_New: value
-                              ));
-                              list_item.add(thongTinThanhVienNKTTModel(
-                                  idtv: list.last.idtv! + 1,
-                                  thangDT: int.parse(month),
-                                  namDT: DateTime.now().year,
-                                  q1_New: value
-                              ));
-                              _text_name.text = "";
-                            });
-                          }
-                      )
-                  );
-                }
-                else {
-                  q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
-                  setState(() {
-                    list.add(thongTinThanhVienNKTTModel(
-                        idtv: list.last.idtv! + 1,
-                        thangDT: int.parse(month),
-                        namDT: DateTime.now().year,
-                        q1_New: value
-                    ));
-                    list_item.add(thongTinThanhVienNKTTModel(
-                        idtv: list.last.idtv! + 1,
-                        thangDT: int.parse(month),
-                        namDT: DateTime.now().year,
-                        q1_New: value
-                    ));
-                    _text_name.text = "";
-                  });
-                }
-              }
-            },
-            textCapitalization: TextCapitalization.words,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(
-                  '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
-              FilteringTextInputFormatter.deny(RegExp('[×÷]')),
-            ],
-            keyboardType: TextInputType.text,
-            hint: "Nhập họ và tên",
-          ),
-        ),
-        const SizedBox(height: 10,),
-        Visibility(
-          visible: groupValue == 1,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: list_item.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
-                elevation: 10,
-                shadowColor: Colors.black,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width - 212.w,
-                        child: UIText(
-                          text: "${index+1}. ${list_item[index].q1_New}",
-                          textColor: Colors.black,
-                          textFontSize: 18,
-                          maxLines: 10,
-                        ),
-                      ),
-                      IconButton(
-                          padding: EdgeInsets.zero,
-                          alignment: Alignment.centerRight,
-                          icon: const Icon(
-                            Icons.dangerous,
-                            color: Colors.redAccent,
-                            size: fontGreater,
-                          ),
-                          onPressed: () => _showNotificationDialog(
-                              "Có chắc muốn xóa ${list_item[index].q1_New}?",
-                                  (){
-                                q4viewModel.deleteNTKK(list_item[index].idtv!);
-                                setState(() {
-                                  list_item.removeAt(index);
-                                });
+          child: Column(
+            children: [
+              UITextFormField(
+                controller: _text_name,
+                onFieldSubmitted: (value){
+                  if(value != "") {
+                    if(value.length < 5){
+                      showDialog(
+                          context: context,
+                          builder: (_) => UINotificationDialog(
+                              notification: 'Q4${title.substring(0,1)} Họ tên thành viên nhỏ hơn 5 ký tự có đúng không?',
+                              onpress: (){
                                 Navigator.of(context).pop();
-                              }, (){
-                            Navigator.of(context).pop();
-                          }
+                                q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
+                                setState(() {
+                                  list.add(thongTinThanhVienNKTTModel(
+                                      idtv: list.last.idtv! + 1,
+                                      thangDT: int.parse(month),
+                                      namDT: DateTime.now().year,
+                                      q1_New: value
+                                  ));
+                                  list_item.add(thongTinThanhVienNKTTModel(
+                                      idtv: list.last.idtv! + 1,
+                                      thangDT: int.parse(month),
+                                      namDT: DateTime.now().year,
+                                      q1_New: value
+                                  ));
+                                  _text_name.text = "";
+                                });
+                              }
                           )
+                      );
+                    }
+                    else {
+                      q4viewModel.addNTKK(value, list.last.idtv! + 1, temp);
+                      setState(() {
+                        list.add(thongTinThanhVienNKTTModel(
+                            idtv: list.last.idtv! + 1,
+                            thangDT: int.parse(month),
+                            namDT: DateTime.now().year,
+                            q1_New: value
+                        ));
+                        list_item.add(thongTinThanhVienNKTTModel(
+                            idtv: list.last.idtv! + 1,
+                            thangDT: int.parse(month),
+                            namDT: DateTime.now().year,
+                            q1_New: value
+                        ));
+                        _text_name.text = "";
+                      });
+                    }
+                  }
+                },
+                textCapitalization: TextCapitalization.words,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(
+                      '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                  FilteringTextInputFormatter.deny(RegExp('[×÷]')),
+                ],
+                keyboardType: TextInputType.text,
+                hint: "Nhập họ và tên",
+              ),
+              const SizedBox(height: 10,),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: list_item.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0),
+                    elevation: 10,
+                    shadowColor: Colors.black,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width - 212.w,
+                            child: UIText(
+                              text: "${index+1}. ${list_item[index].q1_New}",
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              maxLines: 10,
+                            ),
+                          ),
+                          IconButton(
+                              padding: EdgeInsets.zero,
+                              alignment: Alignment.centerRight,
+                              icon: const Icon(
+                                Icons.dangerous,
+                                color: Colors.redAccent,
+                                size: fontLarge,
+                              ),
+                              onPressed: () => _showNotificationDialog(
+                                  "Có chắc muốn xóa ${list_item[index].q1_New}?",
+                                      (){
+                                    q4viewModel.deleteNTKK(list_item[index].idtv!);
+                                    setState(() {
+                                      list_item.removeAt(index);
+                                    });
+                                    Navigator.of(context).pop();
+                                  }, (){
+                                Navigator.of(context).pop();
+                              }
+                              )
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 10,),
+            ],
           ),
         ),
-        const SizedBox(height: 10,),
       ],
     );
   }
@@ -465,7 +470,7 @@ class _Q4ViewState extends State<Q4View> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
-            isBold: false,
+            textAlign: TextAlign.center,
           ),
           content: Container(
             height: 60,
@@ -483,7 +488,9 @@ class _Q4ViewState extends State<Q4View> {
                     child: const UIText(
                         text: 'Có',
                         textColor: mPrimaryColor,
-                        textFontSize: fontLarge
+                        textFontSize: fontLarge,
+                        textAlign: TextAlign.center,
+                      isBold: true,
                     )
                 ),
                 MaterialButton(

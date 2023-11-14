@@ -158,7 +158,7 @@ class _Q1ViewState extends State<Q1View> {
                                   child: UIText(
                                     text: "${index+1}. ${list_name[index].q1_New}",
                                     textColor: Colors.black,
-                                    textFontSize: 18,
+                                    textFontSize: fontMedium,
                                     maxLines: 3,
                                   ),
                                 ),
@@ -191,45 +191,49 @@ class _Q1ViewState extends State<Q1View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q1viewModel.Q1Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(list_name.isNotEmpty){
-                          _showNotificationDialog("Hộ còn ai nữa không?",(){
-                            Navigator.of(context).pop();
-                          },() {
-                            print(list_name[list_name.length - 1].idtv! + 1);
-                            q1viewModel.Q1Next();
-
-                          },);
-                        }
-                        else {
-                          q1viewModel.addNTKK(_text_name.text, list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1);
-                          setState(() {
-                            list_name.add(thongTinThanhVienNKTTModel(
-                                idtv: list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1,
-                                q1_New: _text_name.text
-                            ));
-                            _text_name.text = "";
-                            _showNotificationDialog("Hộ còn ai nữa không?",(){
-                              Navigator.of(context).pop();
-                            },() {
-                              print("Next");
-                              q1viewModel.Q1Next();
-                            },);
-                          });
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q1viewModel.Q1Back();
+            }),
+            UINextButton(ontap: (){
+              if(list_name.isNotEmpty){
+                _showNotificationDialog("Hộ còn ai nữa không?",(){
+                  Navigator.of(context).pop();
+                },() {
+                  print(list_name[list_name.length - 1].idtv! + 1);
+                  q1viewModel.Q1Next();
+
+                },);
+              }
+              else {
+                q1viewModel.addNTKK(_text_name.text, list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1);
+                setState(() {
+                  list_name.add(thongTinThanhVienNKTTModel(
+                      idtv: list_name.isEmpty ? 1 : list_name[list_name.length - 1].idtv! + 1,
+                      q1_New: _text_name.text
+                  ));
+                  _text_name.text = "";
+                  _showNotificationDialog("Hộ còn ai nữa không?",(){
+                    Navigator.of(context).pop();
+                  },() {
+                    print("Next");
+                    q1viewModel.Q1Next();
+                  },);
+                });
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

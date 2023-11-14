@@ -20,9 +20,12 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
   List<BangKeThangDTModel> listBangKeThangDTModel = [];
   final _text_find = TextEditingController();
 
-  queryList(int thangDT) {
+  queryList(List<BangKeCsModel> listBangKeCs, int thangDT) {
     for(var item in listBangKeThangDTModel) {
-      list.add(listBangKeCs.singleWhere((e) => item.idhO_BKE == e.idho && e.thangDT == thangDT));
+      if(listBangKeCs.any((e) => item.idhO_BKE == e.idho && e.thangDT == thangDT)) {
+        list.add(listBangKeCs.singleWhere((e) => item.idhO_BKE == e.idho &&
+            e.thangDT == thangDT));
+      }
     }
     var list_query = listBangKeCs.where((e) => (e.trangthai_BK == 2 ||
         e.trangthai_BK == 3 ||e.trangthai_BK == 4) && e.thangDT == thangDT).toList();
@@ -39,7 +42,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
         setState((){
           listBangKeCs = completeInterviewViewModel.data;
           listBangKeThangDTModel = completeInterviewViewModel.bangKeThangDTModel.where((e) => e.trangThai == 9 || e.trangThai == 8).toList();
-          queryList(completeInterviewViewModel.thangDT!);
+          queryList(completeInterviewViewModel.data, completeInterviewViewModel.thangDT!);
         })
       });
     });

@@ -122,7 +122,6 @@ class _HouseholdReplaceViewState extends State<HouseholdReplaceView> {
             text: title,
             textColor: Colors.black,
             textFontSize:fontLarge,
-            isBold: false,
             textAlign: TextAlign.center,
           ),
           content: Container(
@@ -140,7 +139,7 @@ class _HouseholdReplaceViewState extends State<HouseholdReplaceView> {
                     onPressed: onpress1,
                     child: const UIText(
                         text: 'Sửa',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
@@ -155,7 +154,7 @@ class _HouseholdReplaceViewState extends State<HouseholdReplaceView> {
                     onPressed: onpress2,
                     child: const UIText(
                       text: 'Thay thế',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,

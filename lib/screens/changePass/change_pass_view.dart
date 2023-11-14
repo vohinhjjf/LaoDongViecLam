@@ -159,8 +159,7 @@ class Body extends State{
                 text:"Bạn đã đổi mật khẩu thành công!",
                 textAlign: TextAlign.center,
                 textColor: Colors.black,
-                textFontSize: fontMedium,
-                isBold: true,
+                textFontSize: fontLarge,
               ),
               const SizedBox(
                 height: 20.0,
@@ -169,7 +168,9 @@ class Body extends State{
                   child: const UIText(
                       text:'Đăng nhập',
                       textColor: Colors.white,
-                      textFontSize: fontLarge
+                      textFontSize: fontLarge,
+                    textAlign: TextAlign.center,
+                    isBold: true,
                   ),
                   onPressed: () {
                       changePasswordViewModel.logout();
@@ -195,14 +196,11 @@ class Body extends State{
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Container(
-                child: UIText(
-                  text: title,
-                  textAlign: TextAlign.center,
-                  textColor: Colors.black,
-                  isBold: true,
-                    textFontSize: fontLarge
-                ),
+              UIText(
+                text: title,
+                textAlign: TextAlign.center,
+                textColor: Colors.black,
+                  textFontSize: fontLarge
               ),
               const SizedBox(
                 height: 20.0,
@@ -211,7 +209,9 @@ class Body extends State{
                   child: const UIText(
                       text:'Thử lại',
                       textColor: Colors.white,
-                      textFontSize: fontLarge
+                      textFontSize: fontLarge,
+                    textAlign: TextAlign.center,
+                    isBold: true,
                   ),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();

@@ -269,49 +269,53 @@ class _P06_07ViewState extends State<P06_07View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p06_07viewmodel.P06_07Back(thanhvien.c04A);
-                    }),
-                    UINextButton(ontap: (){
-                      if(groupValue == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'Thông tin bắt buộc không thể bỏ trống!',)
-                        );
-                      } else if(groupValue == 2 && nation == "Chọn mã quốc gia"){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          thangDT: thanhvien.thangDT,
-                          namDT: thanhvien.namDT,
-                          c00: thanhvien.c00,
-                          c01: thanhvien.c01,
-                          c01K: thanhvien.c01K,
-                          c02: thanhvien.c02,
-                          c03A: thanhvien.c03A,
-                          c03B: thanhvien.c03B,
-                          c04: thanhvien.c04,
-                          c04A: thanhvien.c04A,
-                          c05: groupValue,
-                          c06: groupValue == 2 ? nation : '',
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p06_07viewmodel.P06_07Back(thanhvien.c04A);
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Thông tin bắt buộc không thể bỏ trống!',)
+                );
+              } else if(groupValue == 2 && nation == "Chọn mã quốc gia"){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
+                );
+              }else {
+                p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  thangDT: thanhvien.thangDT,
+                  namDT: thanhvien.namDT,
+                  c00: thanhvien.c00,
+                  c01: thanhvien.c01,
+                  c01K: thanhvien.c01K,
+                  c02: thanhvien.c02,
+                  c03A: thanhvien.c03A,
+                  c03B: thanhvien.c03B,
+                  c04: thanhvien.c04,
+                  c04A: thanhvien.c04A,
+                  c05: groupValue,
+                  c06: groupValue == 2 ? nation : '',
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

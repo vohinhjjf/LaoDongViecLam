@@ -25,8 +25,7 @@ class UIWarningDialog extends StatelessWidget {
         text: waring,
         textAlign: TextAlign.center,
         textColor: Colors.black,
-        textFontSize: fontLarge,
-        isBold: true,
+        textFontSize: fontLarge
       ),
       content: Container(
         height: 60,
@@ -43,7 +42,7 @@ class UIWarningDialog extends StatelessWidget {
                 child: const UIText(
                   text: "Kiểm tra lại",
                   textColor: mPrimaryColor,
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   isBold: true,
                 ),
                 onPressed: () {
@@ -80,7 +79,6 @@ class UINotificationDialog extends StatelessWidget {
         textColor: Colors.black,
         textAlign: TextAlign.center,
         textFontSize:fontLarge,
-        isBold: true,
       ),
       content: Container(
         height: 60,
@@ -156,8 +154,8 @@ class UINotificationDialog1 extends StatelessWidget {
       title: UIText(
         text: notification,
         textColor: Colors.black,
-        textFontSize:fontMedium,
-        isBold: true,
+        textFontSize: fontLarge,
+        textAlign: TextAlign.center,
       ),
       content: Container(
         height: 60,
@@ -171,7 +169,7 @@ class UINotificationDialog1 extends StatelessWidget {
                 ),
                 child: UIText(
                   text: button1,
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   textAlign: TextAlign.center,
                   textColor: mPrimaryColor,
                   isBold: true,
@@ -186,14 +184,14 @@ class UINotificationDialog1 extends StatelessWidget {
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
+                    onPressed: onpress2,
                     child: UIText(
                       text: button2,
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,
-                    ),
-                    onPressed: onpress2
+                    )
                 ),
             ),
             MaterialButton(
@@ -205,7 +203,7 @@ class UINotificationDialog1 extends StatelessWidget {
                 onPressed: onpress3,
                 child: const UIText(
                   text: 'Tiếp tục',
-                  textFontSize: fontMedium,
+                  textFontSize: fontLarge,
                   textAlign: TextAlign.center,
                   textColor: mPrimaryColor,
                   isBold: true,
@@ -240,7 +238,6 @@ class UIStopDialog extends StatelessWidget {
               text: "Tạm dừng phỏng vấn?",
               textAlign: TextAlign.center,
               textColor: Colors.black,
-              isBold: true,
             ),
           ),
           const SizedBox(
@@ -253,7 +250,7 @@ class UIStopDialog extends StatelessWidget {
                     child: const UIText(
                       text: 'Hủy bỏ',
                       textColor: Colors.red,
-                      textFontSize: 15,
+                      textFontSize: fontLarge,
                       isBold: true,
                     ),
                     onPressed: () {
@@ -263,10 +260,9 @@ class UIStopDialog extends StatelessWidget {
                     child: const  UIText(
                       text: 'Đồng ý',
                       textColor: mPrimaryColor,
-                      textFontSize: 15,
+                      textFontSize: fontLarge,
                       isBold: true,),
                     onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
                       NavigationServices.instance.navigateToInterviewStatus(context);
                     }),
               ])

@@ -218,40 +218,44 @@ class _P24_25ViewState extends State<P24_25View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p24_25ViewModel.P24_25Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p24 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P24-Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
-                        );
-                      }
-                      else if(p25 == 0 && p24 == 2){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P25-Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p24_25ViewModel.P24_25Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c22: p24,
-                          c23: p24 == 2 ? p25 : null,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p24_25ViewModel.P24_25Back();
+            }),
+            UINextButton(ontap: (){
+              if(p24 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P24-Quay lại công việc trong 30 ngày nhập vào chưa đúng!',)
+                );
+              }
+              else if(p25 == 0 && p24 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P25-Có thu nhập trong thời gian tạm nghỉ nhập vào chưa đúng!',)
+                );
+              }else {
+                p24_25ViewModel.P24_25Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c22: p24,
+                  c23: p24 == 2 ? p25 : null,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

@@ -136,33 +136,37 @@ class _P34ViewState extends State<P34View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p34ViewModel.P34Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p34 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P34 - Quyết định cần một công việc nhập vào chưa đúng!',)
-                        );
-                      }else {
-                        p34ViewModel.P34Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c30A: p34,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p34ViewModel.P34Back();
+            }),
+            UINextButton(ontap: (){
+              if(p34 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P34 - Quyết định cần một công việc nhập vào chưa đúng!',)
+                );
+              }else {
+                p34ViewModel.P34Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c30A: p34,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -467,47 +466,51 @@ class _P82ViewState extends State<P82View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p82ViewModel.P82Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p82a == 0 || p82b == 0 || p82c == 0 ||
-                              p82d == 0 || p82e == 0 || p82f == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            p82ViewModel.P82Next(DoiSongHoModel(
-                              idho: doisongho.idho,
-                              thangDT: thanhvien.thangDT,
-                              namDT: thanhvien.namDT,
-                              c62_M7A: p82a,
-                              c62_M7B: p82b,
-                              c62_M7C: p82c,
-                              c62_M7D: p82d,
-                              c62_M7E: p82e,
-                              c62_M7F: p82f,
-                              c62_M7FK: p82f == 1 ? _orther.text : "",
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p82ViewModel.P82Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p82a == 0 || p82b == 0 || p82c == 0 ||
+                    p82d == 0 || p82e == 0 || p82f == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
+                  );
+                } else {
+                  p82ViewModel.P82Next(DoiSongHoModel(
+                    idho: doisongho.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M7A: p82a,
+                    c62_M7B: p82b,
+                    c62_M7C: p82c,
+                    c62_M7D: p82d,
+                    c62_M7E: p82e,
+                    c62_M7F: p82f,
+                    c62_M7FK: p82f == 1 ? _orther.text : "",
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

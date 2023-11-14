@@ -49,8 +49,8 @@ class AreaViewModel extends BaseViewModel {
     await _executeDatabase.getHouseHold(condition).then((value) => list_household= value);
   }
 
-  AreaNext(String iddb) async {
-    await _sPrefAppModel.setIDDB(iddb);
+  AreaNext(String iddb) {
+    _sPrefAppModel.setIDDB(iddb);
     NavigationServices.instance.navigateToInterviewStatus(context);
   }
 

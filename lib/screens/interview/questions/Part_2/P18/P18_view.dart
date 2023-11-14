@@ -270,35 +270,39 @@ class _P18ViewState extends State<P18View> {
                   ),
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p18ViewModel.P18Back(thanhvien.c13, thanhvien.c15A);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p18a == 0 || p18b == 0 || p18c == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P18-Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
-                        );
-                      }else {
-                        p18ViewModel.P18Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c16A: p18a,
-                          c16B: p18b,
-                          c16C: p18c,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p18ViewModel.P18Back(thanhvien.c13, thanhvien.c15A);
+            }),
+            UINextButton(ontap: (){
+              if(p18a == 0 || p18b == 0 || p18c == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P18-Công nhận hoặc bằng cấp/chứng chỉ/kỹ năng bị bỏ trống!',)
+                );
+              }else {
+                p18ViewModel.P18Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c16A: p18a,
+                  c16B: p18b,
+                  c16C: p18c,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

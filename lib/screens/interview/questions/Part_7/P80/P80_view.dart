@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -628,51 +627,55 @@ class _P80ViewState extends State<P80View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p80ViewModel.P80Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p80a == 0 || p80b == 0 || p80c == 0 ||
-                              p80d == 0 || p80e == 0 || p80f == 0 ||
-                              p80g == 0 || p80h == 0 || p80i == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            p80ViewModel.P80Next(DoiSongHoModel(
-                              idho: thanhvien.idho,
-                              thangDT: thanhvien.thangDT,
-                              namDT: thanhvien.namDT,
-                              c62_M5A: p80a,
-                              c62_M5B: p80b,
-                              c62_M5C: p80c,
-                              c62_M5D: p80d,
-                              c62_M5E: p80e,
-                              c62_M5F: p80f,
-                              c62_M5G: p80g,
-                              c62_M5H: p80h,
-                              c62_M5I: p80i,
-                              c62_M5IK: p80i == 1 ? _orther.text : "",
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p80ViewModel.P80Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p80a == 0 || p80b == 0 || p80c == 0 ||
+                    p80d == 0 || p80e == 0 || p80f == 0 ||
+                    p80g == 0 || p80h == 0 || p80i == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
+                  );
+                } else {
+                  p80ViewModel.P80Next(DoiSongHoModel(
+                    idho: thanhvien.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M5A: p80a,
+                    c62_M5B: p80b,
+                    c62_M5C: p80c,
+                    c62_M5D: p80d,
+                    c62_M5E: p80e,
+                    c62_M5F: p80f,
+                    c62_M5G: p80g,
+                    c62_M5H: p80h,
+                    c62_M5I: p80i,
+                    c62_M5IK: p80i == 1 ? _orther.text : "",
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

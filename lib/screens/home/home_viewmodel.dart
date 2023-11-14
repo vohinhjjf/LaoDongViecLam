@@ -14,10 +14,7 @@ import '../../components/ui_styles.dart';
 import '../../components/ui_text.dart';
 import '../../components/ui_values.dart';
 import '../../data/shared_preferences/spref_app_model.dart';
-import '../../models/area_model.dart';
-import '../../models/bangkeThangDT_model.dart';
 import '../../models/bangke_model.dart';
-import '../../models/response_model.dart';
 import '../../services/api/sync_services.dart';
 import '../../services/sqlite/execute_database.dart';
 

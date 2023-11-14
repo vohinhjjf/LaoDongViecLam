@@ -61,7 +61,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 mPrimaryColor,Colors.blue.shade400,mPrimaryColor
               ],
             ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0),
               )
@@ -164,7 +164,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       child: Container(
         width: 100.w,
         //height: 90.h,
-        margin: EdgeInsets.symmetric(vertical: 5),
+        margin: const EdgeInsets.symmetric(vertical: 5),
         decoration:  BoxDecoration(
           //border: Border.all(color: check ? mThirdColor : Colors.white, width: 2),
           color: Colors.white,

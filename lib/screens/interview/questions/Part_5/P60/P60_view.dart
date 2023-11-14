@@ -127,34 +127,38 @@ class _P60ViewState extends State<P60View> {
                   },
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p60ViewModel.P60Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p60 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P60 - Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV thứ 2 nhập vào chưa đúng!',)
-                        );
-                      }
-                      else {
-                        p60ViewModel.P60Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c54: p60
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p60ViewModel.P60Back();
+            }),
+            UINextButton(ontap: (){
+              if(p60 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P60 - Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV thứ 2 nhập vào chưa đúng!',)
+                );
+              }
+              else {
+                p60ViewModel.P60Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c54: p60
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

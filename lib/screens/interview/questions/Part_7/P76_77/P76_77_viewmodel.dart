@@ -33,9 +33,16 @@ class P76_77ViewModel extends BaseViewModel {
   void P76_77Back() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     await _executeDatabase.getListTTTV(idho).then((value) {
-      if(value.last.c04! < 15){
+      var thongtinTV = thongTinThanhVienModel();
+      if(value.length > 1 && value.last.c01 == 1) {
+        thongtinTV = value[value.length - 2];
+      } else {
+        thongtinTV = value.last;
+      }
+      _sPrefAppModel.setIDTV(thongtinTV.idtv!);
+      if (thongtinTV.c04! < 15) {
         NavigationServices.instance.navigateToP70_75(context);
-      } else if(value.last.c05! == 2){
+      } else if (thongtinTV.c05! == 2) {
         NavigationServices.instance.navigateToP06_07(context);
       } else {
         NavigationServices.instance.navigateToP70_75(context);

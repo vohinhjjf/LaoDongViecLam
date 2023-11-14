@@ -123,29 +123,33 @@ class _Q7ViewState extends State<Q7View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 25,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q7viewModel.Q7Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(groupValue == 0){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UIWarningDialog(waring: 'Chủ hộ nhập vào chưa đúng!')
-                          );
-                        }else {
-                          print(stt);
-                          q7viewModel.Q7Next(stt);
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q7viewModel.Q7Back();
+            }),
+            UINextButton(ontap: (){
+              if(groupValue == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: 'Chủ hộ nhập vào chưa đúng!')
+                );
+              }else {
+                print(stt);
+                q7viewModel.Q7Next(stt);
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

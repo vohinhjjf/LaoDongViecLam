@@ -226,21 +226,25 @@ class _GeneralInformationViewState extends State<GeneralInformationView> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        generalInformationViewModel.GeneralBack();
-                      }),
-                      UINextButton(ontap: (){
-                        generalInformationViewModel.GeneralNext();
-                      }),
-                    ],
-                  )
+                   const SizedBox(height: 90,),
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              generalInformationViewModel.GeneralBack();
+            }),
+            UINextButton(ontap: (){
+              generalInformationViewModel.GeneralNext();
+            }),
           ],
         ),
       ),

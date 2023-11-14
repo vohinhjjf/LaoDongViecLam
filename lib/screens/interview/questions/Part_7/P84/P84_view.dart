@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -408,46 +407,50 @@ class _P84ViewState extends State<P84View> {
                     ),
                   ),
                   //Button
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        p84ViewModel.P84Back();
-                      }),
-                      UINextButton(ontap: (){
-                        if(_formKey.currentState!.validate()) {
-                          if (p84a == 0 || p84b == 0 || p84c == 0 ||
-                              p84d == 0 || p84e == 0) {
-                            showDialog(
-                                context: context,
-                                builder: (_) =>
-                                    UIWarningDialog(
-                                      waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                          .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
-                            );
-                          } else {
-                            p84ViewModel.P84Next(DoiSongHoModel(
-                              idho: thanhvien.idho,
-                              thangDT: thanhvien.thangDT,
-                              namDT: thanhvien.namDT,
-                              c62_M9A: p84a,
-                              c62_M9B: p84b,
-                              c62_M9C: p84c,
-                              c62_M9D: p84d,
-                              c62_M9E: p84e,
-                              c62_M9EK: p84e == 1 ? _orther.text : "",
-                            ));
-                          }
-                        }
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p84ViewModel.P84Back();
+            }),
+            UINextButton(ontap: (){
+              if(_formKey.currentState!.validate()) {
+                if (p84a == 0 || p84b == 0 || p84c == 0 ||
+                    p84d == 0 || p84e == 0) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
+                                .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
+                  );
+                } else {
+                  p84ViewModel.P84Next(DoiSongHoModel(
+                    idho: thanhvien.idho,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c62_M9A: p84a,
+                    c62_M9B: p84b,
+                    c62_M9C: p84c,
+                    c62_M9D: p84d,
+                    c62_M9E: p84e,
+                    c62_M9EK: p84e == 1 ? _orther.text : "",
+                  ));
+                }
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

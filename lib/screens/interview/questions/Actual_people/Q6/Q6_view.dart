@@ -61,7 +61,7 @@ class _Q6ViewState extends State<Q6View> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -83,7 +83,7 @@ class _Q6ViewState extends State<Q6View> {
                           "${index+1}. ${list[index].q1_New}",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: fontMedium,
                               fontWeight: FontWeight.bold
                           ),
                           maxLines: 10,
@@ -92,32 +92,40 @@ class _Q6ViewState extends State<Q6View> {
                     },
                   ),
                   //Button
-                  const SizedBox(height: 2,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UIBackButton(ontap: (){
-                        q6viewModel.Q6Back();
-                      }),
-                      UINextButton(ontap: (){
-                        List<thongTinThanhVienModel> data = [];
-                        for(var item in list){
-                          data.add(thongTinThanhVienModel(
-                              idho: item.idho,
-                              idtv: item.idtv,
-                              thangDT: item.thangDT,
-                              namDT: item.namDT,
-                              c00: item.q1_New
-                          ));
-                        }
-                        print(data.length);
-                        q6viewModel.Q6Next(data);
-                      }),
-                    ],
-                  )
+                  const SizedBox(height: 90,),
                 ]),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              q6viewModel.Q6Back();
+            }),
+            UINextButton(ontap: (){
+              List<thongTinThanhVienModel> data = [];
+              for(var item in list){
+                data.add(thongTinThanhVienModel(
+                    idho: item.idho,
+                    idtv: item.idtv,
+                    thangDT: item.thangDT,
+                    namDT: item.namDT,
+                    c00: item.q1_New
+                ));
+              }
+              print(data.length);
+              if(data.isEmpty){
+                _showNotificationDialog();
+              } else {
+                q6viewModel.Q6Next(data);
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(
@@ -139,11 +147,11 @@ class _Q6ViewState extends State<Q6View> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          title: UIText(
+          title: const UIText(
             text: "Hộng ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
             textColor: Colors.black,
             textFontSize:fontLarge,
-            isBold: false,
+            textAlign: TextAlign.center,
           ),
           content: Container(
             height: 60,
@@ -152,7 +160,6 @@ class _Q6ViewState extends State<Q6View> {
               children: <Widget>[
                 MaterialButton(
                     height: 60,
-                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
@@ -162,12 +169,13 @@ class _Q6ViewState extends State<Q6View> {
                     child: const UIText(
                         text: 'Kiểm tra lại thông tin thành viên',
                         textColor: mPrimaryColor,
-                        textFontSize: fontMedium
+                        textFontSize: fontLarge,
+                      textAlign: TextAlign.center,
+                      isBold: true,
                     )
                 ),
                 MaterialButton(
                     height: 60,
-                    //minWidth: (MediaQuery.of(context).size.width-80)/2,
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
@@ -176,7 +184,7 @@ class _Q6ViewState extends State<Q6View> {
                     },
                     child: const UIText(
                       text: 'Hoàn thành phỏng vấn',
-                      textFontSize: fontMedium,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.center,
                       textColor: mPrimaryColor,
                       isBold: true,

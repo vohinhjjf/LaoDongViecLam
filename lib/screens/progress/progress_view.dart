@@ -22,14 +22,13 @@ class Body extends State<ProgressView>{
   List<BangKeThangDTModel> list_bk_tdt = [];
   List<thongTinHoModel> list_ttho = [];
   List<AreaModel> list_area = [];
-  late ValueNotifier<double> valueNotifier;
+  late ValueNotifier<double> valueNotifier = ValueNotifier(0.0);
 
   @override
   void initState() {
     super.initState();
     progressViewModel = context.read();
     progressViewModel.onInit(context);
-    valueNotifier = ValueNotifier(0.0);
     Future.delayed(const Duration(milliseconds: 100), () => {
       setState((){
         username = progressViewModel.userName;

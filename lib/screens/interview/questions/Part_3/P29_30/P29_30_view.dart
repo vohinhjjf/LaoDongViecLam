@@ -215,39 +215,43 @@ class _P29_30ViewState extends State<P29_30View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p29_30ViewModel.P29_30Back();
-                    }),
-                    UINextButton(ontap: (){
-                      if(p29 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29 - Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
-                        );
-                      } else if(p29 == 1 && p30 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30 - Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
-                        );
-                      } else {
-                        p29_30ViewModel.P29_30Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c27: p29,
-                          c28: p30,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p29_30ViewModel.P29_30Back();
+            }),
+            UINextButton(ontap: (){
+              if(p29 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29 - Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
+                );
+              } else if(p29 == 1 && p30 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30 - Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
+                );
+              } else {
+                p29_30ViewModel.P29_30Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c27: p29,
+                  c28: p30,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

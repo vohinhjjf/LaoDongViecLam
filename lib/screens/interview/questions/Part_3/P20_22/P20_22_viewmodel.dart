@@ -31,16 +31,17 @@ class P20_22ViewModel extends BaseViewModel {
   }
 
   void P20_22Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c18 = ${data.c18}, c19 = ${data.c19}, c20 = ${data.c20} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c18 = ?, c19 = ?, c20 = ? WHERE idho = ? AND idtv = ?",
+        [data.c18,data.c19,data.c20,data.idho,data.idtv]);
+
     if(data.c18 == 1 || data.c19 ==1){
-      _executeDatabase.update("SET c21 = ${data.c21}, c21K = ${data.c21K.toString()}, c22 = ${data.c22}, "
-          "c23 = ${data.c23}, c24 = ${data.c24} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+      _executeDatabase.updateC00("SET c21 = ?, c21K = ?, c22 = ?, c23 = ?, c24 = ? WHERE idho = ? AND idtv = ?",
+          [data.c21,data.c21K,data.c22,data.c23,data.c24,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP27(context);
     }
     else if(data.c20 == 2){
-      _executeDatabase.update("SET c21 = ${data.c21}, c21K = ${data.c21K.toString()}, c22 = ${data.c22}, "
-          "c23 = ${data.c23} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+      _executeDatabase.updateC00("SET c21 = ?, c21K = ?, c22 = ?, c23 = ? WHERE idho = ? AND idtv = ?",
+          [data.c21,data.c21K,data.c22,data.c23,data.idho,data.idtv]);
       NavigationServices.instance.navigateToP26(context);
     }
     else {

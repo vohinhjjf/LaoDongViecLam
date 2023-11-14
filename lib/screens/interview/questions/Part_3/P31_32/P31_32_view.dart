@@ -214,39 +214,43 @@ class _P31_32ViewState extends State<P31_32View> {
                     )
                 ),
                 //Button
-                const SizedBox(height: 25,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UIBackButton(ontap: (){
-                      p31_32ViewModel.P31_32Back(thanhvien);
-                    }),
-                    UINextButton(ontap: (){
-                      if(p31 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P31 - Việc chủ động tìm kiếm việc làm nhập vào chưa đúng!',)
-                        );
-                      } else if(p31 == 2 && p32 == 0){
-                        showDialog(
-                            context: context,
-                            builder: (_) => const UIWarningDialog(waring: 'P32 - Quyết định không tìm việc hoặc đã sẵn sàng hoạt động kinh doanh nhập vào chưa đúng!',)
-                        );
-                      } else {
-                        p31_32ViewModel.P31_32Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c29: p31,
-                          c30: p32,
-                        ));
-                      }
-                    }),
-                  ],
-                )
+                const SizedBox(height: 90,),
               ],
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              p31_32ViewModel.P31_32Back(thanhvien);
+            }),
+            UINextButton(ontap: (){
+              if(p31 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P31 - Việc chủ động tìm kiếm việc làm nhập vào chưa đúng!',)
+                );
+              } else if(p31 == 2 && p32 == 0){
+                showDialog(
+                    context: context,
+                    builder: (_) => const UIWarningDialog(waring: 'P32 - Quyết định không tìm việc hoặc đã sẵn sàng hoạt động kinh doanh nhập vào chưa đúng!',)
+                );
+              } else {
+                p31_32ViewModel.P31_32Next(thongTinThanhVienModel(
+                  idho: thanhvien.idho,
+                  idtv: thanhvien.idtv,
+                  c29: p31,
+                  c30: p32,
+                ));
+              }
+            }),
+          ],
+        ),
       ),
       drawer: Theme(
           data: Theme.of(context).copyWith(

@@ -109,40 +109,83 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                       keyboardType: TextInputType.text,
                     ),
                     //
-                    const SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        UIBackButton(ontap: (){
-                          detailInformationViewModel.HouseholdBack();
-                        }),
-                        UINextButton(ontap: (){
-                          if (_formKey.currentState!.validate()) {
-                            if(_name.text.length < 5){
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => UINotificationDialog(
-                                      notification: 'Họ và tên chủ hộ quá ngắn dưới 5 ký tự!',
-                                      onpress: (){
-                                        Navigator.of(context, rootNavigator: true).pop();
-                                        if(_address.text.length < 5){
-                                          showDialog(
-                                              context: context,
-                                              builder: (_) => UINotificationDialog(
-                                                  notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
-                                                  onpress:   (){
-                                                    Navigator.of(context, rootNavigator: true).pop();
-                                                    detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                                                  }
-                                              ));
-                                        }
-                                        else {
-                                          detailInformationViewModel.HouseholdNext(_name.text, _address.text);
-                                        }
-                                      }
-                                  ));
-                            }
-                            else if(_address.text.length < 5){
+                    // const SizedBox(height: 20,),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     UIBackButton(ontap: (){
+                    //       detailInformationViewModel.HouseholdBack();
+                    //     }),
+                    //     UINextButton(ontap: (){
+                    //       if (_formKey.currentState!.validate()) {
+                    //         if(_name.text.length < 5){
+                    //           showDialog(
+                    //               context: context,
+                    //               builder: (_) => UINotificationDialog(
+                    //                   notification: 'Họ và tên chủ hộ quá ngắn dưới 5 ký tự!',
+                    //                   onpress: (){
+                    //                     Navigator.of(context, rootNavigator: true).pop();
+                    //                     if(_address.text.length < 5){
+                    //                       showDialog(
+                    //                           context: context,
+                    //                           builder: (_) => UINotificationDialog(
+                    //                               notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
+                    //                               onpress:   (){
+                    //                                 Navigator.of(context, rootNavigator: true).pop();
+                    //                                 detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                    //                               }
+                    //                           ));
+                    //                     }
+                    //                     else {
+                    //                       detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                    //                     }
+                    //                   }
+                    //               ));
+                    //         }
+                    //         else if(_address.text.length < 5){
+                    //           showDialog(
+                    //               context: context,
+                    //               builder: (_) => UINotificationDialog(
+                    //                   notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
+                    //                   onpress:   (){
+                    //                     Navigator.of(context, rootNavigator: true).pop();
+                    //                     detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                    //                   }
+                    //               ));
+                    //         }
+                    //         else {
+                    //           detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                    //         }
+                    //       }
+                    //     }),
+                    //   ],
+                    // )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomSheet: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            UIBackButton(ontap: (){
+              detailInformationViewModel.HouseholdBack();
+            }),
+            UINextButton(ontap: (){
+              if (_formKey.currentState!.validate()) {
+                if(_name.text.length < 5){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                          notification: 'Họ và tên chủ hộ quá ngắn dưới 5 ký tự!',
+                          onpress: (){
+                            Navigator.of(context, rootNavigator: true).pop();
+                            if(_address.text.length < 5){
                               showDialog(
                                   context: context,
                                   builder: (_) => UINotificationDialog(
@@ -157,13 +200,24 @@ class _DetailInformationViewState extends State<DetailInformationView> {
                               detailInformationViewModel.HouseholdNext(_name.text, _address.text);
                             }
                           }
-                        }),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
+                      ));
+                }
+                else if(_address.text.length < 5){
+                  showDialog(
+                      context: context,
+                      builder: (_) => UINotificationDialog(
+                          notification: 'Địa chỉ hộ quá ngắn dưới 5 ký tự!',
+                          onpress:   (){
+                            Navigator.of(context, rootNavigator: true).pop();
+                            detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                          }
+                      ));
+                }
+                else {
+                  detailInformationViewModel.HouseholdNext(_name.text, _address.text);
+                }
+              }
+            }),
           ],
         ),
       ),

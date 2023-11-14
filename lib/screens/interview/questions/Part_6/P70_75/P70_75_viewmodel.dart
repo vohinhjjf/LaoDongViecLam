@@ -27,8 +27,12 @@ class P70_75ViewModel extends BaseViewModel {
     });
   }
 
-  void P70_75Back() async {
-    NavigationServices.instance.navigateToP69(context);
+  void P70_75Back(thongTinThanhVienModel data) async {
+    if(data.c04! < 15){
+      NavigationServices.instance.navigateToP01_04(context);
+    } else {
+      NavigationServices.instance.navigateToP69(context);
+    }
   }
 
   void P70_75Next(thongTinThanhVienModel data) async {
