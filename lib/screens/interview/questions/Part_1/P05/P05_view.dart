@@ -175,7 +175,7 @@ class _P05ViewState extends State<P05View> {
                 showDialog(
                     context: context,
                     builder: (_) =>  UINotificationDialog(
-                      notification: 'Chủ hộ có tuổi dưới 15 mà có con 3 tuổi sống cùng hộ. Có đúng không?',
+                      notification: 'Chủ hộ có tuổi dưới 18 mà có con 3 tuổi sống cùng hộ. Có đúng không?',
                       onpress: (){
                         Navigator.of(context).pop();
                         if(thanhvien.c01! >= 3 && groupValue == 1){

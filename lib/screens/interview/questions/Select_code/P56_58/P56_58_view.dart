@@ -51,8 +51,10 @@ class _P56_58ViewState extends State<P56_58View> {
               list_nganh = p56_58viewModel.list_nganh;
               _congviec.text = p56_58viewModel.thanhvien.c49 ?? "";
               _chucdanh.text = p56_58viewModel.thanhvien.c50A ?? "";
+              _machucdanh.text = p56_58viewModel.thanhvien.c50B ?? "";
               _tencoso.text = p56_58viewModel.thanhvien.c51 ?? "";
               _hoatdong.text = p56_58viewModel.thanhvien.c52A ?? "";
+              _mahoatdong.text = p56_58viewModel.thanhvien.c52B ?? "";
             })
           });
     });
@@ -131,12 +133,44 @@ class _P56_58ViewState extends State<P56_58View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  UITextFormField(
-                    controller: _machucdanh,
-                    readOnly: true,
-                    onTap: (){
-                      _showAddNgheDialog(maNghe_macdinh);
-                    },
+                  Row(
+                    children: [
+                      Flexible(
+                          flex: 5,
+                          child: UITextFormField(
+                            controller: _machucdanh,
+                            readOnly: true,
+                            onTap: (){
+                              _showAddNgheDialog(maNghe_macdinh);
+                            },
+                          )
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: MaterialButton(
+                          height: 58,
+                          onPressed: () {
+                            setState(() {
+                              _machucdanh.text = '';
+                            });
+                          },
+                          padding: const EdgeInsets.all(10),
+                          shape: const RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.6,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0)
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.dangerous,
+                            color: Colors.redAccent,
+                            size: fontGreater,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 20,),
                   //P57
@@ -183,12 +217,44 @@ class _P56_58ViewState extends State<P56_58View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  UITextFormField(
-                    controller: _mahoatdong,
-                    readOnly: true,
-                    onTap: (){
-                      _showAddNganhDialog(maNganh_macdinh);
-                    },
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: UITextFormField(
+                          controller: _mahoatdong,
+                          readOnly: true,
+                          onTap: (){
+                            _showAddNganhDialog(maNganh_macdinh);
+                          },
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: MaterialButton(
+                          height: 58,
+                          onPressed: () {
+                            setState(() {
+                              _mahoatdong.text = '';
+                            });
+                          },
+                          padding: const EdgeInsets.all(10),
+                          shape: const RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.6,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0)
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.dangerous,
+                            color: Colors.redAccent,
+                            size: fontGreater,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   //Button
                   const SizedBox(height: 90,),
@@ -203,7 +269,7 @@ class _P56_58ViewState extends State<P56_58View> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             UIBackButton(ontap: (){
-              p56_58viewModel.P56_58Back();
+              p56_58viewModel.P56_58Back(thanhvien);
             }),
             UINextButton(ontap: (){
               if (_machucdanh.text == "") {
@@ -488,7 +554,13 @@ class _P56_58ViewState extends State<P56_58View> {
           ],
         ),
       ),
-      drawer: const DrawerNavigation(),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 
@@ -497,7 +569,6 @@ class _P56_58ViewState extends State<P56_58View> {
         context: context,
         builder: (context) {
           _text_find_nghe.text = _chucdanh.text;
-          String select = '';
           String nghe = select_nghe;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -579,29 +650,24 @@ class _P56_58ViewState extends State<P56_58View> {
                         ),
                         child: TextField(
                           controller: _text_find_nghe,
-                          onChanged: (value){
-                            setState(() {
-                              select = _text_find_nghe.text;
-                            });
-                          },
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                 borderSide: BorderSide(color: mPrimaryColor)),
                             hintText: "Nhập mã",
-                            hintStyle: const TextStyle(color: Colors.grey, fontSize: fontMedium),
+                            hintStyle: TextStyle(color: Colors.grey, fontSize: fontMedium),
                           ),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p56_58viewModel.queryListNghe(select, nghe, list_nghe).length <= 4) ? p56_58viewModel.queryListNghe(select, nghe, list_nghe).length*60 : 300,
+                        height: (p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length <= 4) ? p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length*60 : 300,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p56_58viewModel.queryListNghe(select, nghe, list_nghe).length,
+                          itemCount: p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -609,7 +675,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    _machucdanh.text = p56_58viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"];
+                                    _machucdanh.text = p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ma"];
                                   });
                                 },
                                 child: Row(
@@ -619,7 +685,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p56_58viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"]} - ${p56_58viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"]}',
+                                        text: '${p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ma"]} - ${p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -630,7 +696,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p56_58viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"], p56_58viewModel.queryListNghe(select, nghe, list_nghe)[index]["MoTa"]);
+                                          _showDetailProduct(p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ten"], p56_58viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["MoTa"]);
                                         }
                                     ),
                                   ],
@@ -654,7 +720,6 @@ class _P56_58ViewState extends State<P56_58View> {
         context: context,
         builder: (context) {
           _text_find_nganh.text = _hoatdong.text;
-          String select = '';
           String nganh = select_nganh;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -679,7 +744,7 @@ class _P56_58ViewState extends State<P56_58View> {
                     Container(
                       alignment: Alignment.center,
                       child: const UIText(
-                        text: "Danh mục Nghề",
+                        text: "Danh mục Ngành",
                         textFontSize: fontLarge,
                         textColor: Colors.blue,
                         isBold: true,
@@ -712,7 +777,11 @@ class _P56_58ViewState extends State<P56_58View> {
                           value: nganh,
                           items: list_maNganh.map((e) => DropdownMenuItem(
                             value: e["MaC1"].toString(),
-                            child: UIText(textColor: Colors.black,text: '${e["MaC1"]}. ${e["TenC1"]}',),
+                            child: UIText(
+                              textColor: Colors.black,
+                              text: '${e["MaC1"]}. ${e["TenC1"]}',
+                              maxLines: 2,
+                            ),
                           )
                           ).toList(),
                           onChanged: (value){
@@ -720,6 +789,7 @@ class _P56_58ViewState extends State<P56_58View> {
                               nganh = value!;
                               maNganh_macdinh = value;
                               _text_find_nganh.text = "";
+                              print("Ngành: $value");
                             });
                           },
                           isExpanded: true,
@@ -736,29 +806,24 @@ class _P56_58ViewState extends State<P56_58View> {
                         ),
                         child: TextField(
                           controller: _text_find_nganh,
-                          onChanged: (value){
-                            setState(() {
-                              select = _text_find_nganh.text;
-                            });
-                          },
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                 borderSide: BorderSide(color: mPrimaryColor)),
                             hintText: "Nhập mã",
-                            hintStyle: const TextStyle(color: Colors.grey, fontSize: fontMedium),
+                            hintStyle: TextStyle(color: Colors.grey, fontSize: fontMedium),
                           ),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p56_58viewModel.queryListNganh(select, nganh, list_nganh).length <= 4) ? p56_58viewModel.queryListNganh(select, nganh, list_nganh).length*60 : 300,
+                        height: (p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length <= 4) ? p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length*60 : 300,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p56_58viewModel.queryListNganh(select, nganh, list_nganh).length,
+                          itemCount: p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -766,7 +831,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    _mahoatdong.text = p56_58viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"];
+                                    _mahoatdong.text = p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ma"];
                                   });
                                 },
                                 child: Row(
@@ -776,7 +841,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p56_58viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"]} - ${p56_58viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"]}',
+                                        text: '${p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ma"]} - ${p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -787,7 +852,7 @@ class _P56_58ViewState extends State<P56_58View> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p56_58viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"], p56_58viewModel.queryListNganh(select, nganh, list_nganh)[index]["MoTa"]);
+                                          _showDetailProduct(p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ten"], p56_58viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["MoTa"]);
                                         }
                                     ),
                                   ],
@@ -1169,8 +1234,8 @@ class _P56_58ViewState extends State<P56_58View> {
     p56_58viewModel.P56_58Next(thongTinThanhVienModel(
         idho: thanhvien.idho,
         idtv: thanhvien.idtv,
-        c50A: _machucdanh.text,
-        c52A: _mahoatdong.text
+        c50B: _machucdanh.text,
+        c52B: _mahoatdong.text
     ));
   }
 }

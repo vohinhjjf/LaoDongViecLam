@@ -80,7 +80,7 @@ class _P35ViewState extends State<P35View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -111,7 +111,7 @@ class _P35ViewState extends State<P35View> {
                         title: UIText(
                           text: _lydo[index].toString(),
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                           isBold: false,
                         ),
@@ -139,12 +139,12 @@ class _P35ViewState extends State<P35View> {
                       );
                     },
                   ),
-                  const SizedBox(height: 10,),
                   Visibility(
                     visible: p35 == 16 ? true : false,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 10,),
                         const UIText(
                           text: "Lý do khác",
                           textColor: Colors.black,

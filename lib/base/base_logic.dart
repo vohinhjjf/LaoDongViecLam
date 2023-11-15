@@ -22,7 +22,7 @@ class BaseLogic {
     }
     return mQuestion;
   }
-  
+
   String getMember(thongTinThanhVienModel thongTinTV){
     String question = "";
     if (thongTinTV.c02 != null && thongTinTV.c02 == 1) {
@@ -45,41 +45,33 @@ class BaseLogic {
     return question;
   }
 
-  //=============== PRocedure MEMBER ================//
+  //=============== Procedure MEMBER ================//
   procedureMember(thongTinThanhVienModel thongTinTV) {
     mQuestion = UIDescribes.QUESTION_P01;
-    ////LogUtils.warn("ValidateProcedure", "Start");
-    // Question require
     if (thongTinTV.c00 == null) {
-      ////LogUtils.warn("ProcedureMember: " + "C00");
       mQuestion = UIDescribes.QUESTION_P00;
       return false;
     }
 
     if (thongTinTV.c01 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C01");
       mQuestion = UIDescribes.QUESTION_P01;
       return false;
     } else if (thongTinTV.c01 != null && thongTinTV.c01 == 8 && thongTinTV.c01K == null) {
-      //LogUtils.warn("ProcedureMember: " + "C01K");
       mQuestion = UIDescribes.QUESTION_P01;
       return false;
     }
 
     if (thongTinTV.c02 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C02");
       mQuestion = UIDescribes.QUESTION_P02;
       return false;
     }
 
     if (thongTinTV.c03B == null || thongTinTV.c03A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C03");
       mQuestion = UIDescribes.QUESTION_P03;
       return false;
     }
 
     if (thongTinTV.c04 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C04");
       mQuestion = UIDescribes.QUESTION_P04;
       return false;
     }
@@ -87,24 +79,15 @@ class BaseLogic {
     if (thongTinTV.c04 != null && thongTinTV.c04! >= 15) {
       return checkC05(thongTinTV);
     } else {
-      return checkKT9(thongTinTV);
+      // return checkKT9(thongTinTV);
+      mQuestion = UIDescribes.QUESTION_P04;
+      return true;
     }
-    //       return checkKT1(memberDTO);
   }
-
-//    bool checkKT1(thongTinThanhVienModel thongTinTV) {
-//        if (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 5) {
-//            return checkC05(thongTinTV);
-//        } else {
-//            mQuestion = UIDescribes.QUESTION_P04;
-//            return true;
-//        }
-//    }
 
   bool checkC05(thongTinThanhVienModel thongTinTV) {
     if (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 25 &&
         (thongTinTV.c04 ?? 0) <= 49 && thongTinTV.c04A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C04A");
       mQuestion = UIDescribes.QUESTION_P05;
       return false;
     }
@@ -114,11 +97,9 @@ class BaseLogic {
   bool checkC06(thongTinThanhVienModel thongTinTV) {
     if (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) {
       if (thongTinTV.c05 == null) {
-        //LogUtils.warn("ProcedureMember: " + "C05");
         mQuestion = UIDescribes.QUESTION_P06;
         return false;
-      } else if (thongTinTV.c05 != null && thongTinTV.c05 == 2 && thongTinTV.c06 == null) {
-        //LogUtils.warn("ProcedureMember: " + "C06");
+      } else if (thongTinTV.c05 != null && thongTinTV.c05 == 2 && thongTinTV.c06B == null) {
         mQuestion = UIDescribes.QUESTION_P07;
         return false;
       }
@@ -135,7 +116,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c07 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C07");
       mQuestion = UIDescribes.QUESTION_P08;
       return false;
     }
@@ -146,7 +126,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c08 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C08");
       mQuestion = UIDescribes.QUESTION_P09;
       return false;
     }
@@ -163,7 +142,6 @@ class BaseLogic {
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         (thongTinTV.c09 == 1 && thongTinTV.c09A == null) ||
         (thongTinTV.c09 == 2 && thongTinTV.c09B == null)) {
-      //LogUtils.warn("ProcedureMember: " + "C09");
       mQuestion = UIDescribes.QUESTION_P10;
       return false;
     }
@@ -178,7 +156,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c09A != null && thongTinTV.c10 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C10");
       mQuestion = UIDescribes.QUESTION_P11;
       return false;
     }
@@ -189,7 +166,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c10M == null) {
-      //LogUtils.warn("ProcedureMember: " + "C10_M");
       mQuestion = UIDescribes.QUESTION_P12;
       return false;
     }
@@ -198,13 +174,11 @@ class BaseLogic {
 
   bool checkC11(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
-        (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 5) &&
+        (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c11 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C11");
       mQuestion = UIDescribes.QUESTION_P13;
       return false;
     }
-//            return checkKT5(thongTinTV);
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15 && (thongTinTV.c04 ?? 0) <= 24) &&
         (thongTinTV.c11 != null && thongTinTV.c11 == 2)) {
       return checkC12(thongTinTV);
@@ -217,7 +191,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15 && (thongTinTV.c04 ?? 0) <= 24) &&
         thongTinTV.c12 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C12");
       mQuestion = UIDescribes.QUESTION_P14;
       return false;
     }
@@ -228,11 +201,9 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15 && (thongTinTV.c04 ?? 0) <= 24) &&
         thongTinTV.c13 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C13");
       mQuestion = UIDescribes.QUESTION_P15;
       return false;
     }
-//        return checkKT7(thongTinTV);
     if (thongTinTV.c13 == 1) {
       return checkC16(thongTinTV);
     } else {
@@ -246,7 +217,6 @@ class BaseLogic {
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 18)) {
       if (thongTinTV.c14A == null || thongTinTV.c14B == null || thongTinTV.c14C == null ||
           thongTinTV.c14D == null || thongTinTV.c14E == null || thongTinTV.c14F == null) {
-        //LogUtils.warn("ProcedureMember: " + "C14");
         mQuestion = UIDescribes.QUESTION_P16;
         return false;
       }
@@ -254,7 +224,6 @@ class BaseLogic {
         (thongTinTV.c13 != null && (thongTinTV.c13 ?? 0) >= 2) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15 && (thongTinTV.c04 ?? 0) < 18)) {
       if (thongTinTV.c14A == null || thongTinTV.c14B == null) {
-        //LogUtils.warn("ProcedureMember: " + "C14");
         mQuestion = UIDescribes.QUESTION_P16;
         return false;
       }
@@ -278,7 +247,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c15A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C15A");
       mQuestion = UIDescribes.QUESTION_P17;
       return false;
     }
@@ -289,7 +257,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c15C == null) {
-      //LogUtils.warn("ProcedureMember: " + "C15C");
       mQuestion = UIDescribes.QUESTION_P17;
       return false;
     }
@@ -300,7 +267,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         (thongTinTV.c16A == null || thongTinTV.c16B == null || thongTinTV.c16C == null)) {
-      //LogUtils.warn("ProcedureMember: " + "C16");
       mQuestion = UIDescribes.QUESTION_P18;
       return false;
     }
@@ -311,7 +277,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c17 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C17");
       mQuestion = UIDescribes.QUESTION_P19;
       return false;
     }
@@ -327,7 +292,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c18 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C18");
       mQuestion = UIDescribes.QUESTION_P20;
       return false;
     }
@@ -342,7 +306,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c19 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C19");
       mQuestion = UIDescribes.QUESTION_P21;
       return false;
     }
@@ -357,7 +320,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c20 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C20");
       mQuestion = UIDescribes.QUESTION_P22;
       return false;
     }
@@ -372,7 +334,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c21 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C21");
       mQuestion = UIDescribes.QUESTION_P23;
       return false;
     }
@@ -389,7 +350,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c22 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C22");
       mQuestion = UIDescribes.QUESTION_P24;
       return false;
     }
@@ -404,7 +364,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c23 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C23");
       mQuestion = UIDescribes.QUESTION_P25;
       return false;
     }
@@ -419,7 +378,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c24 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C24");
       mQuestion = UIDescribes.QUESTION_P26;
       return false;
     }
@@ -434,17 +392,13 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c25 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C25");
       mQuestion = UIDescribes.QUESTION_P27;
       return false;
     }
 
     if (thongTinTV.c25 != null && thongTinTV.c25 == 4) {
-      mQuestion = UIDescribes.QUESTION_P27;
       return checkC34(thongTinTV);
     } else {
-      //LogUtils.warn("ProcedureMember: " + "C25");
-      mQuestion = UIDescribes.QUESTION_P27;
       return checkC26(thongTinTV);
     }
   }
@@ -453,7 +407,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c26 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C26");
       mQuestion = UIDescribes.QUESTION_P28;
       return false;
     }
@@ -468,7 +421,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c27 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C27");
       mQuestion = UIDescribes.QUESTION_P29;
       return false;
     }
@@ -483,7 +435,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c28 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C28");
       mQuestion = UIDescribes.QUESTION_P30;
       return false;
     }
@@ -498,7 +449,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c29 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C29");
       mQuestion = UIDescribes.QUESTION_P31;
       return false;
     }
@@ -506,8 +456,6 @@ class BaseLogic {
     if (thongTinTV.c29 != null && thongTinTV.c29 == 1) {
       return checkC30_New(thongTinTV);
     } else {
-      //LogUtils.warn("ProcedureMember: " + "C29");
-      mQuestion = UIDescribes.QUESTION_P31;
       return checkC30(thongTinTV);
     }
   }
@@ -516,7 +464,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c30 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C30");
       mQuestion = UIDescribes.QUESTION_P32;
       return false;
     }
@@ -534,7 +481,6 @@ class BaseLogic {
         (thongTinTV.c30_A == null || thongTinTV.c30_B == null || thongTinTV.c30_C == null ||
             thongTinTV.c30_D == null || thongTinTV.c30_E == null || thongTinTV.c30_F == null ||
             thongTinTV.c30_G == null || thongTinTV.c30_H == null || thongTinTV.c30_I == null)) {
-      //LogUtils.warn("ProcedureMember: " + "C30_New");
       mQuestion = UIDescribes.QUESTION_P33;
       return false;
     }
@@ -545,7 +491,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c30A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C30A");
       mQuestion = UIDescribes.QUESTION_P34;
       return false;
     }
@@ -561,7 +506,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c31 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C31");
       mQuestion = UIDescribes.QUESTION_P35;
       return false;
     }
@@ -572,7 +516,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c32 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C32");
       mQuestion = UIDescribes.QUESTION_P36;
       return false;
     }
@@ -583,19 +526,10 @@ class BaseLogic {
     }
   }
 
-//    bool checkKT6(thongTinThanhVienModel thongTinTV) {
-//        if (((thongTinTV.c29 != null && thongTinTV.c29 == 1) || (thongTinTV.c30 != null && thongTinTV.c30 == 1)) && thongTinTV.c32 == 1) {
-//            return checkC33(thongTinTV);
-//        } else {
-//            return checkC62A(thongTinTV);
-//        }
-//    }
-
   bool checkC33(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c33 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C33");
       mQuestion = UIDescribes.QUESTION_P37;
       return false;
     }
@@ -606,7 +540,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c33A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C33A");
       mQuestion = UIDescribes.QUESTION_P38;
       return false;
     }
@@ -618,7 +551,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c34 == null || thongTinTV.c34 == "") {
-      //LogUtils.warn("ProcedureMember: " + "C34");
       mQuestion = UIDescribes.QUESTION_P39;
       return false;
     }
@@ -629,7 +561,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c35A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C35A");
       mQuestion = UIDescribes.QUESTION_P40;
       return false;
     }
@@ -640,7 +571,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c36 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C36");
       mQuestion = UIDescribes.QUESTION_P41;
       return false;
     }
@@ -649,7 +579,6 @@ class BaseLogic {
 
   bool checkC37A(thongTinThanhVienModel thongTinTV) {
     if (thongTinTV.c37A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C37A");
       mQuestion = UIDescribes.QUESTION_P42;
       return false;
     }
@@ -660,7 +589,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c38 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C38");
       mQuestion = UIDescribes.QUESTION_P43;
       return false;
     }
@@ -676,7 +604,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c39 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C39");
       mQuestion = UIDescribes.QUESTION_P44;
       return false;
     }
@@ -687,7 +614,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c40 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C40");
       mQuestion = UIDescribes.QUESTION_P45;
       return false;
     }
@@ -702,7 +628,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c40A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C40A");
       mQuestion = UIDescribes.QUESTION_P46;
       return false;
     }
@@ -713,19 +638,15 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c41 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C41");
       mQuestion = UIDescribes.QUESTION_P47;
       return false;
     }
-    //LogUtils.warn("ProcedureMember: " + "C41");
-    mQuestion = UIDescribes.QUESTION_P54;
     return checkKT7(thongTinTV);
   }
 
   bool checkKT7(thongTinThanhVienModel thongTinTV) {
     if (thongTinTV.c41 != null && thongTinTV.c41 == 1) {
       if (thongTinTV.c42 == null) {
-        //LogUtils.warn("ProcedureMember: " + "C42");
         mQuestion = UIDescribes.QUESTION_P48;
         return false;
       } else {
@@ -739,10 +660,9 @@ class BaseLogic {
   bool checkC42(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
-        thongTinTV.c42 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C42");
-      mQuestion = UIDescribes.QUESTION_P48;
-      return false;
+        thongTinTV.c42 == null) {;
+    mQuestion = UIDescribes.QUESTION_P48;
+    return false;
     }
     return checkC43(thongTinTV);
   }
@@ -751,7 +671,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c43 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C43");
       mQuestion = UIDescribes.QUESTION_P49;
       return false;
     }
@@ -766,7 +685,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c44 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C44");
       mQuestion = UIDescribes.QUESTION_P50;
       return false;
     }
@@ -777,7 +695,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c45 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C45");
       mQuestion = UIDescribes.QUESTION_P51;
       return false;
     }
@@ -792,7 +709,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c46 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C46");
       mQuestion = UIDescribes.QUESTION_P52;
       return false;
     }
@@ -803,7 +719,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c47 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C47");
       mQuestion = UIDescribes.QUESTION_P53;
       return false;
     }
@@ -814,7 +729,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c48 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C48");
       mQuestion = UIDescribes.QUESTION_P54;
       return false;
     }
@@ -829,7 +743,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c49 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C49");
       mQuestion = UIDescribes.QUESTION_P55;
       return false;
     }
@@ -840,7 +753,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c50A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C50A");
       mQuestion = UIDescribes.QUESTION_P56;
       return false;
     }
@@ -851,7 +763,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c51 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C51");
       mQuestion = UIDescribes.QUESTION_P57;
       return false;
     }
@@ -862,7 +773,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c52A == null) {
-      //LogUtils.warn("ProcedureMember: " + "C52A");
       mQuestion = UIDescribes.QUESTION_P58;
       return false;
     }
@@ -873,7 +783,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c53 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C53");
       mQuestion = UIDescribes.QUESTION_P59;
       return false;
     }
@@ -884,7 +793,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c54 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C54");
       mQuestion = UIDescribes.QUESTION_P60;
       return false;
     }
@@ -903,7 +811,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c55 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C55");
       mQuestion = UIDescribes.QUESTION_P61;
       return false;
     }
@@ -914,13 +821,9 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c56 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C56");
       mQuestion = UIDescribes.QUESTION_P62;
       return false;
     }
-//        //LogUtils.warn("ProcedureMember: " + "C56");
-//        mQuestion = UIDescribes.QUESTION_C56;
-//        return true;
     if (thongTinTV.c56 != null && thongTinTV.c56 == 2) {
       return checkC59(thongTinTV);
     } else {
@@ -932,7 +835,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c57 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C57");
       mQuestion = UIDescribes.QUESTION_P63;
       return false;
     }
@@ -943,7 +845,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c58 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C58");
       mQuestion = UIDescribes.QUESTION_P64;
       return false;
     }
@@ -954,7 +855,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c48 != null && thongTinTV.c59 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C59");
       mQuestion = UIDescribes.QUESTION_P65;
       return false;
     } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
@@ -965,7 +865,6 @@ class BaseLogic {
         sogio2CV = thongTinTV.c40! + thongTinTV.c53!;
         tongC59 = sogio2CV + thongTinTV.c57!;
         if (thongTinTV.c59 != tongC59) {
-          //LogUtils.warn("ProcedureMember: " + "C59");
           mQuestion = UIDescribes.QUESTION_P65;
           return false;
         }
@@ -974,7 +873,6 @@ class BaseLogic {
         && thongTinTV.c56 != null && thongTinTV.c56 == 2
         && thongTinTV.c40 != null && thongTinTV.c59 != null && thongTinTV.c53 != null
         && thongTinTV.c59 != (thongTinTV.c40! + thongTinTV.c53!)) {
-      //LogUtils.warn("ProcedureMember: " + "C59");
       mQuestion = UIDescribes.QUESTION_P65;
       return false;
     }
@@ -985,7 +883,6 @@ class BaseLogic {
     if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
         (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c48 != null && thongTinTV.c60 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C60");
       mQuestion = UIDescribes.QUESTION_P66;
       return false;
     } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
@@ -996,8 +893,7 @@ class BaseLogic {
         sotien2CV = thongTinTV.c42! + thongTinTV.c55!;
         tongC60 = sotien2CV + thongTinTV.c58!;
         if (thongTinTV.c60 == tongC60) {
-          //LogUtils.warn("ProcedureMember: " + "C60");
-          mQuestion = UIDescribes.QUESTION_P73;
+          mQuestion = UIDescribes.QUESTION_P66;
           return false;
         }
       }
@@ -1005,8 +901,7 @@ class BaseLogic {
         && thongTinTV.c56 != null && thongTinTV.c56 == 2
         && thongTinTV.c60 != null && thongTinTV.c55 != null
         && thongTinTV.c60 != (thongTinTV.c42! + thongTinTV.c55!)) {
-      //LogUtils.warn("ProcedureMember: " + "C60");
-      mQuestion = UIDescribes.QUESTION_P73;
+      mQuestion = UIDescribes.QUESTION_P66;
       return false;
     }
     return checkC61(thongTinTV);
@@ -1015,7 +910,6 @@ class BaseLogic {
   bool checkC61(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c61 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C61");
       mQuestion = UIDescribes.QUESTION_P67;
       return false;
     }
@@ -1029,7 +923,6 @@ class BaseLogic {
   bool checkC62(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c62 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P68;
       return false;
     }
@@ -1039,7 +932,6 @@ class BaseLogic {
   bool checkC63(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c63 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P69;
       return false;
     }
@@ -1057,7 +949,6 @@ class BaseLogic {
   bool checkC64(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c64 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P70;
       return false;
     }
@@ -1067,7 +958,6 @@ class BaseLogic {
   bool checkC65(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c65 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P71;
       return false;
     }
@@ -1076,7 +966,6 @@ class BaseLogic {
   bool checkC66(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c66 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P72;
       return false;
     }
@@ -1085,17 +974,15 @@ class BaseLogic {
   bool checkC67(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c67 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P73;
       return false;
     }
     return checkC68(thongTinTV);
   }
-  
+
   bool checkC68(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c68 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P74;
       return false;
     }
@@ -1105,11 +992,9 @@ class BaseLogic {
   bool checkC69(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
         thongTinTV.c69 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62");
       mQuestion = UIDescribes.QUESTION_P75;
       return false;
     }
-    //LogUtils.warn("ProcedureMember: " + "C62");
     mQuestion = UIDescribes.QUESTION_P75;
     return true;
   }
@@ -1118,7 +1003,6 @@ class BaseLogic {
 
   bool checkC62_M1(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M1 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M1");
       mQuestion = UIDescribes.QUESTION_P76;
       return false;
     }
@@ -1127,7 +1011,6 @@ class BaseLogic {
 
   bool checkC62_M2(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M2 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M2");
       mQuestion = UIDescribes.QUESTION_P77;
       return false;
     }
@@ -1142,7 +1025,6 @@ class BaseLogic {
     if (doiSongHo.c62_M3A == null || doiSongHo.c62_M3B == null || doiSongHo.c62_M3C == null ||
         doiSongHo.c62_M3D == null || doiSongHo.c62_M3E == null || doiSongHo.c62_M3F == null ||
         doiSongHo.c62_M3G == null || doiSongHo.c62_M3H == null || doiSongHo.c62_M3I == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M3");
       mQuestion = UIDescribes.QUESTION_P78;
       return false;
     }
@@ -1151,7 +1033,6 @@ class BaseLogic {
 
   bool checkC62_M4(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M4 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M4");
       mQuestion = UIDescribes.QUESTION_P79;
       return false;
     }
@@ -1166,7 +1047,6 @@ class BaseLogic {
     if (doiSongHo.c62_M5A == null || doiSongHo.c62_M5B == null || doiSongHo.c62_M5C == null ||
         doiSongHo.c62_M5D == null || doiSongHo.c62_M5E == null || doiSongHo.c62_M5F == null ||
         doiSongHo.c62_M5G == null || doiSongHo.c62_M5H == null || doiSongHo.c62_M5I == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M5");
       mQuestion = UIDescribes.QUESTION_P80;
       return false;
     }
@@ -1175,7 +1055,6 @@ class BaseLogic {
 
   bool checkC62_M6(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M6 == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M6");
       mQuestion = UIDescribes.QUESTION_P81;
       return false;
     }
@@ -1189,7 +1068,6 @@ class BaseLogic {
   bool checkC62_M7(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M7A == null || doiSongHo.c62_M7B == null || doiSongHo.c62_M7C == null ||
         doiSongHo.c62_M7D == null || doiSongHo.c62_M7E == null || doiSongHo.c62_M7F == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M7");
       mQuestion = UIDescribes.QUESTION_P82;
       return false;
     }
@@ -1199,7 +1077,6 @@ class BaseLogic {
   bool checkC62_M8(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M8A == null || doiSongHo.c62_M8B == null || doiSongHo.c62_M8C == null ||
         doiSongHo.c62_M8D == null || doiSongHo.c62_M8E == null || doiSongHo.c62_M8F == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M8");
       mQuestion = UIDescribes.QUESTION_P83;
       return false;
     }
@@ -1209,12 +1086,10 @@ class BaseLogic {
   bool checkC62_M9(DoiSongHoModel doiSongHo) {
     if (doiSongHo.c62_M9A == null || doiSongHo.c62_M9B == null || doiSongHo.c62_M9C == null ||
         doiSongHo.c62_M9D == null || doiSongHo.c62_M9E == null) {
-      //LogUtils.warn("ProcedureMember: " + "C62_M9");
       mQuestion = UIDescribes.QUESTION_P84;
       return false;
     }
     mQuestion = UIDescribes.QUESTION_P84;
     return true;
   }
-
 }

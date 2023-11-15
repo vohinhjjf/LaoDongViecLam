@@ -68,7 +68,7 @@ class _P38ViewState extends State<P38View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -97,7 +97,7 @@ class _P38ViewState extends State<P38View> {
                       title: UIText(
                         text: _lydo[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -125,12 +125,12 @@ class _P38ViewState extends State<P38View> {
                     );
                   },
                 ),
-                const SizedBox(height: 10,),
                 Visibility(
                   visible: p38 == 6 ? true : false,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 10,),
                       const UIText(
                         text: "Lý do khác",
                         textColor: Colors.black,

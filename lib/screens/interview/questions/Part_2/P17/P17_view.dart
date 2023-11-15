@@ -68,7 +68,8 @@ class _P17ViewState extends State<P17View> {
     return Scaffold(
       appBar: AppBar(
         actions: const [
-          //UIGPSButton()
+          UIGPSButton(),
+          UIEXITButton()
         ],
         titleSpacing: 0,
         backgroundColor: Colors.white,
@@ -106,7 +107,7 @@ class _P17ViewState extends State<P17View> {
                     isBold: true,
                     textFontSize:fontLarge,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   UITextFormField(
                     controller: _nganh,
                     validator: (value){
@@ -130,7 +131,7 @@ class _P17ViewState extends State<P17View> {
                     isBold: true,
                     textFontSize:fontLarge,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   UITextFormField(
                     controller: _nam,
                     validator: (value){

@@ -324,7 +324,14 @@ class Body extends State<ProgressView>{
           ],
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
+        ),
+        Container(
+          height: 1,
+          color: Colors.grey.shade300,
+        ),
+        const SizedBox(
+          height: 10,
         ),
       ],
     );

@@ -25,7 +25,7 @@ class _P27ViewState extends State<P27View> {
   int p20 =0,p21 =0,p27 =0;
   bool check_draw = true;
 
-  var _nganh = [
+  final _nganh = [
     "TRỒNG TRỌT/CHĂN NUÔI",
     "THỦY SẢN",
     "LÂM NGHIỆP",

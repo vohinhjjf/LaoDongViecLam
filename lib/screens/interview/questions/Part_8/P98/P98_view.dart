@@ -62,7 +62,7 @@ class _P98ViewState extends State<P98View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.start,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -88,7 +88,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "a. Ngân hàng thương mại",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -216,7 +216,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "b. Ngân hàng Hợp tác xã Việt Nam",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -344,7 +344,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "c. Ngân hàng Chính sách xã hội",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -472,7 +472,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "d. Chi nhánh ngân hàng nước ngoài",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -600,7 +600,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "e. Quỹ tín dụng nhân dân",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -728,7 +728,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "f. Tổ chức tín dụng phi ngân hàng",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -856,7 +856,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "g. Tổ chức tài chính vi mô",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -984,7 +984,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "h. Công ty trung gian thanh toán",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -1112,7 +1112,7 @@ class _P98ViewState extends State<P98View> {
                 const UIText(
                   text: "i. Công ty bảo hiểm",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(

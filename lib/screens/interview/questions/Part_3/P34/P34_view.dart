@@ -57,7 +57,7 @@ class _P34ViewState extends State<P34View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -81,7 +81,7 @@ class _P34ViewState extends State<P34View> {
                   title: const UIText(
                     text: "Có",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -110,7 +110,7 @@ class _P34ViewState extends State<P34View> {
                   title: const UIText(
                     text: "Không",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(

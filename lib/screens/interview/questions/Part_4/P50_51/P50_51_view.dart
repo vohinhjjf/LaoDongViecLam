@@ -69,7 +69,7 @@ class _P50_51ViewState extends State<P50_51View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -102,7 +102,7 @@ class _P50_51ViewState extends State<P50_51View> {
                               title: UIText(
                                 text: _hopdong[index].toString(),
                                 textColor: Colors.black,
-                                textFontSize: fontLarge,
+                                textFontSize: fontMedium,
                                 textAlign: TextAlign.start,
                                 isBold: false,
                               ),
@@ -130,7 +130,7 @@ class _P50_51ViewState extends State<P50_51View> {
                             );
                           },
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                       ],
                     )
                 ),
@@ -147,7 +147,7 @@ class _P50_51ViewState extends State<P50_51View> {
                   title: const UIText(
                     text: "Có",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -176,7 +176,7 @@ class _P50_51ViewState extends State<P50_51View> {
                   title: const UIText(
                     text: "Không",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(

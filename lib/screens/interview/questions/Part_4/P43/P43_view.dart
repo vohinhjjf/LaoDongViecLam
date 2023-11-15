@@ -73,7 +73,7 @@ class _P43ViewState extends State<P43View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -95,14 +95,14 @@ class _P43ViewState extends State<P43View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _loaihinh.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: UIText(
                         text: _loaihinh[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),

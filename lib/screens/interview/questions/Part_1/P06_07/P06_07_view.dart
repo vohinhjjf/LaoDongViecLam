@@ -25,6 +25,34 @@ class _P06_07ViewState extends State<P06_07View> {
   String nation = "Chọn mã quốc gia";
   bool check_draw = true;
 
+  String nameNation(String nation){
+    String name = "Chọn mã quốc gia";
+    switch (nation){
+      case "KHM": name = "Vương quốc Campuchia";break;
+      case "IDN": name = "Cộng hòa Indonesia";break;
+      case "LAO": name = "Cộng hòa Dân chủ Nhân dân Lào";break;
+      case "MYS": name = "Malaysia";break;
+      case "MMR": name = "Liên bang Mianma";break;
+      case "PHL": name = "Cộng hòa Philippin";break;
+      case "SGP": name = "Cộng hòa Singapo";break;
+      case "THA": name = "Thái Lan";break;
+      case "DZA": name = "Các nước Trung Đông";break;
+      case "CHN": name = "Cộng hòa Nhân dân Trung Hoa";break;
+      case "HKG": name = "Hồng Kông";break;
+      case "IND": name = "Cộng hòa Ấn Độ";break;
+      case "JPN": name = "Nhật Bản";break;
+      case "KOR": name = "Hàn Quốc";break;
+      case "TWN": name = "Đài Loan";break;
+      case "BGR": name = "Các nước Đông Âu";break;
+      case "SWE": name = "Các nước Bắc Âu";break;
+      case "USA": name = "Hợp chủng quốc Hoa Kỳ";break;
+      case "CAN": name = "Canada";break;
+      case "AUS": name = "Australia";break;
+      case "AFG": name = "Các nước khác";break;
+    }
+    return name;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -37,8 +65,8 @@ class _P06_07ViewState extends State<P06_07View> {
             setState(() {
               thanhvien = p06_07viewmodel.thanhvien;
               groupValue = p06_07viewmodel.thanhvien.c05 ?? 0;
-              nation = (p06_07viewmodel.thanhvien.c06 == null || p06_07viewmodel.thanhvien.c06 == '')
-                  ? "Chọn mã quốc gia" : p06_07viewmodel.thanhvien.c06!;
+              nation = (p06_07viewmodel.thanhvien.c06B == null || p06_07viewmodel.thanhvien.c06B == '')
+                  ? "Chọn mã quốc gia" : p06_07viewmodel.thanhvien.c06B!;
             })
           });
     });
@@ -170,8 +198,6 @@ class _P06_07ViewState extends State<P06_07View> {
                           onChanged: (value) {
                             setState(() {
                               nation = value!;
-                              print(value.split(' - ')[0]);
-                              print(value.split(' - ')[1]);
                             });
                           },
                           items: const [ //add items in the dropdown
@@ -296,22 +322,41 @@ class _P06_07ViewState extends State<P06_07View> {
                     builder: (_) => const UIWarningDialog(waring: 'Mã quốc gia nhập vào chưa đúng!',)
                 );
               }else {
-                p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
-                  idho: thanhvien.idho,
-                  idtv: thanhvien.idtv,
-                  thangDT: thanhvien.thangDT,
-                  namDT: thanhvien.namDT,
-                  c00: thanhvien.c00,
-                  c01: thanhvien.c01,
-                  c01K: thanhvien.c01K,
-                  c02: thanhvien.c02,
-                  c03A: thanhvien.c03A,
-                  c03B: thanhvien.c03B,
-                  c04: thanhvien.c04,
-                  c04A: thanhvien.c04A,
-                  c05: groupValue,
-                  c06: groupValue == 2 ? nation : '',
-                ));
+                if(groupValue == 2) {
+                  p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c00: thanhvien.c00,
+                    c01: thanhvien.c01,
+                    c01K: thanhvien.c01K,
+                    c02: thanhvien.c02,
+                    c03A: thanhvien.c03A,
+                    c03B: thanhvien.c03B,
+                    c04: thanhvien.c04,
+                    c04A: thanhvien.c04A,
+                    c05: groupValue,
+                    c06A: nameNation(nation),
+                    c06B: nation,
+                  ));
+                } else {
+                  p06_07viewmodel.P06_07Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    thangDT: thanhvien.thangDT,
+                    namDT: thanhvien.namDT,
+                    c00: thanhvien.c00,
+                    c01: thanhvien.c01,
+                    c01K: thanhvien.c01K,
+                    c02: thanhvien.c02,
+                    c03A: thanhvien.c03A,
+                    c03B: thanhvien.c03B,
+                    c04: thanhvien.c04,
+                    c04A: thanhvien.c04A,
+                    c05: groupValue,
+                  ));
+                }
               }
             }),
           ],

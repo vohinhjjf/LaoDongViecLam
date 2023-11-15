@@ -143,7 +143,7 @@ class _P20_22ViewState extends State<P20_22View> {
                     visible: p20 == 2,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P21. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
@@ -219,7 +219,7 @@ class _P20_22ViewState extends State<P20_22View> {
                     visible: p20 == 2 && p21 == 2,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P22. Mặc dù không làm việc trong 7 ngày qua, nhưng"
                               " có phải ${BaseLogic.getInstance().getMember(thanhvien)} ",

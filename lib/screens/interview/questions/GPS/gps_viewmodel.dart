@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:lao_dong_viec_lam/models/bangkeThangDT_model.dart';
 
 import '../../../../base/base_logic.dart';
 import '../../../../base/base_viewmodel.dart';
@@ -55,20 +56,7 @@ class GPSViewModel extends BaseViewModel {
         };
       }
       if(index == 0) {
-        await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
-          if(value.any((e) => e.idhO_BKE == idho)){
-            await _executeDatabase.updateTrangThai(9, 0, idho, month, year);
-          } else {
-            await _executeDatabase.setBangKeThangDTModel([{
-              'idhO_BKE': idho,
-              'namDT': year,
-              'thangDT': month,
-              'trangThai': 9,
-              'sync' : 0
-            }]);
-          }
-        });
-        NavigationServices.instance.navigateToInterviewStatus(context);
+        NavigationServices.instance.navigateToFinish(context);
       }
     });
   }

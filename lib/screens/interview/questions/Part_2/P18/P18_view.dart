@@ -84,29 +84,30 @@ class _P18ViewState extends State<P18View> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     SizedBox(
-                      width: 45,
+                      width: 50,
                       child: UIText(
                         text: "Có",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.center,
+                        isBold: true,
                       ),
                     ),
                     SizedBox(width: 10,),
                     SizedBox(
-                      width: 45,
+                      width: 50,
                       child: UIText(
                         text: "Không",
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.center,
+                        isBold: true,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10,),
                 Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -137,7 +138,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 12,),
+                          const SizedBox(width: 15,),
                           RoundCheckBox(
                             isChecked: p18a == 2 ? true : false,
                             onTap: (selected) {
@@ -159,9 +160,8 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                // const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -192,7 +192,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 12,),
+                          const SizedBox(width: 15,),
                           RoundCheckBox(
                             isChecked: p18b == 2 ? true : false,
                             onTap: (selected) {
@@ -214,9 +214,8 @@ class _P18ViewState extends State<P18View> {
                     ],
                   ),
                 ),
-                // const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -247,7 +246,7 @@ class _P18ViewState extends State<P18View> {
                             uncheckedColor: Colors.white,
                             uncheckedWidget: Container(),
                           ),
-                          const SizedBox(width: 12,),
+                          const SizedBox(width: 15,),
                           RoundCheckBox(
                             isChecked: p18c == 2 ? true : false,
                             onTap: (selected) {

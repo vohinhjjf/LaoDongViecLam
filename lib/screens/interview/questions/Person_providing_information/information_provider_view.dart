@@ -80,7 +80,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                     const UIText(
                       text: "Chọn người cung cấp thông tin",
                       textColor: Colors.black,
-                      textFontSize: fontGreater,
+                      textFontSize: fontLarge,
                       textAlign: TextAlign.start,
                       isBold: false,
                     ),
@@ -128,7 +128,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                       child: const UIText(
                         text: "Tên người cung cấp thông tin",
                         textColor: Colors.black,
-                        textFontSize: fontGreater,
+                        textFontSize: fontLarge,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -158,7 +158,7 @@ class _InformationProviderViewState extends State<InformationProviderView> {
                     const UIText(
                       text: "Xin ông bà cho biết số điện thoại cố định/di động của hộ:",
                       textColor: Colors.black,
-                      textFontSize:fontGreater,
+                      textFontSize:fontLarge,
                     ),
                     const SizedBox(height: 10,),
                     UITextFormField(

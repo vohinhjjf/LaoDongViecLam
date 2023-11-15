@@ -64,7 +64,7 @@ class _P84ViewState extends State<P84View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -95,7 +95,7 @@ class _P84ViewState extends State<P84View> {
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -105,7 +105,7 @@ class _P84ViewState extends State<P84View> {
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -113,7 +113,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //a
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -122,7 +122,7 @@ class _P84ViewState extends State<P84View> {
                             child: UIText(
                               text: "Các chương trình, chính sách chung của Quốc gia",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -143,7 +143,7 @@ class _P84ViewState extends State<P84View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -166,7 +166,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -175,7 +175,7 @@ class _P84ViewState extends State<P84View> {
                             child: UIText(
                               text: "Các chương trình, chính sách của địa phương",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -196,7 +196,7 @@ class _P84ViewState extends State<P84View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -219,7 +219,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -228,7 +228,7 @@ class _P84ViewState extends State<P84View> {
                             child: UIText(
                               text: "Các hoạt động từ thiện của các tổ chức và cá nhân khác",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -249,7 +249,7 @@ class _P84ViewState extends State<P84View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -272,7 +272,7 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -281,7 +281,7 @@ class _P84ViewState extends State<P84View> {
                             child: UIText(
                               text: "Họ hàng, người thân",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -302,7 +302,7 @@ class _P84ViewState extends State<P84View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -325,14 +325,14 @@ class _P84ViewState extends State<P84View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const UIText(
                           text: "Khác (Ghi rõ)",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                         ),
                         Row(
@@ -352,7 +352,7 @@ class _P84ViewState extends State<P84View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,

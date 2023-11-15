@@ -88,6 +88,6 @@ class RouteConstants {
   static const String P99Route = "/P99Route";
   static const String InformationProviderRoute = "/InformationProviderRoute";
   static const String gPSRoute = "/gPSRoute";
-  static const String voterRoute = "/voterRoute";
+  //static const String voterRoute = "/voterRoute";
   static const String finishRoute = "/finishRoute";
 }

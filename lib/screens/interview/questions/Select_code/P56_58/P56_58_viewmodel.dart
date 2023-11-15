@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 
 import '../../../../../base/base_viewmodel.dart';
 import '../../../../../components/navigation/navigation_service.dart';
+import '../../../../../components/ui_describes.dart';
 import '../../../../../data/shared_preferences/spref_app_model.dart';
+import '../../../../../models/bangkeThangDT_model.dart';
 import '../../../../../models/thongTinThanhVienNKTT_model.dart';
 import '../../../../../models/thongTinThanhVien_model.dart';
 import '../../../../../services/sqlite/execute_database.dart';
@@ -42,11 +44,8 @@ class P56_58ViewModel extends BaseViewModel {
 
   List queryListNghe(String select, String linh_vuc, List list_nghe){
     List select_nghe = [], list = [];
-    for(int i =0; i < list_nghe.length; i++){
-      if(list_nghe[i]["MaC1"] == linh_vuc){
-        select_nghe.add(list_nghe[i]);
-      }
-    }
+    select_nghe = list_nghe.where((e) => e['MaC1'] == linh_vuc).toList();
+
 
     for(int i =0; i < select_nghe.asMap().values.toList().length; i++){
       if(select_nghe.asMap().values.toList()[i]["Ten"].toString().isEmpty){
@@ -142,20 +141,19 @@ class P56_58ViewModel extends BaseViewModel {
       }
     }
     if(select == ""){
-      select_nghe = select_nghe;
+      if(linh_vuc == ' ') {
+        return list_nghe;
+      } else {
+        return select_nghe;
+      }
     } else{
-      select_nghe = list;
+      return list;
     }
-    return select_nghe;
   }
 
   List queryListNganh(String select, String linh_vuc, List list_nganh){
     List select_nganh = [], list = [];
-    for(int i =0; i < list_nganh.length; i++){
-      if(list_nganh[i]["MaC1"] == linh_vuc){
-        select_nganh.add(list_nganh[i]);
-      }
-    }
+    select_nganh = list_nganh.where((e) => e['MaC1'] == linh_vuc).toList();
 
     for(int i =0; i < select_nganh.asMap().values.toList().length; i++){
       if(select_nganh.asMap().values.toList()[i]["Ten"].toString().isEmpty){
@@ -250,67 +248,99 @@ class P56_58ViewModel extends BaseViewModel {
         list.add(select_nganh[i]);
       }
     }
-    if(select == "" || select == "0"){
-      select_nganh = select_nganh;
+    if(select == ""){
+      if(linh_vuc == '0') {
+        return list_nganh;
+      } else {
+        return select_nganh;
+      }
     } else{
-      select_nganh = list;
+      return list;
     }
-    return select_nganh;
   }
 
-  void P56_58Back() async {
-    NavigationServices.instance.navigateToP40_42(context);
+  void P56_58Back(thongTinThanhVienModel data) async {
+    if(data.c34 != null){
+      NavigationServices.instance.navigateToP40_42(context);
+    } else if(data.c15A != null) {
+      NavigationServices.instance.navigateToP17B(context);
+    } else {
+      String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+      await _executeDatabase.getListTTTV(idho).then((value) async {
+        if(value.first.idtv == thanhvien.idtv){
+          NavigationServices.instance.navigateToInformationProvider(context);
+        }
+        else {
+          print("object 5");
+          value.removeRange(value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv), value.length);
+          int index = 0;
+          for (int i = value.length - 1; i < value.length; i--) {
+            if (!checkSelectCodeBack(value[i])) {
+              index ++;
+              break;
+            };
+          }
+          if (index == 0) {
+            NavigationServices.instance.navigateToInformationProvider(context);
+          }
+        }
+      });
+    }
   }
 
   void P56_58Next(thongTinThanhVienModel data) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-    int month = int.parse(_sPrefAppModel.month);
-    int year = DateTime.now().year;
-    _executeDatabase.updateC00("SET c50B = ?, c52B = ? WHERE idho = ? AND idtv = ?",
+
+    await _executeDatabase.updateC00("SET c50B = ?, c52B = ? WHERE idho = ? AND idtv = ?",
         [data.c50B,data.c52B,data.idho,data.idtv]);
     await _executeDatabase.getListTTTV(idho).then((value) async {
-      value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv));
+      value.removeRange(0, value.indexWhere((e) => e.idho == data.idho && e.idtv == data.idtv) + 1);
       int index = 0;
       for (int i = 0; i < value.length; i++) {
-        if (!checkSelectCode(value[i])) {
+        if (!checkSelectCodeNext(value[i])) {
           index ++;
           break;
         };
       }
       if (index == 0) {
-        await _executeDatabase.getBangKe_ThangDT(month).then((value) async {
-          if(value.any((e) => e.idhO_BKE == _sPrefAppModel.getIdHo)){
-            await _executeDatabase.updateTrangThai(9, 0, _sPrefAppModel.getIdHo, month, year);
-          }
-          else {
-            await _executeDatabase.setBangKeThangDTModel([{
-              'idhO_BKE': _sPrefAppModel.getIdHo,
-              'namDT': year,
-              'thangDT': month,
-              'trangThai': 9,
-              'sync' : 0
-            }]);
-          }
-        });
-        NavigationServices.instance.navigateToInterviewStatus(context);
+        NavigationServices.instance.navigateToFinish(context);
       }
     });
   }
 
-  bool checkSelectCode(thongTinThanhVienModel tttv){
+  bool checkSelectCodeNext(thongTinThanhVienModel tttv){
     if(tttv.c15A != null){
       _sPrefAppModel.setIDTV(tttv.idtv!);
-      NavigationServices.instance.navigateToP17B(context);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P17B, context);
       return false;
     }
     if(tttv.c35A != null){
       _sPrefAppModel.setIDTV(tttv.idtv!);
-      NavigationServices.instance.navigateToP40_42(context);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P35B, context);
       return false;
     }
     if(tttv.c50A != null){
       _sPrefAppModel.setIDTV(tttv.idtv!);
-      NavigationServices.instance.navigateToP56_58(context);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P50B, context);
+      return false;
+    }
+    return true;
+  }
+
+  bool checkSelectCodeBack(thongTinThanhVienModel tttv){
+    if(tttv.c50A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P50B, context);
+      return false;
+    }
+    if(tttv.c35A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P35B, context);
+      return false;
+    }
+    if(tttv.c15A != null){
+      _sPrefAppModel.setIDTV(tttv.idtv!);
+      NavigationServices.instance.routeNavigate(UIDescribes.QUESTION_P17B, context);
       return false;
     }
     return true;

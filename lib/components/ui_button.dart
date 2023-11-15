@@ -85,7 +85,7 @@ class Body extends State<UIGPSButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
       child: GestureDetector(
         onTap: () {
           checkGps(context);
@@ -236,7 +236,7 @@ class BodyUIEXITButton extends State<UIEXITButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.fromLTRB(5, 10, 10, 10),
       child: GestureDetector(
         onTap: () {
           _showNotificationDialog(context);
@@ -319,7 +319,7 @@ class UIBackButton extends StatelessWidget {
       //color: mHightLightColor,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(color: mPrimaryColor),
+          border: Border.all(color: Colors.transparent),
           gradient: LinearGradient(colors: [
             Colors.grey.shade300,
             Colors.grey.shade50,
@@ -334,20 +334,20 @@ class UIBackButton extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
+          children: [
             Icon(
               Icons.navigate_before,
-              color: mPrimaryColor,
+              color: Colors.grey.shade800,
               size: 25,
             ),
             UIText(
               text: UIDescribes.pre,
               textAlign: TextAlign.center,
-              textColor: mPrimaryColor,
+              textColor: Colors.grey.shade800,
               textFontSize: fontMedium,
               isBold: true,
             ),
-            Icon(
+            const Icon(
               Icons.navigate_before,
               color: Colors.transparent,
               size: 25,

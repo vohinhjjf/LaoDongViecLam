@@ -58,7 +58,7 @@ class _P67_68ViewState extends State<P67_68View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -82,7 +82,7 @@ class _P67_68ViewState extends State<P67_68View> {
                   title: const UIText(
                     text: "CÓ",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -111,7 +111,7 @@ class _P67_68ViewState extends State<P67_68View> {
                   title: const UIText(
                     text: "KHÔNG",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -141,7 +141,7 @@ class _P67_68ViewState extends State<P67_68View> {
                   visible: p67 == 1,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P68. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
@@ -154,7 +154,7 @@ class _P67_68ViewState extends State<P67_68View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -183,7 +183,7 @@ class _P67_68ViewState extends State<P67_68View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(

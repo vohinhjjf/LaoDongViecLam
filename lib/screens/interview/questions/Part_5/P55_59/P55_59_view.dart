@@ -34,15 +34,15 @@ class _P55_59ViewState extends State<P55_59View> {
       p55_59viewModel = context.read();
       p55_59viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 100),
+          const Duration(milliseconds: 200),
               () => {
             setState(() {
               thanhvien = p55_59viewModel.thanhvien;
-              _congviec.text = p55_59viewModel.thanhvien.c49.toString();
-              _chucdanh.text = p55_59viewModel.thanhvien.c50A.toString();
-              _tencoso.text = p55_59viewModel.thanhvien.c51.toString();
-              _hoatdong.text = p55_59viewModel.thanhvien.c52A.toString();
-              _gio.text = p55_59viewModel.thanhvien.c53.toString();
+              _congviec.text = p55_59viewModel.thanhvien.c49 ?? "";
+              _chucdanh.text = p55_59viewModel.thanhvien.c50A ?? "";
+              _tencoso.text = p55_59viewModel.thanhvien.c51 ?? "";
+              _hoatdong.text = p55_59viewModel.thanhvien.c52A ?? "";
+              _gio.text = p55_59viewModel.thanhvien.c53 == null ? "" : p55_59viewModel.thanhvien.c53.toString();
             })
           });
     });
@@ -64,7 +64,7 @@ class _P55_59ViewState extends State<P55_59View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -96,13 +96,13 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p56
                   UIRichText(
                     text1: "P56. Hãy mô tả chức danh (nếu có) của ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -114,21 +114,15 @@ class _P55_59ViewState extends State<P55_59View> {
                   const SizedBox(height: 10,),
                   UITextFormField(
                     controller: _chucdanh,
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return 'Vui lòng nhập chức danh';
-                      }
-                      return null;
-                    },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p57
                   UIRichText(
                     text1: "P57. Tên cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -148,13 +142,13 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p58
                   UIRichText(
                     text1: "P58. Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -174,13 +168,13 @@ class _P55_59ViewState extends State<P55_59View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p59
                   UIRichText(
                     text1: "P59. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -230,6 +224,15 @@ class _P55_59ViewState extends State<P55_59View> {
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
                                 .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
+                  );
+                }
+                else if (_chucdanh.text.isEmpty) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} nếu không có mô tả chức danh. Vui lòng nhập "KHÔNG"',)
                   );
                 }
                 else if (_chucdanh.text.length < 5) {

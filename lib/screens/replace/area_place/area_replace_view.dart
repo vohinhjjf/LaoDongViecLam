@@ -54,7 +54,7 @@ class _AreaReplaceViewState extends State<AreaReplaceView>{
         title: Text(
           'Danh sách địa bàn - Tháng $_month',
           style: const TextStyle(
-            fontSize: fontGreater,
+            fontSize: fontLarge,
             color: mPrimaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -70,7 +70,7 @@ class _AreaReplaceViewState extends State<AreaReplaceView>{
             itemCount: list_area.length,
             itemBuilder: (context, index) {
               return Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 20),
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {
@@ -78,7 +78,7 @@ class _AreaReplaceViewState extends State<AreaReplaceView>{
                       print(list_area[index].iddb!);
                     },
                     color: Colors.white,
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    padding: const EdgeInsets.all(10),
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(
                           width: 0,
@@ -87,22 +87,38 @@ class _AreaReplaceViewState extends State<AreaReplaceView>{
                             Radius.circular(10.0)
                         )
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                    child: Row(
                       children: [
-                        UIText(
-                            text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Cần được thay",
-                            textFontSize: fontLarge,
-                            isBold: true,
-                            textColor: Colors.black
+                        const Image(
+                          width: 100,
+                          height: 100,
+                          image: AssetImage("assets/images/tempsnip.png"),
                         ),
-                        UIText(
-                            text: 'Số hộ: ${list_household.length}',
-                            textFontSize: fontMedium,
-                            isBold: true,
-                            textColor: Colors.yellow.shade800
-                        ),
+                        SizedBox(width: 10.w,),
+                        Flexible(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                UIRichText(
+                                  text1: "",
+                                  text2: "${list_area[index].iddb}: ${list_area[index].tenDiaBan}",
+                                  text3: " - Cần được thay",
+                                  textFontSize: fontLarge,
+                                  textColor: Colors.black,
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                UIText(
+                                    text: 'Số hộ: ${list_household.length}',
+                                    textFontSize: fontMedium,
+                                    isBold: true,
+                                    textColor: Colors.yellow.shade800
+                                ),
+                              ],
+                            )
+                        )
                       ],
                     )
                 ),
@@ -113,15 +129,16 @@ class _AreaReplaceViewState extends State<AreaReplaceView>{
       ),
       bottomSheet: Container(
         padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.only(bottom: 10, left: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(5.0),
             gradient: const LinearGradient(colors: [
               Colors.limeAccent,
               Colors.limeAccent,
             ])
         ),
-        child: Text(_dtv,
-          style: const TextStyle(fontSize: fontMedium, fontWeight: FontWeight.bold, color: mPrimaryColor),),
+        child: UIText( text: _dtv,
+          textFontSize: fontMedium, isBold: true, textColor: mPrimaryColor,),
       ),
     );
   }

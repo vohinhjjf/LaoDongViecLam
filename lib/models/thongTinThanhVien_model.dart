@@ -13,7 +13,8 @@ class thongTinThanhVienModel {
   int? c04;
   int? c04A;
   int? c05;
-  String? c06;
+  String? c06A;
+  String? c06B;
   int? c07;
   int? c08;
   int? c09;
@@ -126,7 +127,8 @@ class thongTinThanhVienModel {
         this.c04,
         this.c04A,
         this.c05,
-        this.c06,
+        this.c06A,
+        this.c06B,
         this.c07,
         this.c08,
         this.c09,
@@ -241,7 +243,8 @@ class thongTinThanhVienModel {
       'c04': c04,
       'c04A': c04A,
       'c05': c05,
-      "c06": c06,
+      "c06A": c06A,
+      "c06B": c06B,
       'c07': c07,
       'c08': c08,
       'c09': c09,
@@ -356,7 +359,8 @@ class thongTinThanhVienModel {
     c04 = json['c04'];
     c04A = json['c04A'];
     c05 = json['c05'];
-    c06 = json['c06'];
+    c06A = json['c06A'];
+    c06B = json['c06B'];
     c07 = json['c07'];
     c08 = json['c08'];
     c09 = json['c09'];

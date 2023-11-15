@@ -68,7 +68,7 @@ class _P36_37ViewState extends State<P36_37View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -92,7 +92,7 @@ class _P36_37ViewState extends State<P36_37View> {
                   title: const UIText(
                     text: "Có",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -121,7 +121,7 @@ class _P36_37ViewState extends State<P36_37View> {
                   title: const UIText(
                     text: "Không",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -151,7 +151,7 @@ class _P36_37ViewState extends State<P36_37View> {
                     visible: p36 == 1,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P37. Khoảng thời gian ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
@@ -170,7 +170,7 @@ class _P36_37ViewState extends State<P36_37View> {
                               title: UIText(
                                 text: _thoigian[index].toString(),
                                 textColor: Colors.black,
-                                textFontSize: fontLarge,
+                                textFontSize: fontMedium,
                                 textAlign: TextAlign.start,
                                 isBold: false,
                               ),

@@ -68,7 +68,7 @@ class _P52_54ViewState extends State<P52_54View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -96,7 +96,7 @@ class _P52_54ViewState extends State<P52_54View> {
                           title: const UIText(
                             text: "BHXH BẮT BUỘC",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -125,7 +125,7 @@ class _P52_54ViewState extends State<P52_54View> {
                           title: const UIText(
                             text: "BHXH TỰ NGUYỆN",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -150,7 +150,7 @@ class _P52_54ViewState extends State<P52_54View> {
                             });
                           },
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                       ],
                     )
                 ),
@@ -165,14 +165,14 @@ class _P52_54ViewState extends State<P52_54View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thoigian.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: UIText(
                         text: _thoigian[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -200,7 +200,7 @@ class _P52_54ViewState extends State<P52_54View> {
                     );
                   },
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 10,),
                 //p54
                 UIRichText(
                   text1: "P54. Ngoài công việc này, ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -217,7 +217,7 @@ class _P52_54ViewState extends State<P52_54View> {
                   title: const UIText(
                     text: "Có",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -246,7 +246,7 @@ class _P52_54ViewState extends State<P52_54View> {
                   title: const UIText(
                     text: "Không",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(

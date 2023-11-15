@@ -38,8 +38,9 @@ class P06_07ViewModel extends BaseViewModel {
   void P06_07Next(thongTinThanhVienModel data) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
-    await _executeDatabase.update("SET c05 = ${data.c05}, c06 = '${data.c06}' "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    await _executeDatabase.updateC00("SET c05 = ?, c06A = ?, c06B = ? "
+        "WHERE idho = ? AND idtv = ?",
+        [data.c05,data.c06A,data.c06B,data.idho,data.idtv]);
     if(data.c05 == 1){
       NavigationServices.instance.navigateToP08_09(context);
     } else {
@@ -75,7 +76,8 @@ class P06_07ViewModel extends BaseViewModel {
                         c04: data.c04,
                         c04A: data.c04A,
                         c05: data.c05,
-                        c06: data.c06
+                        c06A: data.c06A,
+                        c06B: data.c06B,
                     )
                   ]);
                   NavigationServices.instance.navigateToP76_77(context);
@@ -125,7 +127,8 @@ class P06_07ViewModel extends BaseViewModel {
                     c04: data.c04,
                     c04A: data.c04A,
                     c05: data.c05,
-                    c06: data.c06
+                    c06A: data.c06A,
+                    c06B: data.c06B,
                   )
                 ]);
                 NavigationServices.instance.navigateToP76_77(context);
@@ -171,7 +174,8 @@ class P06_07ViewModel extends BaseViewModel {
                           c04: data.c04,
                           c04A: data.c04A,
                           c05: data.c05,
-                          c06: data.c06
+                        c06A: data.c06A,
+                        c06B: data.c06B,
                       )
                     ]);
                     NavigationServices.instance.navigateToP76_77(context);
@@ -217,7 +221,8 @@ class P06_07ViewModel extends BaseViewModel {
                   c04: data.c04,
                   c04A: data.c04A,
                   c05: data.c05,
-                  c06: data.c06
+                c06A: data.c06A,
+                c06B: data.c06B,
               )
             ]);
             NavigationServices.instance.navigateToP76_77(context);

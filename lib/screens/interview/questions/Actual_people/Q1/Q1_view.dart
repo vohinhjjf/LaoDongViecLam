@@ -270,9 +270,6 @@ class _Q1ViewState extends State<Q1View> {
                 MaterialButton(
                     height: 60,
                     minWidth: (MediaQuery.of(context).size.width-80)/2,
-                    shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black,width: 0.1)
-                    ),
                     onPressed: onpress1,
                     child: const UIText(
                         text: 'Có',
@@ -285,9 +282,9 @@ class _Q1ViewState extends State<Q1View> {
                 MaterialButton(
                     height: 60,
                     minWidth: (MediaQuery.of(context).size.width-80)/2,
-                    shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black,width: 0.1)
-                    ),
+                    // shape: const RoundedRectangleBorder(
+                    //     side: BorderSide(color: Colors.black,width: 0.1)
+                    // ),
                     onPressed: onpress2,
                     child: const UIText(
                       text: 'Không',

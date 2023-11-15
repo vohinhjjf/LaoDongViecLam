@@ -64,7 +64,7 @@ class _P39_42ViewState extends State<P39_42View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -96,13 +96,13 @@ class _P39_42ViewState extends State<P39_42View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
-                      FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p40
                   UIRichText(
                     text1: "P40. Hãy mô tả chức danh (nếu có) của ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -114,21 +114,21 @@ class _P39_42ViewState extends State<P39_42View> {
                   const SizedBox(height: 10,),
                   UITextFormField(
                     controller: _chucdanh,
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return 'Vui lòng nhập chức danh';
-                      }
-                      return null;
-                    },
+                    // validator: (value){
+                    //   if(value!.isEmpty){
+                    //     return 'Vui lòng nhập chức danh';
+                    //   }
+                    //   return null;
+                    // },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p41
                   UIRichText(
                     text1: "P41. Tên cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -148,13 +148,13 @@ class _P39_42ViewState extends State<P39_42View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p42
                   UIRichText(
                     text1: "P42.  Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -174,8 +174,8 @@ class _P39_42ViewState extends State<P39_42View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
+                      // FilteringTextInputFormatter.allow(RegExp(
+                      //     '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                       FilteringTextInputFormatter.deny(RegExp('[×÷]')),
                     ],
                     keyboardType: TextInputType.text,
@@ -208,7 +208,16 @@ class _P39_42ViewState extends State<P39_42View> {
                                 .c00} có P39 - Mô tả công việc chính quá ngắn!',)
                   );
                 }
-                else if (_chucdanh.text.length < 5) {
+                else if (_chucdanh.text.isEmpty) {
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          UIWarningDialog(
+                            waring: 'Thành viên ${thanhvien
+                                .c00} nếu không có mô tả chức danh. Vui lòng nhập "KHÔNG"',)
+                  );
+                }
+                else if (_chucdanh.text.isNotEmpty && _chucdanh.text.length < 5) {
                   showDialog(
                       context: context,
                       builder: (_) =>

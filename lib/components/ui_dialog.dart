@@ -28,17 +28,17 @@ class UIWarningDialog extends StatelessWidget {
         textFontSize: fontLarge
       ),
       content: Container(
-        height: 60,
+        height: 50,
         alignment: Alignment.center,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             MaterialButton(
-                height: 60,
+                height: 50,
                 minWidth: (MediaQuery.of(context).size.width-80),
-                shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black,width: 0.1)
-                ),
+                // shape: const RoundedRectangleBorder(
+                //     side: BorderSide(color: Colors.black,width: 0.1)
+                // ),
                 child: const UIText(
                   text: "Kiểm tra lại",
                   textColor: mPrimaryColor,
@@ -81,17 +81,17 @@ class UINotificationDialog extends StatelessWidget {
         textFontSize:fontLarge,
       ),
       content: Container(
-        height: 60,
+        height: 50,
         alignment: Alignment.center,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             MaterialButton(
-                height: 60,
+                height: 50,
                 minWidth: (MediaQuery.of(context).size.width-80)/2,
-                shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black,width: 0.1)
-                ),
+                // shape: const RoundedRectangleBorder(
+                //     side: BorderSide(color: Colors.black,width: 0.1)
+                // ),
                 child: const UIText(
                   text: 'Nhập lại',
                   textFontSize: fontLarge,
@@ -104,11 +104,11 @@ class UINotificationDialog extends StatelessWidget {
                 }
             ),
             MaterialButton(
-                height: 60,
+                height: 50,
                 minWidth: (MediaQuery.of(context).size.width-80)/2,
-                shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black,width: 0.1)
-                ),
+                // shape: const RoundedRectangleBorder(
+                //     side: BorderSide(color: Colors.black,width: 0.1)
+                // ),
                 onPressed: onpress,
                 child: const UIText(
                   text: 'Tiếp tục',
@@ -158,12 +158,12 @@ class UINotificationDialog1 extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       content: Container(
-        height: 60,
+        height: 50,
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             MaterialButton(
-                height: 60,
+                height: 50,
                 shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.black,width: 0.1)
                 ),
@@ -180,7 +180,7 @@ class UINotificationDialog1 extends StatelessWidget {
             ),
             Visibility(
                 child: MaterialButton(
-                    height: 60,
+                    height: 50,
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black,width: 0.1)
                     ),
@@ -195,7 +195,7 @@ class UINotificationDialog1 extends StatelessWidget {
                 ),
             ),
             MaterialButton(
-                height: 60,
+                height: 50,
                 minWidth: (MediaQuery.of(context).size.width-80)/2,
                 shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.black,width: 0.1)

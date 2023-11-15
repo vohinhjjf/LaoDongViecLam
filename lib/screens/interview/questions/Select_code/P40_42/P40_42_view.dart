@@ -41,7 +41,7 @@ class _P40_42ViewState extends State<P40_42View> {
     p40_42viewModel = context.read();
     p40_42viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 200),
+          const Duration(milliseconds: 300),
               () => {
             setState(() {
               thanhvien = p40_42viewModel.thanhvien;
@@ -133,12 +133,44 @@ class _P40_42ViewState extends State<P40_42View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  UITextFormField(
-                    controller: _machucdanh,
-                    readOnly: true,
-                    onTap: (){
-                      _showAddNgheDialog(maNghe_macdinh);
-                    },
+                  Row(
+                    children: [
+                      Flexible(
+                          flex: 5,
+                          child: UITextFormField(
+                            controller: _machucdanh,
+                            readOnly: true,
+                            onTap: (){
+                              _showAddNgheDialog(maNghe_macdinh);
+                            },
+                          )
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: MaterialButton(
+                          height: 58,
+                          onPressed: () {
+                            setState(() {
+                              _machucdanh.text = '';
+                            });
+                          },
+                          padding: const EdgeInsets.all(10),
+                          shape: const RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.6,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0)
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.dangerous,
+                            color: Colors.redAccent,
+                            size: fontGreater,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 20,),
                   //P41
@@ -185,12 +217,44 @@ class _P40_42ViewState extends State<P40_42View> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  UITextFormField(
-                    controller: _mahoatdong,
-                    readOnly: true,
-                    onTap: (){
-                      _showAddNganhDialog(maNganh_macdinh);
-                    },
+                  Row(
+                    children: [
+                      Flexible(
+                          flex: 5,
+                          child: UITextFormField(
+                            controller: _mahoatdong,
+                            readOnly: true,
+                            onTap: (){
+                              _showAddNganhDialog(maNganh_macdinh);
+                            },
+                          ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: MaterialButton(
+                          height: 58,
+                          onPressed: () {
+                            setState(() {
+                              _mahoatdong.text = '';
+                            });
+                          },
+                          padding: const EdgeInsets.all(10),
+                          shape: const RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.6,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0)
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.dangerous,
+                            color: Colors.redAccent,
+                            size: fontGreater,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   //Button
                   const SizedBox(height: 90,),
@@ -490,7 +554,13 @@ class _P40_42ViewState extends State<P40_42View> {
           ],
         ),
       ),
-      drawer: const DrawerNavigation(),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 
@@ -499,7 +569,6 @@ class _P40_42ViewState extends State<P40_42View> {
         context: context,
         builder: (context) {
           _text_find_nghe.text = _chucdanh.text;
-          String select = '';
           String nghe = select_nghe;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -581,11 +650,6 @@ class _P40_42ViewState extends State<P40_42View> {
                         ),
                         child: TextField(
                           controller: _text_find_nghe,
-                          onChanged: (value){
-                            setState(() {
-                              select = _text_find_nghe.text;
-                            });
-                          },
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -599,11 +663,11 @@ class _P40_42ViewState extends State<P40_42View> {
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p40_42viewModel.queryListNghe(select, nghe, list_nghe).length <= 4) ? p40_42viewModel.queryListNghe(select, nghe, list_nghe).length*60 : 300,
+                        height: (p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length <= 4) ? p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length*60 : 300,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p40_42viewModel.queryListNghe(select, nghe, list_nghe).length,
+                          itemCount: p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -611,7 +675,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    _machucdanh.text = p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"];
+                                    _machucdanh.text = p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ma"];
                                   });
                                 },
                                 child: Row(
@@ -621,7 +685,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ma"]} - ${p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"]}',
+                                        text: '${p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ma"]} - ${p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -632,7 +696,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["Ten"], p40_42viewModel.queryListNghe(select, nghe, list_nghe)[index]["MoTa"]);
+                                          _showDetailProduct(p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["Ten"], p40_42viewModel.queryListNghe(_text_find_nghe.text, nghe, list_nghe)[index]["MoTa"]);
                                         }
                                     ),
                                   ],
@@ -656,7 +720,6 @@ class _P40_42ViewState extends State<P40_42View> {
         context: context,
         builder: (context) {
           _text_find_nganh.text = _hoatdong.text;
-          String select = '';
           String nganh = select_nganh;
           return StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -714,7 +777,11 @@ class _P40_42ViewState extends State<P40_42View> {
                           value: nganh,
                           items: list_maNganh.map((e) => DropdownMenuItem(
                             value: e["MaC1"].toString(),
-                            child: UIText(textColor: Colors.black,text: '${e["MaC1"]}. ${e["TenC1"]}',),
+                            child: UIText(
+                              textColor: Colors.black,
+                              text: '${e["MaC1"]}. ${e["TenC1"]}',
+                              maxLines: 2,
+                            ),
                           )
                           ).toList(),
                           onChanged: (value){
@@ -739,11 +806,6 @@ class _P40_42ViewState extends State<P40_42View> {
                         ),
                         child: TextField(
                           controller: _text_find_nganh,
-                          onChanged: (value){
-                            setState(() {
-                              select = _text_find_nganh.text;
-                            });
-                          },
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -757,11 +819,11 @@ class _P40_42ViewState extends State<P40_42View> {
                       Container(
                         padding: EdgeInsets.only(left: 12.w, top: 10.h, right: 12.w),
                         width: (MediaQuery.of(context).size.width/1.1),
-                        height: (p40_42viewModel.queryListNganh(select, nganh, list_nganh).length <= 4) ? p40_42viewModel.queryListNganh(select, nganh, list_nganh).length*60 : 300,
+                        height: (p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length <= 4) ? p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length*60 : 300,
                         child: ListView.builder(
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: p40_42viewModel.queryListNganh(select, nganh, list_nganh).length,
+                          itemCount: p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh).length,
                           itemBuilder: (context, index) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -769,7 +831,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                 onTap: (){
                                   Navigator.of(context, rootNavigator: true).pop();
                                   setState(() {
-                                    _mahoatdong.text = p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"];
+                                    _mahoatdong.text = p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ma"];
                                   });
                                 },
                                 child: Row(
@@ -779,7 +841,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                       width: MediaQuery.of(context).size.width/1.55,
                                       child: UIText(
                                         textColor: Colors.black,
-                                        text: '${p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ma"]} - ${p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"]}',
+                                        text: '${p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ma"]} - ${p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ten"]}',
                                       ),
                                     ),
                                     IconButton(
@@ -790,7 +852,7 @@ class _P40_42ViewState extends State<P40_42View> {
                                           //size: fontGreater,
                                         ),
                                         onPressed: () {
-                                          _showDetailProduct(p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["Ten"], p40_42viewModel.queryListNganh(select, nganh, list_nganh)[index]["MoTa"]);
+                                          _showDetailProduct(p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["Ten"], p40_42viewModel.queryListNganh(_text_find_nganh.text, nganh, list_nganh)[index]["MoTa"]);
                                         }
                                     ),
                                   ],
@@ -1173,7 +1235,8 @@ class _P40_42ViewState extends State<P40_42View> {
         idho: thanhvien.idho,
         idtv: thanhvien.idtv,
         c35B: _machucdanh.text,
-        c37B: _mahoatdong.text
+        c37B: _mahoatdong.text,
+        c50A: thanhvien.c50A
     ));
   }
 }

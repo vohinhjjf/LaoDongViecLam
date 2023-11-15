@@ -20,7 +20,7 @@ class UIQuestions{
       ' nghỉ hè, nghỉ lễ; chữa bệnh; công tác; đào tạo ngắn hạn...?';
   static const q3c = 'c. Người nước ngoài chưa nhập quốc tịch Việt Nam, Việt '
       'kiều về thăm gia đình?';
-  static const q3d = 'd. Bộ đôi công an, ăn ở tập trung trong doanh trại/đơn vị?';
+  static const q3d = 'd. Bộ đội công an, ăn ở tập trung trong doanh trại/đơn vị?';
   static String q4 (String month) {
     return 'Q4. Trong hộ ông/bà, có ai lâu nay vẫn thường xuyên ăn ở '
         'tại hộ nhưng tại thời điểm: 0 giờ ngày 01/$month/${DateTime.now().year} tạm vắng vì các lý do '

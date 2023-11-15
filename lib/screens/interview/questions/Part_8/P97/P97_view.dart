@@ -64,7 +64,7 @@ class _P97ViewState extends State<P97View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.start,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -89,7 +89,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "a. Tài khoản thanh toán",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -187,7 +187,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "b.  Ví điện tử/thẻ trả trước",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -285,7 +285,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "c. Thẻ ghi nợ (nội địa, quốc tế…………)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -383,7 +383,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "d. Thẻ tín dụng",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -482,7 +482,7 @@ class _P97ViewState extends State<P97View> {
                   text: "e. Tiền gửi tại các tổ chức tín dụng để hưởng lãi (Sổ "
                       "tiết kiệm, chứng chỉ tiền gửi)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -581,7 +581,7 @@ class _P97ViewState extends State<P97View> {
                   text: "f. Sản phẩm hưu trí (gồm bảo hiểm xã hội và bảo hiểm "
                       "hưu trí tự nguyện)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -679,7 +679,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "g.  Vay vốn",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -777,7 +777,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "h. Sản phẩm đầu tư (gồm cổ phiếu/ tín phiếu/trái phiếu/sản phẩm ủy thác đầu tư)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -875,7 +875,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "i. Bảo hiểm nhân thọ/phi nhân thọ",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -973,7 +973,7 @@ class _P97ViewState extends State<P97View> {
                 const UIText(
                   text: "j. Tài chính vi mô",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(

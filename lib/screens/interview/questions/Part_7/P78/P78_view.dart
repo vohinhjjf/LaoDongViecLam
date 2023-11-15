@@ -71,7 +71,7 @@ class _P78ViewState extends State<P78View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -97,21 +97,21 @@ class _P78ViewState extends State<P78View> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(width: 10,),
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -119,7 +119,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //a
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -128,7 +128,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Có thành viên mất việc làm/tạm nghỉ việc",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -149,7 +149,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -172,7 +172,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -181,7 +181,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Chi phí đầu vào cho các hoạt động SXKD của hộ tăng",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -202,7 +202,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -225,7 +225,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -234,7 +234,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Giá bán các sản phẩm từ các hoạt động SXKD của hộ giảm",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -255,7 +255,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -278,7 +278,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -287,7 +287,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Quy mô các hoạt động SXKD của hộ giảm",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -308,7 +308,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -331,7 +331,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -340,7 +340,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Do ảnh hưởng của thiên tai",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -361,7 +361,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -384,7 +384,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //f
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -393,7 +393,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Do ảnh hưởng của dịch bệnh đối với con người",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -414,7 +414,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -437,7 +437,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //g
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -446,7 +446,7 @@ class _P78ViewState extends State<P78View> {
                           child: UIText(
                             text: "Do ảnh hưởng của dịch bệnh đối với vật nuôi, cây trồng",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                         ),
@@ -467,7 +467,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -490,7 +490,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //h
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -499,7 +499,7 @@ class _P78ViewState extends State<P78View> {
                             child: UIText(
                               text: "Do ảnh hưởng của hỏa hoạn, cháy nổ",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -520,7 +520,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -543,7 +543,7 @@ class _P78ViewState extends State<P78View> {
                   ),
                   //i
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -552,7 +552,7 @@ class _P78ViewState extends State<P78View> {
                           child: UIText(
                             text: "Nguyên nhân khác (Ghi rõ)",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                         ),
@@ -573,7 +573,7 @@ class _P78ViewState extends State<P78View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,

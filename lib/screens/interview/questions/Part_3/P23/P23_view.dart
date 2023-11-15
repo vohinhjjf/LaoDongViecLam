@@ -133,13 +133,12 @@ class _P23ViewState extends State<P23View> {
                     );
                   },
                 ),
-                // const SizedBox(height: 10,),
                 Visibility(
                   visible: p23 == 14 ? true : false,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 5,),
+                      const SizedBox(height: 10,),
                       const UIText(
                         text: "Lý do khác",
                         textColor: Colors.black,
@@ -148,7 +147,7 @@ class _P23ViewState extends State<P23View> {
                         isBold: false,
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 10,
                       ),
                       UITextFormField(
                         controller: _orther,

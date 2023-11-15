@@ -74,7 +74,7 @@ class BottomNavigationViewModel extends BaseViewModel {
           //set Area
           await _executeDatabase.setArea(listAreaModel);
           //set Bk_TDT
-          await _executeDatabase.setBangKeThangDTModel(listBangKeThangDTModel);
+          await _executeDatabase.setListBangKeThangDTModel(listBangKeThangDTModel);
         }
       });
       _sPrefAppModel.setAutoSync(false);

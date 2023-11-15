@@ -20,12 +20,12 @@ class P48_49View extends StatefulWidget {
 
 class _P48_49ViewState extends State<P48_49View> {
   late P48_49ViewModel p48_49ViewModel;
-  var _tien = TextEditingController();
+  final _tien = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p49 = 0;
   bool check = false, check_draw = true;
 
-  var _vaitro = [
+  final _vaitro = [
     "Chủ cơ sở (có thuê lao động)",
     "Tự làm",
     "Lao động gia đình",
@@ -73,7 +73,7 @@ class _P48_49ViewState extends State<P48_49View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -89,7 +89,7 @@ class _P48_49ViewState extends State<P48_49View> {
                   text1: "P48. Cụ thể, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " nhận được bao nhiêu tiền cho công việc này? "
-                      "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
+                      "\n(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
                   textColor: Colors.black,
                   textFontSize:fontLarge,
                 ),
@@ -106,10 +106,11 @@ class _P48_49ViewState extends State<P48_49View> {
                     FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                   ],
                   maxLength: 6,
+                  readOnly: _tien.text == '0',
                   keyboardType: TextInputType.datetime,
                 ),
                 //p49
-                const SizedBox(height: 20,),
+                const SizedBox(height: 10,),
                 UIRichText(
                   text1: "P49. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
@@ -127,7 +128,7 @@ class _P48_49ViewState extends State<P48_49View> {
                       title: UIText(
                         text: _vaitro[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),

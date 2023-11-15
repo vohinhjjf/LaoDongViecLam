@@ -58,7 +58,7 @@ class _P31_32ViewState extends State<P31_32View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -83,7 +83,7 @@ class _P31_32ViewState extends State<P31_32View> {
                   title: const UIText(
                     text: "CÓ",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -112,7 +112,7 @@ class _P31_32ViewState extends State<P31_32View> {
                   title: const UIText(
                     text: "KHÔNG",
                     textColor: Colors.black,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     textAlign: TextAlign.start,
                   ),
                   leading: RoundCheckBox(
@@ -142,7 +142,7 @@ class _P31_32ViewState extends State<P31_32View> {
                   visible: p31 == 2,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 110,),
                         UIRichText(
                           text1: "P32. ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
@@ -156,7 +156,7 @@ class _P31_32ViewState extends State<P31_32View> {
                           title: const UIText(
                             text: "CÓ",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(
@@ -185,7 +185,7 @@ class _P31_32ViewState extends State<P31_32View> {
                           title: const UIText(
                             text: "KHÔNG",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                           leading: RoundCheckBox(

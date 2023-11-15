@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lao_dong_viec_lam/screens/interview/questions/Finish/finish_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_view.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P40_42/P40_42_view.dart';
@@ -285,6 +286,8 @@ class NavigationServices {
         return CustomPageRoute(const P40_42View());
       case RouteConstants.P56_58Route:
         return CustomPageRoute(const P56_58View());
+      case RouteConstants.finishRoute:
+        return CustomPageRoute(const FinishView());
       case RouteConstants.syncRoute:
         return CustomPageRoute(const SyncView());
       case RouteConstants.progressRoute:
@@ -681,5 +684,8 @@ class NavigationServices {
   }
   void navigateToP56_58(BuildContext context) {
     Navigator.of(context).pushNamed(RouteConstants.P56_58Route);
+  }
+  void navigateToFinish(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteConstants.finishRoute);
   }
 }

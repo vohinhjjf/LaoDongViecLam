@@ -136,13 +136,12 @@ class _P29_30ViewState extends State<P29_30View> {
                     });
                   },
                 ),
-                // const SizedBox(height: 10,),
                 //p30
                 Visibility(
                   visible: p29 == 1,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P30. Ngoài công việc tạo ra sản phẩm với mục đích để gia"
                               " đình sử dụng, trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",

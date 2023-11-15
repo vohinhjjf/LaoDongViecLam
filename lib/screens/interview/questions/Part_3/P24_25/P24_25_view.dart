@@ -146,7 +146,7 @@ class _P24_25ViewState extends State<P24_25View> {
                     visible: p24 == 2,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P25. Trong thời gian tạm nghỉ, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",

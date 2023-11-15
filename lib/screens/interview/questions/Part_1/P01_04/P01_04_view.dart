@@ -28,7 +28,6 @@ class _P01_04ViewState extends State<P01_04View> {
   int p01 = 0, p02 = 0, p03 = 0, ThangDT = 8;
   String month = 'Chọn tháng', name = "";
   bool check = false, check_draw = true;
-  List<thongTinThanhVienModel> list_tttv = [];
 
   var _quanhe = [
     "VỢ/CHỒNG",
@@ -66,10 +65,9 @@ class _P01_04ViewState extends State<P01_04View> {
       p01_04viewModel = context.read();
       p01_04viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 200),
+          const Duration(milliseconds: 300),
               () => {
             setState(() {
-              list_tttv = p01_04viewModel.list_tttv;
               thanhvien = p01_04viewModel.thanhvien;
               _name.text = p01_04viewModel.thanhvien.c00 ?? "";
               name = _name.text;
@@ -81,6 +79,7 @@ class _P01_04ViewState extends State<P01_04View> {
                   : p01_04viewModel.thanhvien.c04.toString();
               p03 = p01_04viewModel.thanhvien.c03B == "9998" ? 1 : 0;
               ThangDT = p01_04viewModel.thanhvien.thangDT ?? 0;
+              _orther.text = p01_04viewModel.thanhvien.c01K ?? "";
             })
           });
     });
@@ -182,6 +181,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                   onTap: (selected) {
                                     setState(() {
                                       p01 = p01 == index + 2 ? 0 : index + 2;
+                                      print(p01);
                                     });
                                   },
                                   border: Border.all(
@@ -197,6 +197,7 @@ class _P01_04ViewState extends State<P01_04View> {
                                 onTap: () {
                                   setState(() {
                                     p01 = p01 == index + 2 ? 0 : index + 2;
+                                    print(p01);
                                   });
                                 },
                               );
@@ -310,6 +311,9 @@ class _P01_04ViewState extends State<P01_04View> {
                     text3: " sinh vào tháng, năm dương lịch nào?",
                     textColor: Colors.black,
                     textFontSize: fontLarge,
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -445,6 +449,9 @@ class _P01_04ViewState extends State<P01_04View> {
                       )
                     ],
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: const UIText(
@@ -533,10 +540,10 @@ class _P01_04ViewState extends State<P01_04View> {
             UIBackButton(ontap: () {
               p01_04viewModel.P01_04Back(p01);
             }),
-            UINextButton(ontap: () {
+            UINextButton(ontap: () async {
               int namHT = DateTime.now().year;
-              print(list_tttv.length);
-              var thongtinCH = list_tttv.firstWhere((e) => e.c01 == 1, orElse: () => thongTinThanhVienModel());
+              var thongtinCH = thongTinThanhVienModel();
+              await p01_04viewModel.getListTTTV().then((value) => thongtinCH = value.firstWhere((e) => e.c01 == 1));
               if (_formKey.currentState!.validate()) {
                 if (p01 == 0) {
                   showDialog(
@@ -612,7 +619,7 @@ class _P01_04ViewState extends State<P01_04View> {
                       context: context,
                       builder: (_) => UIWarningDialog(
                         waring: 'Vợ/chồng chủ hộ ${_name
-                            .text} có tuổi< 15 tuổi!',)
+                            .text} có tuổi < 15 tuổi!',)
                   );
                 }
                 else if (p01 == 3 && ((tinh_tuoi() >= thongtinCH.c04!) || (thongtinCH.c04! - tinh_tuoi() < 8))) {
@@ -650,11 +657,11 @@ class _P01_04ViewState extends State<P01_04View> {
                         notification: 'Năm sinh của thành viên không xác định có đúng không?',
                         onpress: () {
                           Navigator.of(context).pop();
-                          if (p01 == 1 && tinh_tuoi() <= 15){
+                          if (p01 == 1 && tinh_tuoi() < 15){
                             showDialog(
                                 context: context,
                                 builder: (_) => UINotificationDialog(
-                                  notification: 'Tuổi của chủ hộ <= 15 tuổi. Có đúng không?',
+                                  notification: 'Tuổi của chủ hộ < 15 tuổi. Có đúng không?',
                                   onpress: () {
                                     Navigator.of(context).pop();
                                     p01_04viewModel.P01_04Next(
@@ -1403,11 +1410,11 @@ class _P01_04ViewState extends State<P01_04View> {
                       )
                   );
                 }
-                else if (p01 == 1 && tinh_tuoi() <= 15){
+                else if (p01 == 1 && tinh_tuoi() < 15){
                   showDialog(
                       context: context,
                       builder: (_) => UINotificationDialog(
-                        notification: 'Tuổi của chủ hộ <= 15 tuổi. Có đúng không?',
+                        notification: 'Tuổi của chủ hộ < 15 tuổi. Có đúng không?',
                         onpress: () {
                           Navigator.of(context).pop();
                           p01_04viewModel.P01_04Next(

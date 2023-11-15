@@ -66,7 +66,7 @@ class _P81ViewState extends State<P81View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -96,7 +96,7 @@ class _P81ViewState extends State<P81View> {
                       title: UIText(
                         text: _thaydoi[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),

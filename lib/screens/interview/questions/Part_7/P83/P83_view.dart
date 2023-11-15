@@ -67,7 +67,7 @@ class _P83ViewState extends State<P83View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -98,7 +98,7 @@ class _P83ViewState extends State<P83View> {
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           isBold: true,
                           textAlign: TextAlign.center,
                         ),
@@ -109,7 +109,7 @@ class _P83ViewState extends State<P83View> {
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           isBold: true,
                           textAlign: TextAlign.center,
                         ),
@@ -118,7 +118,7 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //a
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -127,7 +127,7 @@ class _P83ViewState extends State<P83View> {
                             child: UIText(
                               text: "Thiên tai",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -148,7 +148,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -171,7 +171,7 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -180,7 +180,7 @@ class _P83ViewState extends State<P83View> {
                             child: UIText(
                               text: "Giá hàng hóa, dịch vụ tăng cao",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -201,7 +201,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -224,7 +224,7 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -233,7 +233,7 @@ class _P83ViewState extends State<P83View> {
                             child: UIText(
                               text: "Dịch bệnh đối với con người",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -254,7 +254,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -277,7 +277,7 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -286,7 +286,7 @@ class _P83ViewState extends State<P83View> {
                             child: UIText(
                               text: "Dịch bệnh đối với vật nuôi, cây trồng",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -307,7 +307,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -330,7 +330,7 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -339,7 +339,7 @@ class _P83ViewState extends State<P83View> {
                             child: UIText(
                               text: "Hỏa hoạn, cháy nổ",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -360,7 +360,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -383,14 +383,14 @@ class _P83ViewState extends State<P83View> {
                   ),
                   //f
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const UIText(
                           text: "Khác (Ghi rõ)",
                           textColor: Colors.black,
-                          textFontSize: fontLarge,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.start,
                         ),
                         Row(
@@ -410,7 +410,7 @@ class _P83ViewState extends State<P83View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,

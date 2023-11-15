@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/GPS/gps_viewmodel.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_viewmodel.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_viewmodel.dart';
 import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58/P56_58_viewmodel.dart';
@@ -20,6 +19,8 @@ import 'screens/changePass/change_pass_viewmodel.dart';
 import 'screens/home/home_viewmodel.dart';
 import 'screens/interview/area/area_viewmodel.dart';
 
+import 'screens/interview/questions/Finish/finish_viewmodel.dart';
+import 'screens/interview/questions/GPS/gps_viewmodel.dart';
 import 'screens/interview/questions/Part_1/P01_04/P01_04_viewmodel.dart';
 import 'screens/interview/questions/Part_1/P05/P05_viewmodel.dart';
 import 'screens/interview/questions/Part_1/P06_07/P06_07_viewmodel.dart';
@@ -388,6 +389,9 @@ void main() async {
             lazy: true),
         ChangeNotifierProvider(
             create: (_) => P56_58ViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
+            lazy: true),
+        ChangeNotifierProvider(
+            create: (_) => FinishViewModel(getIt.get<ExecuteDatabase>(), getIt.get<SPrefAppModel>()),
             lazy: true),
       ],
       child: const MyApp(),

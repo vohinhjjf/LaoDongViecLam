@@ -88,31 +88,30 @@ class _P16ViewState extends State<P16View> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     SizedBox(
-                      width: 45,
+                      width: 50,
                       child: UIText(
                         text: "Có",
                         textColor: Colors.black,
-                        textFontSize: fontSmall,
+                        textFontSize: fontMedium,
                         isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
                     SizedBox(width: 10,),
                     SizedBox(
-                      width: 45,
+                      width: 50,
                       child: UIText(
                         text: "Không",
                         textColor: Colors.black,
-                        textFontSize: fontSmall,
+                        textFontSize: fontMedium,
                         isBold: true,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 5,),
                 Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -142,7 +141,7 @@ class _P16ViewState extends State<P16View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 12,),
+                          const SizedBox(width: 15,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -163,9 +162,8 @@ class _P16ViewState extends State<P16View> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 5,),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -192,7 +190,7 @@ class _P16ViewState extends State<P16View> {
                             inactiveIcon: null,
                             radioColor: Colors.indigo,
                           ),
-                          const SizedBox(width: 12,),
+                          const SizedBox(width: 15,),
                           GFRadio(
                             type: GFRadioType.custom,
                             size: GFSize.LARGE,
@@ -219,7 +217,7 @@ class _P16ViewState extends State<P16View> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -246,7 +244,7 @@ class _P16ViewState extends State<P16View> {
                                     inactiveIcon: null,
                                     radioColor: Colors.indigo,
                                   ),
-                                  const SizedBox(width: 12,),
+                                  const SizedBox(width: 15,),
                                   GFRadio(
                                     type: GFRadioType.custom,
                                     size: GFSize.LARGE,
@@ -267,9 +265,8 @@ class _P16ViewState extends State<P16View> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -296,7 +293,7 @@ class _P16ViewState extends State<P16View> {
                                       inactiveIcon: null,
                                       radioColor: Colors.indigo,
                                     ),
-                                    const SizedBox(width: 12,),
+                                    const SizedBox(width: 15,),
                                     GFRadio(
                                       type: GFRadioType.custom,
                                       size: GFSize.LARGE,
@@ -317,9 +314,8 @@ class _P16ViewState extends State<P16View> {
                               ],
                             ),
                         ),
-                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -346,7 +342,7 @@ class _P16ViewState extends State<P16View> {
                                       inactiveIcon: null,
                                       radioColor: Colors.indigo,
                                     ),
-                                    const SizedBox(width: 12,),
+                                    const SizedBox(width: 15,),
                                     GFRadio(
                                       type: GFRadioType.custom,
                                       size: GFSize.LARGE,
@@ -367,9 +363,8 @@ class _P16ViewState extends State<P16View> {
                               ],
                             ),
                         ),
-                        const SizedBox(height: 5,),
                         Padding(
-                            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 5),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -396,7 +391,7 @@ class _P16ViewState extends State<P16View> {
                                       inactiveIcon: null,
                                       radioColor: Colors.indigo,
                                     ),
-                                    const SizedBox(width: 12,),
+                                    const SizedBox(width: 15,),
                                     GFRadio(
                                       type: GFRadioType.custom,
                                       size: GFSize.LARGE,

@@ -31,8 +31,12 @@ class P43ViewModel extends BaseViewModel {
   }
 
   void P43Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c38 = ${data.c38} "
+    if(data.c38! >= 4 && data.c38! <= 12){
+      _executeDatabase.update("SET c38 = ${data.c38}, c39 = ${data.c39} "
         "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    } else {
+      _executeDatabase.update("SET c38 = ${data.c38} WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    }
     NavigationServices.instance.navigateToP44_46(context);
   }
 }

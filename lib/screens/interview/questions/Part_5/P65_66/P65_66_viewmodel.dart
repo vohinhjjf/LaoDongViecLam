@@ -26,6 +26,16 @@ class P65_66ViewModel extends BaseViewModel {
     });
   }
 
+  replaceQuestion(int index){
+    switch(index){
+      case 0: NavigationServices.instance.navigateToP44_46(context);break;
+      case 1: NavigationServices.instance.navigateToP48_49(context);break;
+      case 2: NavigationServices.instance.navigateToP55_59(context);break;
+      case 3: NavigationServices.instance.navigateToP61_62(context);break;
+      case 4: NavigationServices.instance.navigateToP63_64(context);break;
+    }
+  }
+
   void P65_66Back(thongTinThanhVienModel data) async {
     if(data.c48 == 2){
       NavigationServices.instance.navigateToP52_54(context);

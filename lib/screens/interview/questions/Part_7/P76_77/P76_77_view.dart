@@ -25,14 +25,14 @@ class _P76_77ViewState extends State<P76_77View> {
   var thanhvien = thongTinThanhVienModel();
   int p76 = 0, p77 = 0;
 
-  var _doisong = [
+  final _doisong = [
     "CẢI THIỆN HƠN",
     "NHƯ CŨ",
     "GIẢM SÚT",
     "KHÔNG BIẾT",
   ];
 
-  var _thunhap = [
+  final _thunhap = [
     "TĂNG LÊN",
     "KHÔNG THAY ĐỔI",
     "GIẢM ĐI",
@@ -74,7 +74,7 @@ class _P76_77ViewState extends State<P76_77View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -96,13 +96,14 @@ class _P76_77ViewState extends State<P76_77View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _doisong.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: UIText(
                         text: _doisong[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),
@@ -130,7 +131,7 @@ class _P76_77ViewState extends State<P76_77View> {
                     );
                   },
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 10,),
                 //p77
                 UIRichText(
                   text1: "P77. So với tháng trước, thu nhập hiện nay của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -142,13 +143,14 @@ class _P76_77ViewState extends State<P76_77View> {
                 const SizedBox(height: 10,),
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thunhap.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: UIText(
                         text: _thunhap[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),

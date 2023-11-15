@@ -35,8 +35,8 @@ class _P63_64ViewState extends State<P63_64View> {
               () => {
             setState(() {
               thanhvien = p63_64ViewModel.thanhvien;
-              _gio.text = p63_64ViewModel.thanhvien.c57.toString();
-              _tiencong.text = p63_64ViewModel.thanhvien.c58.toString();
+              _gio.text = p63_64ViewModel.thanhvien.c57 == null ? "" : p63_64ViewModel.thanhvien.c57.toString();
+              _tiencong.text = p63_64ViewModel.thanhvien.c58 == null ? "" : p63_64ViewModel.thanhvien.c58.toString();
             })
           });
     });
@@ -58,7 +58,7 @@ class _P63_64ViewState extends State<P63_64View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -75,7 +75,7 @@ class _P63_64ViewState extends State<P63_64View> {
                   UIRichText(
                     text1: "P63. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: " làm các công việc khác này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
+                    text3: " làm các công việc khác này khoảng bao nhiêu giờ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -95,14 +95,14 @@ class _P63_64ViewState extends State<P63_64View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //p64
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   UIRichText(
                     text1: "P64. Tháng trước, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " nhận được bao nhiêu "
                         "tiền công/tiền lương hoặc lợi nhuận từ các công việc này? "
                         "Tiền công/tiền lương bao gồm tiền làm thêm giờ, tiền thưởng, "
-                        "tiền phụ cấp nghề và tiền phúc lợi khác? (ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
+                        "tiền phụ cấp nghề và tiền phúc lợi khác?\n(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),

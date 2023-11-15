@@ -49,25 +49,25 @@ class _LoginViewState extends State<LoginView> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 25.h,
+                    height: 35.h,
                   ),
                   Image.asset(
                     UIAssets.icLogo,
                     height: 150.h,
                     width: 150.w,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    alignment: Alignment.center,
-                    child: const UIText(
-                      text: UIDescribes.slogan,
-                      textAlign: TextAlign.center,
-                      textColor: Colors.white,
-                      textFontSize: fontGreater,
-                      isBold: true,
-                      //textStyle: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(vertical: 15),
+                  //   alignment: Alignment.center,
+                  //   child: const UIText(
+                  //     text: UIDescribes.slogan,
+                  //     textAlign: TextAlign.center,
+                  //     textColor: Colors.white,
+                  //     textFontSize: fontGreater,
+                  //     isBold: true,
+                  //     //textStyle: TextStyle(fontWeight: FontWeight.bold),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -111,7 +111,7 @@ class _LoginViewState extends State<LoginView> {
                     text: UIDescribes.slogan,
                     textAlign: TextAlign.center,
                     textColor: mPrimaryColor,
-                    textFontSize: fontGreater,
+                    textFontSize: fontLarge,
                     isBold: true,
                     //textStyle: TextStyle(fontWeight: FontWeight.bold),
                   ),

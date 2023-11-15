@@ -151,7 +151,7 @@ class _P10_12ViewState extends State<P10_12View> {
                     });
                   },
                 ),
-                // const SizedBox(height: 5,),
+                const SizedBox(height: 10,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
                     child: DropdownButtonFormField(
@@ -184,7 +184,6 @@ class _P10_12ViewState extends State<P10_12View> {
                       isExpanded: true,
                     ),
                 ),
-                // const SizedBox(height: 5,),
                 ListTile(
                   title: const UIText(
                     text: "NƯỚC NGOÀI",
@@ -222,6 +221,7 @@ class _P10_12ViewState extends State<P10_12View> {
                     visible: p10 == 2 ? true : false,
                     child: Column(
                       children: [
+                        const SizedBox(height: 10,),
                         DropdownButtonFormField(
                           style: const TextStyle(color: Colors.black, fontSize: fontMedium),
                           decoration: InputDecoration(
@@ -254,11 +254,11 @@ class _P10_12ViewState extends State<P10_12View> {
                       ],
                     )
                 ),
-                const SizedBox(height: 15,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
                     child: Column(
                       children: [
+                        const SizedBox(height: 15,),
                         //p11
                         UIRichText(
                           text1: "P11. Nơi thực tế thường trú trước khi ${BaseLogic.getInstance().getMember(thanhvien)} ",

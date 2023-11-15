@@ -69,7 +69,7 @@ class _P70_75ViewState extends State<P70_75View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -100,7 +100,7 @@ class _P70_75ViewState extends State<P70_75View> {
                             title: const UIText(
                               text: "LÀ NGƯỜI LÀM CHÍNH",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             ),
                             leading: RoundCheckBox(
@@ -129,7 +129,7 @@ class _P70_75ViewState extends State<P70_75View> {
                             title: const UIText(
                               text: "LÀ NGƯỜI PHỤ GIÚP",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             ),
                             leading: RoundCheckBox(
@@ -154,7 +154,7 @@ class _P70_75ViewState extends State<P70_75View> {
                               });
                             },
                           ),
-                          const SizedBox(height: 20,),
+                          const SizedBox(height: 10,),
                         ],
                       )
                   ),
@@ -188,7 +188,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     keyboardType: TextInputType.datetime,
                     textInputAction: TextInputAction.next,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p72
                   UIRichText(
                     text1: "P72. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -218,7 +218,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     keyboardType: TextInputType.datetime,
                     textInputAction: TextInputAction.next,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p73
                   UIRichText(
                     text1: "P73. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -245,7 +245,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     keyboardType: TextInputType.datetime,
                     textInputAction: TextInputAction.next,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p74
                   UIRichText(
                     text1: "P74. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
@@ -272,7 +272,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     keyboardType: TextInputType.datetime,
                     textInputAction: TextInputAction.next,
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   //p75
                   UIRichText(
                     text1: "P75. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",

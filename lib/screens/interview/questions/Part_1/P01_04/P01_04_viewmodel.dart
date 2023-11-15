@@ -13,7 +13,6 @@ class P01_04ViewModel extends BaseViewModel {
   final SPrefAppModel _sPrefAppModel;
   P01_04ViewModel(this._executeDatabase, this._sPrefAppModel);
   var thanhvien = thongTinThanhVienModel();
-  List<thongTinThanhVienModel> list_tttv = [];
   String stopQuestion = "";
   int currentPos = 0;
 
@@ -26,18 +25,21 @@ class P01_04ViewModel extends BaseViewModel {
   getTTTV() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
-    await _executeDatabase.getListTTTV(idho).then((value) => list_tttv == value);
     await _executeDatabase.getTTTV(idho, idtv).then((value) {
       thanhvien = value;
     });
   }
+
+  Future<List<thongTinThanhVienModel>> getListTTTV() async {
+  String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
+    return await _executeDatabase.getListTTTV(idho);
+}
 
   void P01_04Back(int c01) async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
     int idtv = _sPrefAppModel.IDTV;
     await _executeDatabase.getListTTTV(idho).then((value) {
       print(value.length);
-      list_tttv = value;
       if (c01 == 1) {
         NavigationServices.instance.navigateToQ7(context);
       } else {
@@ -81,6 +83,23 @@ class P01_04ViewModel extends BaseViewModel {
             "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
         NavigationServices.instance.navigateToP06_07(context);
       } else {
+        await _executeDatabase.deleteTTTV(data.idho!, data.idtv!, DateTime.now().year);
+        await _executeDatabase.setTTTV([
+          thongTinThanhVienModel(
+            idho: data.idho,
+            idtv: data.idtv,
+            thangDT: data.thangDT,
+            namDT: data.namDT,
+            c00: data.c00,
+            c01: data.c01,
+            c01K: data.c01K,
+            c02: data.c02,
+            c03A: data.c03A,
+            c03B: data.c03B,
+            c04: data.c04,
+            c04A: data.c04A,
+          )
+        ]);
         NavigationServices.instance.navigateToP70_75(context);
       }
     }

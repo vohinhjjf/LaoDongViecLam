@@ -74,7 +74,7 @@ class ExecuteDatabase {
     }
   }
 
-  setBangKeThangDTModel(List data) async {
+  setListBangKeThangDTModel(List data) async {
     _database = await _dbProvider.database;
     for (int i = 0; i < data.length; i++) {
       var bangke_thangdt = BangKeThangDTModel(
@@ -86,6 +86,11 @@ class ExecuteDatabase {
       );
       await _database?.insert(TableConstants.bangkeho_thangdt, bangke_thangdt.toJson());
     }
+  }
+
+  setBangKeThangDTModel(BangKeThangDTModel data) async {
+    _database = await _dbProvider.database;
+    await _database?.insert(TableConstants.bangkeho_thangdt, data.toJson());
   }
 
   updateTrangThaiBK(String id, int trangThai, int thangDT, int namDT) async {

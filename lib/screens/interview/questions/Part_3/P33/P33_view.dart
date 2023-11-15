@@ -68,7 +68,7 @@ class _P33ViewState extends State<P33View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -95,30 +95,29 @@ class _P33ViewState extends State<P33View> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(width: 10,),
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5,),
                   //a
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -148,7 +147,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -171,7 +170,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -201,7 +200,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -224,7 +223,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -254,7 +253,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -277,7 +276,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -307,7 +306,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -330,7 +329,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -360,7 +359,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -383,7 +382,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //f
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -413,7 +412,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -436,7 +435,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //g
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -463,7 +462,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -486,7 +485,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //h
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -516,7 +515,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -539,7 +538,7 @@ class _P33ViewState extends State<P33View> {
                   ),
                   //i
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -566,7 +565,7 @@ class _P33ViewState extends State<P33View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,

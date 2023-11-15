@@ -21,7 +21,7 @@ class P61_62View extends StatefulWidget {
 class _P61_62ViewState extends State<P61_62View> {
   late P61_62ViewModel p61_62ViewModel;
   final _formKey = GlobalKey<FormState>();
-  var _tiencong = TextEditingController();
+  final _tiencong = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
   int p62 =0;
   bool check = false, check_draw = true;
@@ -65,7 +65,7 @@ class _P61_62ViewState extends State<P61_62View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -104,7 +104,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     keyboardType: TextInputType.datetime,
                   ),
                   //p62
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   UIRichText(
                     text1: "P62. Ngoài hai công việc trên, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
@@ -119,7 +119,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     title: const UIText(
                       text: "CÓ",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(
@@ -148,7 +148,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     title: const UIText(
                       text: "KHÔNG",
                       textColor: Colors.black,
-                      textFontSize: fontLarge,
+                      textFontSize: fontMedium,
                       textAlign: TextAlign.start,
                     ),
                     leading: RoundCheckBox(

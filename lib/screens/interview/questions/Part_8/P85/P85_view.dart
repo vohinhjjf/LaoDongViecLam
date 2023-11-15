@@ -62,7 +62,7 @@ class _P85ViewState extends State<P85View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.start,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -88,7 +88,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "a. Ngân hàng thương mại (Hội sở, chi nhánh, phòng giao dịch)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -216,7 +216,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "b. Ngân hàng Hợp tác xã Việt Nam (Hội sở, chi nhánh, phòng giao dịch)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -344,7 +344,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "c. Ngân hàng Chính sách xã hội (Hội sở, chi nhánh, phòng giao dịch, điểm giao dịch)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -472,7 +472,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "d. Chi nhánh ngân hàng nước ngoài",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -600,7 +600,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "e. Quỹ tín dụng nhân dân (Trụ sở chính, phòng giao dịch)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -729,7 +729,7 @@ class _P85ViewState extends State<P85View> {
                   text: "f. Tổ chức tín dụng phi ngân hàng (công ty tài chính, "
                       "công ty cho thuê tài chính, công ty tài chính tiêu dùng)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -857,7 +857,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "g. Tổ chức tài chính vi mô (Trụ sở chính, chi nhánh, phòng giao dịch, điểm giao dịch)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -985,7 +985,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "h. Công ty trung gian thanh toán (Hội sở, chi nhánh)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(
@@ -1113,7 +1113,7 @@ class _P85ViewState extends State<P85View> {
                 const UIText(
                   text: "i. Công ty bảo hiểm (Hội sở, chi nhánh)",
                   textColor: Colors.black,
-                  textFontSize: fontGreater,
+                  textFontSize: fontMedium,
                   textAlign: TextAlign.start,
                 ),
                 ListTile(

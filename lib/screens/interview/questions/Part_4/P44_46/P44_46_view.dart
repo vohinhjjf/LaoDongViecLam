@@ -23,7 +23,7 @@ class _P44_46ViewState extends State<P44_46View> {
   final _formKey = GlobalKey<FormState>();
   final _gio = TextEditingController();
   var thanhvien = thongTinThanhVienModel();
-  int p44 =0, p46 =0;
+  int p44 =0, p46 =0, p45= 0;
   bool check_draw = true;
 
   @override
@@ -61,7 +61,7 @@ class _P44_46ViewState extends State<P44_46View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -91,7 +91,7 @@ class _P44_46ViewState extends State<P44_46View> {
                             title: const UIText(
                               text: "CÓ",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             ),
                             leading: RoundCheckBox(
@@ -120,7 +120,7 @@ class _P44_46ViewState extends State<P44_46View> {
                             title: const UIText(
                               text: "KHÔNG",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             ),
                             leading: RoundCheckBox(
@@ -145,11 +145,11 @@ class _P44_46ViewState extends State<P44_46View> {
                               });
                             },
                           ),
+                          const SizedBox(height: 10,),
                         ],
                       )
                   ),
                   //p45
-                  const SizedBox(height: 20,),
                   UIRichText(
                     text1: "P45. Thực tế, trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
@@ -169,76 +169,90 @@ class _P44_46ViewState extends State<P44_46View> {
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                     ],
+                    onChanged: (value){
+                      setState(() {
+                        if(value.isNotEmpty) {
+                          p45 = int.parse(value);
+                        }
+                      });
+                    },
                     maxLength: 3,
                     keyboardType: TextInputType.datetime,
                   ),
                   //p46
-                  const SizedBox(height: 20,),
-                  UIRichText(
-                    text1: "P46. Có phải ${BaseLogic.getInstance().getMember(thanhvien)} ",
-                    text2: thanhvien.c00 ?? "",
-                    text3: " đang tạm nghỉ công việc này trong 7 ngày qua không?",
-                    textColor: Colors.black,
-                    textFontSize:fontLarge,
-                  ),
-                  const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "CÓ",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: p46 == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          p46 = p46 == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
-                      setState(() {
-                        p46 = p46 == 1 ? 0 : 1;
-                      });
-                    },
-                  ),
-                  ListTile(
-                    title: const UIText(
-                      text: "KHÔNG",
-                      textColor: Colors.black,
-                      textFontSize: fontLarge,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: p46 == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          p46 = p46 == 2 ? 0 : 2;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
-                      setState(() {
-                        p46 = p46 == 2 ? 0 : 2;
-                      });
-                    },
+                  Visibility(
+                    visible: p45 == 0,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 10,),
+                          UIRichText(
+                            text1: "P46. Có phải ${BaseLogic.getInstance().getMember(thanhvien)} ",
+                            text2: thanhvien.c00 ?? "",
+                            text3: " đang tạm nghỉ công việc này trong 7 ngày qua không?",
+                            textColor: Colors.black,
+                            textFontSize:fontLarge,
+                          ),
+                          const SizedBox(height: 10,),
+                          ListTile(
+                            title: const UIText(
+                              text: "CÓ",
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              textAlign: TextAlign.start,
+                            ),
+                            leading: RoundCheckBox(
+                              isChecked: p46 == 1 ? true : false,
+                              onTap: (selected) {
+                                setState(() {
+                                  p46 = p46 == 1 ? 0 : 1;
+                                });
+                              },
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                              checkedColor: Colors.white,
+                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              uncheckedColor: Colors.white,
+                              uncheckedWidget: Container(),
+                            ),
+                            onTap: () {
+                              setState(() {
+                                p46 = p46 == 1 ? 0 : 1;
+                              });
+                            },
+                          ),
+                          ListTile(
+                            title: const UIText(
+                              text: "KHÔNG",
+                              textColor: Colors.black,
+                              textFontSize: fontMedium,
+                              textAlign: TextAlign.start,
+                            ),
+                            leading: RoundCheckBox(
+                              isChecked: p46 == 2 ? true : false,
+                              onTap: (selected) {
+                                setState(() {
+                                  p46 = p46 == 2 ? 0 : 2;
+                                });
+                              },
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                              checkedColor: Colors.white,
+                              checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
+                              uncheckedColor: Colors.white,
+                              uncheckedWidget: Container(),
+                            ),
+                            onTap: () {
+                              setState(() {
+                                p46 = p46 == 2 ? 0 : 2;
+                              });
+                            },
+                          ),
+                        ],
+                      )
                   ),
                   //Button
                   const SizedBox(height: 90,),

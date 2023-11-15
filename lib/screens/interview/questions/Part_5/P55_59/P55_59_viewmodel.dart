@@ -31,9 +31,9 @@ class P55_59ViewModel extends BaseViewModel {
   }
 
   void P55_59Next(thongTinThanhVienModel data) async {
-    _executeDatabase.update("SET c49 = ${data.c49}, c50A = ${data.c50A}, "
-        "c51 = ${data.c51}, c52A = ${data.c52A}, c53 = ${data.c53} "
-        "WHERE idho = ${data.idho} AND idtv = ${data.idtv}");
+    _executeDatabase.updateC00("SET c49 = ?, c50A = ?, "
+        "c51 = ?, c52A = ?, c53 = ? WHERE idho = ? AND idtv = ?",
+        [data.c49, data.c50A, data.c51, data.c52A, data.c53, data.idho, data.idtv]);
     NavigationServices.instance.navigateToP60(context);
   }
 }

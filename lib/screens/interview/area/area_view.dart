@@ -25,7 +25,7 @@ class _AreaViewState extends State<AreaView>{
       areaViewModel = context.read();
       areaViewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 100),
+          const Duration(milliseconds: 200),
               () => {
             setState(() {
               list_area = areaViewModel.list_area;
@@ -61,14 +61,14 @@ class _AreaViewState extends State<AreaView>{
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: 14.w, vertical: 20),
+              horizontal: 14.w, vertical: 10),
           child: ListView.builder(
             shrinkWrap: true,
             primary: false,
             itemCount: list_area.length,
             itemBuilder: (context, index) {
               return Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 20),
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {
@@ -76,7 +76,7 @@ class _AreaViewState extends State<AreaView>{
                       print(list_area[index].iddb!);
                     },
                     color: Colors.white,
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    padding: const EdgeInsets.all(10),
                     shape: const RoundedRectangleBorder(
                         side: BorderSide(
                           width: 0,
@@ -85,25 +85,38 @@ class _AreaViewState extends State<AreaView>{
                           Radius.circular(10.0)
                       )
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+                  child: Row(
                     children: [
-                      UIText(
-                          text: "${list_area[index].iddb}: ${list_area[index].tenDiaBan} - Chưa hoàn thành",
-                          textFontSize: fontLarge,
-                          isBold: true,
-                          textColor: Colors.black
+                      const Image(
+                        width: 100,
+                        height: 100,
+                        image: AssetImage("assets/images/tempsnip.png"),
                       ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      UIText(
-                          text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0).toList().length}',
-                          textFontSize: fontMedium,
-                          isBold: true,
-                          textColor: Colors.yellow.shade800
-                      ),
+                      SizedBox(width: 10.w,),
+                      Flexible(
+                        flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              UIRichText(
+                                  text1: "",
+                                  text2: "${list_area[index].iddb}: ${list_area[index].tenDiaBan}",
+                                  text3: " - Chưa hoàn thành",
+                                  textFontSize: fontLarge,
+                                  textColor: Colors.black,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              UIText(
+                                  text: 'Số hộ: ${list_household.where((e) => e.hoDuPhong == 0 && e.iddb == list_area[index].iddb).toList().length}',
+                                  textFontSize: fontMedium,
+                                  isBold: true,
+                                  textColor: Colors.yellow.shade800
+                              ),
+                            ],
+                          )
+                      )
                     ],
                   )
                 )

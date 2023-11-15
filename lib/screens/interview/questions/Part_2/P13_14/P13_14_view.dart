@@ -146,6 +146,7 @@ class _P13_14ViewState extends State<P13_14View> {
                     visible: tuoi >= 15 && tuoi <= 24 && p13 == 2,
                     child: Column(
                       children: [
+                        const SizedBox(height: 10,),
                         UIRichText(
                           text1: "P14. Hiện nay, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                           text2: thanhvien.c00 ?? "",
@@ -216,9 +217,6 @@ class _P13_14ViewState extends State<P13_14View> {
                               p14 = p14 == 2 ? 0 : 2;
                             });
                           },
-                        ),
-                        const SizedBox(
-                          height: 5,
                         ),
                       ],
                     )),

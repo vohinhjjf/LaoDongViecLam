@@ -24,7 +24,7 @@ class _P60ViewState extends State<P60View> {
   int p60 = 0;
   bool check_draw = true;
 
-  var _khoangtien = [
+  final _khoangtien = [
     "Không có thu nhập",
     "Dưới 1 triệu",
     "Từ 1 triệu đến dưới 10 triệu",
@@ -67,7 +67,7 @@ class _P60ViewState extends State<P60View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -98,7 +98,7 @@ class _P60ViewState extends State<P60View> {
                       title: UIText(
                         text: _khoangtien[index].toString(),
                         textColor: Colors.black,
-                        textFontSize: fontLarge,
+                        textFontSize: fontMedium,
                         textAlign: TextAlign.start,
                         isBold: false,
                       ),

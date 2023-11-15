@@ -182,14 +182,11 @@ class _HomeViewState extends State<HomeView> {
                   //isBold: true,
                 ),
               ),
-              //actionsAlignment: MainAxisAlignment.center,
+              actionsAlignment: MainAxisAlignment.spaceEvenly,
               //actionsOverflowDirection: VerticalDirection.down,
               actions: [
                 MaterialButton(
                     height: 60,
-                    shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black,width: 0.1)
-                    ),
                     child: const UIText(
                       text: 'Kiểm tra lại',
                       textFontSize: fontLarge,
@@ -202,9 +199,6 @@ class _HomeViewState extends State<HomeView> {
                     }),
                 MaterialButton(
                   height: 60,
-                  shape: const RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black,width: 0.1)
-                  ),
                   child: const UIText(
                     text: 'Đồng ý',
                     textFontSize: fontLarge,

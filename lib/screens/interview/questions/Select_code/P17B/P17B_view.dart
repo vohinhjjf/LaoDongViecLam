@@ -124,12 +124,44 @@ class _P17BViewState extends State<P17BView> {
                     ],
                   ),
                   const SizedBox(height: 10,),
-                  UITextFormField(
-                    controller: _madaotao,
-                    readOnly: true,
-                    onTap: (){
-                      _showAddDialog(_daotao.text.toLowerCase());
-                    },
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: UITextFormField(
+                          controller: _madaotao,
+                          readOnly: true,
+                          onTap: (){
+                            _showAddDialog(_daotao.text.toLowerCase());
+                          },
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: MaterialButton(
+                          height: 58,
+                          onPressed: () {
+                            setState(() {
+                              _madaotao.text = '';
+                            });
+                          },
+                          padding: const EdgeInsets.all(10),
+                          shape: const RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 0.6,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0)
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.dangerous,
+                            color: Colors.redAccent,
+                            size: fontGreater,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   //Button
                   const SizedBox(height: 90,),
@@ -166,7 +198,13 @@ class _P17BViewState extends State<P17BView> {
           ],
         ),
       ),
-      drawer: const DrawerNavigation(),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 

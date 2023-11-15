@@ -67,7 +67,7 @@ class _P82ViewState extends State<P82View> {
           text: UIDescribes.informationCommon,
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
-          textFontSize: fontGreater,
+          textFontSize: fontLarge,
           isBold: true,
         ),
       ),
@@ -94,21 +94,21 @@ class _P82ViewState extends State<P82View> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(width: 10,),
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,
-                          textFontSize: fontSmall,
+                          textFontSize: fontMedium,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -116,7 +116,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //a
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -125,7 +125,7 @@ class _P82ViewState extends State<P82View> {
                             child: UIText(
                               text: "Thu nhập giảm",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -146,7 +146,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -169,7 +169,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //b
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -178,7 +178,7 @@ class _P82ViewState extends State<P82View> {
                             child: UIText(
                               text: "Do ảnh hưởng của thiên tai",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -199,7 +199,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -222,7 +222,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //c
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -231,7 +231,7 @@ class _P82ViewState extends State<P82View> {
                             child: UIText(
                               text: "Do ảnh hưởng của giá hàng hóa tăng lên",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -252,7 +252,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -275,7 +275,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //d
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -284,7 +284,7 @@ class _P82ViewState extends State<P82View> {
                             child: UIText(
                               text: "Do ảnh hưởng của dịch bệnh đối với con người",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -305,7 +305,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -328,7 +328,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //e
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -337,7 +337,7 @@ class _P82ViewState extends State<P82View> {
                             child: UIText(
                               text: "Do ảnh hưởng của dịch bệnh đối với vật nuôi, cây trồng",
                               textColor: Colors.black,
-                              textFontSize: fontLarge,
+                              textFontSize: fontMedium,
                               textAlign: TextAlign.start,
                             )
                         ),
@@ -358,7 +358,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
@@ -381,7 +381,7 @@ class _P82ViewState extends State<P82View> {
                   ),
                   //f
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10, right: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -390,7 +390,7 @@ class _P82ViewState extends State<P82View> {
                           child: UIText(
                             text: "Nguyên nhân khác (Ghi rõ)",
                             textColor: Colors.black,
-                            textFontSize: fontLarge,
+                            textFontSize: fontMedium,
                             textAlign: TextAlign.start,
                           ),
                         ),
@@ -411,7 +411,7 @@ class _P82ViewState extends State<P82View> {
                               inactiveIcon: null,
                               radioColor: Colors.indigo,
                             ),
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 15,),
                             GFRadio(
                               type: GFRadioType.custom,
                               size: GFSize.LARGE,
