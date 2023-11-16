@@ -117,12 +117,12 @@ class _Q3ViewState extends State<Q3View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Container(
                     height: 1,
                     color: Colors.grey.shade300,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Visibility(
                     visible: q3_a == 1,
                     child: Column(
@@ -218,12 +218,12 @@ class _Q3ViewState extends State<Q3View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Container(
                     height: 1,
                     color: Colors.grey.shade300,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Visibility(
                     visible: q3_b == 1,
                     child: Column(
@@ -319,12 +319,12 @@ class _Q3ViewState extends State<Q3View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Container(
                     height: 1,
                     color: Colors.grey.shade300,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Visibility(
                     visible: q3_c == 1,
                     child: Column(
@@ -420,12 +420,12 @@ class _Q3ViewState extends State<Q3View> {
                       });
                     },
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Container(
                     height: 1,
                     color: Colors.grey.shade300,
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(height: 10,),
                   Visibility(
                     visible: q3_d == 1,
                     child: Column(

@@ -33,7 +33,7 @@ class UIListTile extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: UIText(
           text: text,
-          textColor: check ? mPrimaryColor : Colors.black,
+          textColor: check ? GFColors.PRIMARY : Colors.black,
           textFontSize: fontMedium,
           textAlign: TextAlign.start,
         ),
@@ -43,10 +43,10 @@ class UIListTile extends StatelessWidget {
         isRound: true,
         onTap: onTap1,
         border: Border.all(
-          width: 1,
-          color: Colors.black,
+          width: 0.3,
+          color: check ? GFColors.PRIMARY.withOpacity(0.15) : Colors.black,
         ),
-        checkedColor: Colors.white,
+        checkedColor: GFColors.PRIMARY.withOpacity(0.15),
         checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
         uncheckedColor: Colors.white,
         uncheckedWidget: Container(),

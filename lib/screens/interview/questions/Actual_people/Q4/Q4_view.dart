@@ -37,7 +37,7 @@ class _Q4ViewState extends State<Q4View> {
       q4viewModel = context.read();
       q4viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 300),
+          const Duration(milliseconds: 200),
               () => {
             setState(() {
               list = q4viewModel.list;
@@ -361,14 +361,14 @@ class _Q4ViewState extends State<Q4View> {
           onTap1: onTap1,
           onTap2: onTap2,
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(height: 10,),
         UIListTile(
           text: "Không",
           check: groupValue == 2,
           onTap1: onTap3,
           onTap2: onTap4,
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(height: 10,),
         Container(
           height: 1,
           color: Colors.grey.shade300,

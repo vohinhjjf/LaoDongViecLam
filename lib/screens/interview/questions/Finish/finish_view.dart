@@ -60,8 +60,10 @@ class Body extends State<FinishView> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Align(
+        child: Container(
           alignment: Alignment.center,
+          padding:
+          EdgeInsets.only(top: MediaQuery.of(context).size.height/3),
           child: MaterialButton(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
             onPressed: () {

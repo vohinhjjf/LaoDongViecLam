@@ -136,39 +136,42 @@ class _P10_12ViewState extends State<P10_12View> {
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
                 Visibility(
                     visible: p10 == 1 ? true : false,
-                    child: DropdownButtonFormField(
-                      style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey, width: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey, width: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                      dropdownColor: Colors.white,
-                      value: hanhchinh,
-                      items: _hanhchinh.map((e) =>
-                          DropdownMenuItem(
-                            value: e["Ma"].toString(),
-                            child: Text("${e["Ma"]} - ${e["Ten"]}"),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 10, right: 15),
+                      child: DropdownButtonFormField(
+                        style: const TextStyle(color: Colors.black, fontSize: fontMedium),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                      ).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          hanhchinh = value!;
-                        });
-                      },
-                      isExpanded: true,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        dropdownColor: Colors.white,
+                        value: hanhchinh,
+                        items: _hanhchinh.map((e) =>
+                            DropdownMenuItem(
+                              value: e["Ma"].toString(),
+                              child: Text("${e["Ma"]} - ${e["Ten"]}"),
+                            ),
+                        ).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            hanhchinh = value!;
+                          });
+                        },
+                        isExpanded: true,
+                      ),
                     ),
                 ),
+                const SizedBox(height: 10,),
                 UIListTile(
                   text: "Nước ngoài",
                   check: p10 == 2,
@@ -189,39 +192,37 @@ class _P10_12ViewState extends State<P10_12View> {
                 ),
                 Visibility(
                     visible: p10 == 2,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10,),
-                        DropdownButtonFormField(
-                          style: const TextStyle(color: Colors.black, fontSize: fontMedium),
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey, width: 0.5),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 10, right: 15),
+                      child: DropdownButtonFormField(
+                        style: const TextStyle(color: Colors.black, fontSize: fontMedium),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          dropdownColor: Colors.white,
-                          value: quocgia,
-                          items: _quocgia.map((e) =>
-                               DropdownMenuItem(
-                                value: e.substring(0,3),
-                                child: Text(e),
-                              ),
-                          ).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              quocgia = value!;
-                            });
-                          },
-                          isExpanded: true,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 0.5),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                      ],
+                        dropdownColor: Colors.white,
+                        value: quocgia,
+                        items: _quocgia.map((e) =>
+                            DropdownMenuItem(
+                              value: e.substring(0,3),
+                              child: Text(e),
+                            ),
+                        ).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            quocgia = value!;
+                          });
+                        },
+                        isExpanded: true,
+                      ),
                     )
                 ),
                 Visibility(

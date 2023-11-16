@@ -85,6 +85,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       });
                     },
                   ),
+                  const SizedBox(height: 5,),
                   UIListTile(
                     text: UIDescribes.refuse,
                     check: groupValue == 2,
@@ -99,6 +100,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       });
                     },
                   ),
+                  const SizedBox(height: 5,),
                   UIListTile(
                     text: UIDescribes.notArea,
                     check: groupValue == 3,
@@ -113,6 +115,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       });
                     },
                   ),
+                  const SizedBox(height: 5,),
                   UIListTile(
                     text: UIDescribes.notContact,
                     check: groupValue == 4,
@@ -127,6 +130,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                       });
                     },
                   ),
+                  const SizedBox(height: 5,),
                   UIListTile(
                     text: UIDescribes.moveTo,
                     check: groupValue == 6,
