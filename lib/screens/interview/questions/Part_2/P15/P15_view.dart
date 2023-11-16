@@ -25,11 +25,11 @@ class _P15ViewState extends State<P15View> {
   bool check_draw = true;
 
   var _trinhdo = [
-    "CHƯA BAO GIỜ ĐI HỌC",
-    "CHƯA HỌC XONG TIỂU HỌC",
-    "TIỂU HỌC",
-    "TRUNG HỌC CƠ SỞ",
-    "TRUNG HỌC PHỔ THÔNG",
+    "Chưa bao giờ đi học",
+    "Chưa học xong tiểu học",
+    "Tiểu học",
+    "Trung học cơ sở",
+    "Trung học phổ thông",
   ];
 
   @override
@@ -69,7 +69,7 @@ class _P15ViewState extends State<P15View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

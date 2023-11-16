@@ -64,7 +64,7 @@ class _P26ViewState extends State<P26View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -127,7 +127,7 @@ class _P26ViewState extends State<P26View> {
               if(p26 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P26 - Có làm việc trong ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P26-Có làm việc trong ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
                 );
               }else {
                 p26ViewModel.P26Next(thongTinThanhVienModel(

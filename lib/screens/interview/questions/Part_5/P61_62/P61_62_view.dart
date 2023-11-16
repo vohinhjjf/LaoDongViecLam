@@ -83,7 +83,7 @@ class _P61_62ViewState extends State<P61_62View> {
                     text1: "P61. Cụ thể, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " nhận được bao nhiêu tiền cho công việc này? "
-                        "(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
+                        "\n(ĐƠN VỊ TÍNH: NGHÌN ĐỒNG)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -108,7 +108,7 @@ class _P61_62ViewState extends State<P61_62View> {
                   UIRichText(
                     text1: "P62. Ngoài hai công việc trên, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: "  có làm công việc nào khác nữa không? (Không bao "
+                    text3: " có làm công việc nào khác nữa không? (Không bao "
                         "gồm các công việc tạo ra sản phẩm với mục đích chủ yếu "
                         "để gia đình mình sử dụng)",
                     textColor: Colors.black,
@@ -168,7 +168,7 @@ class _P61_62ViewState extends State<P61_62View> {
                       context: context,
                       builder: (_) =>
                       const UIWarningDialog(
-                        waring: 'P62 - Công việc khác nhập vào chưa đúng!',)
+                        waring: 'P62-Công việc khác nhập vào chưa đúng!',)
                   );
                 }
                 else if (int.parse(_tiencong.text) < 100) {

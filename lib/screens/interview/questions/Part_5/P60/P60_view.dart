@@ -74,7 +74,7 @@ class _P60ViewState extends State<P60View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -130,7 +130,7 @@ class _P60ViewState extends State<P60View> {
               if(p60 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P60 - Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV thứ 2 nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P60-Khoảng mức tiền công/lương/lợi nhuận nhận được từ CV thứ 2 nhập vào chưa đúng!',)
                 );
               }
               else {

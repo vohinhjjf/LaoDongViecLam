@@ -63,7 +63,7 @@ class _P69ViewState extends State<P69View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -77,7 +77,7 @@ class _P69ViewState extends State<P69View> {
                         "giờ để trồng trọt hoặc thu hoạch hoặc chăn nuôi gia súc, "
                         "gia cầm hoặc nuôi trồng, đánh bắt thủy hải sản hoặc săn "
                         "bắt, thu nhặt sản phẩm tự nhiên với mục đích chủ yếu là "
-                        "để cho hộ gia đình mình sử dụng? (ĐƠN VỊ TÍNH: GIỜ)",
+                        "để cho hộ gia đình mình sử dụng?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),

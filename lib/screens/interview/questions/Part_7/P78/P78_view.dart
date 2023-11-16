@@ -78,7 +78,7 @@ class _P78ViewState extends State<P78View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -601,7 +601,7 @@ class _P78ViewState extends State<P78View> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const UIText(
-                          text: "Cách khác",
+                          text: "Nguyên nhân khác",
                           textColor: Colors.black,
                           textFontSize: fontMedium,
                           textAlign: TextAlign.start,
@@ -654,7 +654,7 @@ class _P78ViewState extends State<P78View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P78 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
+                                .c00} có P78-Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
                   );
                 } else {
                   p78ViewModel.P78Next(DoiSongHoModel(

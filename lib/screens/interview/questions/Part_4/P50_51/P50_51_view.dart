@@ -76,7 +76,7 @@ class _P50_51ViewState extends State<P50_51View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -176,13 +176,13 @@ class _P50_51ViewState extends State<P50_51View> {
               if(thanhvien.c43 == 5 && p50 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P50 - Loại hợp đồng nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P50-Loại hợp đồng nhập vào chưa đúng!',)
                 );
               }
               else if(p51 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P51 - Có đóng BHXH nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P51-Có đóng BHXH nhập vào chưa đúng!',)
                 );
               }
               else if(p50 >= 5 && p51 == 1){

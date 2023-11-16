@@ -74,7 +74,7 @@ class _P82ViewState extends State<P82View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -491,7 +491,7 @@ class _P82ViewState extends State<P82View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P82 - Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
+                                .c00} có P82-Các nguyên nhân làm chi tiêu giảm đi nhập vào chưa đúng!',)
                   );
                 } else {
                   p82ViewModel.P82Next(DoiSongHoModel(

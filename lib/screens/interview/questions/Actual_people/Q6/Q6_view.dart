@@ -148,7 +148,7 @@ class _Q6ViewState extends State<Q6View> {
             borderRadius: BorderRadius.circular(5.0),
           ),
           title: const UIText(
-            text: "Hộng ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
+            text: "Hộ ông/bà không có ai được tính là nhân khẩu thực tế thường trú tại hộ trong cuộc điều tra này",
             textColor: Colors.black,
             textFontSize:fontLarge,
             textAlign: TextAlign.center,

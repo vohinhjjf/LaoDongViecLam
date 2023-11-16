@@ -77,7 +77,7 @@ class _P80ViewState extends State<P80View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -600,7 +600,7 @@ class _P80ViewState extends State<P80View> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const UIText(
-                          text: "Cách khác",
+                          text: "Nguyên nhân khác",
                           textColor: Colors.black,
                           textFontSize: fontMedium,
                           textAlign: TextAlign.start,
@@ -612,7 +612,7 @@ class _P80ViewState extends State<P80View> {
                           controller: _orther,
                           validator: (value){
                             if(p80i == 1 && value!.isEmpty){
-                              return 'Vui lòng nhập cách khác';
+                              return 'Vui lòng nhập nguyên nhân khác';
                             }
                             return null;
                           },
@@ -653,7 +653,7 @@ class _P80ViewState extends State<P80View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P80 - Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
+                                .c00} có P80-Các nguyên nhân làm thu nhập giảm đi nhập vào chưa đúng!',)
                   );
                 } else {
                   p80ViewModel.P80Next(DoiSongHoModel(

@@ -26,7 +26,7 @@ class _P43ViewState extends State<P43View> {
 
   var _loaihinh = [
     "Hộ hoạt động nông, lâm nghiệp, thủy sản",
-    "Cơ sở sản xuất kinh doanh cá thể (không phải hộ nông, lâm nghiệp, thủy sản",
+    "Cơ sở sản xuất kinh doanh cá thể (không phải hộ nông, lâm nghiệp, thủy sản)",
     "Cá nhân làm tự do",
     "Hợp tác xã",
     "Doanh nghiệp do Nhà nước làm chủ",
@@ -80,7 +80,7 @@ class _P43ViewState extends State<P43View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -134,7 +134,7 @@ class _P43ViewState extends State<P43View> {
               if(p43 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P43 - Loại hình cơ sở nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P43-Loại hình cơ sở nhập vào chưa đúng!',)
                 );
               }
               else {

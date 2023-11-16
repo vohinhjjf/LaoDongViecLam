@@ -65,7 +65,7 @@ class _P63_64ViewState extends State<P63_64View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -145,7 +145,7 @@ class _P63_64ViewState extends State<P63_64View> {
                       context: context,
                       builder: (_) => UIWarningDialog(
                         waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                            .c00} có P63 - Số giờ cho công việc khác = ${_gio
+                            .c00} có P63-Số giờ cho công việc khác = ${_gio
                             .text} quá lớn!',)
                   );
                 }
@@ -154,7 +154,7 @@ class _P63_64ViewState extends State<P63_64View> {
                       context: context,
                       builder: (_) => UIWarningDialog(
                         waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                            .c00} có P64 - Thu nhập của công việc khác = ${_tiencong
+                            .c00} có P64-Thu nhập của công việc khác = ${_tiencong
                             .text} quá lớn!',)
                   );
                 }

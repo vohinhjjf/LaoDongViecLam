@@ -25,12 +25,12 @@ class _P36_37ViewState extends State<P36_37View> {
   bool check_draw = true;
 
   var _thoigian = [
-    "DƯỚI 1 THÁNG",
-    "1 ĐẾN DƯỚI 3 THÁNG",
-    "3 ĐẾN DƯỚI 6 THÁNG",
-    "6 ĐẾN DƯỚI 12 THÁNG",
-    "1 NĂM ĐẾN DƯỚI 2 NĂM",
-    "2 NĂM TRỞ LÊN",
+    "Dưới 1 tháng",
+    "1 đến dưới 3 tháng",
+    "3 đến dưới 6 tháng",
+    "6 đến dưới 12 tháng",
+    "1 năm đến dưới 2 năm",
+    "Từ 2 năm trở lên",
   ];
 
 
@@ -75,7 +75,7 @@ class _P36_37ViewState extends State<P36_37View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -176,12 +176,12 @@ class _P36_37ViewState extends State<P36_37View> {
               if(p36 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P36 - Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P36-Quyết định sẵn sàng làm việc trong vòng 2 tuần tới nhập vào chưa đúng!',)
                 );
               } else if(p36 == 1 && p37 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P37 - Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P37-Khoảng thời gian không có việc làm và tìm kiếm việc làm hoặc chuẩn bị hoạt động SXKD nhập vào chưa đúng!',)
                 );
               }
               else {

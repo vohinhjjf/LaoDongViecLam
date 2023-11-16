@@ -27,23 +27,22 @@ class _P35ViewState extends State<P35View> {
   bool check_draw = true;
 
   var _lydo = [
-    "QUÁ GIÀ/QUÁ TRẺ",
-    "MẤT KHẢ NĂNG LAO ĐỘNG",
-    "NỘI TRỢ",
-    "BẬN HỌC (SV/HS/HỌC VIỆC)",
-    "KHÔNG MUỐN/KHÔNG CẦN ĐI LÀM",
-    "TIN LÀ KHÔNG CÓ VIỆC/KHÔNG CÓ VIỆC THÍCH HỢP",
-    "KHÔNG BIẾT TÌM Ở ĐÂU/BẰNG CÁCH NÀO",
-    "TẠM NGHỈ DO THU HẸP/NGỪNG SẢN XUẤT",
-    "ĐỢI VIỆC/ĐỢI KHAI TRƯƠNG HĐKD",
-    "THỜI TIẾT XẤU/THIÊN TAI",
-    "NGHỈ THỜI VỤ",
-    "THỜI TIẾT XẤU/THIÊN TAI",
-    "DO DỊCH BỆNH",
-    "BẬN VIỆC GIA ĐÌNH/ĐANG NGHỈ NGƠI",
-    "LÀM NÔNG NGHIỆP",
-    "ỐM/ĐAU TẠM THỜI",
-    "KHÁC (GHI CỤ THẾ)",
+    "Quá già/quá trẻ",
+    "Mất khả năng lao động",
+    "Nội trợ",
+    "Bận học (SV/HS/học việc)",
+    "Không muốn/không cần đi làm",
+    "Tin là không có việc/không có việc thích hợp",
+    "Không biết tìm ở đâu/bằng cách nào",
+    "Tạm nghỉ do thu hẹp/ngừng sản xuất",
+    "Đợi việc/đợi khai trương HĐKD",
+    "Nghỉ thời vụ",
+    "Thời tiết xấu/thiên tai",
+    "Do dịch bệnh",
+    "Bận việc gia đình/đang nghỉ ngơi",
+    "Làm nông nghiệp",
+    "Ốm/đau tạm thời",
+    "Khác (Ghi cụ thể)",
   ];
 
   @override
@@ -87,7 +86,7 @@ class _P35ViewState extends State<P35View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -180,7 +179,7 @@ class _P35ViewState extends State<P35View> {
                       context: context,
                       builder: (_) =>
                       const UIWarningDialog(
-                        waring: 'P35 - Lý do không tìm việc nhập vào chưa đúng!',)
+                        waring: 'P35-Lý do không tìm việc nhập vào chưa đúng!',)
                   );
                 }
                 else if (p35 == 9 && thanhvien.c30 == 2) {
@@ -188,7 +187,7 @@ class _P35ViewState extends State<P35View> {
                       context: context,
                       builder: (_) =>
                       const UIWarningDialog(
-                        waring: 'P35 - Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
+                        waring: 'P35-Lý do không tìm việc là đợi việc/đợi khai trương HĐKD mà C32 = 2!',)
                   );
                 }
                 else {

@@ -26,17 +26,17 @@ class _P76_77ViewState extends State<P76_77View> {
   int p76 = 0, p77 = 0;
 
   final _doisong = [
-    "CẢI THIỆN HƠN",
-    "NHƯ CŨ",
-    "GIẢM SÚT",
-    "KHÔNG BIẾT",
+    "Cải thiện hơn",
+    "Như cũ",
+    "Giảm sút",
+    "Không biết",
   ];
 
   final _thunhap = [
-    "TĂNG LÊN",
-    "KHÔNG THAY ĐỔI",
-    "GIẢM ĐI",
-    "KHÔNG BIẾT",
+    "Tăng lên",
+    "Không thay đổi",
+    "Giảm đi",
+    "Không biết",
   ];
 
   @override
@@ -81,7 +81,7 @@ class _P76_77ViewState extends State<P76_77View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -166,13 +166,13 @@ class _P76_77ViewState extends State<P76_77View> {
               if(p76 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P76 - Đời sống gia đình nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P76-Đời sống gia đình nhập vào chưa đúng!',)
                 );
               }
               else if(p77 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P77 - Thu nhập hiện nay nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P77-Thu nhập hiện nay nhập vào chưa đúng!',)
                 );
               }
               else if((p76 == 1 && p77 == 3) || (p76 == 3 && p77 == 1)){

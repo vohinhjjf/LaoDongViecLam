@@ -65,7 +65,7 @@ class _P31_32ViewState extends State<P31_32View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -93,6 +93,7 @@ class _P31_32ViewState extends State<P31_32View> {
                     });
                   },
                 ),
+
                 const SizedBox(height: 5,),
                 UIListTile(
                   text: "Không",
@@ -175,12 +176,12 @@ class _P31_32ViewState extends State<P31_32View> {
               if(p31 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P31 - Việc chủ động tìm kiếm việc làm nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P31-Việc chủ động tìm kiếm việc làm nhập vào chưa đúng!',)
                 );
               } else if(p31 == 2 && p32 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P32 - Quyết định không tìm việc hoặc đã sẵn sàng hoạt động kinh doanh nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P32-Quyết định không tìm việc hoặc đã sẵn sàng hoạt động kinh doanh nhập vào chưa đúng!',)
                 );
               } else {
                 p31_32ViewModel.P31_32Next(thongTinThanhVienModel(

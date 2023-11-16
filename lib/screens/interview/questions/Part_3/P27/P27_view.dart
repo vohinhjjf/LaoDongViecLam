@@ -26,10 +26,10 @@ class _P27ViewState extends State<P27View> {
   bool check_draw = true;
 
   final _nganh = [
-    "TRỒNG TRỌT/CHĂN NUÔI",
-    "THỦY SẢN",
-    "LÂM NGHIỆP",
-    "KHÁC",
+    "Trồng trọt/chăn nuôi",
+    "Thủy sản",
+    "Lâm nghiệp",
+    "Khác",
   ];
 
   @override
@@ -77,7 +77,7 @@ class _P27ViewState extends State<P27View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -132,7 +132,7 @@ class _P27ViewState extends State<P27View> {
               if(p27 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27 - Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P27-Công việc thuộc ngành trồng trọt/chăn nuôi/thủy sản hay lâm nghiệp nhập vào chưa đúng!',)
                 );
               }else {
                 p27ViewModel.P27Next(thongTinThanhVienModel(

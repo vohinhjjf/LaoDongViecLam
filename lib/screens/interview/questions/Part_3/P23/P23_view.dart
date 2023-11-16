@@ -26,20 +26,20 @@ class _P23ViewState extends State<P23View> {
   bool check_draw = true;
 
   var _lydo = [
-    "CHỜ BẮT ĐẦU CÔNG VIỆC HOẶC HOẠT ĐỘNG KINH DOANH MỚI",
-    "LÀM THEO CA/KÍP, THỜI GIAN LINH HOẠT/DO TÍNH CHẤT CÔNG VIỆC",
-    "CÔNG VIỆC THEO MÙA/VỤ",
-    "NGHỈ HÈ/NGHỈ LỄ/ĐI DU LỊCH",
-    "ỐM ĐAU/TAI NẠN",
-    "NGHỈ THAI SẢN",
-    "ĐI HỌC/ĐÀO TẠO",
-    "BẬN VIỆC RIÊNG",
-    "NGHỈ GIÃN VIỆC/TẠM NGỪNG SẢN XUẤT/GIẢM KHÁCH HÀNG",
-    "THỜI TIẾT XẤU/THIÊN TAI",
-    "DO DỊCH BỆNH",
-    "ĐÌNH CÔNG/BIỂU TÌNH",
-    "KHUYẾT TẬT/ỐM ĐAU LÂU DÀI",
-    "KHÁC (GHI CỤ THẾ)",
+    "Chờ bắt đầu công việc hoặc hoạt động kinh doanh mới",
+    "Làm theo ca/kíp, thời gian linh hoạt/do tính chất công việc",
+    "Cng việc theo mùa/vụ",
+    "Nghỉ hè/nghỉ lễ/đi du lịch",
+    "Ốm đau/tai nạn",
+    "Nghỉ thai sản",
+    "Đi học/đào tạo",
+    "Bận việc riêng",
+    "Nghĩ giãn việc/tạm ngừng sản xuất/giảm khách hàng",
+    "Thời tiết xấu/thiên tai",
+    "Do dịch bệnh",
+    "Đình công/biểu tình",
+    "Khuyết tật/ốm đau lâu dài",
+    "Khác (Ghi cụ thể)",
   ];
 
   @override
@@ -80,7 +80,7 @@ class _P23ViewState extends State<P23View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

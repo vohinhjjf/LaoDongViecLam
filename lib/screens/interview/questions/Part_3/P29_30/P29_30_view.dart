@@ -65,7 +65,7 @@ class _P29_30ViewState extends State<P29_30View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -175,12 +175,12 @@ class _P29_30ViewState extends State<P29_30View> {
               if(p29 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29 - Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29-Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
                 );
               } else if(p29 == 1 && p30 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30 - Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30-Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
                 );
               } else {
                 p29_30ViewModel.P29_30Next(thongTinThanhVienModel(
