@@ -89,32 +89,15 @@ class _P15ViewState extends State<P15View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _trinhdo.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _trinhdo[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p15 == index + 1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p15 = p15 == index + 1 ? 0 : index + 1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check,
-                            size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _trinhdo[index].toString(),
+                      check: p15 == index + 1,
+                      onTap1: (value){
+                        setState(() {
+                          p15 = p15 == index + 1 ? 0 : index + 1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p15 = p15 == index + 1 ? 0 : index + 1;
                         });

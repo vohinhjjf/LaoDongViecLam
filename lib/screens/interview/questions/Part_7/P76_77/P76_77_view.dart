@@ -99,31 +99,15 @@ class _P76_77ViewState extends State<P76_77View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _doisong.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _doisong[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p76 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p76 = p76 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _doisong[index].toString(),
+                      check: p76 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p76 = p76 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p76 = p76 == index+1 ? 0 : index+1;
                         });
@@ -146,31 +130,15 @@ class _P76_77ViewState extends State<P76_77View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thunhap.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _thunhap[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p77 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p77 = p77 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _thunhap[index].toString(),
+                      check: p77 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p77 = p77 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p77 = p77 == index+1 ? 0 : index+1;
                         });

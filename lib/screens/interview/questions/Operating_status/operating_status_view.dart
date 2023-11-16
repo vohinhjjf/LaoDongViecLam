@@ -71,146 +71,71 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  ListTile(
-                    title: const UIText(
-                      text: UIDescribes.active,
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 5 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 5 ? 0 : 5;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: UIDescribes.active,
+                    check: groupValue == 5,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 5 ? 0 : 5;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 5 ? 0 : 5;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: UIDescribes.refuse,
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 2 ? 0 : 2;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: UIDescribes.refuse,
+                    check: groupValue == 2,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 2 ? 0 : 2;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 2 ? 0 : 2;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: UIDescribes.notArea,
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 3 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 3 ? 0 : 3;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: UIDescribes.notArea,
+                    check: groupValue == 3,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 3 ? 0 : 3;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 3 ? 0 : 3;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: UIDescribes.notContact,
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 4 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 4 ? 0 : 4;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: UIDescribes.notContact,
+                    check: groupValue == 4,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 4 ? 0 : 4;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 4 ? 0 : 4;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: UIDescribes.moveTo,
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 6 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 6 ? 0 : 6;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: UIDescribes.moveTo,
+                    check: groupValue == 6,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 6 ? 0 : 6;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 6 ? 0 : 6;
                       });

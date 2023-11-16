@@ -83,59 +83,30 @@ class _P13_14ViewState extends State<P13_14View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "Có",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p13 == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p13 = p13 == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Có",
+                  check: p13 == 1,
+                  onTap1: (value){
+                    setState(() {
+                      p13 = p13 == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p13 = p13 == 1 ? 0 : 1;
                     });
                   },
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "Không",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p13 == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p13 = p13 == 2 ? 0 : 2;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                const SizedBox(height: 5,),
+                UIListTile(
+                  text: "Không",
+                  check: p13 == 2,
+                  onTap1: (value){
+                    setState(() {
+                      p13 = p13 == 2 ? 0 : 2;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p13 = p13 == 2 ? 0 : 2;
                     });
@@ -158,61 +129,30 @@ class _P13_14ViewState extends State<P13_14View> {
                         const SizedBox(
                           height: 10,
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "CÓ",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p14 == 1 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p14 = p14 == 1 ? 0 : 1;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check,
-                                size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        UIListTile(
+                          text: "Có",
+                          check: p14 == 1,
+                          onTap1: (value){
+                            setState(() {
+                              p14 = p14 == 1 ? 0 : 1;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p14 = p14 == 1 ? 0 : 1;
                             });
                           },
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "KHÔNG",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p14 == 2 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p14 = p14 == 2 ? 0 : 2;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check,
-                                size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        const SizedBox(height: 5,),
+                        UIListTile(
+                          text: "Không",
+                          check: p14 == 2,
+                          onTap1: (value){
+                            setState(() {
+                              p14 = p14 == 2 ? 0 : 2;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p14 = p14 == 2 ? 0 : 2;
                             });

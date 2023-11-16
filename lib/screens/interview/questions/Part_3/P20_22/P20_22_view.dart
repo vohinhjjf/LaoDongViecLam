@@ -81,59 +81,30 @@ class _P20_22ViewState extends State<P20_22View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "CÓ",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p20 == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p20 = p20 == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Có",
+                  check: p20 == 1,
+                  onTap1: (value){
+                    setState(() {
+                      p20 = p20 == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p20 = p20 == 1 ? 0 : 1;
                     });
                   },
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "KHÔNG",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p20 == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p20 = p20 == 2 ? 0 : 2;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                const SizedBox(height: 5,),
+                UIListTile(
+                  text: "Không",
+                  check: p20 == 2,
+                  onTap1: (value){
+                    setState(() {
+                      p20 = p20 == 2 ? 0 : 2;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p20 = p20 == 2 ? 0 : 2;
                     });
@@ -154,59 +125,30 @@ class _P20_22ViewState extends State<P20_22View> {
                           textFontSize:fontLarge,
                         ),
                         const SizedBox(height: 10,),
-                        ListTile(
-                          title: const UIText(
-                            text: "CÓ",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p21 == 1 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p21 = p21 == 1 ? 0 : 1;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        UIListTile(
+                          text: "Có",
+                          check: p21 == 1,
+                          onTap1: (value){
+                            setState(() {
+                              p21 = p21 == 1 ? 0 : 1;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p21 = p21 == 1 ? 0 : 1;
                             });
                           },
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "KHÔNG",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p21 == 2 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p21 = p21 == 2 ? 0 : 2;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        const SizedBox(height: 5,),
+                        UIListTile(
+                          text: "Không",
+                          check: p21 == 2,
+                          onTap1: (value){
+                            setState(() {
+                              p21 = p21 == 2 ? 0 : 2;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p21 = p21 == 2 ? 0 : 2;
                             });
@@ -231,59 +173,30 @@ class _P20_22ViewState extends State<P20_22View> {
                           textFontSize:fontLarge,
                         ),
                         const SizedBox(height: 10,),
-                        ListTile(
-                          title: const UIText(
-                            text: "CÓ",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p22 == 1 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p22 = p22 == 1 ? 0 : 1;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        UIListTile(
+                          text: "Có",
+                          check: p22 == 1,
+                          onTap1: (value){
+                            setState(() {
+                              p22 = p22 == 1 ? 0 : 1;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p22 = p22 == 1 ? 0 : 1;
                             });
                           },
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "KHÔNG",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p22 == 2 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p22 = p22 == 2 ? 0 : 2;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        const SizedBox(height: 5,),
+                        UIListTile(
+                          text: "Không",
+                          check: p22 == 2,
+                          onTap1: (value){
+                            setState(() {
+                              p22 = p22 == 2 ? 0 : 2;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p22 = p22 == 2 ? 0 : 2;
                             });

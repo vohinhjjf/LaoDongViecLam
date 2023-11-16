@@ -93,31 +93,15 @@ class _P38ViewState extends State<P38View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _lydo.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _lydo[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p38 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p38 = p38 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _lydo[index].toString(),
+                      check: p38 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p38 = p38 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p38 = p38 == index+1 ? 0 : index+1;
                         });

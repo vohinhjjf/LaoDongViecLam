@@ -209,7 +209,7 @@ class _P65_66ViewState extends State<P65_66View> {
               textFontSize: fontLarge
           ),
           content: Container(
-            height: 50,
+            height: 200,
             alignment: Alignment.center,
             child: Column(
               children: <Widget>[
@@ -219,6 +219,7 @@ class _P65_66ViewState extends State<P65_66View> {
                   child: MaterialButton(
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
+
                       child: const UIText(
                         text: "Sửa P45 - Số giờ thực tế cho CV chính",
                         textColor: mPrimaryColor,

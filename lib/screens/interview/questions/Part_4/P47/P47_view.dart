@@ -95,31 +95,15 @@ class _P47ViewState extends State<P47View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _khoangtien.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _khoangtien[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p47 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p47 = p47 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _khoangtien[index].toString(),
+                      check: p47 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p47 = p47 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p47 = p47 == index+1 ? 0 : index+1;
                         });

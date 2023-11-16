@@ -108,59 +108,30 @@ class _P06_07ViewState extends State<P06_07View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "Ở VIỆT NAM",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: groupValue == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        groupValue = groupValue == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Ở Việt Nam",
+                  check: groupValue == 1,
+                  onTap1: (value){
+                    setState(() {
+                      groupValue = groupValue == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       groupValue = groupValue == 1 ? 0 : 1;
                     });
                   },
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "Ở NƯỚC NGOÀI",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: groupValue == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        groupValue = groupValue == 2 ? 0 : 2;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                const SizedBox(height: 5,),
+                UIListTile(
+                  text: "Ở nước ngoài",
+                  check: groupValue == 2,
+                  onTap1: (value){
+                    setState(() {
+                      groupValue = groupValue == 2 ? 0 : 2;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       groupValue = groupValue == 2 ? 0 : 2;
                     });
