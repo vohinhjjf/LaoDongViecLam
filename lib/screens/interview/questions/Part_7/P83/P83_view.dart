@@ -94,7 +94,7 @@ class _P83ViewState extends State<P83View> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Có",
                           textColor: Colors.black,
@@ -105,7 +105,7 @@ class _P83ViewState extends State<P83View> {
                       ),
                       SizedBox(width: 10,),
                       SizedBox(
-                        width: 45,
+                        width: 50,
                         child: UIText(
                           text: "Không",
                           textColor: Colors.black,

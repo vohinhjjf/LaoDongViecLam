@@ -86,33 +86,17 @@ class _Q7ViewState extends State<Q7View> {
                     shrinkWrap: true,
                     itemCount: list.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: UIText(
-                          text: list[index].q1_New.toString(),
-                          textColor: Colors.black,
-                          textFontSize: fontLarge,
-                          textAlign: TextAlign.start,
-                          isBold: false,
-                        ),
-                        leading: RoundCheckBox(
-                          isChecked: groupValue == index + 1 ? true : false,
-                          onTap: (selected) {
-                            setState(() {
-                              groupValue = groupValue == index + 1 ? 0 : index + 1;
-                              stt = list[index].idtv!;
-                              name = list[index].q1_New!;
-                            });
-                          },
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.black,
-                          ),
-                          checkedColor: Colors.white,
-                          checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                          uncheckedColor: Colors.white,
-                          uncheckedWidget: Container(),
-                        ),
-                        onTap: (){
+                      return UIListTile(
+                        text: list[index].q1_New.toString(),
+                        check: groupValue == index + 1,
+                        onTap1: (value){
+                          setState(() {
+                            groupValue = groupValue == index + 1 ? 0 : index + 1;
+                            stt = list[index].idtv!;
+                            name = list[index].q1_New!;
+                          });
+                        },
+                        onTap2: (){
                           setState(() {
                             groupValue = groupValue == index + 1 ? 0 : index + 1;
                             stt = list[index].idtv!;

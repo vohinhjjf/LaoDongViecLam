@@ -94,31 +94,15 @@ class _P60ViewState extends State<P60View> {
                   shrinkWrap: true,
                   itemCount: _khoangtien.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _khoangtien[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p60 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p60 = p60 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _khoangtien[index].toString(),
+                      check: p60 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p60 = p60 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p60 = p60 == index+1 ? 0 : index+1;
                         });

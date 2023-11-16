@@ -98,32 +98,15 @@ class _P08_09ViewState extends State<P08_09View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _honnhan.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _honnhan[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p08 == index + 1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p08 = p08 == index + 1 ? 0 : index + 1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check,
-                            size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _honnhan[index].toString(),
+                      check: p08 == index + 1,
+                      onTap1: (value){
+                        setState(() {
+                          p08 = p08 == index + 1 ? 0 : index + 1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p08 = p08 == index + 1 ? 0 : index + 1;
                         });
@@ -150,32 +133,15 @@ class _P08_09ViewState extends State<P08_09View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thuongtru.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _thuongtru[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p09 == index + 1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p09 = p09 == index + 1 ? 0 : index + 1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check,
-                            size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _thuongtru[index].toString(),
+                      check: p09 == index + 1,
+                      onTap1: (value){
+                        setState(() {
+                          p09 = p09 == index + 1 ? 0 : index + 1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p09 = p09 == index + 1 ? 0 : index + 1;
                         });

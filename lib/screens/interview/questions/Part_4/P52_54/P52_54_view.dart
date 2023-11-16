@@ -92,59 +92,30 @@ class _P52_54ViewState extends State<P52_54View> {
                           textFontSize:fontLarge,
                         ),
                         const SizedBox(height: 10,),
-                        ListTile(
-                          title: const UIText(
-                            text: "BHXH bắt buộc",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p52 == 1 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p52 = p52 == 1 ? 0 : 1;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        UIListTile(
+                          text: "BHXH bắt buộc",
+                          check: p52 == 1,
+                          onTap1: (value){
+                            setState(() {
+                              p52 = p52 == 1 ? 0 : 1;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p52 = p52 == 1 ? 0 : 1;
                             });
                           },
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "BHXH tự nguyện",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p52 == 2 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p52 = p52 == 2 ? 0 : 2;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        const SizedBox(height: 5,),
+                        UIListTile(
+                          text: "BHXH tự nguyện",
+                          check: p52 == 2,
+                          onTap1: (value){
+                            setState(() {
+                              p52 = p52 == 2 ? 0 : 2;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p52 = p52 == 2 ? 0 : 2;
                             });
@@ -168,31 +139,15 @@ class _P52_54ViewState extends State<P52_54View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thoigian.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _thoigian[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p53 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p53 = p53 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _thoigian[index].toString(),
+                      check: p53 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p53 = p53 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p53 = p53 == index+1 ? 0 : index+1;
                         });
@@ -213,59 +168,30 @@ class _P52_54ViewState extends State<P52_54View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "Có",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p54 == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p54 = p54 == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Có",
+                  check: p54 == 1,
+                  onTap1: (value){
+                    setState(() {
+                      p54 = p54 == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p54 = p54 == 1 ? 0 : 1;
                     });
                   },
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "Không",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p54 == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p54 = p54 == 2 ? 0 : 2;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                const SizedBox(height: 5,),
+                UIListTile(
+                  text: "Không",
+                  check: p54 == 2,
+                  onTap1: (value){
+                    setState(() {
+                      p54 = p54 == 2 ? 0 : 2;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p54 = p54 == 2 ? 0 : 2;
                     });

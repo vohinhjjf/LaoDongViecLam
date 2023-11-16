@@ -65,7 +65,7 @@ class _P01_04ViewState extends State<P01_04View> {
       p01_04viewModel = context.read();
       p01_04viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 300),
+          const Duration(milliseconds: 10),
               () => {
             setState(() {
               thanhvien = p01_04viewModel.thanhvien;
@@ -168,36 +168,17 @@ class _P01_04ViewState extends State<P01_04View> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: _quanhe.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                title: UIText(
-                                  text: _quanhe[index].toString(),
-                                  textColor: Colors.black,
-                                  textFontSize: fontMedium,
-                                  textAlign: TextAlign.start,
-                                  isBold: false,
-                                ),
-                                leading: RoundCheckBox(
-                                  isChecked: p01 == index + 2 ? true : false,
-                                  onTap: (selected) {
-                                    setState(() {
-                                      p01 = p01 == index + 2 ? 0 : index + 2;
-                                      print(p01);
-                                    });
-                                  },
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Colors.black,
-                                  ),
-                                  checkedColor: Colors.white,
-                                  checkedWidget: const Icon(Icons.check,
-                                      size: 30, color: GFColors.PRIMARY),
-                                  uncheckedColor: Colors.white,
-                                  uncheckedWidget: Container(),
-                                ),
-                                onTap: () {
+                              return UIListTile(
+                                text: _quanhe[index].toString(),
+                                check: p01 == index + 2,
+                                onTap1: (value){
                                   setState(() {
                                     p01 = p01 == index + 2 ? 0 : index + 2;
-                                    print(p01);
+                                  });
+                                },
+                                onTap2: (){
+                                  setState(() {
+                                    p01 = p01 == index + 2 ? 0 : index + 2;
                                   });
                                 },
                               );
@@ -241,61 +222,30 @@ class _P01_04ViewState extends State<P01_04View> {
                   const SizedBox(
                     height: 10,
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Nam",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: p02 == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          p02 = p02 == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check,
-                          size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: "Nam",
+                    check: p02 == 1,
+                    onTap1: (value){
+                      setState(() {
+                        p02 = p02 == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         p02 = p02 == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Nữ",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: p02 == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          p02 = p02 == 2 ? 0 : 2;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check,
-                          size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Nữ",
+                    check: p02 == 2,
+                    onTap1: (value){
+                      setState(() {
+                        p02 = p02 == 2 ? 0 : 2;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         p02 = p02 == 2 ? 0 : 2;
                       });

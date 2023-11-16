@@ -876,36 +876,36 @@ class BaseLogic {
       mQuestion = UIDescribes.QUESTION_P65;
       return false;
     }
-    return checkC60(thongTinTV);
-  }
-
-  bool checkC60(thongTinThanhVienModel thongTinTV) {
-    if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
-        (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
-        thongTinTV.c48 != null && thongTinTV.c60 == null) {
-      mQuestion = UIDescribes.QUESTION_P66;
-      return false;
-    } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
-        && thongTinTV.c56 != null && thongTinTV.c56 == 1) {
-      int sotien2CV = 0;
-      int tongC60 = 0;
-      if (thongTinTV.c42 != null && thongTinTV.c55 != null && thongTinTV.c58 != null && thongTinTV.c60 != null) {
-        sotien2CV = thongTinTV.c42! + thongTinTV.c55!;
-        tongC60 = sotien2CV + thongTinTV.c58!;
-        if (thongTinTV.c60 == tongC60) {
-          mQuestion = UIDescribes.QUESTION_P66;
-          return false;
-        }
-      }
-    } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
-        && thongTinTV.c56 != null && thongTinTV.c56 == 2
-        && thongTinTV.c60 != null && thongTinTV.c55 != null
-        && thongTinTV.c60 != (thongTinTV.c42! + thongTinTV.c55!)) {
-      mQuestion = UIDescribes.QUESTION_P66;
-      return false;
-    }
     return checkC61(thongTinTV);
   }
+
+  // bool checkC60(thongTinThanhVienModel thongTinTV) {
+  //   if ((thongTinTV.c05 != null && thongTinTV.c05 == 1) &&
+  //       (thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&
+  //       thongTinTV.c48 != null && thongTinTV.c60 == null) {
+  //     mQuestion = UIDescribes.QUESTION_P66;
+  //     return false;
+  //   } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
+  //       && thongTinTV.c56 != null && thongTinTV.c56 == 1) {
+  //     int sotien2CV = 0;
+  //     int tongC60 = 0;
+  //     if (thongTinTV.c42 != null && thongTinTV.c55 != null && thongTinTV.c58 != null && thongTinTV.c60 != null) {
+  //       sotien2CV = thongTinTV.c42! + thongTinTV.c55!;
+  //       tongC60 = sotien2CV + thongTinTV.c58!;
+  //       if (thongTinTV.c60 == tongC60) {
+  //         mQuestion = UIDescribes.QUESTION_P66;
+  //         return false;
+  //       }
+  //     }
+  //   } else if (thongTinTV.c48 != null && thongTinTV.c48 == 1
+  //       && thongTinTV.c56 != null && thongTinTV.c56 == 2
+  //       && thongTinTV.c60 != null && thongTinTV.c55 != null
+  //       && thongTinTV.c60 != (thongTinTV.c42! + thongTinTV.c55!)) {
+  //     mQuestion = UIDescribes.QUESTION_P66;
+  //     return false;
+  //   }
+  //   return checkC61(thongTinTV);
+  // }
 
   bool checkC61(thongTinThanhVienModel thongTinTV) {
     if ((thongTinTV.c04 != null && (thongTinTV.c04 ?? 0) >= 15) &&

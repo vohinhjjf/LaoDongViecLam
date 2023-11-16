@@ -88,59 +88,30 @@ class _P36_37ViewState extends State<P36_37View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "Có",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p36 == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p36 = p36 == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Có",
+                  check: p36 == 1,
+                  onTap1: (value){
+                    setState(() {
+                      p36 = p36 == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p36 = p36 == 1 ? 0 : 1;
                     });
                   },
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "Không",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p36 == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p36 = p36 == 2 ? 0 : 2;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                const SizedBox(height: 5,),
+                UIListTile(
+                  text: "Không",
+                  check: p36 == 2,
+                  onTap1: (value){
+                    setState(() {
+                      p36 = p36 == 2 ? 0 : 2;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p36 = p36 == 2 ? 0 : 2;
                     });
@@ -166,33 +137,17 @@ class _P36_37ViewState extends State<P36_37View> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: _thoigian.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: UIText(
-                                text: _thoigian[index].toString(),
-                                textColor: Colors.black,
-                                textFontSize: fontMedium,
-                                textAlign: TextAlign.start,
-                                isBold: false,
-                              ),
-                              leading: RoundCheckBox(
-                                isChecked: p37 == index + 1 ? true : false,
-                                onTap: (selected) {
-                                  setState(() {
-                                    p37 = p37 == index + 1 ? 0 : index + 1;
-                                  });
-                                },
-                                border: Border.all(
-                                  width: 1,
-                                  color: Colors.black,
-                                ),
-                                checkedColor: Colors.white,
-                                checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                                uncheckedColor: Colors.white,
-                                uncheckedWidget: Container(),
-                              ),
-                              onTap: () {
+                            return UIListTile(
+                              text: _thoigian[index].toString(),
+                              check: p37 == index+1,
+                              onTap1: (value){
                                 setState(() {
-                                  p37 = p37 == index + 1 ? 0 : index + 1;
+                                  p37 = p37 == index+1 ? 0 : index+1;
+                                });
+                              },
+                              onTap2: (){
+                                setState(() {
+                                  p37 = p37 == index+1 ? 0 : index+1;
                                 });
                               },
                             );

@@ -122,30 +122,15 @@ class _P10_12ViewState extends State<P10_12View> {
                   textFontSize:fontLarge,
                 ),
                 const SizedBox(height: 10,),
-                ListTile(
-                  title: const UIText(
-                    text: "Ở Việt Nam",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p10 == 1 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p10 = p10 == 1 ? 0 : 1;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Ở Việt Nam",
+                  check: p10 == 1,
+                  onTap1: (value){
+                    setState(() {
+                      p10 = p10 == 1 ? 0 : 1;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p10 = p10 == 1 ? 0 : 1;
                     });
@@ -184,32 +169,17 @@ class _P10_12ViewState extends State<P10_12View> {
                       isExpanded: true,
                     ),
                 ),
-                ListTile(
-                  title: const UIText(
-                    text: "Nước ngoài",
-                    textColor: Colors.black,
-                    textFontSize: fontMedium,
-                    textAlign: TextAlign.start,
-                  ),
-                  leading: RoundCheckBox(
-                    isChecked: p10 == 2 ? true : false,
-                    onTap: (selected) {
-                      setState(() {
-                        p10 = p10 == 2 ? 0 : 2;
-                        p11 = 0;
-                        p12 = 0;
-                      });
-                    },
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    checkedColor: Colors.white,
-                    checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                    uncheckedColor: Colors.white,
-                    uncheckedWidget: Container(),
-                  ),
-                  onTap: () {
+                UIListTile(
+                  text: "Nước ngoài",
+                  check: p10 == 2,
+                  onTap1: (value){
+                    setState(() {
+                      p10 = p10 == 2 ? 0 : 2;
+                      p11 = 0;
+                      p12 = 0;
+                    });
+                  },
+                  onTap2: (){
                     setState(() {
                       p10 = p10 == 2 ? 0 : 2;
                       p11 = 0;
@@ -218,7 +188,7 @@ class _P10_12ViewState extends State<P10_12View> {
                   },
                 ),
                 Visibility(
-                    visible: p10 == 2 ? true : false,
+                    visible: p10 == 2,
                     child: Column(
                       children: [
                         const SizedBox(height: 10,),
@@ -255,7 +225,7 @@ class _P10_12ViewState extends State<P10_12View> {
                     )
                 ),
                 Visibility(
-                    visible: p10 == 1 ? true : false,
+                    visible: p10 == 1,
                     child: Column(
                       children: [
                         const SizedBox(height: 15,),
@@ -268,59 +238,30 @@ class _P10_12ViewState extends State<P10_12View> {
                           textFontSize:fontLarge,
                         ),
                         const SizedBox(height: 10,),
-                        ListTile(
-                          title: const UIText(
-                            text: "Phường/thị trấn",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p11 == 1 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p11 = p11 == 1 ? 0 : 1;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        UIListTile(
+                          text: "Phường/Thị trấn",
+                          check: p11 == 1,
+                          onTap1: (value){
+                            setState(() {
+                              p11 = p11 == 1 ? 0 : 1;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p11 = p11 == 1 ? 0 : 1;
                             });
                           },
                         ),
-                        ListTile(
-                          title: const UIText(
-                            text: "Xã",
-                            textColor: Colors.black,
-                            textFontSize: fontMedium,
-                            textAlign: TextAlign.start,
-                          ),
-                          leading: RoundCheckBox(
-                            isChecked: p11 == 2 ? true : false,
-                            onTap: (selected) {
-                              setState(() {
-                                p11 = p11 == 2 ? 0 : 2;
-                              });
-                            },
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.black,
-                            ),
-                            checkedColor: Colors.white,
-                            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                            uncheckedColor: Colors.white,
-                            uncheckedWidget: Container(),
-                          ),
-                          onTap: () {
+                        const SizedBox(height: 5,),
+                        UIListTile(
+                          text: "Xã",
+                          check: p11 == 2,
+                          onTap1: (value){
+                            setState(() {
+                              p11 = p11 == 2 ? 0 : 2;
+                            });
+                          },
+                          onTap2: (){
                             setState(() {
                               p11 = p11 == 2 ? 0 : 2;
                             });
@@ -341,31 +282,15 @@ class _P10_12ViewState extends State<P10_12View> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: _lydo.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: UIText(
-                                text: _lydo[index].toString(),
-                                textColor: Colors.black,
-                                textFontSize: fontMedium,
-                                textAlign: TextAlign.start,
-                                isBold: false,
-                              ),
-                              leading: RoundCheckBox(
-                                isChecked: p12 == index+1 ? true : false,
-                                onTap: (selected) {
-                                  setState(() {
-                                    p12 = p12 == index+1 ? 0 : index+1;
-                                  });
-                                },
-                                border: Border.all(
-                                  width: 1,
-                                  color: Colors.black,
-                                ),
-                                checkedColor: Colors.white,
-                                checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                                uncheckedColor: Colors.white,
-                                uncheckedWidget: Container(),
-                              ),
-                              onTap: () {
+                            return UIListTile(
+                              text: _lydo[index].toString(),
+                              check: p12 == index+1,
+                              onTap1: (value){
+                                setState(() {
+                                  p12 = p12 == index+1 ? 0 : index+1;
+                                });
+                              },
+                              onTap2: (){
                                 setState(() {
                                   p12 = p12 == index+1 ? 0 : index+1;
                                 });

@@ -92,31 +92,15 @@ class _P79ViewState extends State<P79View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _thaydoi.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _thaydoi[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p79 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p79 = p79 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _thaydoi[index].toString(),
+                      check: p79 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p79 = p79 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p79 = p79 == index+1 ? 0 : index+1;
                         });

@@ -102,8 +102,9 @@ class _P48_49ViewState extends State<P48_49View> {
                     }
                     return null;
                   },
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^(\d+)?\.?\d{0,2}'))
                   ],
                   maxLength: 6,
                   readOnly: _tien.text == '0',
@@ -124,31 +125,15 @@ class _P48_49ViewState extends State<P48_49View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _vaitro.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _vaitro[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p49 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p49 = p49 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _vaitro[index].toString(),
+                      check: p49 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p49 = p49 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p49 = p49 == index+1 ? 0 : index+1;
                         });

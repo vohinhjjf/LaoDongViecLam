@@ -37,7 +37,7 @@ class _Q4ViewState extends State<Q4View> {
       q4viewModel = context.read();
       q4viewModel.onInit(context);
       Future.delayed(
-          const Duration(milliseconds: 200),
+          const Duration(milliseconds: 300),
               () => {
             setState(() {
               list = q4viewModel.list;
@@ -97,65 +97,143 @@ class _Q4ViewState extends State<Q4View> {
                   ),
                   const SizedBox(height: 10,),
                   // A
-                  questionWidget(UIQuestions.q4a, q4_a, (value) {
-                    setState(() {
-                      q4_a = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_a = value! ? 2 : 0;
-                    });
-                  }, _text_q4_a, 1, list_q4_a),
+                  questionWidget(UIQuestions.q4a, q4_a,
+                          (value){
+                            setState(() {
+                              q4_a = q4_a == 1 ? 0 : 1;
+                            });
+                          },
+                          (){
+                            setState(() {
+                              q4_a = q4_a == 1 ? 0 : 1;
+                            });
+                          },
+                          (value){
+                            setState(() {
+                              q4_a = q4_a == 2 ? 0 : 2;
+                            });
+                          },
+                          (){
+                            setState(() {
+                              q4_a = q4_a == 2 ? 0 : 2;
+                            });
+                          },
+                      _text_q4_a, 1, list_q4_a),
                   // B
-                  questionWidget(UIQuestions.q4b, q4_b, (value) {
-                    setState(() {
-                      q4_b = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_b = value! ? 2 : 0;
-                    });
-                  }, _text_q4_b, 2, list_q4_b),
+                  questionWidget(UIQuestions.q4b, q4_b,
+                          (value){
+                        setState(() {
+                          q4_b = q4_b == 1 ? 0 : 1;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_b = q4_b == 1 ? 0 : 1;
+                        });
+                      },
+                          (value){
+                        setState(() {
+                          q4_b = q4_b == 2 ? 0 : 2;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_b = q4_b == 2 ? 0 : 2;
+                        });
+                      },
+                      _text_q4_b, 2, list_q4_b),
                   // C
-                  questionWidget(UIQuestions.q4c, q4_c, (value) {
-                    setState(() {
-                      q4_c = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_c = value! ? 2 : 0;
-                    });
-                  }, _text_q4_c, 3, list_q4_c),
+                  questionWidget(UIQuestions.q4c, q4_c,
+                          (value){
+                        setState(() {
+                          q4_c = q4_c == 1 ? 0 : 1;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_c = q4_c == 1 ? 0 : 1;
+                        });
+                      },
+                          (value){
+                        setState(() {
+                          q4_c = q4_c == 2 ? 0 : 2;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_c = q4_c == 2 ? 0 : 2;
+                        });
+                      },
+                      _text_q4_c, 3, list_q4_c),
                   // D
-                  questionWidget(UIQuestions.q4d, q4_d, (value) {
-                    setState(() {
-                      q4_d = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_d = value! ? 2 : 0;
-                    });
-                  }, _text_q4_d, 4, list_q4_d),
+                  questionWidget(UIQuestions.q4d, q4_d,
+                          (value){
+                        setState(() {
+                          q4_d = q4_d == 1 ? 0 : 1;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_d = q4_d == 1 ? 0 : 1;
+                        });
+                      },
+                          (value){
+                        setState(() {
+                          q4_d = q4_d == 2 ? 0 : 2;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_d = q4_d == 2 ? 0 : 2;
+                        });
+                      },
+                      _text_q4_d, 4, list_q4_d),
                   // E
-                  questionWidget(UIQuestions.q4e, q4_e, (value) {
-                    setState(() {
-                      q4_e = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_e = value! ? 2 : 0;
-                    });
-                  }, _text_q4_e, 5, list_q4_e),
+                  questionWidget(UIQuestions.q4e, q4_e,
+                          (value){
+                        setState(() {
+                          q4_e = q4_e == 1 ? 0 : 1;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_e = q4_e == 1 ? 0 : 1;
+                        });
+                      },
+                          (value){
+                        setState(() {
+                          q4_e = q4_e == 2 ? 0 : 2;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_e = q4_e == 2 ? 0 : 2;
+                        });
+                      },
+                      _text_q4_e, 5, list_q4_e),
                   // F
-                  questionWidget(UIQuestions.q4f, q4_f, (value) {
-                    setState(() {
-                      q4_f = value! ? 1 : 0;
-                    });
-                  }, (value) {
-                    setState(() {
-                      q4_f = value! ? 2 : 0;
-                    });
-                  }, _text_q4_f, 6, list_q4_f),
+                  questionWidget(UIQuestions.q4f, q4_f,
+                          (value){
+                        setState(() {
+                          q4_f = q4_f == 1 ? 0 : 1;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_f = q4_f == 1 ? 0 : 1;
+                        });
+                      },
+                          (value){
+                        setState(() {
+                          q4_f = q4_f == 2 ? 0 : 2;
+                        });
+                      },
+                          (){
+                        setState(() {
+                          q4_f = q4_f == 2 ? 0 : 2;
+                        });
+                      },
+                      _text_q4_f, 6, list_q4_f),
                   //Button
                   const SizedBox(height: 90,),
                 ]),
@@ -263,8 +341,9 @@ class _Q4ViewState extends State<Q4View> {
     );
   }
 
-  Widget questionWidget(String title, int groupValue, Function(bool?)? onTap1, Function(bool?)? onTap2,
-      TextEditingController _text_name, int temp, List<thongTinThanhVienNKTTModel> list_item){
+  Widget questionWidget(String title, int groupValue, Function(bool?)? onTap1, Function()? onTap2,
+  Function(bool?)? onTap3, Function()? onTap4, TextEditingController _text_name,
+      int temp, List<thongTinThanhVienNKTTModel> list_item){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -276,45 +355,18 @@ class _Q4ViewState extends State<Q4View> {
           isBold: false,
         ),
         const SizedBox(height: 10,),
-        ListTile(
-          title: const UIText(
-            text: "Có",
-            textColor: Colors.black,
-            textFontSize: fontMedium,
-            textAlign: TextAlign.start,
-          ),
-          leading: RoundCheckBox(
-            isChecked: groupValue == 1 ? true : false,
-            onTap: onTap1,
-            border: Border.all(
-              width: 1,
-              color: Colors.black,
-            ),
-            checkedColor: Colors.white,
-            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-            uncheckedColor: Colors.white,
-            uncheckedWidget: Container(),
-          ),
+        UIListTile(
+          text: "Có",
+          check: groupValue == 1,
+          onTap1: onTap1,
+          onTap2: onTap2,
         ),
-        ListTile(
-          title: const UIText(
-            text: "Không",
-            textColor: Colors.black,
-            textFontSize: fontMedium,
-            textAlign: TextAlign.start,
-          ),
-          leading: RoundCheckBox(
-            isChecked: groupValue == 2 ? true : false,
-            onTap: onTap2,
-            border: Border.all(
-              width: 1,
-              color: Colors.black,
-            ),
-            checkedColor: Colors.white,
-            checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-            uncheckedColor: Colors.white,
-            uncheckedWidget: Container(),
-          ),
+        const SizedBox(height: 5,),
+        UIListTile(
+          text: "Không",
+          check: groupValue == 2,
+          onTap1: onTap3,
+          onTap2: onTap4,
         ),
         const SizedBox(height: 5,),
         Container(

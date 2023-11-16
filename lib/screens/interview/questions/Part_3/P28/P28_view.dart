@@ -89,31 +89,15 @@ class _P28ViewState extends State<P28View> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _nganh.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: UIText(
-                        text: _nganh[index].toString(),
-                        textColor: Colors.black,
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.start,
-                        isBold: false,
-                      ),
-                      leading: RoundCheckBox(
-                        isChecked: p28 == index+1 ? true : false,
-                        onTap: (selected) {
-                          setState(() {
-                            p28 = p28 == index+1 ? 0 : index+1;
-                          });
-                        },
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        ),
-                        checkedColor: Colors.white,
-                        checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                        uncheckedColor: Colors.white,
-                        uncheckedWidget: Container(),
-                      ),
-                      onTap: () {
+                    return UIListTile(
+                      text: _nganh[index].toString(),
+                      check: p28 == index+1,
+                      onTap1: (value){
+                        setState(() {
+                          p28 = p28 == index+1 ? 0 : index+1;
+                        });
+                      },
+                      onTap2: (){
                         setState(() {
                           p28 = p28 == index+1 ? 0 : index+1;
                         });

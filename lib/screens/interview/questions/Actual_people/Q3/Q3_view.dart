@@ -88,63 +88,32 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_a == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_a = q3_a == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  UIListTile(
+                    text: "Có",
+                    check: q3_a == 1,
+                    onTap1: (value){
+                      setState(() {
+                        q3_a = q3_a == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         q3_a = q3_a == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_a == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_a = q3_a == 2 ? 0 : 2;
-                          list.map((e) => e.q3A_New = null).toList();
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Không",
+                    check: q3_a == 2,
+                    onTap1: (value){
                       setState(() {
                         q3_a = q3_a == 2 ? 0 : 2;
-                        list.map((e) => e.q3A_New = null).toList();
+                      });
+                    },
+                    onTap2: (){
+                      setState(() {
+                        q3_a = q3_a == 2 ? 0 : 2;
                       });
                     },
                   ),
@@ -220,63 +189,32 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_b == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_b = q3_b == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  UIListTile(
+                    text: "Có",
+                    check: q3_b == 1,
+                    onTap1: (value){
+                      setState(() {
+                        q3_b = q3_b == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         q3_b = q3_b == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_b == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_b = q3_b == 2 ? 0 : 2;
-                          list.map((e) => e.q3B_New = null).toList();
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Không",
+                    check: q3_b == 2,
+                    onTap1: (value){
                       setState(() {
                         q3_b = q3_b == 2 ? 0 : 2;
-                        list.map((e) => e.q3B_New = null).toList();
+                      });
+                    },
+                    onTap2: (){
+                      setState(() {
+                        q3_b = q3_b == 2 ? 0 : 2;
                       });
                     },
                   ),
@@ -352,63 +290,32 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_c == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_c = q3_c == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  UIListTile(
+                    text: "Có",
+                    check: q3_c == 1,
+                    onTap1: (value){
+                      setState(() {
+                        q3_c = q3_c == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         q3_c = q3_c == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_c == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_c = q3_c == 2 ? 0 : 2;
-                          list.map((e) => e.q3C_New = null).toList();
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Không",
+                    check: q3_c == 2,
+                    onTap1: (value){
                       setState(() {
                         q3_c = q3_c == 2 ? 0 : 2;
-                        list.map((e) => e.q3C_New = null).toList();
+                      });
+                    },
+                    onTap2: (){
+                      setState(() {
+                        q3_c = q3_c == 2 ? 0 : 2;
                       });
                     },
                   ),
@@ -484,63 +391,32 @@ class _Q3ViewState extends State<Q3View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_d == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_d = q3_d == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  UIListTile(
+                    text: "Có",
+                    check: q3_d == 1,
+                    onTap1: (value){
+                      setState(() {
+                        q3_d = q3_d == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         q3_d = q3_d == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: q3_d == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          q3_d = q3_d == 2 ? 0 : 2;
-                          list.map((e) => e.q3D_New = null).toList();
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: (){
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Không",
+                    check: q3_d == 2,
+                    onTap1: (value){
                       setState(() {
                         q3_d = q3_d == 2 ? 0 : 2;
-                        list.map((e) => e.q3D_New = null).toList();
+                      });
+                    },
+                    onTap2: (){
+                      setState(() {
+                        q3_d = q3_d == 2 ? 0 : 2;
                       });
                     },
                   ),

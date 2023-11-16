@@ -82,61 +82,32 @@ class _Q2ViewState extends State<Q2View> {
                     isBold: false,
                   ),
                   const SizedBox(height: 10,),
-                  ListTile(
-                    title: const UIText(
-                      text: "Có",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 1 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 1 ? 0 : 1;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  UIListTile(
+                    text: "Có",
+                    check: groupValue == 1,
+                    onTap1: (value){
+                      setState(() {
+                        groupValue = groupValue == 1 ? 0 : 1;
+                      });
+                    },
+                    onTap2: (){
                       setState(() {
                         groupValue = groupValue == 1 ? 0 : 1;
                       });
                     },
                   ),
-                  ListTile(
-                    title: const UIText(
-                      text: "Không",
-                      textColor: Colors.black,
-                      textFontSize: fontMedium,
-                      textAlign: TextAlign.start,
-                    ),
-                    leading: RoundCheckBox(
-                      isChecked: groupValue == 2 ? true : false,
-                      onTap: (selected) {
-                        setState(() {
-                          groupValue = groupValue == 2 ? 0 : 2;
-                        });
-                      },
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                      checkedColor: Colors.white,
-                      checkedWidget: const Icon(Icons.check, size: 30, color: GFColors.PRIMARY),
-                      uncheckedColor: Colors.white,
-                      uncheckedWidget: Container(),
-                    ),
-                    onTap: () {
+                  const SizedBox(height: 5,),
+                  UIListTile(
+                    text: "Không",
+                    check: groupValue == 2,
+                    onTap1: (value){
                       setState(() {
-                        groupValue = groupValue == 2? 0 : 2;
+                        groupValue = groupValue == 2 ? 0 : 2;
+                      });
+                    },
+                    onTap2: (){
+                      setState(() {
+                        groupValue = groupValue == 2 ? 0 : 2;
                       });
                     },
                   ),
