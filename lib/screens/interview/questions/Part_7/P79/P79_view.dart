@@ -26,10 +26,10 @@ class _P79ViewState extends State<P79View> {
   int p79 = 0;
 
   var _thaydoi = [
-    "TĂNG LÊN",
-    "KHÔNG THAY ĐỔI",
-    "GIẢM ĐI",
-    "KHÔNG BIẾT",
+    "Tăng lên",
+    "Không thay đổi",
+    "Giảm đi",
+    "Không biết",
   ];
 
   @override
@@ -73,7 +73,7 @@ class _P79ViewState extends State<P79View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -144,7 +144,7 @@ class _P79ViewState extends State<P79View> {
               if(p79 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P79 - Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P79-Thu nhập hiện nay thay đổi như thế nào nhập vào chưa đúng!',)
                 );
               }
               else if((doisongho.c62_M2 == 1 && p79 == 3) || (doisongho.c62_M2 == 3 && p79 == 1)){

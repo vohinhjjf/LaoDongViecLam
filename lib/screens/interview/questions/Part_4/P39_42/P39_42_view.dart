@@ -71,7 +71,7 @@ class _P39_42ViewState extends State<P39_42View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -157,7 +157,7 @@ class _P39_42ViewState extends State<P39_42View> {
                   const SizedBox(height: 10,),
                   //p42
                   UIRichText(
-                    text1: "P42.  Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
+                    text1: "P42. Hoạt động chính hoặc sản phẩm/dịch vụ chính của cơ sở nơi ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm việc là gì?",
                     textColor: Colors.black,
@@ -205,7 +205,7 @@ class _P39_42ViewState extends State<P39_42View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: 'Thành viên ${thanhvien
-                                .c00} có P39 - Mô tả công việc chính quá ngắn!',)
+                                .c00} có P39-Mô tả công việc chính quá ngắn!',)
                   );
                 }
                 else if (_chucdanh.text.isEmpty) {
@@ -223,7 +223,7 @@ class _P39_42ViewState extends State<P39_42View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: 'Thành viên ${thanhvien
-                                .c00} có P40 - Chức danh nhập vào quá ngắn!',)
+                                .c00} có P40-Chức danh nhập vào quá ngắn!',)
                   );
                 }
                 else if (_tencoso.text.length < 5) {
@@ -232,7 +232,7 @@ class _P39_42ViewState extends State<P39_42View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: 'Thành viên ${thanhvien
-                                .c00} có P41 - Tên cơ sở nhập vào quá ngắn!',)
+                                .c00} có P41-Tên cơ sở nhập vào quá ngắn!',)
                   );
                 }
                 else if (_hoatdong.text.length < 5) {
@@ -241,7 +241,7 @@ class _P39_42ViewState extends State<P39_42View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: 'Thành viên ${thanhvien
-                                .c00} có P42 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
+                                .c00} có P42-Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
                   );
                 }
                 else {

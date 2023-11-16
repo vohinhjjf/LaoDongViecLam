@@ -25,19 +25,19 @@ class _P08_09ViewState extends State<P08_09View> {
   bool check_draw = true;
 
   final _honnhan = [
-    "CHƯA VỢ/CHỒNG",
-    "CÓ VỢ/CHỒNG",
-    "GÓA",
-    "LY HÔN",
-    "LY THÂN",
+    "Chưa vợ/chồng",
+    "Có vợ/chồng",
+    "Góa",
+    "Ly hôn",
+    "Ly thân",
   ];
 
   final _thuongtru = [
-    "DƯỚI 1 THÁNG",
-    "1 ĐẾN DƯỚI 6 THÁNG",
-    "6 ĐẾN DƯỚI 12 THÁNG",
-    "12 ĐẾN DƯỚI 5 NĂM",
-    "5 NĂM TRỞ LÊN",
+    "Dưới 1 tháng",
+    "1 đến dưới 6 tháng",
+    "6 đến dưới 12 tháng",
+    "12 tháng đến dưới 5 năm",
+    "5 năm trở lên",
   ];
 
   @override
@@ -78,7 +78,7 @@ class _P08_09ViewState extends State<P08_09View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

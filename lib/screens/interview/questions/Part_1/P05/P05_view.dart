@@ -27,11 +27,11 @@ class _P05ViewState extends State<P05View> {
    String moiquanhe(){
     String _mqh = "";
     switch (thanhvien.c01){
-      case 3: _mqh ="CON ĐẺ";break;
-      case 4: _mqh ="CHÁU NỘI/NGOẠI";break;
-      case 5: _mqh ="BỐ/MẸ";break;
-      case 6: _mqh ="QUAN HỆ GIA ĐÌNH KHÁC";break;
-      case 7: _mqh ="NGƯỜI GIÚP VIỆC";break;
+      case 3: _mqh ="Con đẻ";break;
+      case 4: _mqh ="Cháu nội/ngoại";break;
+      case 5: _mqh ="Bố/mẹ";break;
+      case 6: _mqh ="Quan hệ gia đình khác";break;
+      case 7: _mqh ="Người giúp việc";break;
       case 8: _mqh = thanhvien.c01K!;break;
     }
     return _mqh;
@@ -77,7 +77,7 @@ class _P05ViewState extends State<P05View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

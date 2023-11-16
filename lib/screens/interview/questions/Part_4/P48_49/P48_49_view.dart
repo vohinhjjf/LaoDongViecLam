@@ -80,7 +80,7 @@ class _P48_49ViewState extends State<P48_49View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -176,7 +176,7 @@ class _P48_49ViewState extends State<P48_49View> {
               if(p49 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P49 - Vai trò trong công việc chính nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P49-Vai trò trong công việc chính nhập vào chưa đúng!',)
                 );
               }
               else if(thanhvien.c41 == 2 && (int.parse(_tien.text) > 1000)){

@@ -74,7 +74,7 @@ class _P83ViewState extends State<P83View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -490,7 +490,7 @@ class _P83ViewState extends State<P83View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P83 - Các sự kiện tiêu cực nhập vào chưa đúng!',)
+                                .c00} có P83-Các sự kiện tiêu cực nhập vào chưa đúng!',)
                   );
                 } else {
                   if(p83f == 1) {

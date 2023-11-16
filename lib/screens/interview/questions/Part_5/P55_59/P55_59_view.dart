@@ -71,7 +71,7 @@ class _P55_59ViewState extends State<P55_59View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -179,7 +179,7 @@ class _P55_59ViewState extends State<P55_59View> {
                   UIRichText(
                     text1: "P59. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: " làm công việc này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
+                    text3: " làm công việc này khoảng bao nhiêu giờ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -223,7 +223,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P55 - Mô tả công việc thứ hai quá ngắn!',)
+                                .c00} có P55-Mô tả công việc thứ hai quá ngắn!',)
                   );
                 }
                 else if (_chucdanh.text.isEmpty) {
@@ -241,7 +241,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P56 - Chức danh nhập vào quá ngắn!',)
+                                .c00} có P56-Chức danh nhập vào quá ngắn!',)
                   );
                 }
                 else if (_tencoso.text.length < 5) {
@@ -250,7 +250,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P57 - Tên cơ sở nhập vào quá ngắn!',)
+                                .c00} có P57-Tên cơ sở nhập vào quá ngắn!',)
                   );
                 }
                 else if (_hoatdong.text.length < 5) {
@@ -259,7 +259,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P58 - Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
+                                .c00} có P58-Sản phẩm/dịch vụ chính nhập vào quá ngắn!',)
                   );
                 }
                 else if (int.parse(_gio.text) > 84) {
@@ -268,7 +268,7 @@ class _P55_59ViewState extends State<P55_59View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P59 - Số giờ thực tế cho công việc thứ hai = ${_gio
+                                .c00} có P59-Số giờ thực tế cho công việc thứ hai = ${_gio
                                 .text} quá lớn!',)
                   );
                 }

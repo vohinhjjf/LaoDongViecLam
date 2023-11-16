@@ -30,13 +30,13 @@ class _P01_04ViewState extends State<P01_04View> {
   bool check = false, check_draw = true;
 
   var _quanhe = [
-    "VỢ/CHỒNG",
-    "CON ĐẺ",
-    "CHÁU NỘI/NGOẠI",
-    "BỐ/MẸ",
-    "QUAN HỆ GIA ĐÌNH KHÁC",
-    "NGƯỜI GIÚP VIỆC",
-    "KHÁC (GHI RÕ)"
+    "Vợ/Chồng",
+    "Con đẻ",
+    "Cháu nội/ngoại",
+    "Bố/mẹ",
+    "Quan hệ gia đình khác",
+    "Người giúp việc",
+    "Khác (Ghi rõ)"
   ];
 
   int tinh_tuoi() {
@@ -105,7 +105,7 @@ class _P01_04ViewState extends State<P01_04View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -243,7 +243,7 @@ class _P01_04ViewState extends State<P01_04View> {
                   ),
                   ListTile(
                     title: const UIText(
-                      text: "NAM",
+                      text: "Nam",
                       textColor: Colors.black,
                       textFontSize: fontMedium,
                       textAlign: TextAlign.start,
@@ -273,7 +273,7 @@ class _P01_04ViewState extends State<P01_04View> {
                   ),
                   ListTile(
                     title: const UIText(
-                      text: "NỮ",
+                      text: "Nữ",
                       textColor: Colors.black,
                       textFontSize: fontMedium,
                       textAlign: TextAlign.start,

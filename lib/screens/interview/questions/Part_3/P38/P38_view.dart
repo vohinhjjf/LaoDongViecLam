@@ -26,12 +26,12 @@ class _P38ViewState extends State<P38View> {
   bool check_draw = true;
 
   var _lydo = [
-    "ĐI HỌC/ĐÀO TẠO",
-    "LÀM VIỆC NHÀ, VIỆC GIA ĐÌNH",
-    "ỐM ĐAU/MẤT KHẢ NĂNG LAO ĐỘNG",
-    "LÀM NÔNG NGHIỆP/ THỦY SẢN CHỦ YẾU CHO GIA ĐÌNH SỬ DỤNG",
-    "NGHỈ HƯU",
-    "KHÁC (GHI CỤ THẾ)",
+    "Đi học/đào tạo",
+    "Làm việc nhà, việc gia đình",
+    "Ốm đau/mất khả năng lao động",
+    "Làm nông nghiệp/thủy sản chủ yếu cho gia đình sử dụng",
+    "Nghỉ hưu",
+    "Khác (Ghi cụ thể)",
   ];
 
   @override
@@ -75,7 +75,7 @@ class _P38ViewState extends State<P38View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -178,7 +178,7 @@ class _P38ViewState extends State<P38View> {
               if(p38 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P38 - Lý do không làm việc nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P38-Lý do không làm việc nhập vào chưa đúng!',)
                 );
               }
               else {

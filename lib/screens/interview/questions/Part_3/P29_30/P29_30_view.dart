@@ -65,7 +65,7 @@ class _P29_30ViewState extends State<P29_30View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,7 +80,7 @@ class _P29_30ViewState extends State<P29_30View> {
                 const SizedBox(height: 10,),
                 ListTile(
                   title: const UIText(
-                    text: "LÀM CHO GIA ĐÌNH MÌNH",
+                    text: "làm cho gia đình mình",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -109,7 +109,7 @@ class _P29_30ViewState extends State<P29_30View> {
                 ),
                 ListTile(
                   title: const UIText(
-                    text: "LÀM THUÊ CHO NGƯỜI KHÁC",
+                    text: "Làm thuê cho người khác",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -154,7 +154,7 @@ class _P29_30ViewState extends State<P29_30View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "CÓ",
+                            text: "Có",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -183,7 +183,7 @@ class _P29_30ViewState extends State<P29_30View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "KHÔNG",
+                            text: "Không",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -233,12 +233,12 @@ class _P29_30ViewState extends State<P29_30View> {
               if(p29 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29 - Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P29-Làm thuê cho người khác hay gia đình mình nhập vào chưa đúng!',)
                 );
               } else if(p29 == 1 && p30 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30 - Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P30-Công việc hoặc HĐKD khác để tạo thu nhập nhập vào chưa đúng!',)
                 );
               } else {
                 p29_30ViewModel.P29_30Next(thongTinThanhVienModel(

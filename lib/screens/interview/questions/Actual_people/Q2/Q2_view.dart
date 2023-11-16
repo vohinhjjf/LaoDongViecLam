@@ -402,7 +402,7 @@ class _Q2ViewState extends State<Q2View> {
             textCapitalization: TextCapitalization.words,
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(
-                  '[a-z A-Z á-ứ Á-Ứ à-ừ À-Ừ ã-ữ Ã-Ữ ả-ử Ả-Ử ạ-ự Ạ-Ự]')),
+                  '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
               FilteringTextInputFormatter.deny(RegExp('[×÷]')),
             ],
             keyboardType: TextInputType.text,

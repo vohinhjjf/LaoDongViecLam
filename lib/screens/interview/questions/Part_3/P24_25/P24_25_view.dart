@@ -66,7 +66,7 @@ class _P24_25ViewState extends State<P24_25View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,7 +85,7 @@ class _P24_25ViewState extends State<P24_25View> {
                 const SizedBox(height: 10,),
                 ListTile(
                   title: const UIText(
-                    text: "CÓ",
+                    text: "Có",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -114,7 +114,7 @@ class _P24_25ViewState extends State<P24_25View> {
                 ),
                 ListTile(
                   title: const UIText(
-                    text: "KHÔNG",
+                    text: "Không",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -158,7 +158,7 @@ class _P24_25ViewState extends State<P24_25View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "CÓ",
+                            text: "Có",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -187,7 +187,7 @@ class _P24_25ViewState extends State<P24_25View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "KHÔNG",
+                            text: "Không",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,

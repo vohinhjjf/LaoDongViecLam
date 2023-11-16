@@ -26,10 +26,10 @@ class _P81ViewState extends State<P81View> {
   int p81 = 0;
 
   var _thaydoi = [
-    "TĂNG LÊN",
-    "KHÔNG THAY ĐỔI",
-    "GIẢM ĐI",
-    "KHÔNG BIẾT",
+    "Tăng lên",
+    "Không thay đổi",
+    "Giảm đi",
+    "Không biết",
   ];
 
   @override
@@ -73,13 +73,13 @@ class _P81ViewState extends State<P81View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //p81
                 UIRichText(
-                  text1: "P81.  So với tháng trước, chi tiêu cho các mặt hàng lương "
+                  text1: "P81. So với tháng trước, chi tiêu cho các mặt hàng lương "
                       "thực, thực phẩm của hộ ${BaseLogic.getInstance().getMember(thanhvien)} ",
                   text2: thanhvien.c00 ?? "",
                   text3: " thay đổi như thế nào?",
@@ -144,7 +144,7 @@ class _P81ViewState extends State<P81View> {
               if(p81 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P81 - Chi tiêu cho các mặt hàng nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P81-Chi tiêu cho các mặt hàng nhập vào chưa đúng!',)
                 );
               }
               else {

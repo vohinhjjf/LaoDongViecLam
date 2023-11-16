@@ -68,7 +68,7 @@ class _P44_46ViewState extends State<P44_46View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -89,7 +89,7 @@ class _P44_46ViewState extends State<P44_46View> {
                           const SizedBox(height: 10,),
                           ListTile(
                             title: const UIText(
-                              text: "CÓ",
+                              text: "Có",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -118,7 +118,7 @@ class _P44_46ViewState extends State<P44_46View> {
                           ),
                           ListTile(
                             title: const UIText(
-                              text: "KHÔNG",
+                              text: "Không",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -153,7 +153,7 @@ class _P44_46ViewState extends State<P44_46View> {
                   UIRichText(
                     text1: "P45. Thực tế, trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: " làm công việc này khoảng bao nhiêu giờ? (ĐƠN VỊ TÍNH: GIỜ)",
+                    text3: " làm công việc này khoảng bao nhiêu giờ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -195,7 +195,7 @@ class _P44_46ViewState extends State<P44_46View> {
                           const SizedBox(height: 10,),
                           ListTile(
                             title: const UIText(
-                              text: "CÓ",
+                              text: "Có",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -224,7 +224,7 @@ class _P44_46ViewState extends State<P44_46View> {
                           ),
                           ListTile(
                             title: const UIText(
-                              text: "KHÔNG",
+                              text: "Không",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -279,7 +279,7 @@ class _P44_46ViewState extends State<P44_46View> {
                       context: context,
                       builder: (_) =>
                       const UIWarningDialog(
-                        waring: 'P44 - Cơ sở ĐKKD nhập vào chưa đúng!',)
+                        waring: 'P44-Cơ sở ĐKKD nhập vào chưa đúng!',)
                   );
                 }
                 else if (p46 == 0) {
@@ -287,7 +287,7 @@ class _P44_46ViewState extends State<P44_46View> {
                       context: context,
                       builder: (_) =>
                       const UIWarningDialog(
-                        waring: 'P46 - Tạm nghỉ công việc trong 7 ngày nhập vào chưa đúng!',)
+                        waring: 'P46-Tạm nghỉ công việc trong 7 ngày nhập vào chưa đúng!',)
                   );
                 }
                 else if (thanhvien.c38! >= 4 && p44 == 2) {
@@ -334,7 +334,7 @@ class _P44_46ViewState extends State<P44_46View> {
                       builder: (_) =>
                           UINotificationDialog(
                             notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P45 - Số giờ thực tế làm việc/tuần = ${_gio
+                                .c00} có P45-Số giờ thực tế làm việc/tuần = ${_gio
                                 .text} quá cao, trên 8 giờ/ngày. Có đúng không?',
                             onpress: () {
                               if(thanhvien.c38 == 1 || thanhvien.c38 == 2 || thanhvien.c38 == 3 || thanhvien.c38 == 13){

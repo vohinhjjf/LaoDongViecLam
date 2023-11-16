@@ -71,7 +71,7 @@ class _P84ViewState extends State<P84View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -432,7 +432,7 @@ class _P84ViewState extends State<P84View> {
                       builder: (_) =>
                           UIWarningDialog(
                             waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien
-                                .c00} có P84 - Những nguồn trợ giúp nhập vào chưa đúng!',)
+                                .c00} có P84-Những nguồn trợ giúp nhập vào chưa đúng!',)
                   );
                 } else {
                   p84ViewModel.P84Next(DoiSongHoModel(

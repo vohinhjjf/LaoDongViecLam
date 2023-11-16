@@ -52,13 +52,13 @@ class _P10_12ViewState extends State<P10_12View> {
   ];
 
   final _lydo = [
-    "TÌM VIỆC/BẮT ĐẦU CÔNG VIỆC MỚI",
-    "MẤT/HẾT VIỆC, KHÔNG TÌM ĐƯỢC VIỆC",
-    "THEO GIA ĐÌNH CHUYỂN NHÀ",
-    "DO DỊCH BỆNH",
-    "KẾT HÔN",
-    "ĐI HỌC",
-    "KHÁC (GHI RÕ)"
+    "Tìm việc/bắt đầu công việc mới",
+    "Mất/hết việc, không tìm được việc",
+    "Thao gia đình chuyển nhà",
+    "Do dịch bệnh",
+    "Kết hôn",
+    "Đi học",
+    "Khác"
   ];
 
   @override
@@ -109,7 +109,7 @@ class _P10_12ViewState extends State<P10_12View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -124,7 +124,7 @@ class _P10_12ViewState extends State<P10_12View> {
                 const SizedBox(height: 10,),
                 ListTile(
                   title: const UIText(
-                    text: "Ở VIỆT NAM",
+                    text: "Ở Việt Nam",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -186,7 +186,7 @@ class _P10_12ViewState extends State<P10_12View> {
                 ),
                 ListTile(
                   title: const UIText(
-                    text: "NƯỚC NGOÀI",
+                    text: "Nước ngoài",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -270,7 +270,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "PHƯỜNG/THỊ TRẤN",
+                            text: "Phường/thị trấn",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -299,7 +299,7 @@ class _P10_12ViewState extends State<P10_12View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "XÃ",
+                            text: "Xã",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,

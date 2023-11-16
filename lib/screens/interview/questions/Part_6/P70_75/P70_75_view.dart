@@ -76,7 +76,7 @@ class _P70_75ViewState extends State<P70_75View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -98,7 +98,7 @@ class _P70_75ViewState extends State<P70_75View> {
                           const SizedBox(height: 10,),
                           ListTile(
                             title: const UIText(
-                              text: "LÀ NGƯỜI LÀM CHÍNH",
+                              text: "Là người làm chính",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -127,7 +127,7 @@ class _P70_75ViewState extends State<P70_75View> {
                           ),
                           ListTile(
                             title: const UIText(
-                              text: "LÀ NGƯỜI PHỤ GIÚP",
+                              text: "Là người phụ giúp",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -164,7 +164,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để dọn dẹp nhà cửa, giặt quần áo, "
                         "nấu ăn, chế biến đồ ăn uống của hộ, đi mua đồ lương thực, "
-                        "thực phẩm cho hộ? (ĐƠN VỊ TÍNH: GIỜ)",
+                        "thực phẩm cho hộ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -196,7 +196,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     text3: " làm bao nhiêu giờ để sản xuất sản phẩm cho gia đình "
                         "sử dụng như đóng giường tủ bàn ghế, làm gốm, may quần áo, "
                         "dệt thảm, sửa chữa các đồ dùng bị hỏng của gia đình, "
-                        "sơn lại tường, …? (ĐƠN VỊ TÍNH: GIỜ)",
+                        "sơn lại tường, …?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -224,7 +224,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     text1: "P73. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để tự xây sửa, cơi nới, mở rộng "
-                        "nhà cửa hoặc các công trình xây dựng của hộ? (ĐƠN VỊ TÍNH: GIỜ)",
+                        "nhà cửa hoặc các công trình xây dựng của hộ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -251,7 +251,7 @@ class _P70_75ViewState extends State<P70_75View> {
                     text1: "P74. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
                     text3: " làm bao nhiêu giờ để chăm sóc, giúp đỡ hoặc hỗ trợ cho các thành viên (từ 18 "
-                        "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu? (ĐƠN VỊ TÍNH: GIỜ)",
+                        "tuổi trở lên) của hộ bị khuyết tật, ốm đau, già yếu?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -277,7 +277,7 @@ class _P70_75ViewState extends State<P70_75View> {
                   UIRichText(
                     text1: "P75. Trong 7 ngày qua, ${BaseLogic.getInstance().getMember(thanhvien)} ",
                     text2: thanhvien.c00 ?? "",
-                    text3: " làm bao nhiêu giờ để chăm sóc trẻ em dưới 18 tuổi của hộ? (ĐƠN VỊ TÍNH: GIỜ)",
+                    text3: " làm bao nhiêu giờ để chăm sóc trẻ em dưới 18 tuổi của hộ?\n(ĐƠN VỊ TÍNH: GIỜ)",
                     textColor: Colors.black,
                     textFontSize:fontLarge,
                   ),
@@ -319,7 +319,7 @@ class _P70_75ViewState extends State<P70_75View> {
                 if(thanhvien.c63 != 0 && p70 == 0){
                   showDialog(
                       context: context,
-                      builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P70 - Loại người làm nhập vào chưa đúng!',)
+                      builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P70-Loại người làm nhập vào chưa đúng!',)
                   );
                 }
                 else if((thanhvien.c59 ?? 0) + int.parse(_dondep.text)

@@ -25,10 +25,10 @@ class _P28ViewState extends State<P28View> {
   bool check_draw = true;
 
   var _nganh = [
-    "CHỈ ĐỂ BÁN",
-    "CHỦ YẾU ĐỂ BÁN",
-    "CHỈ ĐỂ GIA ĐÌNH DÙNG",
-    "CHỦ YẾU ĐỂ GIA ĐÌNH DÙNG",
+    "Chỉ để bán",
+    "Chủ yếu để bán",
+    "Chỉ để gia đình dùng",
+    "Chủ yếu để gia đình dùng",
   ];
 
   @override
@@ -71,7 +71,7 @@ class _P28ViewState extends State<P28View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -141,7 +141,7 @@ class _P28ViewState extends State<P28View> {
               if(p28 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28 - Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: 'Thành viên ${thanhvien.c00} có P28-Mục đích chủ yếu của sản xuất từ công việc chính nhập vào chưa đúng!',)
                 );
               }else {
                 p28ViewModel.P28Next(thongTinThanhVienModel(

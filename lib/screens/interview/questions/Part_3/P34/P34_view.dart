@@ -64,7 +64,7 @@ class _P34ViewState extends State<P34View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -155,7 +155,7 @@ class _P34ViewState extends State<P34View> {
               if(p34 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P34 - Quyết định cần một công việc nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P34-Quyết định cần một công việc nhập vào chưa đúng!',)
                 );
               }else {
                 p34ViewModel.P34Next(thongTinThanhVienModel(

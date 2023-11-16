@@ -68,7 +68,7 @@ class _P65_66ViewState extends State<P65_66View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -121,17 +121,17 @@ class _P65_66ViewState extends State<P65_66View> {
             }),
             UINextButton(ontap: (){
               if(int.parse(_gio.text) > 84){
-                warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} quá lớn!', 1);
+                warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65-Tổng thời gian làm tất cả các công việc = ${_gio.text} quá lớn!', 1);
               }
               else if(int.parse(_thunhap.text) > 900000){
-                warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_thunhap.text} quá lớn!', 2);
+                warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_thunhap.text} quá lớn!', 2);
               }
               else if(int.parse(_gio.text) >= 60){
-                notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65 - Tổng thời gian làm tất cả các công việc = ${_gio.text} có đúng không?',
+                notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65-Tổng thời gian làm tất cả các công việc = ${_gio.text} có đúng không?',
                     1, (){
                       Navigator.pop(context);
                       if(int.parse(_thunhap.text) >= 400000){
-                        notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
+                        notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                             2, (){
                               Navigator.of(context).pop();
                               p65_66ViewModel.P65_66Next(thongTinThanhVienModel(
@@ -153,7 +153,7 @@ class _P65_66ViewState extends State<P65_66View> {
                     });
               }
               else if(int.parse(_thunhap.text) >= 400000){
-                notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66 - Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
+                notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                     2, (){
                       Navigator.of(context).pop();
                       p65_66ViewModel.P65_66Next(thongTinThanhVienModel(
@@ -220,7 +220,7 @@ class _P65_66ViewState extends State<P65_66View> {
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
                       child: const UIText(
-                        text: "Sửa P45 - Số giờ thực tế cho CV chính",
+                        text: "Sửa P45-Số giờ thực tế cho CV chính",
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
                         isBold: true,
@@ -236,7 +236,7 @@ class _P65_66ViewState extends State<P65_66View> {
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
                       child: const UIText(
-                        text: "Sửa P59 - Số giờ thực tế cho CV thứ 2",
+                        text: "Sửa P59-Số giờ thực tế cho CV thứ 2",
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
                         isBold: true,
@@ -252,7 +252,7 @@ class _P65_66ViewState extends State<P65_66View> {
                         height: 50,
                         minWidth: (MediaQuery.of(context).size.width-80),
                         child: const UIText(
-                          text: "Sửa P63 - Số giờ thực tế cho CV khác",
+                          text: "Sửa P63-Số giờ thực tế cho CV khác",
                           textColor: mPrimaryColor,
                           textFontSize: fontLarge,
                           isBold: true,
@@ -269,7 +269,7 @@ class _P65_66ViewState extends State<P65_66View> {
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
                       child: const UIText(
-                        text: "Sửa P48 - Số tiền nhận được từ CV chính",
+                        text: "Sửa P48-Số tiền nhận được từ CV chính",
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
                         isBold: true,
@@ -285,7 +285,7 @@ class _P65_66ViewState extends State<P65_66View> {
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
                       child: const UIText(
-                        text: "Sửa P61 - Số tiền nhận được CV thứ 2",
+                        text: "Sửa P61-Số tiền nhận được CV thứ 2",
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
                         isBold: true,
@@ -301,7 +301,7 @@ class _P65_66ViewState extends State<P65_66View> {
                       height: 50,
                       minWidth: (MediaQuery.of(context).size.width-80),
                       child: const UIText(
-                        text: "Sửa P64 - Số tiền nhận được từ CV khác",
+                        text: "Sửa P64-Số tiền nhận được từ CV khác",
                         textColor: mPrimaryColor,
                         textFontSize: fontLarge,
                         isBold: true,

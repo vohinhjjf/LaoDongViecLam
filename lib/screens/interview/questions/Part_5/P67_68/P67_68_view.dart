@@ -65,7 +65,7 @@ class _P67_68ViewState extends State<P67_68View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,7 +80,7 @@ class _P67_68ViewState extends State<P67_68View> {
                 const SizedBox(height: 10,),
                 ListTile(
                   title: const UIText(
-                    text: "CÓ",
+                    text: "Có",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -109,7 +109,7 @@ class _P67_68ViewState extends State<P67_68View> {
                 ),
                 ListTile(
                   title: const UIText(
-                    text: "KHÔNG",
+                    text: "Không",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -152,7 +152,7 @@ class _P67_68ViewState extends State<P67_68View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "CÓ",
+                            text: "Có",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -181,7 +181,7 @@ class _P67_68ViewState extends State<P67_68View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "KHÔNG",
+                            text: "Không",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -231,13 +231,13 @@ class _P67_68ViewState extends State<P67_68View> {
               if(p67 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P67 - Có muốn làm thêm giờ nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P67-Có muốn làm thêm giờ nhập vào chưa đúng!',)
                 );
               }
               else if(p67 != 2 && p68 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => const UIWarningDialog(waring: 'P68 - Có thể bắt đầu làm thêm trong vòng 2 tuần tới nhập vào chưa đúng!',)
+                    builder: (_) => const UIWarningDialog(waring: 'P68-Có thể bắt đầu làm thêm trong vòng 2 tuần tới nhập vào chưa đúng!',)
                 );
               }
               else if(p67 == 1  && thanhvien.c59! >= 64){

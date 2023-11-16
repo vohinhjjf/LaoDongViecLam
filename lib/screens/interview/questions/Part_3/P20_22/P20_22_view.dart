@@ -66,7 +66,7 @@ class _P20_22ViewState extends State<P20_22View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -83,7 +83,7 @@ class _P20_22ViewState extends State<P20_22View> {
                 const SizedBox(height: 10,),
                 ListTile(
                   title: const UIText(
-                    text: "CÓ",
+                    text: "Có",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -112,7 +112,7 @@ class _P20_22ViewState extends State<P20_22View> {
                 ),
                 ListTile(
                   title: const UIText(
-                    text: "KHÔNG",
+                    text: "Không",
                     textColor: Colors.black,
                     textFontSize: fontMedium,
                     textAlign: TextAlign.start,
@@ -156,7 +156,7 @@ class _P20_22ViewState extends State<P20_22View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "CÓ",
+                            text: "Có",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -185,7 +185,7 @@ class _P20_22ViewState extends State<P20_22View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "KHÔNG",
+                            text: "Không",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -233,7 +233,7 @@ class _P20_22ViewState extends State<P20_22View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "CÓ",
+                            text: "Có",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -262,7 +262,7 @@ class _P20_22ViewState extends State<P20_22View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "KHÔNG",
+                            text: "Không",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,

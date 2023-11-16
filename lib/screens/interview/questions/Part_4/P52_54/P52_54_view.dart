@@ -25,12 +25,12 @@ class _P52_54ViewState extends State<P52_54View> {
   bool check_draw = true;
 
   var _thoigian = [
-    "DƯỚI 1 THÁNG",
-    "TỪ 1 ĐẾN DƯỚI 3 THÁNG",
-    "TỪ 3 ĐẾN DƯỚI 12 THÁNG",
-    "TỪ 12 THÁNG ĐẾN DƯỚI 3 NĂM",
-    "TỪ 3 NĂM ĐẾN DƯỚI 9 NĂM",
-    "TỪ 9 NĂM TRỞ LÊN",
+    "Dưới 1 tháng",
+    "Từ 1 đến dưới 3 tháng",
+    "Từ 3 đến dưới 12 tháng",
+    "Từ 12 tháng đến dưới 3 năm",
+    "Từ 3 năm đến dưới 9 năm",
+    "Từ 9 năm trở lên",
   ];
 
   @override
@@ -75,7 +75,7 @@ class _P52_54ViewState extends State<P52_54View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,7 +94,7 @@ class _P52_54ViewState extends State<P52_54View> {
                         const SizedBox(height: 10,),
                         ListTile(
                           title: const UIText(
-                            text: "BHXH BẮT BUỘC",
+                            text: "BHXH bắt buộc",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -123,7 +123,7 @@ class _P52_54ViewState extends State<P52_54View> {
                         ),
                         ListTile(
                           title: const UIText(
-                            text: "BHXH TỰ NGUYỆN",
+                            text: "BHXH tự nguyện",
                             textColor: Colors.black,
                             textFontSize: fontMedium,
                             textAlign: TextAlign.start,
@@ -291,19 +291,19 @@ class _P52_54ViewState extends State<P52_54View> {
               if(thanhvien.c45 == 1 && p52 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P52 - Loại hình BHXH nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P52-Loại hình BHXH nhập vào chưa đúng!',)
                 );
               }
               else if(p53 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P53 - Thời gian làm công việc chính nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P53-Thời gian làm công việc chính nhập vào chưa đúng!',)
                 );
               }
               else if(p54 == 0){
                 showDialog(
                     context: context,
-                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P54 - Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
+                    builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P54-Làm nhiều hơn 1 việc nhập vào chưa đúng!',)
                 );
               }
               else if(thanhvien.c38 == 1 && thanhvien.c39 == 2 && (thanhvien.c45 == 1 && p52 == 1)){

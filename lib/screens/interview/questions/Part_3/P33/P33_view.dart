@@ -75,7 +75,7 @@ class _P33ViewState extends State<P33View> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
             child: Form(
               key: _formKey,
               child: Column(
@@ -177,7 +177,7 @@ class _P33ViewState extends State<P33View> {
                         const Flexible(
                             flex: 1,
                             child: UIText(
-                              text: "Liên hệ/Tư vấn cơ sở dịch vụ việc làm",
+                              text: "Liên hệ/tư vấn cơ sở dịch vụ việc làm",
                               textColor: Colors.black,
                               textFontSize: fontMedium,
                               textAlign: TextAlign.start,
@@ -543,7 +543,7 @@ class _P33ViewState extends State<P33View> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const UIText(
-                          text: "Khác(Ghi cụ thể)",
+                          text: "Khác (Ghi cụ thể)",
                           textColor: Colors.black,
                           textFontSize: fontMedium,
                           textAlign: TextAlign.start,
