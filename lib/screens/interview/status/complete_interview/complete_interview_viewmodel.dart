@@ -74,7 +74,7 @@ class CompleteInterviewViewModel extends BaseViewModel {
     late thongTinHoModel thongtinHoModel;
     late thongTinHoNKTTModel thongtinHoNKTTModel;
     late DoiSongHoModel doiSongHoModel;
-    final fetchResponse = await _syncServices.getEnquiry(_sPrefAppModel.accessToken, _sPrefAppModel.month, namDT, id);
+    final fetchResponse = await _syncServices.getEnquiry(_sPrefAppModel.accessToken, _sPrefAppModel.month, namDT, "$id${_sPrefAppModel.month}");
     if (fetchResponse != null) {
       print("Get data: " + fetchResponse.toString());
       Map<String, dynamic> map = json.decode(json.encode(fetchResponse ?? {})) as Map<String, dynamic>;
@@ -106,16 +106,22 @@ class CompleteInterviewViewModel extends BaseViewModel {
     //await _executeDatabase.setTimeBD(DateTime.now().toString(), id);
   }
 
-  void CompleteInterview(BangKeThangDTModel bangKeThangDTModel) async {
-    String idho = '${bangKeThangDTModel.idhO_BKE!}${_sPrefAppModel.month}';
+  void CompleteInterview(List<BangKeThangDTModel>   list, String idho) async {
     int thangdt = int.parse(_sPrefAppModel.month);
     int namdt = DateTime.now().year;
-    await _sPrefAppModel.setIdHo(bangKeThangDTModel.idhO_BKE!);
-    if(bangKeThangDTModel.trangThai == 9 && bangKeThangDTModel.sync == 1) {
-      await getEnquiry(idho, bangKeThangDTModel.namDT!.toString());
-      await _executeDatabase.updateTrangThaiBK(bangKeThangDTModel.idhO_BKE!, 5, thangdt, namdt);
+    print(idho);
+    print(namdt);
+    await _sPrefAppModel.setIdHo(idho);
+    if(list.any((e) => e.idhO_BKE == idho && e.thangDT == thangdt)){
+      BangKeThangDTModel bangKeThangDTModel = list.firstWhere((e) => e.idhO_BKE == idho && e.thangDT == thangdt);
+      if(bangKeThangDTModel.trangThai == 9) {
+        if(bangKeThangDTModel.sync == 1){
+          await getEnquiry(idho, namdt.toString());
+          await _executeDatabase.updateTrangThaiBK(idho, 5, thangdt, namdt);
+        }
+        await _executeDatabase.updateTrangThai(8, 0, idho, thangdt, namdt);
+      }
     }
-    await _executeDatabase.updateTrangThai(8, 0, bangKeThangDTModel.idhO_BKE!, bangKeThangDTModel.thangDT!, bangKeThangDTModel.namDT!);
     NavigationServices.instance.navigateToOperatingStatus(context);
   }
 

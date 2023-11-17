@@ -96,7 +96,7 @@ class _CompleteInterviewViewState extends State<CompleteInterviewView> {
                   margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
                   child: InkWell(
                     onTap: () {
-                      completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel.firstWhere((e) => e.idhO_BKE == list[index].idho && e.thangDT == list[index].thangDT));
+                      completeInterviewViewModel.CompleteInterview(listBangKeThangDTModel, list[index].idho!);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
