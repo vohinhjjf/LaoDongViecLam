@@ -55,6 +55,7 @@ class _LoginViewState extends State<LoginView> {
                     UIAssets.icLogo,
                     height: 150.h,
                     width: 150.w,
+
                   ),
                   // Container(
                   //   padding: const EdgeInsets.symmetric(vertical: 15),
@@ -224,7 +225,7 @@ class _LoginViewState extends State<LoginView> {
                   child: MaterialButton(
                     color: Colors.blue,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
                     ),
                     onPressed: () {
                       //CircularProgressIndicator();
@@ -236,7 +237,8 @@ class _LoginViewState extends State<LoginView> {
                         if(month != "điều tra") {
                           if(int.parse(month) > DateTime.now().month){
                             _showErrorDialog('Không chọn tháng sau tháng điều tra!');
-                          } else {
+                          }
+                          else {
                             loginViewModel.login(
                                 userNameController.text,
                                 passwordController.text,
@@ -263,13 +265,29 @@ class _LoginViewState extends State<LoginView> {
                     height: 50,
                     minWidth: MediaQuery.of(context).size.width,
 
-                    child: const UIText(
-                      text: UIDescribes.login,
-                      textAlign: TextAlign.center,
-                      textColor: Colors.white,
-                      textFontSize: fontLarge,
-                      isBold: true,
-                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.navigate_next,
+                          color: Colors.transparent,
+                          size: 25,
+                        ),
+                        UIText(
+                          text: UIDescribes.login,
+                          textAlign: TextAlign.center,
+                          textColor: Colors.white,
+                          textFontSize: fontMedium,
+                          isBold: true,
+                        ),
+                        Image(
+                          width: 18,
+                          height: 18,
+                          image: AssetImage("assets/icons/next.png"),
+                          color: Colors.white,
+                        ),
+                      ],
+                    )
                   ),
                 ),
                 Container(

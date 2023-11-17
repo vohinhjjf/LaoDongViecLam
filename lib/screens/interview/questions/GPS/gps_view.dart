@@ -130,94 +130,110 @@ class Body extends State<GPSView> {
           EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
           child: Column(
             children: [
-              MaterialButton(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                //color: Colors.redAccent,
-                minWidth: 240.w,
-                onPressed: () async {
-                  checkGps();
-                },
-                shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.blue,width: 3),
-                    borderRadius: BorderRadius.all(Radius.circular(15))
-                ),
-                child: Column(
-                  children: const [
-                    Image(
-                      image: AssetImage("assets/icons/GPS.png"),
-                      width: 40,
-                      height: 40,
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    UIText(
-                      text: 'ĐỊNH VỊ GPS',
-                      textFontSize: fontMedium,
-                      isBold: true,
-                      textColor: Colors.blue,
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                  ],
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: MaterialButton(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  //color: Colors.redAccent,
+                  height: 50,
+                  onPressed: () async {
+                    checkGps();
+                  },
+                  shape: const RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.blue,width: 3),
+                      borderRadius: BorderRadius.all(Radius.circular(15))
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Image(
+                        image: AssetImage("assets/icons/3d_map.png"),
+                        width: 40,
+                        height: 40,
+                      ),
+                      SizedBox(width: 15,),
+                      UIText(
+                        text: 'ĐỊNH VỊ GPS',
+                        textFontSize: fontMedium,
+                        isBold: true,
+                        textColor: Colors.blue,
+                      ),
+                      SizedBox(width: 15,),
+                      Image(
+                        image: AssetImage("assets/icons/GPS.png"),
+                        width: 40,
+                        height: 40,
+                        color: Colors.transparent,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              MaterialButton(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                minWidth: 240.w,
-                onPressed: () async {
-                  await gpsViewModel.checkGPS().then((value) => {
-                    if(value){
-                      if(!gpsViewModel.checkQuestion(list, thongTinHo, doisongho)){
-                        if (gpsViewModel.typeStop == 1){
-                          _showErrorDialog("Trong hộ có thành viên ${list[gpsViewModel.currentPos].c00} chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: MaterialButton(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  height: 50,
+                  onPressed: () async {
+                    await gpsViewModel.checkGPS().then((value) => {
+                      if(value){
+                        if(!gpsViewModel.checkQuestion(list, thongTinHo, doisongho)){
+                          if (gpsViewModel.typeStop == 1){
+                            _showErrorDialog("Trong hộ có thành viên ${list[gpsViewModel.currentPos].c00} chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+                          }
+                          else{
+                            _showErrorDialog("Trong hộ có câu hỏi chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+                          }
                         }
-                        else{
-                          _showErrorDialog("Trong hộ có câu hỏi chưa hoàn thành điều tra. Vui lòng kiểm tra lại!", gpsViewModel.stopQuestion)
+                        else if(gpsViewModel.checkC01_04(list) && gpsViewModel.checkC01_04(list)){
+                          _showErrorDialog("Hộ có con đẻ sống cùng hộ dưới 3 tuổi mà thành viên hộ ko con đẻ dưới 3 tuổi. Kiểm tra lại!", gpsViewModel.stopQuestion)
                         }
+                        else {
+                            gpsViewModel.finish(DateTime.now().toString(), list),
+                            _showFinishDialog()
+                          }
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (_) => const UIWarningDialog(waring: 'Chưa định vị GPS!')
+                        )
                       }
-                      else if(gpsViewModel.checkC01_04(list) && gpsViewModel.checkC01_04(list)){
-                        _showErrorDialog("Hộ có con đẻ sống cùng hộ dưới 3 tuổi mà thành viên hộ ko con đẻ dưới 3 tuổi. Kiểm tra lại!", gpsViewModel.stopQuestion)
-                      }
-                      else {
-                        gpsViewModel.finish(DateTime.now().toString(), list),
-                        _showFinishDialog()
-                      }
-                    } else {
-                      showDialog(
-                          context: context,
-                          builder: (_) => const UIWarningDialog(waring: 'Chưa định vị GPS!')
-                      )
-                    }
-                  });
-                },
-                color: Colors.blue,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Column(
-                  children: const [
-                    Image(
-                      image: AssetImage("assets/icons/finish1.png"),
-                      width: 40,
-                      height: 40,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    UIText(
-                        text: 'HOÀN THÀNH \nPHỎNG VẤN',
-                        textFontSize: fontMedium,
-                        textAlign: TextAlign.center,
-                        isBold: true,
-                        textColor: Colors.white
-                    )
-                  ],
+                    });
+                  },
+                  color: Colors.blue,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Image(
+                        image: AssetImage("assets/icons/finish.png"),
+                        width: 40,
+                        height: 40,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 15,),
+                      UIText(
+                          text: 'HOÀN THÀNH \nPHỎNG VẤN',
+                          textFontSize: fontMedium,
+                          textAlign: TextAlign.center,
+                          isBold: true,
+                          textColor: Colors.white
+                      ),
+                      SizedBox(width: 15,),
+                      Image(
+                        image: AssetImage("assets/icons/finish.png"),
+                        width: 40,
+                        height: 40,
+                        color: Colors.transparent,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -250,9 +266,13 @@ class Body extends State<GPSView> {
               const SizedBox(
                 height: 20.0,
               ),
-              Row(
+              Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Container(
+                      height: 1,
+                      color: Colors.grey.shade300,
+                    ),
                     MaterialButton(
                         child: const UIText(
                             text: 'Kiểm tra lại',
@@ -264,6 +284,10 @@ class Body extends State<GPSView> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         }),
+                    Container(
+                      height: 1,
+                      color: Colors.grey.shade300,
+                    ),
                     MaterialButton(
                         child: const UIText(
                           text: 'Tiếp tục',

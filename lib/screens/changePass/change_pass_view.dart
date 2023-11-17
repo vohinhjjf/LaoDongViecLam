@@ -118,7 +118,7 @@ class Body extends State{
                       alignment: Alignment.center,
                       height: 50.0,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
+                          borderRadius: BorderRadius.circular(25.0),
                           gradient: const LinearGradient(colors: [
                             mPrimaryColor,
                             Color(0xFF64B5F6),
@@ -130,7 +130,7 @@ class Body extends State{
                         textAlign: TextAlign.center,
                           textColor: Colors.white,
                           isBold: true,
-                          textFontSize: fontLarge
+                          textFontSize: fontMedium
                       ),
                     ),
                   ),

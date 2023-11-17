@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           children: [
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,8 +97,8 @@ class _HomeViewState extends State<HomeView> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 160.w,
-        height: 140.h,
+        width: 140.w,
+        height: 120.h,
         decoration:  BoxDecoration(
           //border: Border.all(color: mCompleteColor.shade400),
           color: Colors.white,
@@ -117,14 +117,15 @@ class _HomeViewState extends State<HomeView> {
           children: [
             Image.asset(
                 icon,
-              width: 75,
-              height: 75,
+              width: 35,
+              height: 35,
             ),
             const SizedBox(height: 10,),
             UIText(
               text: title,
               textColor: Colors.black,
               isBold: true,
+              textFontSize: fontMedium,
               //isBold: true,
             ),
           ],

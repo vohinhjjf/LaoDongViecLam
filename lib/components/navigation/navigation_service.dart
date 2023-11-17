@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Finish/finish_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P40_42/P40_42_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58/P56_58_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/household_information/general_information/general_information_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/status/backup/backup_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/status/complete_interview/complete_interview_view.dart';
-import 'package:lao_dong_viec_lam/screens/replace/area_place/area_replace_view.dart';
-import 'package:lao_dong_viec_lam/screens/replace/backup_replace/backup_replace_view.dart';
-import 'package:lao_dong_viec_lam/screens/replace/household_replace/household_replace_view.dart';
+import 'package:LDVL2024/screens/interview/questions/Finish/finish_view.dart';
+import 'package:LDVL2024/screens/interview/questions/Person_providing_information/information_provider_view.dart';
+import 'package:LDVL2024/screens/interview/questions/Select_code/P17B/P17B_view.dart';
+import 'package:LDVL2024/screens/interview/questions/Select_code/P40_42/P40_42_view.dart';
+import 'package:LDVL2024/screens/interview/questions/Select_code/P56_58/P56_58_view.dart';
+import 'package:LDVL2024/screens/interview/questions/household_information/general_information/general_information_view.dart';
+import 'package:LDVL2024/screens/interview/status/backup/backup_view.dart';
+import 'package:LDVL2024/screens/interview/status/complete_interview/complete_interview_view.dart';
+import 'package:LDVL2024/screens/replace/area_place/area_replace_view.dart';
+import 'package:LDVL2024/screens/replace/backup_replace/backup_replace_view.dart';
+import 'package:LDVL2024/screens/replace/household_replace/household_replace_view.dart';
 
 import '../../screens/interview/questions/GPS/gps_view.dart';
 import '../../screens/interview/questions/Part_1/P05/P05_view.dart';

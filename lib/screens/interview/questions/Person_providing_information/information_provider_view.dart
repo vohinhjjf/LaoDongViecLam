@@ -222,7 +222,13 @@ class _InformationProviderViewState extends State<InformationProviderView> {
           ],
         ),
       ),
-      drawer: const DrawerNavigation(),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const DrawerNavigation()
+      ),
+      drawerScrimColor: Colors.transparent,
     );
   }
 }

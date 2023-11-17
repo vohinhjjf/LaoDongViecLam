@@ -1,5 +1,5 @@
 class UIAssets {
-  static const String icLogo = 'assets/images/logo.png';
+  static const String icLogo = 'assets/images/logo_ldvl2024.png';
   static const String icInterview = 'assets/icons/ic_interview.jpg';
   static const String icSync = 'assets/icons/ic_sync.jpg';
   static const String icTask = 'assets/icons/ic_progress.jpg';

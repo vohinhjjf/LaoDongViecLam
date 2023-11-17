@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
+import 'package:money_input_formatter/money_input_controller.dart';
+import 'package:money_input_formatter/money_input_formatter.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -21,9 +21,10 @@ class P61_62View extends StatefulWidget {
 class _P61_62ViewState extends State<P61_62View> {
   late P61_62ViewModel p61_62ViewModel;
   final _formKey = GlobalKey<FormState>();
-  final _tiencong = TextEditingController();
+  final _tiencong = MoneyInputController(thousandSeparator: '.', decimalSeparator: ' ');
   var thanhvien = thongTinThanhVienModel();
   int p62 =0;
+  double value = 0;
   bool check = false, check_draw = true;
 
   @override
@@ -40,9 +41,11 @@ class _P61_62ViewState extends State<P61_62View> {
               p62 = p61_62ViewModel.thanhvien.c56 ?? 0;
               if(thanhvien.c41 == 1){
                 check = true;
-                _tiencong.text = "0";
+                _tiencong.numberValue = 0;
+                value = 0;
               }else {
-                _tiencong.text = p61_62ViewModel.thanhvien.c55 == null ? "" : p61_62ViewModel.thanhvien.c55.toString();
+                _tiencong.numberValue = p61_62ViewModel.thanhvien.c55 == null ? 0 : double.parse(p61_62ViewModel.thanhvien.c55.toString());
+                value = _tiencong.numberValue;
               }
             })
           });
@@ -96,12 +99,17 @@ class _P61_62ViewState extends State<P61_62View> {
                       }
                       return null;
                     },
+                    onChanged: (_) => setState(() {
+                      value = _tiencong.numberValue;
+                      print(_tiencong.text.replaceAll(RegExp(r'.'), ''));
+                    }),// convert to a number
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                      MoneyInputFormatter(thousandSeparator: '.', decimalSeparator: ' '),
+                      //FilteringTextInputFormatter.digitsOnly
                     ],
-                    maxLength: 6,
-                    readOnly: check,
-                    keyboardType: TextInputType.datetime,
+                    maxLength: 7,
+                    readOnly: thanhvien.c41 == 1,
+                    keyboardType: TextInputType.number,
                   ),
                   //p62
                   const SizedBox(height: 10,),
@@ -171,7 +179,7 @@ class _P61_62ViewState extends State<P61_62View> {
                         waring: 'P62-Công việc khác nhập vào chưa đúng!',)
                   );
                 }
-                else if (int.parse(_tiencong.text) < 100) {
+                else if (value.toInt() < 100) {
                   showDialog(
                       context: context,
                       builder: (_) =>
@@ -184,7 +192,7 @@ class _P61_62ViewState extends State<P61_62View> {
                                   thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
-                                    c55: int.parse(_tiencong.text),
+                                    c55: value.toInt(),
                                     c56: p62,
                                   ));
                             },
@@ -195,7 +203,7 @@ class _P61_62ViewState extends State<P61_62View> {
                   p61_62ViewModel.P61_62Next(thongTinThanhVienModel(
                     idho: thanhvien.idho,
                     idtv: thanhvien.idtv,
-                    c55: int.parse(_tiencong.text),
+                    c55: value.toInt(),
                     c56: p62,
                   ));
                 }

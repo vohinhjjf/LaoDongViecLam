@@ -22,9 +22,8 @@ class P84ViewModel extends BaseViewModel {
 
   getTTTV() async {
     String idho = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
-    int idtv = _sPrefAppModel.IDTV;
-    await _executeDatabase.getTTTV(idho, idtv).then((value) {
-      thanhvien = value;
+    await _executeDatabase.getListTTTV(idho).then((value) {
+      thanhvien = value.firstWhere((e) => e.c01 == 1);
     });
     await _executeDatabase.getDoiSongHo(idho).then((value) {
       doisongho = value;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
-import 'package:lao_dong_viec_lam/components/uis.dart';
+import 'package:LDVL2024/components/uis.dart';
 
 class UIListTile extends StatelessWidget {
   final String text;
@@ -21,7 +21,6 @@ class UIListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Container(
-        height: 45,
         padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
         decoration: ShapeDecoration(
           color: check ? GFColors.PRIMARY.withOpacity(0.15) : Colors.white,

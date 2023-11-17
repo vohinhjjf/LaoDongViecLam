@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:lao_dong_viec_lam/models/bangkeThangDT_model.dart';
-import 'package:lao_dong_viec_lam/models/doiSongHo_model.dart';
-import 'package:lao_dong_viec_lam/models/thongTinHoNKTT_model.dart';
-import 'package:lao_dong_viec_lam/models/thongTinHo_model.dart';
-import 'package:lao_dong_viec_lam/models/thongTinThanhVienNKTT_model.dart';
-import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
+import 'package:LDVL2024/models/bangkeThangDT_model.dart';
+import 'package:LDVL2024/models/doiSongHo_model.dart';
+import 'package:LDVL2024/models/thongTinHoNKTT_model.dart';
+import 'package:LDVL2024/models/thongTinHo_model.dart';
+import 'package:LDVL2024/models/thongTinThanhVienNKTT_model.dart';
+import 'package:LDVL2024/models/thongTinThanhVien_model.dart';
 
 class PhieuDieuTraModel {
   late BangKeThangDTModel? bangKeThangDT;

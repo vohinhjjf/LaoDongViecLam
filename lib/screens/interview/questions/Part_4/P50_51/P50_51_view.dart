@@ -223,15 +223,59 @@ class _P50_51ViewState extends State<P50_51View> {
                                                     notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
                                                     onpress: (){
                                                       Navigator.of(context).pop();
-                                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                                        idho: thanhvien.idho,
-                                                        idtv: thanhvien.idtv,
-                                                        c44: p50,
-                                                        c45: p51,
-                                                      ));
+                                                      if(thanhvien.c43 != 5){
+                                                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c45: p51,
+                                                        ));
+                                                      }
+                                                      else {
+                                                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                          idho: thanhvien.idho,
+                                                          idtv: thanhvien.idtv,
+                                                          c44: p50,
+                                                          c45: p51,
+                                                        ));
+                                                      }
                                                     },
                                                   )
                                               );
+                                            }
+                                            else {
+                                              if(thanhvien.c43 != 5){
+                                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c45: p51,
+                                                ));
+                                              }
+                                              else {
+                                                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                  idho: thanhvien.idho,
+                                                  idtv: thanhvien.idtv,
+                                                  c44: p50,
+                                                  c45: p51,
+                                                ));
+                                              }
+                                            }
+                                          },
+                                        )
+                                    );
+                                  }
+                                  else if(p50 < 3 && p51 == 2){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) => UINotificationDialog(
+                                          notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                          onpress: (){
+                                            Navigator.of(context).pop();
+                                            if(thanhvien.c43 != 5){
+                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c45: p51,
+                                              ));
                                             }
                                             else {
                                               p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
@@ -245,30 +289,22 @@ class _P50_51ViewState extends State<P50_51View> {
                                         )
                                     );
                                   }
-                                  else if(p50 < 3 && p51 == 2){
-                                    showDialog(
-                                        context: context,
-                                        builder: (_) => UINotificationDialog(
-                                          notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                          onpress: (){
-                                            Navigator.of(context).pop();
-                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c44: p50,
-                                              c45: p51,
-                                            ));
-                                          },
-                                        )
-                                    );
-                                  }
                                   else {
-                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                      idho: thanhvien.idho,
-                                      idtv: thanhvien.idtv,
-                                      c44: p50,
-                                      c45: p51,
-                                    ));
+                                    if(thanhvien.c43 != 5){
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c45: p51,
+                                      ));
+                                    }
+                                    else {
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c44: p50,
+                                        c45: p51,
+                                      ));
+                                    }
                                   }
                                 },
                               )
@@ -289,15 +325,59 @@ class _P50_51ViewState extends State<P50_51View> {
                                           notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
                                           onpress: (){
                                             Navigator.of(context).pop();
-                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c44: p50,
-                                              c45: p51,
-                                            ));
+                                            if(thanhvien.c43 != 5){
+                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c45: p51,
+                                              ));
+                                            }
+                                            else {
+                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c44: p50,
+                                                c45: p51,
+                                              ));
+                                            }
                                           },
                                         )
                                     );
+                                  }
+                                  else {
+                                    if(thanhvien.c43 != 5){
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c45: p51,
+                                      ));
+                                    }
+                                    else {
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c44: p50,
+                                        c45: p51,
+                                      ));
+                                    }
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(p50 < 3 && p51 == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c43 != 5){
+                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c45: p51,
+                                    ));
                                   }
                                   else {
                                     p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
@@ -311,30 +391,22 @@ class _P50_51ViewState extends State<P50_51View> {
                               )
                           );
                         }
-                        else if(p50 < 3 && p51 == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UINotificationDialog(
-                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                onpress: (){
-                                  Navigator.of(context).pop();
-                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c44: p50,
-                                    c45: p51,
-                                  ));
-                                },
-                              )
-                          );
-                        }
                         else {
-                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c44: p50,
-                            c45: p51,
-                          ));
+                          if(thanhvien.c43 != 5){
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c45: p51,
+                            ));
+                          }
+                          else {
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c44: p50,
+                              c45: p51,
+                            ));
+                          }
                         }
                       },
                     )
@@ -364,15 +436,59 @@ class _P50_51ViewState extends State<P50_51View> {
                                           notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
                                           onpress: (){
                                             Navigator.of(context).pop();
-                                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                              idho: thanhvien.idho,
-                                              idtv: thanhvien.idtv,
-                                              c44: p50,
-                                              c45: p51,
-                                            ));
+                                            if(thanhvien.c43 != 5){
+                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c45: p51,
+                                              ));
+                                            }
+                                            else {
+                                              p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                                idho: thanhvien.idho,
+                                                idtv: thanhvien.idtv,
+                                                c44: p50,
+                                                c45: p51,
+                                              ));
+                                            }
                                           },
                                         )
                                     );
+                                  }
+                                  else {
+                                    if(thanhvien.c43 != 5){
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c45: p51,
+                                      ));
+                                    }
+                                    else {
+                                      p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                        idho: thanhvien.idho,
+                                        idtv: thanhvien.idtv,
+                                        c44: p50,
+                                        c45: p51,
+                                      ));
+                                    }
+                                  }
+                                },
+                              )
+                          );
+                        }
+                        else if(p50 < 3 && p51 == 2){
+                          showDialog(
+                              context: context,
+                              builder: (_) => UINotificationDialog(
+                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                                onpress: (){
+                                  Navigator.of(context).pop();
+                                  if(thanhvien.c43 != 5){
+                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c45: p51,
+                                    ));
                                   }
                                   else {
                                     p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
@@ -386,30 +502,22 @@ class _P50_51ViewState extends State<P50_51View> {
                               )
                           );
                         }
-                        else if(p50 < 3 && p51 == 2){
-                          showDialog(
-                              context: context,
-                              builder: (_) => UINotificationDialog(
-                                notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                                onpress: (){
-                                  Navigator.of(context).pop();
-                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c44: p50,
-                                    c45: p51,
-                                  ));
-                                },
-                              )
-                          );
-                        }
                         else {
-                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                            idho: thanhvien.idho,
-                            idtv: thanhvien.idtv,
-                            c44: p50,
-                            c45: p51,
-                          ));
+                          if(thanhvien.c43 != 5){
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c45: p51,
+                            ));
+                          }
+                          else {
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c44: p50,
+                              c45: p51,
+                            ));
+                          }
                         }
                       },
                     )
@@ -430,15 +538,59 @@ class _P50_51ViewState extends State<P50_51View> {
                                 notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
                                 onpress: (){
                                   Navigator.of(context).pop();
-                                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                                    idho: thanhvien.idho,
-                                    idtv: thanhvien.idtv,
-                                    c44: p50,
-                                    c45: p51,
-                                  ));
+                                  if(thanhvien.c43 != 5){
+                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c45: p51,
+                                    ));
+                                  }
+                                  else {
+                                    p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                                      idho: thanhvien.idho,
+                                      idtv: thanhvien.idtv,
+                                      c44: p50,
+                                      c45: p51,
+                                    ));
+                                  }
                                 },
                               )
                           );
+                        }
+                        else {
+                          if(thanhvien.c43 != 5){
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c45: p51,
+                            ));
+                          }
+                          else {
+                            p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                              idho: thanhvien.idho,
+                              idtv: thanhvien.idtv,
+                              c44: p50,
+                              c45: p51,
+                            ));
+                          }
+                        }
+                      },
+                    )
+                );
+              }
+              else if(p50 < 3 && p51 == 2){
+                showDialog(
+                    context: context,
+                    builder: (_) => UINotificationDialog(
+                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
+                      onpress: (){
+                        Navigator.of(context).pop();
+                        if(thanhvien.c43 != 5){
+                          p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                            idho: thanhvien.idho,
+                            idtv: thanhvien.idtv,
+                            c45: p51,
+                          ));
                         }
                         else {
                           p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
@@ -452,30 +604,22 @@ class _P50_51ViewState extends State<P50_51View> {
                     )
                 );
               }
-              else if(p50 < 3 && p51 == 2){
-                showDialog(
-                    context: context,
-                    builder: (_) => UINotificationDialog(
-                      notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} ký loại HĐLĐ là ${p50 == 1? "Hợp đồng không xác định thời hạn" : "Hợp đồng 1 năm đến dưới 3 năm"} mà không có BHXH. Có đúng không?',
-                      onpress: (){
-                        Navigator.of(context).pop();
-                        p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                          idho: thanhvien.idho,
-                          idtv: thanhvien.idtv,
-                          c44: p50,
-                          c45: p51,
-                        ));
-                      },
-                    )
-                );
-              }
               else {
-                p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
-                  idho: thanhvien.idho,
-                  idtv: thanhvien.idtv,
-                  c44: p50,
-                  c45: p51,
-                ));
+                if(thanhvien.c43 != 5){
+                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c45: p51,
+                  ));
+                }
+                else {
+                  p50_51ViewModel.P50_51Next(thongTinThanhVienModel(
+                    idho: thanhvien.idho,
+                    idtv: thanhvien.idtv,
+                    c44: p50,
+                    c45: p51,
+                  ));
+                }
               }
             }),
           ],

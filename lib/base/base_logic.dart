@@ -1,6 +1,6 @@
-import 'package:lao_dong_viec_lam/components/ui_describes.dart';
-import 'package:lao_dong_viec_lam/models/doiSongHo_model.dart';
-import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
+import 'package:LDVL2024/components/ui_describes.dart';
+import 'package:LDVL2024/models/doiSongHo_model.dart';
+import 'package:LDVL2024/models/thongTinThanhVien_model.dart';
 
 class BaseLogic {
   static BaseLogic _instance = BaseLogic();

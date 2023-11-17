@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:money_input_formatter/money_input_controller.dart';
+import 'package:money_input_formatter/money_input_formatter.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -20,7 +22,7 @@ class _P65_66ViewState extends State<P65_66View> {
   late P65_66ViewModel p65_66ViewModel;
   var thanhvien = thongTinThanhVienModel();
   final _gio = TextEditingController();
-  final _thunhap = TextEditingController();
+  final _thunhap = MoneyInputController(thousandSeparator: '.', decimalSeparator: ' ');
   bool check_draw = true;
 
   @override
@@ -37,9 +39,9 @@ class _P65_66ViewState extends State<P65_66View> {
               _gio.text = ((p65_66ViewModel.thanhvien.c40 ?? 0)
                   + (p65_66ViewModel.thanhvien.c53 ?? 0)
                   + (p65_66ViewModel.thanhvien.c57 ?? 0)).toString();
-              _thunhap.text = ((p65_66ViewModel.thanhvien.c42 ?? 0)
+              _thunhap.numberValue = ((p65_66ViewModel.thanhvien.c42 ?? 0)
                   + (p65_66ViewModel.thanhvien.c55 ?? 0)
-                  + (p65_66ViewModel.thanhvien.c58 ?? 0)).toString();
+                  + (p65_66ViewModel.thanhvien.c58 ?? 0)).toDouble();
             })
           });
     });
@@ -123,14 +125,14 @@ class _P65_66ViewState extends State<P65_66View> {
               if(int.parse(_gio.text) > 84){
                 warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65-Tổng thời gian làm tất cả các công việc = ${_gio.text} quá lớn!', 1);
               }
-              else if(int.parse(_thunhap.text) > 900000){
+              else if(_thunhap.numberValue.toInt() > 900000){
                 warningDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_thunhap.text} quá lớn!', 2);
               }
               else if(int.parse(_gio.text) >= 60){
                 notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P65-Tổng thời gian làm tất cả các công việc = ${_gio.text} có đúng không?',
                     1, (){
                       Navigator.pop(context);
-                      if(int.parse(_thunhap.text) >= 400000){
+                      if(_thunhap.numberValue.toInt() >= 400000){
                         notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                             2, (){
                               Navigator.of(context).pop();
@@ -138,7 +140,7 @@ class _P65_66ViewState extends State<P65_66View> {
                                 idho: thanhvien.idho,
                                 idtv: thanhvien.idtv,
                                 c59: int.parse(_gio.text),
-                                c60: int.parse(_thunhap.text),
+                                c60: _thunhap.numberValue.toInt(),
                               ));
                             } );
                       }
@@ -147,12 +149,12 @@ class _P65_66ViewState extends State<P65_66View> {
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
                           c59: int.parse(_gio.text),
-                          c60: int.parse(_thunhap.text),
+                          c60: _thunhap.numberValue.toInt(),
                         ));
                       }
                     });
               }
-              else if(int.parse(_thunhap.text) >= 400000){
+              else if(_thunhap.numberValue.toInt() >= 400000){
                 notifiDialog('${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P66-Thu nhập của tất cả công việc = ${_gio.text} có đúng không?',
                     2, (){
                       Navigator.of(context).pop();
@@ -160,7 +162,7 @@ class _P65_66ViewState extends State<P65_66View> {
                         idho: thanhvien.idho,
                         idtv: thanhvien.idtv,
                         c59: int.parse(_gio.text),
-                        c60: int.parse(_thunhap.text),
+                        c60: _thunhap.numberValue.toInt(),
                       ));
                     } );
               }
@@ -169,7 +171,7 @@ class _P65_66ViewState extends State<P65_66View> {
                   idho: thanhvien.idho,
                   idtv: thanhvien.idtv,
                   c59: int.parse(_gio.text),
-                  c60: int.parse(_thunhap.text),
+                  c60: _thunhap.numberValue.toInt(),
                 ));
               }
             }),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Person_providing_information/information_provider_viewmodel.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P17B/P17B_viewmodel.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/Select_code/P56_58/P56_58_viewmodel.dart';
-import 'package:lao_dong_viec_lam/screens/interview/questions/household_information/general_information/general_information_viewmodel.dart';
-import 'package:lao_dong_viec_lam/screens/interview/status/backup/backup_viewmodel.dart';
-import 'package:lao_dong_viec_lam/screens/interview/status/complete_interview/complete_interview_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/questions/Person_providing_information/information_provider_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/questions/Select_code/P17B/P17B_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/questions/Select_code/P56_58/P56_58_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/questions/household_information/general_information/general_information_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/status/backup/backup_viewmodel.dart';
+import 'package:LDVL2024/screens/interview/status/complete_interview/complete_interview_viewmodel.dart';
 
 import 'components/navigation/drawer_navigation/drawer_navigation_model.dart';
 import 'components/navigation/navigation_service.dart';
@@ -412,7 +412,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
+          title: 'LDVL2024',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,

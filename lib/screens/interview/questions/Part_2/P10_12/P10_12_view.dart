@@ -54,7 +54,7 @@ class _P10_12ViewState extends State<P10_12View> {
   final _lydo = [
     "Tìm việc/bắt đầu công việc mới",
     "Mất/hết việc, không tìm được việc",
-    "Thao gia đình chuyển nhà",
+    "Theo gia đình chuyển nhà",
     "Do dịch bệnh",
     "Kết hôn",
     "Đi học",
@@ -173,7 +173,7 @@ class _P10_12ViewState extends State<P10_12View> {
                 ),
                 const SizedBox(height: 10,),
                 UIListTile(
-                  text: "Nước ngoài",
+                  text: "Ở nước ngoài",
                   check: p10 == 2,
                   onTap1: (value){
                     setState(() {

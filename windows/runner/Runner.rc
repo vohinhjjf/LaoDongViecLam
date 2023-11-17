@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "lao_dong_viec_lam" "\0"
+            VALUE "FileDescription", "LDVL2024" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "lao_dong_viec_lam" "\0"
+            VALUE "InternalName", "LDVL2024" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "lao_dong_viec_lam.exe" "\0"
-            VALUE "ProductName", "lao_dong_viec_lam" "\0"
+            VALUE "OriginalFilename", "LDVL2024.exe" "\0"
+            VALUE "ProductName", "LDVL2024" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

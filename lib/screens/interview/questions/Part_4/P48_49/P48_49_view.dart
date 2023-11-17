@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
+import 'package:money_input_formatter/money_input_controller.dart';
+import 'package:money_input_formatter/money_input_formatter.dart';
 
 import '../../../../../base/base_logic.dart';
 import '../../../../../components/navigation/drawer_navigation/drawer_navigation.dart';
@@ -20,10 +20,11 @@ class P48_49View extends StatefulWidget {
 
 class _P48_49ViewState extends State<P48_49View> {
   late P48_49ViewModel p48_49ViewModel;
-  final _tien = TextEditingController();
+  final _tien = MoneyInputController(thousandSeparator: '.', decimalSeparator: ' ');
   var thanhvien = thongTinThanhVienModel();
   int p49 = 0;
-  bool check = false, check_draw = true;
+  double value = 0;
+  bool check_draw = true;
 
   final _vaitro = [
     "Chủ cơ sở (có thuê lao động)",
@@ -47,10 +48,11 @@ class _P48_49ViewState extends State<P48_49View> {
               thanhvien = p48_49ViewModel.thanhvien;
               p49 = p48_49ViewModel.thanhvien.c43 ?? 0;
               if(thanhvien.c41 == 1){
-                check = true;
-                _tien.text = "0";
+                _tien.numberValue = 0;
+                value = 0;
               }else {
-                _tien.text = p48_49ViewModel.thanhvien.c42 == null ? "" : p48_49ViewModel.thanhvien.c42.toString();
+                _tien.numberValue = p48_49ViewModel.thanhvien.c42 == null ? 0 : double.parse(p48_49ViewModel.thanhvien.c42.toString());
+                value = _tien.numberValue;
               }
             })
           });
@@ -102,13 +104,17 @@ class _P48_49ViewState extends State<P48_49View> {
                     }
                     return null;
                   },
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(
-                        RegExp(r'^(\d+)?\.?\d{0,2}'))
+                  onChanged: (_) => setState(() {
+                    value = _tien.numberValue;
+                    print(_tien.text.replaceAll(RegExp(r'.'), ''));
+                  }),// convert to a number
+                  inputFormatters: [
+                    MoneyInputFormatter(thousandSeparator: '.', decimalSeparator: ' '),
+                    //FilteringTextInputFormatter.digitsOnly
                   ],
-                  maxLength: 6,
-                  readOnly: _tien.text == '0',
-                  keyboardType: TextInputType.datetime,
+                  maxLength: 7,
+                  readOnly: thanhvien.c41 == 1,
+                  keyboardType: TextInputType.number,
                 ),
                 //p49
                 const SizedBox(height: 10,),
@@ -158,49 +164,50 @@ class _P48_49ViewState extends State<P48_49View> {
               p48_49ViewModel.P48_49Back();
             }),
             UINextButton(ontap: (){
+              print(_tien.numberValue);
               if(p49 == 0){
                 showDialog(
                     context: context,
                     builder: (_) => const UIWarningDialog(waring: 'P49-Vai trò trong công việc chính nhập vào chưa đúng!',)
                 );
               }
-              else if(thanhvien.c41 == 2 && (int.parse(_tien.text) > 1000)){
+              else if(thanhvien.c41 == 2 && (value > 1000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 2)!',)
                 );
               }
-              else if(thanhvien.c41 == 3 && (int.parse(_tien.text) < 1000 || int.parse(_tien.text) > 10000)){
+              else if(thanhvien.c41 == 3 && (value < 1000 || value > 10000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 3)!',)
                 );
               }
-              else if(thanhvien.c41 == 4 && (int.parse(_tien.text) < 10000 || int.parse(_tien.text) > 20000)){
+              else if(thanhvien.c41 == 4 && (value < 10000 || value > 20000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 4)!',)
                 );
               }
-              else if(thanhvien.c41 == 5 && (int.parse(_tien.text) < 20000 || int.parse(_tien.text) > 50000)){
+              else if(thanhvien.c41 == 5 && (value < 20000 || value > 50000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 5)!',)
                 );
               }
-              else if(thanhvien.c41 == 6 && (int.parse(_tien.text) < 50000 || int.parse(_tien.text) > 100000)){
+              else if(thanhvien.c41 == 6 && (value < 50000 || value > 100000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 6)!',)
                 );
               }
-              else if(thanhvien.c41 == 7 && (int.parse(_tien.text) < 100000)){
+              else if(thanhvien.c41 == 7 && (value < 100000)){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có số tiền nhận được của CV chính (P48 = ${_tien.text}) không phù hợp với khoảng mức tiền công (P47 = 7)!',)
                 );
               }
-              else if(int.parse(_tien.text) > 900000){
+              else if(value > 900000){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} có P48 - Tổng số tiền nhận được của CV chính  = ${_tien.text} quá lớn!',)
@@ -241,14 +248,14 @@ class _P48_49ViewState extends State<P48_49View> {
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là xã viên hợp tác xã (P49 = 4) mà cơ sở làm việc thuộc loại hình không phải hợp tác xã (p49 là $p49). Kiểm tra lại!',)
                 );
               }
-              else if(p49 == 5 && int.parse(_tien.text) < 300){
+              else if(p49 == 5 && value < 300){
                 showDialog(
                     context: context,
                     builder: (_) => UIWarningDialog(waring: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} làm công hưởng lương mà thu nhập quá thấp dưới 300 nghìn đồng!',)
                 );
               }
               //Notifi
-              else if((p49 == 1 || p49 ==2) && (int.parse(_tien.text) > 500000)){
+              else if((p49 == 1 || p49 ==2) && (value > 500000)){
                 showDialog(
                     context: context,
                     builder: (_) => UINotificationDialog(
@@ -271,7 +278,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                             p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
-                                              c42: int.parse(_tien.text),
+                                              c42: value.toInt(),
                                               c43: p49,
                                             ));
                                           },
@@ -282,7 +289,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                     p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                       idho: thanhvien.idho,
                                       idtv: thanhvien.idtv,
-                                      c42: int.parse(_tien.text),
+                                      c42: value.toInt(),
                                       c43: p49,
                                     ));
                                   }
@@ -299,7 +306,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                   p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
-                                    c42: int.parse(_tien.text),
+                                    c42: value.toInt(),
                                     c43: p49,
                                   ));
                                 },
@@ -310,7 +317,7 @@ class _P48_49ViewState extends State<P48_49View> {
                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
-                            c42: int.parse(_tien.text),
+                            c42: value.toInt(),
                             c43: p49,
                           ));
                         }
@@ -318,7 +325,7 @@ class _P48_49ViewState extends State<P48_49View> {
                     )
                 );
               }
-              else if((int.parse(_tien.text) < 50)){
+              else if((value < 50)){
                 showDialog(
                     context: context,
                     builder: (_) => UINotificationDialog(
@@ -341,7 +348,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                             p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                               idho: thanhvien.idho,
                                               idtv: thanhvien.idtv,
-                                              c42: int.parse(_tien.text),
+                                              c42: value.toInt(),
                                               c43: p49,
                                             ));
                                           },
@@ -352,7 +359,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                     p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                       idho: thanhvien.idho,
                                       idtv: thanhvien.idtv,
-                                      c42: int.parse(_tien.text),
+                                      c42: value.toInt(),
                                       c43: p49,
                                     ));
                                   }
@@ -369,7 +376,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                   p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
-                                    c42: int.parse(_tien.text),
+                                    c42: value.toInt(),
                                     c43: p49,
                                   ));
                                 },
@@ -380,7 +387,7 @@ class _P48_49ViewState extends State<P48_49View> {
                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
-                            c42: int.parse(_tien.text),
+                            c42: value.toInt(),
                             c43: p49,
                           ));
                         }
@@ -404,7 +411,7 @@ class _P48_49ViewState extends State<P48_49View> {
                                   p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                                     idho: thanhvien.idho,
                                     idtv: thanhvien.idtv,
-                                    c42: int.parse(_tien.text),
+                                    c42: value.toInt(),
                                     c43: p49,
                                   ));
                                 },
@@ -415,7 +422,7 @@ class _P48_49ViewState extends State<P48_49View> {
                           p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
                             idtv: thanhvien.idtv,
-                            c42: int.parse(_tien.text),
+                            c42: value.toInt(),
                             c43: p49,
                           ));
                         }
@@ -432,7 +439,7 @@ class _P48_49ViewState extends State<P48_49View> {
                         p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                           idho: thanhvien.idho,
                           idtv: thanhvien.idtv,
-                          c42: int.parse(_tien.text),
+                          c42: value.toInt(),
                           c43: p49,
                         ));
                       },
@@ -443,7 +450,7 @@ class _P48_49ViewState extends State<P48_49View> {
                 p48_49ViewModel.P48_49Next(thongTinThanhVienModel(
                   idho: thanhvien.idho,
                   idtv: thanhvien.idtv,
-                  c42: int.parse(_tien.text),
+                  c42: value.toInt(),
                   c43: p49,
                 ));
               }

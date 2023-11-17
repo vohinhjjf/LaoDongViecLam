@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:lao_dong_viec_lam/components/uis.dart';
-import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
+import 'package:LDVL2024/components/uis.dart';
+import 'package:LDVL2024/models/thongTinThanhVien_model.dart';
 
 import '../../../base/base_logic.dart';
 import '../../../base/base_viewmodel.dart';

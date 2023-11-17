@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lao_dong_viec_lam/base/base_logic.dart';
+import 'package:LDVL2024/base/base_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';

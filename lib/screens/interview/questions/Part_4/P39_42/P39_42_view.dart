@@ -96,7 +96,6 @@ class _P39_42ViewState extends State<P39_42View> {
                     },
                     textCapitalization: TextCapitalization.sentences,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                       FilteringTextInputFormatter.allow(RegExp(
                           '[a-z A-Z á-ý Á-Ý à-ỳ À-Ỳ ã-ỹ Ã-Ỹ ả-ỷ Ả-Ỷ ạ-ỵ Ạ-Ỵ]')),
                     ],

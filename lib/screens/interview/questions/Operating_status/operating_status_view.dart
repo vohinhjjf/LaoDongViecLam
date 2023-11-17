@@ -157,7 +157,7 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
           margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           height: 50.0,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(25.0),
               gradient: const LinearGradient(colors: [
                 mPrimaryColor,
                 Color(0xFF64B5F6),
@@ -180,9 +180,9 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0)),
             textColor: Colors.white,
-            padding: const EdgeInsets.all(0),
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Icon(
                   Icons.navigate_next,
@@ -196,10 +196,11 @@ class _OperatingStatusViewState extends State<OperatingStatusView> {
                   textFontSize: fontMedium,
                   isBold: true,
                 ),
-                Icon(
-                  Icons.navigate_next,
+                Image(
+                  width: 18,
+                  height: 18,
+                  image: AssetImage("assets/icons/next.png"),
                   color: Colors.white,
-                  size: 25,
                 ),
               ],
             )

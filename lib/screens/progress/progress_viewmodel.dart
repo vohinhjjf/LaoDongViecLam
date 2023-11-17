@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lao_dong_viec_lam/models/bangkeThangDT_model.dart';
+import 'package:LDVL2024/models/bangkeThangDT_model.dart';
 import '../../base/base_viewmodel.dart';
 import '../../components/navigation/navigation_service.dart';
 import '../../data/shared_preferences/spref_app_model.dart';

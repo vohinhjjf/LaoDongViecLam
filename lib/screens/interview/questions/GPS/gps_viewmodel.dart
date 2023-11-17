@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:lao_dong_viec_lam/models/bangkeThangDT_model.dart';
+import 'package:LDVL2024/models/bangkeThangDT_model.dart';
 
 import '../../../../base/base_logic.dart';
 import '../../../../base/base_viewmodel.dart';

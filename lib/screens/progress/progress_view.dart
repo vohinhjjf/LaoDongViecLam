@@ -36,7 +36,8 @@ class Body extends State<ProgressView>{
         list_bk_tdt = progressViewModel.list_bk_tdt;
         list_ttho = progressViewModel.list_ttho;
         list_area = progressViewModel.list_area;
-        valueNotifier.value = (progressViewModel.list_bk_tdt.where((e) => e.trangThai == 9 && e.thangDT == progressViewModel.thangDT).length
+        valueNotifier.value = (
+            progressViewModel.list_bk_tdt.where((e) => e.trangThai == 9 && e.thangDT == progressViewModel.thangDT).length
             + progressViewModel.list_bk.where((e) => (e.trangthai_BK == 2 || e.trangthai_BK == 3 ||e.trangthai_BK == 4) && e.thangDT == progressViewModel.thangDT).length)
             /progressViewModel.list_bk.length*100.0;
       })

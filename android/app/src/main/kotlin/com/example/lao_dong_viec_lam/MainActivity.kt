@@ -1,4 +1,4 @@
-package com.example.lao_dong_viec_lam
+package com.example.LDVL2024
 
 import io.flutter.embedding.android.FlutterActivity
 

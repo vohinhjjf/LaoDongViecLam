@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lao_dong_viec_lam/screens/home/home_view.dart';
-import 'package:lao_dong_viec_lam/screens/interview/area/area_view.dart';
+import 'package:LDVL2024/screens/home/home_view.dart';
+import 'package:LDVL2024/screens/interview/area/area_view.dart';
 import 'package:provider/provider.dart';
 import '../../components/uis.dart';
 import '../changePass/change_pass_view.dart';
@@ -130,26 +130,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 100.h,
-        color: Colors.blue.shade400,
+        height: 110.h,
+        color: mPrimaryColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buttonWidget(UIDescribes.home, _home ? UIAssets.icDashboard : UIAssets.icNotDashboard,onTap: () {
+            _buttonWidget(UIDescribes.home, _home ? UIAssets.icDashboard : UIAssets.icNotDashboard,
+                !_home ? Color(0xFF6eadee) : Colors.white, _home ? Colors.black : Colors.white,
+                onTap: () {
               pageController.jumpToPage(0);
               setState(() => {
                 _home = true,
                 _changePass = false,
               });
             }),
-            _buttonWidget(UIDescribes.changePass,_changePass ? UIAssets.icChangePass:UIAssets.icNotChangePass,onTap: () {
+            _buttonWidget(UIDescribes.changePass,_changePass ? UIAssets.icChangePass:UIAssets.icNotChangePass,
+                !_changePass ? Color(0xFF6eadee) : Colors.white, _changePass ? Colors.black : Colors.white,
+                onTap: () {
               pageController.jumpToPage(1);
               setState(() => {
                 _home = false,
                 _changePass = true,
               });
             }),
-            _buttonWidget(UIDescribes.logout, UIAssets.icNotLogout,onTap: () {
+            _buttonWidget(UIDescribes.logout, UIAssets.icNotLogout, Color(0xFF6eadee), Colors.white,
+                onTap: () {
               bottomNavigationViewModel.logout();
             }),
           ],
@@ -158,38 +163,38 @@ class _BottomNavigationState extends State<BottomNavigation> {
     );
   }
 
-  Widget _buttonWidget(String title, String icon, {required GestureTapCallback onTap}) {
+  Widget _buttonWidget(String title, String icon, Color color, Color color_text,{required GestureTapCallback onTap}) {
     return InkWell(
       onTap: onTap,
       child: Container(
         width: 100.w,
-        //height: 90.h,
+        height: 80.h,
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration:  BoxDecoration(
           //border: Border.all(color: check ? mThirdColor : Colors.white, width: 2),
-          color: Colors.white,
+          color: color,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-              color: mCompleteColor.shade400,
-              blurRadius: 10, // soften the shadow
-              spreadRadius: -5, //extend the shadow
-            )
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: mCompleteColor.shade400,
+          //     blurRadius: 10, // soften the shadow
+          //     spreadRadius: -5, //extend the shadow
+          //   )
+          // ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               icon,
-              width: 55,
-              height: 55,
+              width: 35,
+              height: 35,
               colorBlendMode: BlendMode.color,
             ),
             const SizedBox(height: 5,),
             UIText(
               text: title,
-              textColor: Colors.black,
+              textColor: color_text,
               isBold: true,
               textFontSize: fontSmall,
               //isBold: true,

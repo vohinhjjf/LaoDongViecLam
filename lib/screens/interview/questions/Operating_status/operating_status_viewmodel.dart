@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:lao_dong_viec_lam/models/thongTinThanhVien_model.dart';
+import 'package:LDVL2024/models/thongTinThanhVien_model.dart';
 
 import '../../../../base/base_viewmodel.dart';
 import '../../../../components/navigation/navigation_service.dart';

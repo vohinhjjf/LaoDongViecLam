@@ -43,6 +43,7 @@ class Body extends State<SyncView>{
           textColor: mPrimaryColor,
           textAlign: TextAlign.center,
           textFontSize: fontLarge,
+          isBold: true,
         ),
 
         shape: const UnderlineInputBorder(
@@ -71,7 +72,7 @@ class Body extends State<SyncView>{
                   return Container();
                 }
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(height: 10,),
             const UIText(
               text: 'Gửi tệp dữ liệu: không',
                 textFontSize: fontLarge,
@@ -80,8 +81,8 @@ class Body extends State<SyncView>{
             Container(
               alignment: Alignment.center,
               margin:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              width: 150,
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              width: 250,
               child: MaterialButton(
                 onPressed: (){
                   if(temp != 0 ) {
@@ -103,7 +104,7 @@ class Body extends State<SyncView>{
                   alignment: Alignment.center,
                   height: 50.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(25.0),
                       gradient: const LinearGradient(colors: [
                         mPrimaryColor,
                         Color(0xFF64B5F6),
@@ -114,7 +115,7 @@ class Body extends State<SyncView>{
                     text: "THỰC HIỆN",
                     textAlign: TextAlign.center,
                     textColor: Colors.white,
-                    textFontSize: fontLarge,
+                    textFontSize: fontMedium,
                     isBold: true,
                   ),
                 ),

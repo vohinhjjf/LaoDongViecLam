@@ -88,8 +88,8 @@ class _AreaViewState extends State<AreaView>{
                   child: Row(
                     children: [
                       const Image(
-                        width: 100,
-                        height: 100,
+                        width: 90,
+                        height: 90,
                         image: AssetImage("assets/images/tempsnip.png"),
                       ),
                       SizedBox(width: 10.w,),

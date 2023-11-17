@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lao_dong_viec_lam/components/uis.dart';
+import 'package:LDVL2024/components/uis.dart';
 
 class UITextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -46,6 +46,7 @@ class UITextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: textAlign ?? TextAlign.start,
       autofocus: autofocus,
       controller: controller,
       obscureText: isHideContent ?? false,
