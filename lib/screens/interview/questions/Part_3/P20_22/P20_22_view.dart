@@ -245,7 +245,7 @@ class _P20_22ViewState extends State<P20_22View> {
                   showDialog(
                       context: context,
                       builder: (_) => UINotificationDialog(
-                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nam, ${thanhvien.c04} tuổi đang không làm công việc gì để tạo thu nhập. Có đúng không?',
                         onpress: (){
                           p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
@@ -262,7 +262,7 @@ class _P20_22ViewState extends State<P20_22View> {
                   showDialog(
                       context: context,
                       builder: (_) => UINotificationDialog(
-                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạp thu nhập. Có đúng không?',
+                        notification: '${BaseLogic.getInstance().getMember(thanhvien)} ${thanhvien.c00} là Nữ, ${thanhvien.c04} tuổi đang không làm công việc gì để tạo thu nhập. Có đúng không?',
                         onpress: (){
                           p20_22ViewModel.P20_22Next(thongTinThanhVienModel(
                             idho: thanhvien.idho,
