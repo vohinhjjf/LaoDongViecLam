@@ -27,6 +27,7 @@ class OperatingStatusViewModel extends BaseViewModel {
     await _executeDatabase.getHouseHoldByIDHo(id).then((value) => bangkeho = value);
   }
 
+
    void operatingStatus(BangKeCsModel bangKeCsModel, int status) async {
      List<AreaModel> list_area = [];
      String id = '${_sPrefAppModel.getIdHo}${_sPrefAppModel.month}';
@@ -42,7 +43,7 @@ class OperatingStatusViewModel extends BaseViewModel {
           await _executeDatabase.getHouseHoldByIDHo(_sPrefAppModel.getIdHo).then((value) {
             _executeDatabase.setHo(
                 thongTinHoModel(
-                    idho: '${value.idho}$thangDT',
+                    idho: '${value.idho}${_sPrefAppModel.month}',
                     hoSo: value.hoSo,
                     namDT: namDT,
                     maTinh: value.maTinh,

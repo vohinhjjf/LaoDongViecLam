@@ -179,10 +179,10 @@ class ExecuteDatabase {
     List<Map<String, Object?>>? res;
     res = await _database?.rawQuery(
         "SELECT * FROM ${TableConstants.thongtinho} WHERE idho = '$idho'");
-    List<thongTinHoModel> listNKTT = res!.isNotEmpty
+    List<thongTinHoModel> list = res!.isNotEmpty
         ? res.map((c) => thongTinHoModel.fromJson(c)).toList()
         : [];
-    return listNKTT.first;
+    return list.first;
   }
 
   Future<List<thongTinHoModel>> getListHo(int month) async {
